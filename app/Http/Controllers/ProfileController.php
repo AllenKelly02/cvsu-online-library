@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+
 class ProfileController extends Controller
 {
+    public function index(
+        
+    )
     /**
      * Display the user's profile form.
      */
@@ -57,4 +61,7 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+
+   
 }

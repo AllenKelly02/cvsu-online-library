@@ -16,21 +16,21 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+            <x-header/>
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="w-full h-screen min-h-screen flex container mx-auto md:px-20 pt-20">
+                    <x-admin-sidebar/>
+
+                    {{-- <x-user-sidebar/> --}}
+                
+                <div class="w-4/5">
+                    <main class="w-full">
+                        {{ $slot }}
+                    </main>
+                </div>
+            </div>
         </div>
     </body>
 </html>
