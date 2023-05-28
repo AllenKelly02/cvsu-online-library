@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('municipality');
             $table->string('province');
             $table->string('zip_code');
-            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }

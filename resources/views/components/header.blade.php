@@ -13,25 +13,39 @@
         </div>
 
         <div class="flex space-x-2">
-            <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                    <div class="w-10 rounded-full">
-                        <img src="{{asset('img/icons/avatar.jpg')}}" />
-                    </div>
-                </label>
-                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a href="/profile/index">Profile</a></li>
-                    
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-dropdown-link>
-                    </form>
-                </ul>
+            @auth
+                <div class="dropdown dropdown-end">
+                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="{{asset('img/icons/avatar.jpg')}}" />
+                        </div>
+                    </label>
+                    <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><a href="/profile/index">Profile</a></li>
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                    </ul>
+                </div>
+            @else
+            
+            <div class="flex items-center space-x-2">
+                <a href="{{route('login')}}" class="text-sm text-white py-2 px-4 rounded bg-green3 border border-green3">
+                    LOGIN
+                </a>
+
+                <a href="{{route('register')}}"  class="text-sm text-green4 py-2 px-4 rounded border border-green4">
+                    REGISTER
+                </a>
             </div>
+
+            @endauth
         </div>
     </div>
 </div>

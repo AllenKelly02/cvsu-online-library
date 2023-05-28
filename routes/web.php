@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\BooksController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('user.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('user.index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/profile/index', [ProfileController::class, 'index'])->name('profile.index');
@@ -29,10 +30,21 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-Route::middleware('role:user')->prefix('user')->as('user.')->group(function (){
-       
+// Route::middleware('role:user')->prefix('user')->as('user.')->group(function (){
 
+
+// });
+
+Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('admin/dashboard', [DashboardController::class, 'admin'])
+    ->name('admin.dashboard');
 });
+
+Route::middleware(['auth', 'role:user'])->group(function() {
+    Route::get('user/dashboard', [DashboardController::class, 'user'])
+    ->name('user.dashboard');
+});
+
 
 
 Route::get('/books', [BooksController::class, 'index'])->name('books.index');
