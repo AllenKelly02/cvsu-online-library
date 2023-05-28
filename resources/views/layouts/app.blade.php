@@ -21,10 +21,13 @@
 
             <!-- Page Content -->
             <div class="w-full h-screen min-h-screen flex container mx-auto md:px-20 pt-20">
-                    <x-admin-sidebar/>
 
-                    {{-- <x-user-sidebar/> --}}
-                
+                @if (Auth::user()->role === 'admin')
+                    <x-admin-sidebar/>
+                @else
+                    <x-user-sidebar/>
+                @endif
+
                 <div class="w-4/5">
                     <main class="w-full">
                         {{ $slot }}
