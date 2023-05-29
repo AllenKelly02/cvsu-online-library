@@ -89,7 +89,7 @@
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                     <option value="NA">Prefer not to say</option>
-                                </select>                        
+                                </select>
                             </div>
 
                             <div>
@@ -131,7 +131,9 @@
                         </div>
                         <div class="flex -mx-3">
                             <div class="w-full px-3 mb-5">
-                                <button class="block w-full max-w-xs mx-auto bg-green4 hover:bg-green3 text-white rounded-lg px-3 py-3 font-semibold">Back to login</button>
+                                <a href="{{ route('login') }}">
+                                    <button class="block w-full max-w-xs mx-auto bg-green4 hover:bg-green3 text-white rounded-lg px-3 py-3 font-semibold">Back to login</button>
+                                </a>
                             </div>
                             <div class="w-full px-3 mb-5">
                                 <button class="block w-full max-w-xs mx-auto bg-green4 hover:bg-green3 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
@@ -142,8 +144,8 @@
             </div>
         </div>
     </div>
-    
-    <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
+
+    <!-- OFFICIAL WEBSITE OF CAVITE STATE UNIVERSITY - BACOOR CAMPUS -->
     <div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
         <div>
             <a title="Facebook of CVSU-BACOOR" href="https://cvsu.edu.ph/bacoor/" target="_blank" class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
