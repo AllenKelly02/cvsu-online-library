@@ -14,14 +14,14 @@ class UnverifiedAccount extends Model
         'first_name',
         'middle_name',
         'student_id',
-        'gender',
-        'street',
-        'village',
+        'sex',
+        'block',
+        'subdivision',
+        'barangay',
         'municipality',
         'province',
         'zip_code',
         'email',
         'password'
-
     ];
 }
