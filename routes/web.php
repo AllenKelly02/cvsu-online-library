@@ -35,14 +35,14 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 // });
 
-Route::middleware(['auth', 'role:admin'])->group(function() {
-    Route::get('admin/dashboard', [DashboardController::class, 'admin'])
-    ->name('admin.dashboard');
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'admin'])
+    ->name('dashboard');
 });
 
-Route::middleware(['auth', 'role:user'])->group(function() {
-    Route::get('user/dashboard', [DashboardController::class, 'user'])
-    ->name('user.dashboard');
+Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'user'])
+    ->name('dashboard');
 });
 
 
