@@ -5,8 +5,9 @@
     <div class="w-full h-full flex justify-center items-center">
         <form method="POST" action="{{ route('login') }}" class="w-96 p-6 bg-white rounded-lg border border-gray-300">
             @csrf
-    
+            <img class="w-16 h-16 justify-center" src="{{ asset('img/logo.png') }}" alt="">
             <!-- Email Address -->
+
             <div>
                 <x-input-label for="email" :value="__('Email')" />
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
