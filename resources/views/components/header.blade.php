@@ -2,7 +2,7 @@
     <div class="navbar flex justify-between items-center container mx-auto md:px-22 lg:px-28 ">
         <div class="flex items-center">
             <div class="flex items-center space-x-2">
-                <a href="/" class="flex items-center space-x-2">
+                <a href="/index" class="flex items-center space-x-2">
                     <img class="w-16 h-16" src="{{asset('img/logo.png')}}" alt="">
                     <div class="flex flex-col">
                         <p class="castoro text-sm font-bold">CAVITE STATE UNIVERSITY</p>
