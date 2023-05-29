@@ -1,7 +1,4 @@
 <x-guest-layout>
-    <section>
-        <div class="container py-8">
-            
-        </div>
-    </section>
+    <x-hero/>
+    <x-footer/>
 </x-guest-layout>
