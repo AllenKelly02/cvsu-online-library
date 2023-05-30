@@ -18,7 +18,8 @@ export default {
                 'green1': '#10A602',
                 'green2': '#0E8504',
                 'green3': '#115F0C',
-                'green4': '#6A9A66'
+                'green4': '#6A9A66',
+                'green5': '#52DE97'
             },
         },
     },

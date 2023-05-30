@@ -5,7 +5,7 @@
             <div class="md:flex w-full">
                 <div class="hidden md:block w-1/3.5 bg-green4 py-10 px-10">
                     <svg id="a87032b8-5b37-4b7e-a4d9-4dbfbe394641" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-                        width="100%" height="auto" viewBox="0 0 744.84799 747.07702">
+                        width="100%" height="auto" viewBox="0 0 744.84799 747.07702">-
                         <path id="fa3b9e12-7275-481e-bee9-64fd9595a50d" data-name="Path 1"
                             d="M299.205,705.80851l-6.56-25.872a335.96693,335.96693,0,0,0-35.643-12.788l-.828,12.024-3.358-13.247c-15.021-4.29394-25.24-6.183-25.24-6.183s13.8,52.489,42.754,92.617l33.734,5.926-26.207,3.779a135.92592,135.92592,0,0,0,11.719,12.422c42.115,39.092,89.024,57.028,104.773,40.06s-5.625-62.412-47.74-101.5c-13.056-12.119-29.457-21.844-45.875-29.5Z"
                             transform="translate(-227.576 -76.46149)" fill="#f2f2f2" />
@@ -87,16 +87,19 @@
                         <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
                         <p>Enter your information to register</p>
                     </div>
-                    <div>
+                    <form method="POST" action="javascript:void(0)" >
+                        @csrf
                         <div class="flex -mx-2">
                             <div class="w-1/2 px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">First name</label>
+                                <div class="flex space-x-2">
+                                    <label for="" class="text-xs font-semibold px-1">First name</label>
+                                    <p class="error text-xs text-red-500" >this is the error container</p>
+                                </div>
                                 <div class="flex">
-                                    <div
-                                        class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.firstName"
+                                    <input type="text" x-model="info.firstName" name="first_name"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="First Name">
                                 </div>
@@ -249,11 +252,11 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="password" id="passwordInput" x-model="info.password"
+                                    <input type="password" id="password" x-model="info.password"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="************">
                                     <button
-                                        onclick="document.getElementById('passwordInput').type = document.getElementById('passwordInput').type === 'password' ? 'text' : 'password'">Show</button>
+                                        onclick="document.getElementById('password').type = document.getElementById('password').type === 'password' ? 'text' : 'password'">Show</button>
                                 </div>
                             </div>
                         </div>
@@ -266,10 +269,10 @@
                                         <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                                     </div>
                                     <input type="password"
-                                        id="passwordInput"class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
+                                        id="confirm_password"class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="************">
                                     <button
-                                        onclick="document.getElementById('passwordInput').type = document.getElementById('passwordInput').type === 'password' ? 'text' : 'password'">Show</button>
+                                        onclick="document.getElementById('confirm_password').type = document.getElementById('confirm_password').type === 'password' ? 'text' : 'password'">Show</button>
                                 </div>
                             </div>
                         </div>
@@ -285,7 +288,7 @@
                                     @click="sendData()">REGISTER NOW</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -301,7 +304,7 @@
             </a>
         </div>
     </div>
-    <script>
+    {{-- <script>
         function storeAccount() {
             return {
                 info: {
@@ -356,5 +359,9 @@
                 }
             }
         }
+    </script> --}}
+
+    <script>
+
     </script>
 </x-guest-layout>

@@ -46,8 +46,10 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
 });
 
 
+Route::get('/books', [BooksController::class, 'books'])->name('books.index');
 
-Route::get('/books', [BooksController::class, 'index'])->name('books.index');
+    Route::get('/browse', [BooksController::class, 'browse'])
+    ->name('books.browse');
 
 
 
