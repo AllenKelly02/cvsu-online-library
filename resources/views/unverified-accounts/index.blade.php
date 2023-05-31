@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($accounts->count())
+                                {{-- @if ($accounts->count())
                                     @foreach ($accounts as $account)
                                         <tr>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
@@ -64,7 +64,7 @@
 
                                         </tr>
                                     @endforeach
-                                @endif
+                                @endif --}}
                             </tbody>
                         </table>
                     </div>

@@ -1,6 +1,10 @@
 
 <div class="w-100 h-full flex items-start justify-center border-r border-gray-300">
     <div class="flex flex-col space-y-1 p-8 justify-left">
+     <a href="{{ route('user.dashboard') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-green-300">
+            <i class='bx bx-category text-xl text-gray-500 group-hover:text-black-900'></i>
+            <p class="group-hover:text-green-700">Dashboard</p>
+        </a>
         <a href="{{ route('user.catalog') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-green-300">
             <i class='bx bx-category text-xl text-gray-500 group-hover:text-black-900'></i>
             <p class="group-hover:text-green-700">Catalog</p>

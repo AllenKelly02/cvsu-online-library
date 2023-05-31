@@ -5,7 +5,7 @@
             <p class="group-hover:text-green-700">Dashboard</p>
         </a>
 
-        <a href="{{ route('admin.books.index') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-green-100">
+        <a href="{{ route('admin.books') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-green-100">
             <i class='bx bx-book text-xl text-gray-500 group-hover:text-green-700'></i>
             <p class="group-hover:text-green-700">Books</p>
         </a>
