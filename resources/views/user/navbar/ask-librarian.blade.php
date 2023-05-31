@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Container for demo purpose -->
-<div class="container mx-80 mt-24 px-8 mx-auto">
+<div class="container mx-72 my-20">
 
   <!-- Section: Design Block -->
   <section class="mb-32 text-gray-800">

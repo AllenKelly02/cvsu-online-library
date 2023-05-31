@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section>
-
-    </section>
+<section>
+    
+</section>
 </x-app-layout>
