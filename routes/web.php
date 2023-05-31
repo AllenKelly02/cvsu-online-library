@@ -35,27 +35,43 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
     // });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(function() {
+
     Route::get('/dashboard', [DashboardController::class, 'admin'])
-    ->name('dashboard');
+        ->name('dashboard');
+
+    Route::get('/books', [BooksController::class, 'books'])->name('books.index');
+
+    Route::get('/verified-accounts', function () {
+        return view('verified-accounts');
+    })->name('verified-accounts');
+
+    Route::get('/unverified-accounts', function () {
+        return view('unverified-accounts');
+    })->name('unverified-accounts');
+
 });
+
 
 Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'user'])
     ->name('dashboard');
+
+    // CATALOGS
+    Route::get('/', [CatalogController::class, 'catalog'])->name('catalog');
+    Route::get('/top-collect', [CatalogController::class, 'topCollections'])->name('top-collect');
+    Route::get('/new-collections', [CatalogController::class, 'newCollections'])->name('new-collections');
+    Route::get('/about-us', [CatalogController::class, 'aboutUs'])->name('about-us');
+    Route::get('/ask-librarian', [CatalogController::class, 'askLibrarian'])->name('ask-librarian');
+
+
 });
 
 // BROWSE
-Route::get('/books', [BooksController::class, 'books'])->name('books.index');
+// Route::get('/books', [BooksController::class, 'books'])->name('books.index');
 
     Route::get('/browse', [BooksController::class, 'browse'])
     ->name('books.browse');
 
-// CATALOGS
-Route::get('/', [CatalogController::class, 'index'])->name('catalog');
-Route::get('/top-collect', [CatalogController::class, 'topCollections'])->name('top-collect');
-Route::get('/new-collections', [CatalogController::class, 'newCollections'])->name('new-collections');
-Route::get('/about-us', [CatalogController::class, 'aboutUs'])->name('about-us');
-Route::get('/ask-librarian', [CatalogController::class, 'askLibrarian'])->name('ask-librarian');
 
 
 
