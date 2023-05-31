@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
     {
-        public function index ()
+        public function catalog ()
         {
             // Logic for the catalog page
             // You can return a view or perform any other actions as needed

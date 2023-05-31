@@ -8,17 +8,17 @@ use App\Models\Books;
 
 class BooksController extends Controller
 {
-    public function index() {
+    public function list() {
 
         // $books = Books::latest()->paginate(30)->get();
 
-        return view('books.index');
+        return view('admin.books.index');
     }
 
-    public function browse() {
+    // public function browse() {
 
-        // $books = Books::latest()->paginate(30)->get();
-        
-        return view('books.browse');
-    }
+    //     // $books = Books::latest()->paginate(30)->get();
+
+    //     return view('books.browse');
+    // }
 }
