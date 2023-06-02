@@ -1,7 +1,7 @@
 <x-app-layout>
      <section>
-        <div class="container mx-auto">
-            <div class="flex flex-col space-y-2 p-4">
+        <div class="container w-auto ml-52 mt-8">
+            <div class="flex flex-col space-y-2">
                 {{-- @foreach ($accounts as $account) --}}
                 {{-- <div class="w-full flex justify-between items-center py-2 border-b border-gray-300">
                     <div class="flex  space-x-3">
@@ -69,7 +69,7 @@
                                         Male
                                     </td>
                                     <td class="px-6 py-4">
-                                        allen@email.com 
+                                        allen@email.com
                                     </td>
                                 <td class="flex items-center px-6 py-4 space-x-3">
                                         <a class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
@@ -77,7 +77,7 @@
                                 </tr>
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Gia Nina Condes 
+                                        Gia Nina Condes
                                     </th>
                                     <td class="px-6 py-4">
                                         21202020
@@ -94,13 +94,13 @@
                                 </tr>
                                 <tr class="bg-white dark:bg-gray-800">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Christine Dela Cruz 
+                                        Christine Dela Cruz
                                     </th>
                                     <td class="px-6 py-4">
                                         22202020
                                     </td>
                                     <td class="px-6 py-4">
-                                        Female 
+                                        Female
                                     </td>
                                     <td class="px-6 py-4">
                                         christine@email.com
@@ -150,4 +150,4 @@
             </div>
         </div>
     </section>
-</x-app-layout> 
+</x-app-layout>

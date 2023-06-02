@@ -1,6 +1,6 @@
 <footer class="bottom-0 left-0 text-gray-600 body-font">
     <div class="">
-        <div class="container mx-auto py-4 px-5 md:px-22 lg:px-28 flex flex-wrap flex-col sm:flex-row">
+        <div class="container mx-auto py-4 px-5 md:px-22 mt-3 lg:px-28 flex flex-wrap flex-col sm:flex-row">
             <p class="text-gray-900 text-sm text-center sm:text-left">© 2023 Cavite State Univeristy —
                 <a href="https://cvsu.edu.ph/bacoor/" class="text-gray-900 ml-1" target="_blank" rel="noopener noreferrer">Bacoor Campus</a>
             </p>

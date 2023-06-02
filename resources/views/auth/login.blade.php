@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <div class="flex justify-center items-center mt-40">
+    <div class="flex justify-center items-center mt-52">
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div
@@ -42,16 +42,13 @@
             </div>
                 {{-- Buttons --}}
                 <div class="flex flex-col space-y-5 w-full">
-                    <button
-                        class="w-full bg-green4 rounded-3xl p-3 text-white font-bold transition duration-200 hover:bg-green3">Log
-                        in</button>
+                    <button class="w-full bg-green4 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green3">Log in</button>
                     <div class="flex items-center justify-center border-t-[1px] border-t-slate-300 w-full relative">
                         <div class="-mt-1 font-bod bg-white px-5 absolute">Or</div>
                     </div>
-                    <a href="{{ route('register') }}">
-                        <button
-                            class="w-full border-green3 hover:border-green4 hover:border-[2px] border-[1px] rounded-3xl p-3 text-green4 font-bold transition duration-200">Register</button>
-                    </a>
+
+                        <a href="{{ route('register') }}" class="w-full border-green3 hover:border-green4 hover:border-[2px] border-[1px] rounded-3xl p-3 text-center text-green4 font-bold transition duration-200">Register</a>
+
                 </div>
         </div>
     </div>

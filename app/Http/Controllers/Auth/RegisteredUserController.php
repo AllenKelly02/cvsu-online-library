@@ -34,19 +34,19 @@ class RegisteredUserController extends Controller
 
 
         $unverified = UnverifiedAccount::create([
-            'last_name' => $request->info['lastName'],
-            'first_name' => $request->info['firstName'],
-            'middle_name' => $request->info['middle_name'],
-            'sex' => $request->info['sex'],
-            'block' => $request->info['block'],
-            'subdivision' => $request->info['subdivision'],
-            'barangay' => $request->info['barangay'],
-            'municipality'=> $request->info['municipality'],
-            'province' => $request->info['province'],
-            'zip_code' => $request->info['zip_code'],
-            'student_id' => $request->info['studentId'],
-            'email' => $request->info['email'],
-            'password' => $request->info['password']
+            'last_name' => $request->lastName,
+            'first_name' => $request->firstName,
+            'middle_name' => $request->middle_name,
+            'sex' => $request->sex,
+            'block' => $request->block,
+            'subdivision' => $request->subdivision,
+            'barangay' => $request->barangay,
+            'municipality'=> $request->municipality,
+            'province' => $request->province,
+            'zip_code' => $request->zip_code,
+            'student_id' => $request->studentId,
+            'email' => $request->email,
+            'password' => $request->password
         ]);
 
         // $request->validate([
@@ -65,6 +65,6 @@ class RegisteredUserController extends Controller
 
         // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+       return redirect ('login');;
     }
 }

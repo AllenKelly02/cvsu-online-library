@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Container for demo purpose -->
-<div class="container text-center ml-50">
+<div class="container text-center ml-80 mt-32">
 
   <!-- Section: Design Block -->
   <section class="mb-32 text-gray-800">

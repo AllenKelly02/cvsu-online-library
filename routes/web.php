@@ -6,7 +6,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Lirabrian\BooksController;
-
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +71,5 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
 
 
 });
-
 
 require __DIR__.'/auth.php';

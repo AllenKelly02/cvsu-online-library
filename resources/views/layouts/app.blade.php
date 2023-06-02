@@ -15,18 +15,18 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gradient-to-b from-green-300 to-teal-600">
 
             <x-header/>
 
             <!-- Page Content -->
-            <div class="w-full h-screen min-h-screen flex container mx-auto md:px-20 pt-20 bg-gradient-to-b from-green-300 to-teal-600">
+            <div class="w-full h-screen min-h-screen flex container md:pt-20">
 
                 @if (Auth::check() && Auth::user()->role === 'admin')
                     <x-admin-sidebar/>
                 @else
                     <x-user-sidebar/>
-                @endif 
+                @endif
 
                 <div class="w-4/5">
                     <main class="w-full">
@@ -35,6 +35,7 @@
                 </div>
             </div>
         </div>
+        <x-footer/>
         @stack('js')
     </body>
 

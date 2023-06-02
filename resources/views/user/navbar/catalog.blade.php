@@ -59,5 +59,5 @@
         </div>
     </div>
 </section>
-<x-footer/>
+
 </x-app-layout>

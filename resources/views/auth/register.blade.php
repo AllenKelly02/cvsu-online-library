@@ -87,19 +87,18 @@
                         <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
                         <p>Enter your information to register</p>
                     </div>
-                    <form method="POST" action="javascript:void(0)" >
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="flex -mx-2">
-                            <div class="w-1/2 px-3 mb-5">
+                            <div class="w-1/2 px-3 mb-5 mt-2">
                                 <div class="flex space-x-2">
                                     <label for="" class="text-xs font-semibold px-1">First name</label>
-                                    <p class="error text-xs text-red-500" >this is the error container</p>
                                 </div>
                                 <div class="flex">
                                     <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.firstName" name="first_name"
+                                    <input type="text" name="firstName"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="First Name">
                                 </div>
@@ -111,7 +110,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.middleName"
+                                    <input type="text" name="middle_name"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Middle Name">
                                 </div>
@@ -123,7 +122,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.lastName"
+                                    <input type="text" name="lastName"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Last name">
                                 </div>
@@ -137,7 +136,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.block"
+                                    <input type="text" name="block"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Block and Lot">
                                 </div>
@@ -149,7 +148,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.subdivision"
+                                    <input type="text" name="subdivision"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Subdivision">
                                 </div>
@@ -161,7 +160,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.barangay"
+                                    <input type="text" name="barangay"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Barangay">
                                 </div>
@@ -175,7 +174,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.municipality"
+                                    <input type="text" name="municipality"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Municipality">
                                 </div>
@@ -187,7 +186,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.province"
+                                    <input type="text" name="province"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Province">
                                 </div>
@@ -199,7 +198,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.zipCode"
+                                    <input type="text" name="zip_code"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Zip Code">
                                 </div>
@@ -208,7 +207,7 @@
                         <div class=" px-2 mb-5 flex space-x-10">
                             <div>
                                 <label for="sex" class="text-xs font-semibold px-1">Sex</label>
-                                <select name="sex" x-model="info.sex"
+                                <select name="sex" name="sex"
                                     id="dropdown"class="w-full py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3">
                                     <option selected>Select Sex</option>
                                     <option value="Male">Male</option>
@@ -224,7 +223,7 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="text" x-model="info.studentId"
+                                    <input type="text" name="studentId"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="Student ID">
                                 </div>
@@ -238,49 +237,44 @@
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-between">
                                         <i class="mdi mdi-email-outline text-gray-400 text-lg"></i>
                                     </div>
-                                    <input type="email" x-model="info.email"
+                                    <input type="email" name="email"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                         placeholder="cvsubacoor@gmail.com">
                                 </div>
                             </div>
                         </div>
                         <div class="flex">
-                            <div class="w-full px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">Password</label>
-                                <div class="flex">
-                                    <div
-                                        class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
-                                    </div>
-                                    <input type="password" id="password" x-model="info.password"
-                                        class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                        placeholder="************">
-                                    <button
-                                        onclick="document.getElementById('password').type = document.getElementById('password').type === 'password' ? 'text' : 'password'">Show</button>
+                            <div class="w-full px-3 mb-12">
+                              <label for="" class="text-xs font-semibold px-1">Password</label>
+                              <div class="flex">
+                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                  <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                                 </div>
+                                <input type="password" id="password" name="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3" placeholder="************">
+                                <i onclick="togglePasswordVisibility('password')" class="flex items-center justify-center h-full px-3 mt-2.5 focus:outline-none">
+                                  <i id="toggle_icon" class="mdi mdi-eye-off-outline text-gray-400 text-lg"></i>
+                                </i>
+                              </div>
                             </div>
                         </div>
                         <div class="flex">
                             <div class="w-full px-3 mb-12">
-                                <label for="" class="text-xs font-semibold px-1">Confirm Password</label>
-                                <div class="flex">
-                                    <div
-                                        class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
-                                    </div>
-                                    <input type="password"
-                                        id="confirm_password"class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                        placeholder="************">
-                                    <button
-                                        onclick="document.getElementById('confirm_password').type = document.getElementById('confirm_password').type === 'password' ? 'text' : 'password'">Show</button>
+                              <label for="" class="text-xs font-semibold px-1">Confirm Password</label>
+                              <div class="flex">
+                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                  <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                                 </div>
+                                <input type="password" id="confirm_password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3" placeholder="************">
+                                <i onclick="togglePasswordVisibility('confirm_password')" class="flex items-center justify-center h-full px-3 mt-2.5 focus:outline-none">
+                                  <i id="toggle_icon_confirm" class="mdi mdi-eye-off-outline text-gray-400 text-lg"></i>
+                                </i>
+                              </div>
                             </div>
-                        </div>
+                          </div>
                         <div class="flex -mx-3">
                             <div class="w-full px-3 mb-5">
-                                <a href="{{ route('login') }}">
-                                    <button class="block w-full max-w-xs mx-auto bg-green4 hover:bg-green3 text-white rounded-lg px-3 py-3 font-semibold">Back to login</button>
-                                </a>
+
+                                    <a href="{{ route('login') }}" class="block w-full max-w-xs mx-auto bg-green4 hover:bg-green3 text-center text-white rounded-lg px-3 py-3 font-semibold">Back to login</a>
                             </div>
                             <div class="w-full px-3 mb-5">
                                 <button
@@ -362,6 +356,19 @@
     </script> --}}
 
     <script>
+        function togglePasswordVisibility(inputId) {
+          const input = document.getElementById(inputId);
+          const icon = document.getElementById(inputId === 'password' ? 'toggle_icon' : 'toggle_icon_confirm');
 
-    </script>
+          if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('mdi-eye-off-outline');
+            icon.classList.add('mdi-eye-outline');
+          } else {
+            input.type = 'password';
+            icon.classList.remove('mdi-eye-outline');
+            icon.classList.add('mdi-eye-off-outline');
+          }
+        }
+      </script>
 </x-guest-layout>

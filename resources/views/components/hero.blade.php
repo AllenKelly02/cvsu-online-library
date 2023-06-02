@@ -30,10 +30,10 @@
           </svg>
           <p class="leading-relaxed mb-6">To support the institution’s mission in its commitment that can produce individuals with truth, excellence, and service in any phases and trends of life.</p>
           <a class="inline-flex items-center">
-            <img alt="testimonial" src="{{ asset('img/logo.png') }}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+            <img alt="testimonial" src="{{ asset('img/logo.png') }}" class="w-12 h-12 mt-8 rounded-full flex-shrink-0 object-cover object-center">
             <span class="flex-grow flex flex-col pl-4">
               {{-- <span class="title-font font-medium text-gray-900">Holden Caulfield</span> --}}
-              <span class="text-gray-500 text-sm">CAVITE STATE UNIVERSITY LIBRARY MISSION</span>
+              <span class="text-gray-500 text-sm mt-8">CAVITE STATE UNIVERSITY LIBRARY MISSION</span>
             </span>
           </a>
         </div>
