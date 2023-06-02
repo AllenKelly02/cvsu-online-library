@@ -20,7 +20,7 @@
             <x-header/>
 
             <!-- Page Content -->
-            <div class="w-full h-screen min-h-screen flex container mx-auto md:px-20 pt-20">
+            <div class="w-full h-screen min-h-screen flex container mx-auto md:px-20 pt-20 bg-gradient-to-b from-green-300 to-teal-600">
 
                 @if (Auth::check() && Auth::user()->role === 'admin')
                     <x-admin-sidebar/>

@@ -4,7 +4,7 @@
         <div class="flex flex-wrap w-full mb-20">
         <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">New Collections</h1>
-            <div class="h-1 w-20 bg-green-500 rounded"></div>
+            <div class="h-1 w-20 bg-green-900 rounded"></div>
         </div>
         </div>
         <div class="flex flex-wrap -m-4">
@@ -26,20 +26,27 @@
         </div>
         <div class="xl:w-1/4 md:w-1/2 p-4">
             <div class="bg-gray-100 p-6 rounded-lg">
-            <img class="h-70 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/722x402" alt="content">
-            <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Great Pyramid of Giza</h2>
-            <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+            <img class="h-70 rounded w-full object-cover object-center mb-6" src="{{ asset('img/b3.jpg') }}" alt="content">
+            <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">John R. Walker</h3>
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Introduction to Hospitality Management</h2>
+            <p class="leading-relaxed text-base">Explores all aspects of the field including: travel and tourism; lodging; foodservice; meetings, conventions and expositions; and leisure and recreation.</p>
+            <button type="submit"
+            class="w-50 px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
+            View
+            </button>
             </div>
         </div>
         <div class="xl:w-1/4 md:w-1/2 p-4">
             <div class="bg-gray-100 p-6 rounded-lg">
-            <img class="h-70 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/723x403" alt="content">
-            <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">San Francisco</h2>
-            <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
+            <img class="h-70 rounded w-full object-cover object-center mb-6" src="{{ asset('img/b4.jpg') }}" alt="content">
+            <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Stuart Henry, Desiré J. M. Anastasia, Sanna King, and Nicole L. Bracy</h3>
+            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Crime, Law, and Justice</h2>
+            <p class="leading-relaxed text-base">Crime, Law, and Justice provides students with a comprehensive introduction to the field of criminal justice and the criminal justice system.</p>
+            <button type="submit"
+            class="w-50 px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
+            View
+            </button>
             </div>
-        </div>
         </div>
     </div>
 </section>

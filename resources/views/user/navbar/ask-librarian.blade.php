@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Container for demo purpose -->
-<div class="container mx-72 my-20">
+<div class="container text-center ml-50">
 
   <!-- Section: Design Block -->
   <section class="mb-32 text-gray-800">
@@ -8,7 +8,7 @@
       <div class="mb-12 lg:mb-0">
         <h2 class="text-3xl font-bold mb-6">Ask a Librarian</h2>
 
-        <p class="text-gray-500 mb-12">
+        <p class="text-gray-800 mb-12">
           The campus library aim is to share information and resources that might help learners and researchers to their academic needs.
         </p>
 
@@ -41,38 +41,6 @@
           </button>
         </form>
       </div>
-
-      {{-- <div class="mb-6 md:mb-0">
-        <p class="font-bold mb-4">Anim pariatur cliche reprehenderit?</p>
-        <p class="text-gray-500 mb-12">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt autem numquam dolore
-          molestias aperiam culpa alias veritatis architecto eos, molestiae vitae ex eligendi
-          libero eveniet dolorem, doloremque rem aliquid perferendis.
-        </p>
-
-        <p class="font-bold mb-4">Non cupidatat skateboard dolor brunch?</p>
-        <p class="text-gray-500 mb-12">
-          Distinctio corporis, iure facere ducimus quos consectetur ipsa ut magnam autem
-          doloremque ex! Id, sequi. Voluptatum magnam sed fugit iusto minus et suscipit? Minima
-          sunt at nulla tenetur, numquam unde quod modi magnam ab deserunt ipsam sint aliquid
-          dolores libero repellendus cupiditate mollitia quidem dolorem odit
-        </p>
-
-        <p class="font-bold mb-4">
-          Praesentium voluptatibus temporibus consequatur non aspernatur?
-        </p>
-        <p class="text-gray-500 mb-12">
-          Minima sunt at nulla tenetur, numquam unde quod modi magnam ab deserunt ipsam sint
-          aliquid dolores libero repellendus cupiditate mollitia quidem dolorem.
-        </p>
-
-        <p class="font-bold mb-4">Voluptatum magnam sed fugit iusto minus et suscipit?</p>
-        <p class="text-gray-500 mb-12">
-          Laudantium perferendis, est alias iure ut veniam suscipit dolorem fugit. Et ipsam
-          corporis earum ea ut quae cum non iusto blanditiis ipsum dolor eius reiciendis, velit
-          adipisci quas.
-        </p>
-      </div> --}}
     </div>
   </section>
   <!-- Section: Design Block -->

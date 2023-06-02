@@ -1,4 +1,3 @@
-
 <section class="w-full text-gray-600 body-font bg-bottom bg-no-repeat" style="background-image: url('../img/waves.svg');">
 
   <div class="w-full container mx-auto flex md:flex-row flex-col items-center space-x-32 md:px-22 lg:px-28 py-16 pb-52">
