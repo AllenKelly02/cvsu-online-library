@@ -99,7 +99,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
 var prevScrollPos = window.pageYOffset;
 
 window.onscroll = function() {
@@ -113,4 +113,4 @@ window.onscroll = function() {
 
   prevScrollPos = currentScrollPos;
 };
-</script>
+</script> --}}

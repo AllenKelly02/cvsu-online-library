@@ -1,6 +1,6 @@
 <x-app-layout>
     <section class="text-gray-600 body-font">
-  <div class="container px-5 py-5 mx-auto">
+  <div class="container px-5 py-5 mx-auto ml-8">
     <div class="flex flex-col text-left w-full mb-2 mt-2">
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Dashboard</h1>
     </div>

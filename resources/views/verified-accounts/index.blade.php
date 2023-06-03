@@ -1,6 +1,6 @@
 <x-app-layout>
      <section>
-        <div class="container w-auto ml-52 mt-8">
+        <div class="container w-auto ml-20 mt-8">
             <div class="flex flex-col space-y-2">
                 {{-- @foreach ($accounts as $account) --}}
                 {{-- <div class="w-full flex justify-between items-center py-2 border-b border-gray-300">
