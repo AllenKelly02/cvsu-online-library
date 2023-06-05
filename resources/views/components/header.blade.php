@@ -1,5 +1,5 @@
 <div class="header-container">
-    <div class="w-full z-50 border-b border-gray-200 bg-white">
+    <div class="w-full z-50 border-b border-green-800 bg-green-200">
         <div class="navbar flex sticky justify-between items-center container mx-auto md:px-22 lg:px-28 ">
             <div class="flex items-center">
                 <div class="flex items-center space-x-2">

@@ -1,31 +1,61 @@
+<body class="flex items-center justify-center w-screen h-screen p-10 space-x-6 bg-gray-300">
 
-<div class="w-100 h-full flex items-start justify-center border-r border-gray-300">
-    <div class="flex flex-col space-y-1 p-8 justify-left">
-        <a href="{{ route('user.catalog') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-gray-100">
-            <i class='bx bx-category text-xl text-gray-500 group-hover:text-black-900'></i>
-            <p class="group-hover:text-green-700">Catalog</p>
-        </a>
+	<!-- Component Start -->
+    <div class="wrapper">
+    <div class="sidebar">
+	<div class="flex flex-col items-center w-60 h-full overflow-hidden border-r border-green-800 text-gray-700 bg-gradient-to-b from-green-200 to-emerald-400 rounded" >
+		<div class="flex flex-row justify-between">
+        <a href="{{ route('user.catalog') }}" class="flex items-center w-full px-3 mt-3">
+			<span class="ml-2 text-sm font-bold">CvSU Library</span>
+		</a>
+        <div class="close-btn ml-12 mt-4">X</div>
+        </div>
+		<div class="w-full px-2">
+			<div class="flex flex-col items-center w-full mt-3 border-t border-green-800">
+				<a  href="{{ route('user.catalog') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100">
+                    <img class="object-center w-6 ml-30 py-3" src="{{ asset('img/catalog.png') }}" alt="content">
+					<span class="ml-2 text-sm font-medium">Catalog</span>
+				</a>
+				<a href="{{ route('user.top-collect') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100">
+				<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/top.png') }}" alt="content">
+					<span class="ml-2 text-sm font-medium">Top Collection</span>
+				</a>
+				<a href="{{ route('user.new-collections') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100">
+					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/new.png') }}" alt="content">
+					<span class="ml-2 text-sm font-medium">New Collection</span>
+				</a>
+				<a href="{{ route('user.about-us') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100">
+					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/info.png') }}" alt="content">
+					<span class="ml-2 text-sm font-medium">About Us</span>
+				</a>
+                <a href="{{ route('user.ask-librarian') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100">
+					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/ask.png') }}" alt="content">
+					<span class="ml-2 text-sm font-medium">Ask a Librarian</span>
+				</a>
+			</div>
+		</div>
+	</div>
 
-        <a href="{{ route('user.top-collect') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-gray-100">
-            <i class='bx bx-book text-xl text-gray-500 group-hover:text-black-900'></i>
-            <p class="group-hover:text-green-700">Top Collections</p>
-        </a>
-
-        <a href="{{ route('user.new-collections') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-gray-100">
-            <i class='bx bx-book text-xl text-gray-500 group-hover:text-black-900'></i>
-            <p class="group-hover:text-green-700">New Collections</p>
-        </a>
-
-        <a href="{{ route('user.about-us') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-gray-100">
-            <i class='bx bx-book text-xl text-gray-500 group-hover:text-black-900'></i>
-            <p class="group-hover:text-green-700">About Us</p>
-        </a>
-
-        <a href="{{ route('user.ask-librarian') }}" class="flex items-center space-x-2 p-2 rounded group hover:bg-gray-100">
-            <i class='bx bx-book text-xl text-gray-500 group-hover:text-black-900'></i>
-            <p class="group-hover:text-green-700">Ask a Librarian</p>
-        </a>
+<!--sidebar button-->
+</div>
+    <div class="content">
+      <button class="toggle-btn mt-20">
+	  	<img class="object-center w-6 ml-45 mt-1" src="{{ asset('img/menu.png') }}" alt="content">
+      </button>
     </div>
 </div>
+	<!-- Component End  -->
+</body>
+ <script>
+    const wrapper = document.querySelector('.wrapper');
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const closeBtn = document.querySelector('.close-btn');
 
+    toggleBtn.addEventListener('click', function() {
+      wrapper.classList.toggle('hide-sidebar');
+    });
 
+    closeBtn.addEventListener('click', function() {
+      wrapper.classList.add('hide-sidebar');
+    });
+  </script>

@@ -14,14 +14,16 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
+
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gradient-to-b from-green-300 to-teal-600">
+    
+        <div class="min-h-screen">
 
             <x-header/>
 
             <!-- Page Content -->
-            <div class="w-full h-screen min-h-screen flex container md:pt-20">
-
+            <div class="w-full h-full min-h-screen sm:flex container md:pt-20 bg-gradient-to-b from-green-200 to-emerald-400">
+            {{-- <div class="relative sm:flex min-h-screen w-full h-full flex container md:pt-20 bg-no-repeat bg-cover" style="background-image:url('../img/cover.svg');"> --}}
                 @if (Auth::check() && Auth::user()->role === 'admin')
                     <x-admin-sidebar/>
                 @else

@@ -14,6 +14,10 @@
             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Natalie Wexler</h3>
             <h2 class="text-lg text-gray-900 font-medium title-font mb-4">The Knowledge GAP</h2>
             <p class="leading-relaxed text-base">The hidden cause of America's broken education system- and how to fix it.</p>
+            <button type="submit"
+            class="w-50 px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
+            View
+            </button>
             </div>
         </div>
         <div class="xl:w-1/4 md:w-1/2 p-4">
@@ -22,6 +26,10 @@
             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Gilbert Brands</h3>
             <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Introduction to...</h2>
             <p class="leading-relaxed text-base">A Textbook for Beginners in Informatics</p>
+            <button type="submit"
+            class="w-50 px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
+            View
+            </button>
             </div>
         </div>
         <div class="xl:w-1/4 md:w-1/2 p-4">
