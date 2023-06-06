@@ -1,8 +1,8 @@
-<section class="w-full text-gray-600 body-font bg-bottom bg-no-repeat" style="background-image: url('../img/waves.svg');">
+<section class="w-full pt-58 text-gray-600 body-font bg-bottom bg-no-repeat" style="background-image: url('../img/wave.svg');">
 
-  <div class="w-full container mx-auto flex md:flex-row flex-col items-center space-x-32 md:px-22 lg:px-28 py-16 pb-52">
+  <div class="w-full container mx-auto flex md:flex-row flex-col items-center space-x-32 md:px-22 lg:px-28 py-16 pb-44">
 
-        <div class="lg:max-w-lg lg:w-96 md:w-1/2 w-5/6 ">
+        <div class="lg:max-w-lg lg:w-96 md:w-1/2 w-5/6 pt-5">
             <img class="object-cover object-center rounded" alt="hero" src="{{ asset('img/liba.png') }}">
         </div>
 
@@ -12,14 +12,14 @@
             </h1>
             <p class="mb-8 leading-relaxed">The Bacoor City Campus Library is located at the Second Floor of the Cavite State University – Bacoor City Campus, Phase 2, Soldiers Hills IV, Molino VI, Bacoor City, Cavite.</p>
             <div class="flex justify-center">
-                <a href="{{ route('books.browse') }}" class="inline-flex text-white bg-green5 border-0 py-2 px-6 focus:outline-none hover:bg-green3 rounded text-lg">Browse</a>
-                <a href="{{ route('login') }}" class="ml-4 inline-flex text-green5 rounded border border-green5 py-2 px-6 focus:outline-none hover:bg-green3 rounded text-lg">Login</a>
+                <a href="{{ route('books.browse') }}" class="inline-flex text-white bg-green-600 border-0 py-2 px-6 focus:outline-none hover:bg-green3 rounded text-lg">Browse</a>
+                <a href="{{ route('login') }}" class="ml-4 inline-flex text-green-600 rounded border border-green-600 py-2 px-6 focus:outline-none hover:bg-green3 hover:text-white text-lg">Login</a>
             </div>
         </div>
   </div>
 </section>
 
-<section class="text-gray-600 body-font bg-green5 h-96">
+<section class="text-gray-600 body-font h-96 bg-gradient-to-b from-green-200 to-emerald-400">
   <div class="container px-5 mx-auto lg:px-28 py-16 pt-0">
     {{-- <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Testimonials</h1> --}}
     <div class="flex flex-wrap ">

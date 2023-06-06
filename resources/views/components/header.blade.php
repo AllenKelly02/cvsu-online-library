@@ -14,7 +14,7 @@
                                 </div>
                             </a>
                         @else
-                            <a href="{{ route('user.dashboard') }}" class="flex items-center space-x-2">
+                            <a href="{{ route('user.catalog') }}" class="flex items-center space-x-2">
                                 <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
                                 <div class="flex flex-col">
                                     <p class="castoro text-sm font-bold">CAVITE STATE UNIVERSITY</p>
@@ -83,12 +83,12 @@
                 @else
                     <div class="flex items-center space-x-2">
                         <a href="{{ route('login') }}"
-                            class="text-sm text-white py-2 px-4 rounded bg-green5 border-green5-500 hover:bg-green3">
+                            class="text-sm text-white py-2 px-4 rounded bg-green-600 border-green5-500 hover:bg-green-800">
                             LOGIN
                         </a>
 
                         <a href="{{ route('register') }}"
-                            class="text-sm text-green5 py-2 px-4 rounded border border-green5 hover:bg-green5 hover:text-white">
+                            class="text-sm text-white py-2 px-4 rounded bg-green-600 border-green5-500 hover:bg-green-800">
                             REGISTER
                         </a>
                     </div>

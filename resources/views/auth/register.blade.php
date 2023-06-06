@@ -1,9 +1,9 @@
 <x-guest-layout>
-
-    <div class="flex items-center justify-center px-5 py-5 mt-24">
-        <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
+<section class="bg-gradient-to-b from-green-200 to-emerald-400 mt-10">
+    <div class="flex items-center justify-center px-5 py-56">
+        <div class="bg-gray-100 text-gray-800 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
             <div class="md:flex w-full">
-                <div class="hidden md:block w-1/3.5 bg-green4 py-10 px-10">
+                <div class="hidden md:block w-1/3.5 bg-green-600 py-10 px-10">
                     <svg id="a87032b8-5b37-4b7e-a4d9-4dbfbe394641" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                         width="100%" height="auto" viewBox="0 0 744.84799 747.07702">-
                         <path id="fa3b9e12-7275-481e-bee9-64fd9595a50d" data-name="Path 1"
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="flex">
                                     <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="firstName"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -108,7 +108,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="middle_name"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -120,7 +120,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="lastName"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -134,7 +134,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="block"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -146,7 +146,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="subdivision"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -158,7 +158,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="barangay"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -172,7 +172,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="municipality"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -184,7 +184,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="province"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -196,7 +196,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-home-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="zip_code"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -221,7 +221,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="text" name="studentId"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -235,7 +235,7 @@
                                 <div class="flex">
                                     <div
                                         class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-between">
-                                        <i class="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                                        <i class="mdi mdi-email-outline text-gray-500 text-lg"></i>
                                     </div>
                                     <input type="email" name="email"
                                         class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -248,7 +248,7 @@
                               <label for="" class="text-xs font-semibold px-1">Password</label>
                               <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                  <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+                                  <i class="mdi mdi-lock-outline text-gray-500 text-lg"></i>
                                 </div>
                                 <input type="password" id="password" name="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3" placeholder="************">
                                 <i onclick="togglePasswordVisibility('password')" class="flex items-center justify-center h-full px-3 mt-2.5 focus:outline-none">
@@ -262,7 +262,7 @@
                               <label for="" class="text-xs font-semibold px-1">Confirm Password</label>
                               <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                  <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+                                  <i class="mdi mdi-lock-outline text-gray-500 text-lg"></i>
                                 </div>
                                 <input type="password" id="confirm_password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3" placeholder="************">
                                 <i onclick="togglePasswordVisibility('confirm_password')" class="flex items-center justify-center h-full px-3 mt-2.5 focus:outline-none">
@@ -274,11 +274,11 @@
                         <div class="flex -mx-3">
                             <div class="w-full px-3 mb-5">
 
-                                    <a href="{{ route('login') }}" class="block w-full max-w-xs mx-auto bg-green4 hover:bg-green3 text-center text-white rounded-lg px-3 py-3 font-semibold">Back to login</a>
+                                    <a href="{{ route('login') }}" class="block w-full max-w-xs mx-auto bg-green-600 hover:bg-green3 text-center text-white rounded-lg px-3 py-3 font-semibold">Back to login</a>
                             </div>
                             <div class="w-full px-3 mb-5">
                                 <button
-                                    class="block w-full max-w-xs mx-auto bg-green4 hover:bg-green3 text-white rounded-lg px-3 py-3 font-semibold"
+                                    class="block w-full max-w-xs mx-auto bg-green-600 hover:bg-green3 text-white rounded-lg px-3 py-3 font-semibold"
                                     @click="sendData()">REGISTER NOW</button>
                             </div>
                         </div>
@@ -371,4 +371,6 @@
           }
         }
       </script>
+</section>
+<x-footer/>
 </x-guest-layout>
