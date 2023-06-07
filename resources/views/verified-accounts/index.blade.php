@@ -1,5 +1,5 @@
 <x-app-layout>
-     <section>
+    <section>
         <div class="container w-auto ml-20 mt-8">
             <div class="flex flex-col space-y-2">
                 {{-- @foreach ($accounts as $account) --}}
@@ -36,84 +36,88 @@
                                 </tr>
                             </thead>
                             <tbody> --}}
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">
-                                        Name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Student ID
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Sex
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
+                <div class="overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Student ID
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Sex
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Email
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Allen Kelly Baluyut
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        20202020
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Male
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        allen@email.com
-                                    </td>
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Allen Kelly Baluyut
+                                </th>
+                                <td class="px-6 py-4">
+                                    20202020
+                                </td>
+                                <td class="px-6 py-4">
+                                    Male
+                                </td>
+                                <td class="px-6 py-4">
+                                    allen@email.com
+                                </td>
                                 <td class="flex items-center px-6 py-4 space-x-3">
-                                        <a class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Gia Nina Condes
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        21202020
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Female
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        gia@email.com
-                                    </td>
-                                    <td class="flex items-center px-6 py-4 space-x-3">
-                                        <a class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white dark:bg-gray-800">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Christine Dela Cruz
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        22202020
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Female
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        christine@email.com
-                                    </td>
+                                    <a class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Gia Nina Condes
+                                </th>
+                                <td class="px-6 py-4">
+                                    21202020
+                                </td>
+                                <td class="px-6 py-4">
+                                    Female
+                                </td>
+                                <td class="px-6 py-4">
+                                    gia@email.com
+                                </td>
                                 <td class="flex items-center px-6 py-4 space-x-3">
-                                        <a class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                    <a class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Christine Dela Cruz
+                                </th>
+                                <td class="px-6 py-4">
+                                    22202020
+                                </td>
+                                <td class="px-6 py-4">
+                                    Female
+                                </td>
+                                <td class="px-6 py-4">
+                                    christine@email.com
+                                </td>
+                                <td class="flex items-center px-6 py-4 space-x-3">
+                                    <a class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                                {{-- @if ($accounts->count())
+
+                {{-- @if ($accounts->count())
                                     @foreach ($accounts as $account)
                                         <tr>
                                             <td class="poppins text-sm border border-gray-400 px-4 py-2 text-center">
@@ -142,12 +146,12 @@
                                         </tr>
                                     @endforeach
                                 @endif --}}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                {{-- @endforeach --}}
+                </tbody>
+                </table>
             </div>
+        </div>
+        {{-- @endforeach --}}
+        </div>
         </div>
     </section>
 </x-app-layout>

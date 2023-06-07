@@ -1,9 +1,9 @@
 <x-guest-layout>
-<section class="bg-gradient-to-b from-green-200 to-emerald-400 mt-10">
-    <div class="flex items-center justify-center px-5 py-56">
+<section class="bg-gradient-to-b from-green-200 to-emerald-400">
+    <div class="flex items-center justify-center py-28">
         <div class="bg-gray-100 text-gray-800 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
             <div class="md:flex w-full">
-                <div class="hidden md:block w-1/3.5 bg-green-600 py-10 px-10">
+                <div class="hidden md:block w-1/3.5 bg-green-600 py-10">
                     <svg id="a87032b8-5b37-4b7e-a4d9-4dbfbe394641" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                         width="100%" height="auto" viewBox="0 0 744.84799 747.07702">-
                         <path id="fa3b9e12-7275-481e-bee9-64fd9595a50d" data-name="Path 1"
@@ -207,7 +207,7 @@
                         <div class=" px-2 mb-5 flex space-x-10">
                             <div>
                                 <label for="sex" class="text-xs font-semibold px-1">Sex</label>
-                                <select name="sex" name="sex"
+                                <select name="sex"
                                     id="dropdown"class="w-full py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3">
                                     <option selected>Select Sex</option>
                                     <option value="Male">Male</option>

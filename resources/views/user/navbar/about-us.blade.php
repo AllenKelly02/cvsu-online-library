@@ -3,9 +3,9 @@
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
       <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">About Us</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">The campus library aim's to share information and resources that might help learners and researchers to their academic needs.</p>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">The campus library aims to share information and resources that might help learners and researchers to their academic needs.</p>
     </div>
-    <div class="flex flex-wrap -m-4">
+    <div class="flex flex-wrap -m-4 ml-5">
       <div class="p-4 lg:w-1/2">
         <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
           <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="{{ asset('img/lorema.jpg') }}">

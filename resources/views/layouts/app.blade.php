@@ -22,7 +22,7 @@
             <x-header/>
 
             <!-- Page Content -->
-            <div class="w-full h-full min-h-screen sm:flex container md:pt-20 bg-gradient-to-b from-green-200 to-emerald-400">
+            <div class="w-full h-full min-h-screen sm:flex md:pt-20 bg-gradient-to-b from-green-200 to-emerald-400">
             {{-- <div class="relative sm:flex min-h-screen w-full h-full flex container md:pt-20 bg-no-repeat bg-cover" style="background-image:url('../img/cover.svg');"> --}}
                 @if (Auth::check() && Auth::user()->role === 'admin')
                     <x-admin-sidebar/>

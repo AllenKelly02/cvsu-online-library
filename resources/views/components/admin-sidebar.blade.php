@@ -1,4 +1,4 @@
-<body class="flex items-center justify-center w-screen h-screen p-10 space-x-6 bg-gray-300">
+<body class="flex items-center justify-center sm:h-screen w-screen h-screen p-10 space-x-6 bg-gray-300">
 
 	<!-- Component Start -->
     <div class="wrapper">
@@ -54,6 +54,19 @@
     closeBtn.addEventListener('click', function() {
       wrapper.classList.add('hide-sidebar');
     });
+
+	// Event listener for window resize
+	window.addEventListener('resize', function() {
+	const sidebar = document.querySelector('.sidebar');
+	const screenWidth = window.innerWidth;
+
+	// If the screen size is smaller than a certain breakpoint, hide the sidebar
+	if (screenWidth < 950) {
+	sidebar.classList.add('hidden');
+	} else {
+	sidebar.classList.remove('hidden');
+	}
+	});
   </script>
 
 
