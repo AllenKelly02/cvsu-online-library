@@ -68,9 +68,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     Route::get('/about-us', [CatalogController::class, 'aboutUs'])->name('about-us');
 
     Route::get('/ask-librarian', [CatalogController::class, 'askLibrarian'])->name('ask-librarian');
-
-
-
+    
 });
 
 require __DIR__.'/auth.php';
