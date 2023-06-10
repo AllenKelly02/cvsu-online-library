@@ -12,15 +12,15 @@
             </div>
             <div class="w-full flex flex-col space-y-5 h-[30rem] capitalize text-black">
                 <div class="flex flex-row-reverse">
-                   <a href="{{route('user.profile.edit')}}"> <button class="btn btn-ghost">Edit</button></a>
+                   <a href="{{route('profile.edit')}}"> <button class="btn btn-ghost">Edit</button></a>
                 </div>
                 <div class="flex space-x-5 p-5">
                     <h1 class="font-semibold"><span class="text-gray-600 font-normal">Student Number :
-                        </span>{{ $profile->student_id }}</h1>
+                        </span>{{ $profile->profile->student_id }}</h1>
                 </div>
                 <div class="flex space-x-5 p-5">
                     <h1 class="font-semibold"><span class="text-gray-600 font-normal">Last name :
-                        </span>{{ $profile->last_name }}</h1>
+                        </span>{{ $profile->profile->last_name   }}</h1>
                     <h1 class="font-semibold"> <span class="text-gray-600 font-normal">First name :
                         </span>{{ $profile->first_name }}</h1>
                     <h1 class="font-semibold"><span class="text-gray-600 font-normal">Middle name :

@@ -57,7 +57,7 @@
 
                         <ul tabindex="1"
                             class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
-                            <a href="/profile/index">Profile</a>
+                            <a href="{{route('profile.show', ['id' => Auth::user()->id])}}">Profile</a>
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

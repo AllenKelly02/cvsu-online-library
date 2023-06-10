@@ -1,4 +1,4 @@
-<section class="w-full pt-58 text-gray-600 body-font bg-bottom bg-no-repeat" style="background-image: url('../img/wave.svg');">
+<section class="w-full pt-58 text-gray-600 body-font bg-bottom bg-no-repeat bg-white" style="background-image: url('../img/wave.svg');">
 
   <div class="w-full container mx-auto flex md:flex-row flex-col items-center md:space-x-32 lg:px-28 py-16 pb-44">
 

@@ -15,56 +15,56 @@ class UnverifiedAccountController extends Controller
 
         $accounts = UnverifiedAccount::get();
 
-        return view('unverifiedaccount.index',
+        return view('unverified-accounts.index',
             compact(['accounts'])
         );
     }
 
-    public function acceptAccount($id) {
+    // public function acceptAccount($id) {
 
-        $account = UnverifiedAccount::where('id', $id)->first();
+    //     $account = UnverifiedAccount::where('id', $id)->first();
 
-        $userAccount = [
-            'name' => $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name,
-            'email' => $account->email,
-            'password' => Hash::make($account->password),
-        ];
+    //     $userAccount = [
+    //         'name' => $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name,
+    //         'email' => $account->email,
+    //         'password' => Hash::make($account->password),
+    //     ];
 
-        $savedAccount = User::create($userAccount);
+    //     $savedAccount = User::create($userAccount);
 
-        $userRole = Role::where('name', 'user')->first();
+    //     $userRole = Role::where('name', 'user')->first();
 
-        $savedAccount->assignRole($userRole);
+    //     $savedAccount->assignRole($userRole);
 
-        $userProfile = [
-            'last_name' => $account->last_name,
-            'first_name' => $account->first_name,
-            'middle_name' => $account->middle_name,
-            'student_id' => $account->student_id,
-            'gender' => $account->gender,
-            'street' => $account->street,
-            'village' => $account->village,
-            'municipality' => $account->municipality,
-            'province' => $account->province,
-            'zip_code' => $account->zip_code,
-            'user_id' => $savedAccount->id
-        ];
+    //     $userProfile = [
+    //         'last_name' => $account->last_name,
+    //         'first_name' => $account->first_name,
+    //         'middle_name' => $account->middle_name,
+    //         'student_id' => $account->student_id,
+    //         'gender' => $account->gender,
+    //         'street' => $account->street,
+    //         'village' => $account->village,
+    //         'municipality' => $account->municipality,
+    //         'province' => $account->province,
+    //         'zip_code' => $account->zip_code,
+    //         'user_id' => $savedAccount->id
+    //     ];
 
-        $savedProfile = Profile::create($userProfile);
+    //     $savedProfile = Profile::create($userProfile);
 
-        $account->delete();
+    //     $account->delete();
 
-        return redirect()->back();
+    //     return redirect()->back();
 
-    }
+    // }
 
-    public function rejectAccount($id) {
+    // public function rejectAccount($id) {
 
-        $account = UnverifiedAccount::where('id', $id)->first();
+    //     $account = UnverifiedAccount::where('id', $id)->first();
 
-        $account->delete();
+    //     $account->delete();
 
-        return redirect()->back();
+    //     return redirect()->back();
 
-    }
+    // }
 }

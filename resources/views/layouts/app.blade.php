@@ -39,7 +39,6 @@
         </div>
         <x-footer/>
         @stack('js')
-        @include('sweetalert::alert')
     </body>
 
 
