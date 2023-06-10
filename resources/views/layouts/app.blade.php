@@ -16,7 +16,7 @@
     </head>
 
     <body class="font-sans antialiased">
-    
+
         <div class="min-h-screen">
 
             <x-header/>
@@ -39,6 +39,7 @@
         </div>
         <x-footer/>
         @stack('js')
+        @include('sweetalert::alert')
     </body>
 
 

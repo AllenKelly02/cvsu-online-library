@@ -13,11 +13,11 @@ class UnverifiedAccountController extends Controller
 {
     public function index() {
 
-        $accounts = UnverifiedAccount::all();
+        $accounts = UnverifiedAccount::get();
 
-        return view('unverifiedaccount.index', [
-            'accounts' => $accounts
-        ]);
+        return view('unverifiedaccount.index',
+            compact(['accounts'])
+        );
     }
 
     public function acceptAccount($id) {

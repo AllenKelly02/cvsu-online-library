@@ -14,4 +14,5 @@ class AccountsController extends Controller
     public function unverifiedAccounts() {
         return view('unverified-accounts.index');
     }
+
 }
