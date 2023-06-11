@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
-    Route::get('/profile/index', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
@@ -52,6 +52,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::get('/unverified-accounts', [AccountsController::class, 'unverifiedAccounts'])->name('unverified-accounts');
 
+    Route::post('/accept-account/{id}', [AccountsController::class, 'acceptAccount'])->name('accept-account');
+
+    Route::post('/reject-account/{id}',[AccountsController::class, 'rejectAccount'])->name('reject-account');
+
+    Route::post('/delete-account/{id}', [AccountsController::class, 'destroy'])->name('delete-account');
 });
 
 
@@ -68,7 +73,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     Route::get('/about-us', [CatalogController::class, 'aboutUs'])->name('about-us');
 
     Route::get('/ask-librarian', [CatalogController::class, 'askLibrarian'])->name('ask-librarian');
-    
+
 });
 
 Route::get('/show', [BooksController::class, 'showPage'])->name('show');
