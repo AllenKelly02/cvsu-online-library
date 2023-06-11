@@ -76,4 +76,6 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
 
 });
 
+Route::get('/show', [BooksController::class, 'showPage'])->name('show');
+
 require __DIR__.'/auth.php';
