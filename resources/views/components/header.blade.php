@@ -8,16 +8,16 @@
                             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2">
                                 <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
                                 <div class="flex flex-col">
-                                    <p class="castoro text-sm font-bold">CAVITE STATE UNIVERSITY</p>
-                                    <p class="castoro text-xs font-medium">BACOOR CITY CAMPUS</p>
+                                    <p class="castoro text-sm font-bold text-black">CAVITE STATE UNIVERSITY</p>
+                                    <p class="castoro text-xs font-medium text-black">BACOOR CITY CAMPUS</p>
                                 </div>
                             </a>
                         @else
                             <a href="{{ route('user.catalog') }}" class="flex items-center space-x-2">
                                 <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
                                 <div class="flex flex-col">
-                                    <p class="castoro text-sm font-bold">CAVITE STATE UNIVERSITY</p>
-                                    <p class="castoro text-xs font-medium">BACOOR CITY CAMPUS</p>
+                                    <p class="castoro text-sm font-bold text-black">CAVITE STATE UNIVERSITY</p>
+                                    <p class="castoro text-xs font-medium text-black">BACOOR CITY CAMPUS</p>
                                 </div>
                             </a>
                         @endif
@@ -27,8 +27,8 @@
                         <a href="/" class="flex items-center space-x-2">
                             <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
                             <div class="flex flex-col">
-                                <p class="castoro text-sm font-bold">CAVITE STATE UNIVERSITY</p>
-                                <p class="castoro text-xs font-medium">BACOOR CITY CAMPUS</p>
+                                <p class="castoro text-sm font-bold text-black">CAVITE STATE UNIVERSITY</p>
+                                <p class="castoro text-xs font-medium text-black">BACOOR CITY CAMPUS</p>
                             </div>
                         </a>
                     @endguest

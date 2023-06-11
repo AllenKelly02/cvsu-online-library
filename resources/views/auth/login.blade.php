@@ -1,16 +1,15 @@
 <x-guest-layout>
     <section
-        class="full-screen w-full sm:flex md:flex justify-center items-center sm:w-full bg-gradient-to-b from-green-200 to-emerald-400">
+        class="full-screen w-full sm:flex md:flex justify-center items-center sm:w-full bg-gradient-to-b from-green-200 to-emerald-400 pt-58 body-font bg-bottom bg-no-repeat bg-white" style="background-image: url('../img/wave.svg');">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
         @if (Session::has('message'))
             <p class="alert alert-success">{{ Session::get('message') }}</p>
         @endif
-        <div class="flex justify-center items-center mt-16 -scroll-mb-28">
+        <div class="flex justify-center items-center mt-12 -scroll-mb-28">
             <form method="POST" action="{{ route('login') }}" class="max-w-md w-full">
                 @csrf
-                <div
-                    class="p-10 border-[1px] -mt-10 bg-white border-green-800 rounded-3xl shadow-xl flex flex-col items-center space-y-3">
+                <div class="p-10 border-[1px] -mt-10  bg-no-repeat border-green-800 rounded-3xl shadow-xl flex flex-col items-center space-y-3" style="background-image: url('../img/blob-scene-haikei.svg');">
                     <div>
                         <img class="w-22 h-20 mb-5" src="{{ asset('img/logo.png') }}" />
                     </div>
@@ -78,6 +77,7 @@
                 </a>
             </div>
         </div>
+
         <script>
             function togglePasswordVisibility(inputId) {
                 const input = document.getElementById(inputId);

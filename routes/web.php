@@ -62,7 +62,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
 Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(function() {
 
-    // Route::get('/dashboard', [DashboardController::class, 'user'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'user'])->name('dashboard');
 
     Route::get('/catalog', [CatalogController::class, 'catalog'])->name('catalog');
 
