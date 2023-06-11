@@ -13,4 +13,13 @@ class BooksController extends Controller
 
         return view('books.index');
     }
+
+    public function showPage() {
+
+        // $books = Books::latest()->paginate(30)->get();
+
+        return view('books.show');
+    }
+
+    
 }
