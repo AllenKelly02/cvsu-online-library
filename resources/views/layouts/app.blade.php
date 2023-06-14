@@ -29,8 +29,8 @@
                     <x-user-sidebar/>
                 @endif
 
-                <div class="w-4/5">
-                    <main class="w-full h-full">
+                <div class="w-full">
+                    <main class="w-full ">
                         {{ $slot }}
                     </main>
                 </div>

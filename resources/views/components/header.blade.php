@@ -34,11 +34,10 @@
                     @endguest
                 </div>
             </div>
-             @auth
-            @if (Auth::user()->role === 'admin')
-                <div class="flex space-x-2 justify-center">
-                   
-                        {{-- <form class="sm:inline-block hidden">
+
+            <div class="flex space-x-2 justify-center">
+                @auth
+                    {{-- <form class="sm:inline-block hidden">
                         <label for="default-search" class="mb-2 -ml-10 text-sm font-medium text-gray-900 sr-only">Search</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -49,31 +48,7 @@
                         </div>
                     </form> --}}
 
-                        <div class="dropdown dropdown-end">
-                       
-                            <label tabindex="0" class="avatar ml-10 hover:border-black">
-                                <div class="w-12 rounded-full">
-                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                </div>
-                            </label>
-                       
-                            <ul tabindex="1"
-                                class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
-                                <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">Profile</a>
-
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                this.closest('form').submit();"
-                                        class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
-                            </ul>
-                        </div>
-                    @else
-                    <div class="flex space-x-2 justify-center">
+                    @if (Auth::user()->role === 'admin')
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="avatar ml-10 hover:border-black">
                                 <div class="w-12 rounded-full">
@@ -83,30 +58,51 @@
 
                             <ul tabindex="1"
                                 class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
-                                <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">Profile</a>
-                                <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">Borrowed Books</a>
+                                <a href="{{route('profile.show', ['id' => Auth::user()->id])}}">Profile</a>
+                                <a href="{{route('profile.show', ['id' => Auth::user()->id])}}">iba</a>
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
-                                                this.closest('form').submit();"
+                                                    this.closest('form').submit();"
                                         class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
                                         {{ __('Log Out') }}
                                     </x-dropdown-link>
                                 </form>
                             </ul>
                         </div>
-                    </div>
-                        @endif
-                        @endauth
-                        @auth
                     @else
-                        <div class="flex items-center space-x-2">
-                            <a href="{{ route('login') }}"
-                                class="text-sm text-white py-2 px-4 rounded bg-green-600 border-green-500 hover:bg-green-800">
-                                LOGIN
-                            </a>
+                        <div class="dropdown dropdown-end">
+                            <label tabindex="0" class="avatar ml-10 hover:border-black">
+                                <div class="w-12 rounded-full">
+                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                </div>
+                            </label>
+
+                            <ul tabindex="1"
+                                class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
+                                <a href="{{route('profile.show', ['id' => Auth::user()->id])}}">Profile</a>
+
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();"
+                                        class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            </ul>
+                        </div>
+                    @endif
+                    
+                @else
+                    <div class="flex items-center space-x-2">
+                        <a href="{{ route('login') }}"
+                            class="text-sm text-white py-2 px-4 rounded bg-green-600 border-green-500 hover:bg-green-800">
+                            LOGIN
+                        </a>
 
                             <a href="{{ route('register') }}"
                                 class="text-sm text-white py-2 px-4 rounded bg-green-600 border-green-500 hover:bg-green-800">

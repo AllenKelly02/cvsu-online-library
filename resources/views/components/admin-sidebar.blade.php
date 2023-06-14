@@ -1,4 +1,3 @@
-<body class="flex items-center justify-center sm:h-screen w-screen h-screen p-10 space-x-6 bg-gray-300">
 
 	<!-- Component Start -->
     <div class="wrapper">
@@ -16,10 +15,14 @@
                     <img class="object-center w-6 ml-30 py-3" src="{{ asset('img/dashboard.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Dashboard</span>
 				</a>
-				<a href="{{ route('admin.books') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100">
-				<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/top.png') }}" alt="content">
+				<a id="openBooks" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100 cursor-pointer">
+					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/top.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Books</span>
 				</a>
+				<div id="bookLinks" class="w-full hidden flex flex-col space-y-2 px-6">
+					<a href="{{ route('admin.books.index') }}" class="text-base px-4 py-2 rounded hover:bg-white">All Books</a>
+					<a href="{{ route('admin.books.create') }}" class="text-base px-4 py-2 rounded hover:bg-white">Add New</a>
+				</div>
 				<a href="{{ route('admin.verified-accounts') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100">
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/verified.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Verified Accounts</span>
@@ -43,6 +46,21 @@
 	<!-- Component End  -->
 </body>
  <script>
+	openBookLink();
+	function openBookLink() {
+		const openBtn = document.getElementById('openBooks'); 
+		const links = document.getElementById('bookLinks');
+
+		openBtn.addEventListener('click', () => {
+			if(links.classList.contains('hidden')) {
+				links.classList.remove('hidden');
+			} else {
+				links.classList.add('hidden');
+			}
+		})
+	}
+
+
     const wrapper = document.querySelector('.wrapper');
     const toggleBtn = document.querySelector('.toggle-btn');
     const closeBtn = document.querySelector('.close-btn');
