@@ -3,12 +3,12 @@
 	<!-- Component Start -->
     <div class="wrapper">
     <div class="sidebar">
-	<div class="flex flex-col items-center w-60 h-full overflow-hidden border-r border-green-800 text-gray-700 bg-gradient-to-b from-green-200 to-emerald-400 rounded" >
+	<div class="flex flex-col items-center w-60 h-full overflow-hidden border-r border-green-800 text-gray-700 bg-green-200 rounded" >
 		<div class="flex flex-row justify-between">
         <a href="{{ route('user.catalog') }}" class="flex items-center w-full px-3 mt-3">
 			<span class="ml-2 text-sm font-bold">CvSU Library</span>
 		</a>
-        <div class="close-btn ml-12 mt-4">X</div>
+        <div class="close-btn ml-12 mt-4 text-gray-700">✕</div>
         </div>
 		<div class="w-full px-2">
 			<div class="flex flex-col items-center w-full mt-3 border-t border-green-800">

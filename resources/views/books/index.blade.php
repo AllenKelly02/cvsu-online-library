@@ -28,22 +28,6 @@
                     </div>
                     <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
-                            <span class="text-sm font-medium text-black">Edition Number</span>
-                        </div>
-                        <div class="w-full sm:w-2/3 px-4">
-                            <div class="max-w-xl">
-                                <div class="flex flex-wrap items-center -mx-3">
-                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
-                                        <input
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
-                                            id="formInput1-1" type="text" placeholder="Number">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
-                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">Authors</span>
                         </div>
                         <div class="w-full sm:w-2/3 px-4">
@@ -61,6 +45,103 @@
                                 href="#">Remove Author</a>
                         </div>
                     </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Edition Number</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Publication Year</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Year">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Publisher</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Publisher">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">ISBN</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Accession No.</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Call No.</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
 
                     <div class="flex flex-wrap items-start -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-5 sm:mb-0">
@@ -114,6 +195,7 @@
           </div>
         </div> --}}
         <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8">
+                        
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">Course</span>
                         </div>
@@ -143,13 +225,49 @@
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl">
                                 <div class="relative block px-3 w-full text-sm text-black placeholder-black rounded-lg">
-                                         <select class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500" id="formInput1-4" name="course">
+                                         <select class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500" id="formInput1-4" name="category">
                                         <option selected>Select Category</option>
                                         <option class="bg-white" value="1">E-Book</option>
                                         <option class="bg-white" value="1">Book</option>
                                         <option class="bg-white" value="1">Journal</option>
                                         <option class="bg-white" value="1">Thesis</option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Tags</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="relative block px-3 w-full text-sm text-black placeholder-black rounded-lg">
+                                         <select class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500" id="formInput1-4" name="tags">
+                                        <option selected>Select Tags</option>
+                                        <option class="bg-white" value="1">E-Book</option>
+                                        <option class="bg-white" value="1">Book</option>
+                                        <option class="bg-white" value="1">Journal</option>
+                                        <option class="bg-white" value="1">Thesis</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Number of Copies</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
                                 </div>
                             </div>
                         </div>

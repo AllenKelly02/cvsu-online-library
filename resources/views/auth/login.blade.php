@@ -1,6 +1,6 @@
 <x-guest-layout>
     <section
-        class="full-screen w-full sm:flex md:flex justify-center items-center sm:w-full bg-gradient-to-b from-green-200 to-emerald-400 pt-58 body-font bg-bottom bg-no-repeat bg-white" style="background-image: url('../img/wave.svg');">
+        class="full-screen w-full sm:flex md:flex justify-center items-center sm:w-full bg-gradient-to-b from-green-200 to-emerald-400 p-12 body-font bg-bottom bg-no-repeat bg-white" style="background-image: url('../img/wave.svg');">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
         @if (Session::has('message'))
@@ -66,16 +66,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <!-- OFFICIAL WEBSITE OF CAVITE STATE UNIVERSITY - BACOOR CAMPUS -->
-        <div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
-            <div>
-                <a title="Facebook of CVSU-BACOOR" href="https://cvsu.edu.ph/bacoor/" target="_blank"
-                    class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
-                    <img class="object-cover object-center w-full h-full rounded-full"
-                        src="{{ asset('img/logo.png') }}" />
-                </a>
-            </div>
         </div>
 
         <script>
