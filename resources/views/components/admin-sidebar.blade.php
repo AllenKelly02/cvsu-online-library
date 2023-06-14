@@ -61,7 +61,7 @@
 	const screenWidth = window.innerWidth;
 
 	// If the screen size is smaller than a certain breakpoint, hide the sidebar
-	if (screenWidth < 950) {
+	if (screenWidth < 1000) {
 	sidebar.classList.add('hidden');
 	} else {
 	sidebar.classList.remove('hidden');

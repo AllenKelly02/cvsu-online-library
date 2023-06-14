@@ -22,8 +22,7 @@
             <x-header/>
 
             <!-- Page Content -->
-            <div class="w-full h-full min-h-screen sm:flex md:pt-20 bg-gradient-to-b from-green-200 to-emerald-400">
-            {{-- <div class="relative sm:flex min-h-screen w-full h-full flex container md:pt-20 bg-no-repeat bg-cover" style="background-image:url('../img/cover.svg');"> --}}
+            <div class="w-full h-full min-h-screen sm:flex md:pt-20">
                 @if (Auth::check() && Auth::user()->role === 'admin')
                     <x-admin-sidebar/>
                 @else
@@ -41,8 +40,6 @@
         @stack('js')
     </body>
 
-
-    {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
     <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css')</style>
