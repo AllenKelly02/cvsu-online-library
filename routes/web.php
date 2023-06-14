@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Lirabrian\BooksController;
+use App\Http\Controllers\Librarian\BooksController;
 use App\Http\Controllers\Auth\RegisterController;
 
 /*
@@ -46,7 +46,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
 
-    Route::get('/books', [BooksController::class, 'books'])->name('books');
+    Route::get('/books', [BooksController::class, 'index'])->name('books.index');
+
+    Route::get('/books/create', [BooksController::class, 'create'])->name('books.create');
+
+    Route::get('/books/store', [BooksController::class, 'store'])->name('books.store');
+
+    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');
+
 
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');
 
