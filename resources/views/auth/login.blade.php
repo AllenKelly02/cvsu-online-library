@@ -6,7 +6,7 @@
         @if (Session::has('message'))
             <p class="alert alert-success">{{ Session::get('message') }}</p>
         @endif
-        <div class="flex justify-center items-center mt-12 -scroll-mb-28">
+        <div class="flex justify-center items-center mt-24 -scroll-mb-28">
             <form method="POST" action="{{ route('login') }}" class="max-w-md w-full">
                 @csrf
                 <div class="p-10 border-[1px] -mt-10  bg-no-repeat border-green-800 rounded-3xl shadow-xl flex flex-col items-center space-y-3" style="background-image: url('../img/blob-scene-haikei.svg');">
