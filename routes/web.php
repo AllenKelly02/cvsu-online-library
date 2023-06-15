@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
 });
 
 
@@ -69,7 +70,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
 Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(function() {
 
-    Route::get('/dashboard', [DashboardController::class, 'user'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'user'])->name('user.dashboard');
 
     Route::get('/catalog', [CatalogController::class, 'catalog'])->name('catalog');
 
@@ -80,6 +81,11 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     Route::get('/about-us', [CatalogController::class, 'aboutUs'])->name('about-us');
 
     Route::get('/ask-librarian', [CatalogController::class, 'askLibrarian'])->name('ask-librarian');
+
+    Route::get('/books', [BooksController::class, 'index'])->name('books.index');
+
+    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');
+
 
 });
 

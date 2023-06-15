@@ -25,8 +25,8 @@
                         <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logos</button>
                     </li>
                     </ul>
-                </div> --}} 
-                <div> 
+                </div> --}}
+                <div>
                 <select data-te-select-init class = "w-72 bg-gray-50 border-l-gray-300 rounded-lg border-l-2 border border-gray-300">
                     <option value="1">Category</option>
                     <option value="2">Two</option>
@@ -37,7 +37,7 @@
                     <option value="7">Seven</option>
                     <option value="8">Eight</option>
                 </select>
-                </div> 
+                </div>
                 <div>
                 <select data-te-select-init class = "w-72 bg-gray-50 border-l-gray-300 rounded-lg border-l-2 border border-gray-300">
                     <option value="1">Course</option>
@@ -76,7 +76,7 @@
                 </div>
                 <h2 class="truncate text-lg text-gray-900 font-medium title-font mb-4">The Knowledge GAP</h2>
                 <p class="leading-relaxed truncate text-base">The hidden cause of America's broken education system - and how to fix it.</p>
-                    <a href="{{ route('show') }}" type="submit" class="w-full md:w-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
+                    <a href="{{ route('user.books.show') }}" type="submit" class="w-full md:w-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
                      View
                     </a>
             </div>
@@ -126,7 +126,7 @@
                 </button>
             </div>
         </div>
-        </div> 
+        </div>
     </div>
     <nav class="md:flex justify-center pb-24">
     <ul class="inline-flex items-center -space-x-px">

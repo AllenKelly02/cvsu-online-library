@@ -1,9 +1,9 @@
 <x-app-layout>
   <div class="px-36 pt-10">
-    <a href="{{route('admin.books.index')}}" class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Back</a>
+    <a href="{{route('user.catalog')}}" class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Back</a>
   </div>
    <section class="text-gray-600 body-font overflow-hidden">
-  
+
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
       <img alt="ecommerce" class=" w-80 h-2/4 object-cover object-center rounded"  src="{{ asset('img/b1.jpg') }}" alt="content">
@@ -31,13 +31,13 @@
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
             </svg>
             <span class="text-gray-600 ml-3">4 Reviews</span>
-          </span> 
+          </span>
         </div>
         <p class="leading-relaxed">The hidden cause of America's broken education system - and how to fix it.</p>
         <p class="leading-relaxed">Course: BS Information Technology</p>
         <p class="leading-relaxed">Publication Year: </p>
-        <p class="leading-relaxed text-red-500">Important note: Books borrowed should be returned within 3-5 days, otherwise you will pay accordingly.</p> 
-        
+        <p class="leading-relaxed text-red-500">Important note: Books borrowed should be returned within 3-5 days, otherwise you will pay accordingly.</p>
+
         <div class="flex mt-6 justify-end pb-5 border-b-2 border-green-900 mb-5">
 
         <div class="flex">
@@ -61,6 +61,6 @@
       </div>
     </div>
   </div>
- 
+
 </section>
 </x-app-layout>

@@ -22,13 +22,13 @@ class BooksController extends Controller
     }
 
     public function store(Request $request) {
-        
+
     }
 
     public function search() {
 
     }
-    
+
     public function show() {
         return view('books.show');
     }

@@ -1,17 +1,28 @@
 <x-guest-layout>
     <section
-        class="full-screen w-full sm:flex md:flex justify-center items-center sm:w-full bg-gradient-to-b from-green-200 to-emerald-400 p-12 body-font bg-bottom bg-no-repeat bg-white" style="background-image: url('../img/wave.svg');">
+        class="full-screen w-full sm:flex md:flex justify-center items-center sm:w-full bg-gradient-to-b from-green-200 to-emerald-400 p-12 body-font bg-bottom bg-no-repeat bg-white"
+        style="background-image: url('../img/wave.svg');">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
         @if (Session::has('message'))
             <p class="alert alert-success">{{ Session::get('message') }}</p>
         @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="flex justify-center items-center mt-24 -scroll-mb-28">
             <form method="POST" action="{{ route('login') }}" class="max-w-md w-full">
                 @csrf
-                <div class="p-10 border-[1px] -mt-10  bg-no-repeat border-green-800 rounded-3xl shadow-xl flex flex-col items-center space-y-3" style="background-image: url('../img/blob-scene-haikei.svg');">
+                <div class="p-10 border-[1px] -mt-10  bg-no-repeat border-green-800 rounded-3xl shadow-xl flex flex-col items-center space-y-3"
+                    style="background-image: url('../img/blob-scene-haikei.svg');">
                     <div>
-                        <img class="w-22 h-20 mb-5" src="{{ asset('img/logo.png') }}" />
+                        <a href="/"><img class="w-22 h-20 mb-5" src="{{ asset('img/logo.png') }}" /></a>
                     </div>
                     <div class="text-center mb-10">
                         <h1 class="font-bold text-3xl text-gray-900">LOGIN</h1>
@@ -66,24 +77,22 @@
                     </div>
                 </div>
             </form>
-        </div>
+    <script>
+        function togglePasswordVisibility(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(inputId === 'password' ? 'toggle_icon' : 'toggle_icon_confirm');
 
-        <script>
-            function togglePasswordVisibility(inputId) {
-                const input = document.getElementById(inputId);
-                const icon = document.getElementById(inputId === 'password' ? 'toggle_icon' : 'toggle_icon_confirm');
-
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    icon.classList.remove('mdi-eye-off-outline');
-                    icon.classList.add('mdi-eye-outline');
-                } else {
-                    input.type = 'password';
-                    icon.classList.remove('mdi-eye-outline');
-                    icon.classList.add('mdi-eye-off-outline');
-                }
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('mdi-eye-off-outline');
+                icon.classList.add('mdi-eye-outline');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('mdi-eye-outline');
+                icon.classList.add('mdi-eye-off-outline');
             }
-        </script>
-    </section>
+        }
+    </script>
+</section>
     <x-footer />
 </x-guest-layout>
