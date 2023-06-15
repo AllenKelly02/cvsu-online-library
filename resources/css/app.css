@@ -64,3 +64,8 @@
   width: 100%;
   clip-path: polygon(50% 50%, 100% 0, 100% 100%);
 }
+
+/* .validation-error {
+    display: none;
+} */
+

@@ -26,6 +26,7 @@
       </div>
     </div>
   </div>
+
 <!-- Container for demo purpose -->
   <div class=" flex flex-wrap md:pl-24 px-9 py-24 mx-auto items-center">
     <div class="md:w-1/2 md:pr-12 md:py-8 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-green-800">

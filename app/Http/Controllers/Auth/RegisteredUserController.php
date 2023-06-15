@@ -36,6 +36,10 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $request->validate([
+            'password' => 'required|min:8|confirmed',
+        ]);
+
         $unverified = UnverifiedAccount::create([
             'last_name' => $request->lastName,
             'first_name' => $request->firstName,
@@ -51,9 +55,9 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
 
-           
+
         ]);
-        
+
       return Redirect::to('login')->with('message', 'Thanks for registering! Wait for the approval of the librarian.');
 
     }

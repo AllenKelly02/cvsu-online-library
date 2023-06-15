@@ -130,9 +130,13 @@
                             </ul>
                         </div>
                     @endif
-                    
+
                 @else
                     <div class="flex items-center space-x-2">
+                        <a href="/"
+                            class="text-sm text-white py-2 px-4 rounded bg-green-600 border-green-500 hover:bg-green-800">
+                            HOME
+                        </a>
                         <a href="{{ route('login') }}"
                             class="text-sm text-white py-2 px-4 rounded bg-green-600 border-green-500 hover:bg-green-800">
                             LOGIN

@@ -13,7 +13,8 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
     }
     /**
@@ -26,7 +27,8 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function show($id){
+    public function show($id)
+    {
 
         $profile = User::where('id', $id)->with('profile')->first();
 
@@ -72,11 +74,5 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function cancel()
-    {
-    // Perform any necessary cleanup or logic here
-    
-    return redirect()->route('profile.edit');
-    }
 
 }
