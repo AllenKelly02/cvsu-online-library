@@ -1,6 +1,6 @@
 <x-app-layout>
     <section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container px-5 pt-12 pb-24 mx-auto">
         <div class="flex flex-wrap w-full mb-20">
         <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">New Collections</h1>

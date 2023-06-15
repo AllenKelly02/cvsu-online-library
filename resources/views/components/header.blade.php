@@ -59,7 +59,7 @@
                             <ul tabindex="1"
                                 class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
                                 <a href="{{route('profile.show', ['id' => Auth::user()->id])}}">Profile</a>
-                                <a href="{{route('profile.show', ['id' => Auth::user()->id])}}">iba</a>
+                                <a href="{{route('profile.show', ['id' => Auth::user()->id])}}"> </a>
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -73,6 +73,40 @@
                             </ul>
                         </div>
                     @else
+                        {{-- <div class="dropdown dropdown-end" tabindex="0">
+                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer" src="/img/logo.png" alt="User dropdown">
+
+                        <!-- Dropdown menu -->
+                        <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                <div>Bonnie Green</div>
+                                    <div class="font-medium truncate">name@flowbite.com</div>
+                                </div>
+                                <ul tabindex="1" class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                                    <li>
+                                         <a href="{{route('profile.show', ['id' => Auth::user()->id])}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                    </li>
+                                    </ul>
+                                        <div class="py-1">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                                     <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();"
+                                        class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form></div>
+                        </div>
+                        </div> --}}
+
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="avatar ml-10 hover:border-black">
                                 <div class="w-12 rounded-full">

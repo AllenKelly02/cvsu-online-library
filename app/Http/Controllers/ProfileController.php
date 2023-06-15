@@ -72,6 +72,11 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-
+    public function cancel()
+    {
+    // Perform any necessary cleanup or logic here
+    
+    return redirect()->route('profile.edit');
+    }
 
 }

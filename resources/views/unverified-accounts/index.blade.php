@@ -1,6 +1,6 @@
 <x-app-layout>
     <section>
-        <div class="container mx-auto ml-12 mt-8">
+        <div class="mx-auto ml-12 mt-8">
             <div class="flex flex-col space-y-2 p-4">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500">

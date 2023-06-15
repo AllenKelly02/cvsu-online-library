@@ -3,7 +3,7 @@
 	<!-- Component Start -->
     <div class="wrapper">
     <div class="sidebar">
-	<div class="flex flex-col items-center w-60 h-full overflow-hidden border-r border-green-800 text-gray-700 bg-green-200 rounded" >
+	<div class="flex flex-col items-center w-60 h-full overflow-hidden border-r border-green-800 text-gray-700 bg-green-50 rounded" >
 		<div class="flex flex-row justify-between">
         <a href="{{ route('user.catalog') }}" class="flex items-center w-full px-3 mt-3">
 			<span class="ml-2 text-sm font-bold">CvSU Library</span>

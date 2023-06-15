@@ -1,6 +1,6 @@
 <x-app-layout>
-    <section class="text-gray-600 body-font bg-no-repeat" style="background-image: url('../img/blob-scene-haikei.svg');">
-        <div class="container px-5 py-5 mx-auto ml-8">
+    <section class="text-gray-600 body-font w-full bg-no-repeat" style="background-image: url('../img/blob-scene-haikei.svg');">
+        <div class="px-5 py-5 mx-auto ml-8">
             <div class="flex flex-col text-left w-full mb-2 mt-2">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Dashboard</h1>
             </div>
@@ -17,7 +17,7 @@
                     <div class="bg-white px-4 py-6 rounded-lg">
                         <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/users.png') }}"
                             alt="content">
-                        <h2 class="title-font font-medium text-3xl text-gray-900">0</h2>
+                        <h2 class="title-font font-medium text-3xl text-gray-900">1</h2>
                         <p class="leading-relaxed">Users</p>
                     </div>
                 </div>

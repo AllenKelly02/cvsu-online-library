@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class=" px-5 pt-8 mx-auto py-24" src="{{ asset('img/wave.png') }}" >
+    <div class="pl-9 px-5 pt-8 mx-auto py-24" src="{{ asset('img/wave.png') }}" >
         <div class="flex flex-wrap w-full mb:pt-5">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Catalog</h1>
@@ -28,31 +28,34 @@
                 </div> --}} 
                 <div> 
                 <select data-te-select-init class = "w-72 bg-gray-50 border-l-gray-300 rounded-lg border-l-2 border border-gray-300">
-                    <option value="1">Category</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                    <option value="4">Four</option>
-                    <option value="5">Five</option>
-                    <option value="6">Six</option>
-                    <option value="7">Seven</option>
-                    <option value="8">Eight</option>
+                    <option value="1">Types</option>
+                    <option value="2">Books</option>
+                    <option value="3">E-Books</option>
+                    <option value="4">E-Journal</option>
+                    <option value="5">Journal</option>
+                    <option value="6">News Clipping</option>
+                    <option value="7">Publications</option>
+                    <option value="8">References</option>
+                    <option value="8">Software</option>
+                    <option value="8">Others</option>
                 </select>
                 </div> 
                 <div>
                 <select data-te-select-init class = "w-72 bg-gray-50 border-l-gray-300 rounded-lg border-l-2 border border-gray-300">
-                    <option value="1">Course</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                    <option value="4">Four</option>
-                    <option value="5">Five</option>
-                    <option value="6">Six</option>
-                    <option value="7">Seven</option>
-                    <option value="8">Eight</option>
+                    <option value = "1">Courses</option>
+                    <option value = "2">Bachelor of Secondary Education</option>
+                    <option class="bg-white" value="3">BS Business Management</option>
+                    <option class="bg-white" value="4">BS Computer Science</option>
+                    <option class="bg-white" value="5">BS Criminology</option>
+                    <option class="bg-white" value="6">BS Hospitality Management</option>
+                    <option class="bg-white" value="7">BS Information Technology</option>
+                    <option class="bg-white" value="8">BS Psychology</option>
+                    <option class="bg-white" value="9">Non-specific</option>
                 </select>
                 </div>
 
                 <div class="relative w-full">
-                    <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search Mockups, Logos, Design Templates...">
+                    <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search Authors, Title...">
                     <button type="submit" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-green-700 rounded-r-lg border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         <span class="sr-only">Search</span>
@@ -137,13 +140,13 @@
         </a>
         </li>
         <li>
-        <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+        <a href="#" aria-current="page" class="z-10 px-3 py-2 leading-tight text-green-600 border border-green-300 bg-green-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">1</a>
         </li>
         <li>
         <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
         </li>
         <li>
-        <a href="#" aria-current="page" class="z-10 px-3 py-2 leading-tight text-green-600 border border-green-300 bg-green-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+        <a href="#"  class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">3</a>
         </li>
         <li>
         <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>

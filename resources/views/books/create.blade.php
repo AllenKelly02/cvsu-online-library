@@ -19,8 +19,93 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Title">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Authors</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl mb-4">
+                                <input
+                                    class="block py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                    id="formInput1-3" type="text" placeholder="Author 1">
+                            </div>
+                            <div id="authorFieldsContainer" class="max-w-xl">
+                                <!-- JavaScript will add new author input fields here -->
+                            </div>
+                            <a id="addAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800"
+                                href="#">Add Author</a>
+                            <a id="removeAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800"
+                                href="#">Remove Author</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Type</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-3">
+                            <div class="max-w-xl">
+                                <div class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
+                                         <select class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500" id="formInput1-4" name="course">
+                                        <option selected>Select Type</option>
+                                        <option class="bg-white" value="1">E-Book</option>
+                                        <option class="bg-white" value="1">Book</option>
+                                        <option class="bg-white" value="1">Journal</option>
+                                        <option class="bg-white" value="1">Thesis</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Publication Year</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-00 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Publisher</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Accession Number</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +120,7 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Number">
                                     </div>
                                 </div>
@@ -44,24 +129,52 @@
                     </div>
                     <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
-                            <span class="text-sm font-medium text-black">Authors</span>
+                            <span class="text-sm font-medium text-black">Call Number</span>
                         </div>
                         <div class="w-full sm:w-2/3 px-4">
-                            <div class="max-w-xl mb-4">
-                                <input
-                                    class="block py-4 px-3 w-full text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
-                                    id="formInput1-3" type="text" placeholder="Author 1">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
                             </div>
-                            <div id="authorFieldsContainer" class="max-w-xl">
-                                <!-- JavaScript will add new author input fields here -->
-                            </div>
-                            <a id="addAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800"
-                                href="#">Add Author</a>
-                            <a id="removeAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800"
-                                href="#">Remove Author</a>
                         </div>
                     </div>
-
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">   
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">ISBN</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">   
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Pages</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="flex flex-wrap items-start -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-5 sm:mb-0">
                             <span class="block mt-2 text-sm font-medium text-black">Description</span>
@@ -70,11 +183,25 @@
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl">
                                 <textarea
-                                    class="block h-56 py-4 px-3 w-full text-sm text-black placeholder-black font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg resize-none"
+                                    class="block h-56 py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg resize-none"
                                     id="formInput1-9" type="text" placeholder="Write the description"></textarea>
                             </div>
                         </div>
                     </div>
+                    <div class="flex flex-wrap items-start -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-5 sm:mb-0">
+                            <span class="block mt-2 text-sm font-medium text-black">Bibliography Notes</span>
+                            {{-- <span class="text-xs text-black">Lorem ipsum dolor sit amet</span> --}}
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <textarea
+                                    class="block py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg resize-none"
+                                    id="formInput1-9" type="text" placeholder="Biblio"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                   
                     {{-- <div class="flex flex-wrap items-start -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
           <div class="w-full sm:w-1/3 px-4 mb-6 sm:mb-0">
             <span class="block text-sm font-medium text-black">Photo</span>
@@ -119,7 +246,7 @@
                         </div>
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl">
-                                <div class="relative block px-3 w-full text-sm text-black placeholder-black rounded-lg">
+                                <div class="relative block px-3 w-full text-sm text-black placeholder-gray-700 rounded-lg">
                                          <select class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500" id="formInput1-6" name="course">
                                         <option selected>Select Course</option>
                                         <option class="bg-white" value="1">Bachelor of Secondary Education</option>
@@ -136,24 +263,7 @@
                         </div>
                     </div>
                      
-                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20">
-                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
-                            <span class="text-sm font-medium text-black">Category</span>
-                        </div>
-                        <div class="w-full sm:w-2/3 px-4">
-                            <div class="max-w-xl">
-                                <div class="relative block px-3 w-full text-sm text-black placeholder-black rounded-lg">
-                                         <select class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500" id="formInput1-4" name="course">
-                                        <option selected>Select Category</option>
-                                        <option class="bg-white" value="1">E-Book</option>
-                                        <option class="bg-white" value="1">Book</option>
-                                        <option class="bg-white" value="1">Journal</option>
-                                        <option class="bg-white" value="1">Thesis</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     {{-- <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
           <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
             <span class="text-sm font-medium text-black">Timezone</span>
