@@ -42,15 +42,11 @@
                                     <td class="flex items-center px-6 py-4 space-x-3">
                                         <form>
                                             {{-- @csrf --}}
-                                            <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                            <img src="{{ asset('img/write1.png') }}" alt="Edit Icon" class="w-6 h-6 inline-block mr-1">
-                                            </button>
+                                            <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
                                         </form>
                                         <form action="{{route('admin.delete-account', ['id' => $account->id])}}" method="post">
                                             @csrf
-                                             <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                            <img src="{{ asset('img/delete.png') }}" alt="Edit Icon" class="w-6 h-6 inline-block mr-1">
-                                            </button>
+                                             <button class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
                                         </form>
                                     </td>
                                 </tr>

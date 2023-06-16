@@ -23,38 +23,6 @@
                 </a>
             </div>
         </div>
-        {{-- {{-- <div class="h-[50rem ] w-2/3 center bg-white drop-shadow-sm flex space-x-2 rounded-lg">
-            <div class="w-1/3 h-[30rem]">
-                <img src="{{asset('img/userp.png')}}">
-            </div>
-            <div class="w-full flex flex-col space-y-5 h-[30rem] capitalize text-black">
-                <div class="flex flex-row-reverse">
-                   <a href="{{route('profile.edit')}}"> <button class="btn btn-ghost">Edit</button></a>
-                </div>
-                {{-- <div class="flex space-x-5 p-5">
-                    <h1 class="font-semibold"><span class="text-gray-600 font-normal">Student Number :
-                        </span>{{ $profile->profile->student_id }}</h1>
-                </div>
-                <div class="flex space-x-5 p-5">
-                    <h1 class="font-semibold"><span class="text-gray-600 font-normal">Last name :
-                        </span>{{ $profile->profile->last_name   }}</h1>
-                    <h1 class="font-semibold"> <span class="text-gray-600 font-normal">First name :
-                        </span>{{ $profile->profile->first_name }}</h1>
-                    <h1 class="font-semibold"><span class="text-gray-600 font-normal">Middle name :
-                        </span>{{ $profile->profile->middle_name }}</h1>
-                </div>
-                <div class="flex space-x-5 p-5">
-                    <h1 class="font-semibold"><span class="text-gray-600 font-normal">Gender :
-                        </span>{{ $profile->profile->gender }}</h1>
-                </div>
-                <div class="flex space-x-5 p-5">
-                    <h1 class="font-semibold"><span class="text-gray-600 font-normal">Address:
-                        </span>
-                        {{ $profile->profile->street }} {{ $profile->profile->village }} {{ $profile->profile->municipality }} {{ $profile->profile->province }} {{ $profile->profile->zip_code }}
-                    </h1>
-                </div>
-            </div>
-        </div> --}}
     </div>
 
     <!--Personal Info -->
@@ -66,7 +34,7 @@
              <ul class="mt-2 text-gray-700">
                         <li class="flex border-y py-2">
                             <span class="font-bold w-24">Full name:</span>
-                            </span>{{ $profile->profile->first_name }}</h1> </span>{{ $profile->profile->middle_name }}</h1> </span>{{ $profile->profile->last_name}}</h1>
+                            </span>{{ $profile->profile->first_name }} {{ $profile->profile->middle_name }} {{ $profile->profile->last_name}}</h1>
                         </li>
                         <li class="flex border-b py-2">
                             <span class="font-bold w-24">Student No: </span>
@@ -78,10 +46,12 @@
                         </li>
                         <li class="flex border-b py-2">
                             <span class="font-bold w-24">Mobile:</span>
+                            {{-- put contact number here --}}
                             <span class="text-gray-700">09569659562</span>
                         </li>
                         <li class="flex border-b py-2">
                             <span class="font-bold w-24">Email:</span>
+                            {{-- put email here --}}
                             <span class="text-gray-700">amandaross@example.com</span>
                         </li>
                         <li class="flex border-b py-2">
@@ -137,32 +107,18 @@
                                 <div class="w-3.5 h-3.5 bg-green-600 rounded-full"></div>
                             </div>
                             <div class="w-11/12">
-                                <p class="text-sm">Invoice <a href="#" class="text-blue-600 font-bold">#4563</a> was created.</p>
+                                <p class="text-sm">Added to Favorites <a href="#" class="text-blue-600 font-bold">Arduino</a>.</p>
                                 <p class="text-xs text-gray-500">57 min ago</p>
                             </div>
                         </div>
                         <!-- end::Timeline item -->
-
                         <!-- start::Timeline item -->
                         <div class="flex items-center w-full my-6 -ml-1.5">
                             <div class="w-1/12 z-10">
                                 <div class="w-3.5 h-3.5 bg-green-600 rounded-full"></div>
                             </div>
                             <div class="w-11/12">
-                                <p class="text-sm">
-                                    Message received from <a href="#" class="text-blue-600 font-bold">Cecilia Hendric</a>.</p>
-                                <p class="text-xs text-gray-500">1 hour ago</p>
-                            </div>
-                        </div>
-                        <!-- end::Timeline item -->
-
-                        <!-- start::Timeline item -->
-                        <div class="flex items-center w-full my-6 -ml-1.5">
-                            <div class="w-1/12 z-10">
-                                <div class="w-3.5 h-3.5 bg-green-600 rounded-full"></div>
-                            </div>
-                            <div class="w-11/12">
-                                <p class="text-sm">New order received <a href="#" class="text-blue-600 font-bold">#OR9653</a>.</p>
+                                <p class="text-sm">Added to Favorites <a href="#" class="text-blue-600 font-bold">Introduction to Information Technology</a>.</p>
                                 <p class="text-xs text-gray-500">2 hours ago</p>
                             </div>
                         </div>
@@ -175,7 +131,7 @@
                             </div>
                             <div class="w-11/12">
                                 <p class="text-sm">
-                                    Message received from <a href="#" class="text-blue-600 font-bold">Jane Stillman</a>.</p>
+                                    Sent a message to <a href="#" class="text-blue-600 font-bold">Librarian</a>.</p>
                                 <p class="text-xs text-gray-500">2 hours ago</p>
                             </div>
                         </div>

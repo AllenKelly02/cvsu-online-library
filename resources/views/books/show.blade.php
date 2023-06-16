@@ -1,7 +1,5 @@
 <x-app-layout>
-  <div class="px-36 pt-10">
-    {{-- <a href="{{route('user.catalog')}}" class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Back</a> --}}
-    
+  <div class="pt-5 pl-20">
     <a href="{{route('user.catalog')}}"> 
     <button type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-greem-700 dark:focus:ring-green-800">
       <svg aria-hidden="true" class="w-5 h-5 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -13,16 +11,16 @@
   </div>
    <section class="text-gray-600 body-font overflow-hidden">
 
-  <div class="container px-5 py-24 mx-auto">
+  <div class=" px-5 py-10 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
       <img alt="ecommerce" class=" w-80 h-2/4 object-cover object-center rounded"  src="{{ asset('img/b1.jpg') }}" alt="content">
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 class="text-xl title-font text-gray-500 tracking-widest pb-5">Book</h2>
         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">The Knowledge GAP</h1>
-         <p class="leading-relaxed">by Natalie Walker</p>
+         <p class="leading-relaxed text-blue-600">by Natalie Walker</p>
 
          {{-- Reviews --}}
-        <div class="flex mb-4">
+        {{-- <div class="flex mb-4">
            <span class="flex items-center">
             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -39,9 +37,9 @@
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
             </svg>
-            <span class="text-gray-600 ml-3">4 Reviews</span>
+            {{-- <span class="text-gray-600 ml-3">4 Reviews</span> 
           </span>
-        </div>
+        </div> --}}
         <div> 
           <p class="leading-relaxed">Publiction Year: 2022</p>
           <p class="leading-relaxed">Publisher:  Book of Books Inc.</p>

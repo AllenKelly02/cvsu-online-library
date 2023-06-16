@@ -1,6 +1,6 @@
 <x-app-layout>
 <section class="">
-  {{-- <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+  <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-black">Ask a Librarian</h2>
       <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-black sm:text-xl"> The campus library aims to share information and resources that might help learners and researchers to their academic needs.</p>
       <form action="#" class="space-y-8">
@@ -26,9 +26,11 @@
             class="w-full py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
             Submit
           </button>
+          <p class="text-xs text-gray-500 mt-3">By submitting this form you agree to our terms and conditions and our privacy policy which explains how we may collect, use and disclose your personal information including to third parties.</p>
+          
       </form>
-  </div> --}}
-  <div class="pt-9">
+  </div>
+  {{-- <div class="pt-9">
   <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-black">Ask a Librarian</h2>
   <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-black sm:text-xl"> The campus library aims to share information and resources that might help learners and researchers to their academic needs.</p>
   <div class="container px-5 pb-24 mx-auto flex sm:flex-nowrap flex-wrap">
@@ -71,7 +73,7 @@
       <p class="text-xs text-gray-500 mt-3">By submitting this form you agree to our terms and conditions and our privacy policy which explains how we may collect, use and disclose your personal information including to third parties.</p>
     </div>
   </div>
-  </div>
+  </div> --}}
 </section>
 </section>
 </x-app-layout>

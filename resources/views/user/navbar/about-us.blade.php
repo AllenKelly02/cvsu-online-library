@@ -27,6 +27,24 @@
     </div>
   </div>
 
+<h1 class="mb-4 text-3xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Location</h1>
+  <div class="flex sm:flex-nowrap justify-center object-center">
+    <div class="lg:w-2/3 md:w-1/2 bg-green-100 rounded-lg overflow-hidden sm:mr-10 p-10 flex">
+      <iframe   frameborder="0" title="map" marginheight="0" marginwidth="0" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d898.1361332043158!2d120.981349!3d14.412771!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d22f4810979f%3A0xaf0dae4457b7d498!2sCavite%20State%20University%20-%20Bacoor%20Campus!5e1!3m2!1sen!2sus!4v1686846602781!5m2!1sen!2sus" width="900" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      {{-- <div class="bg-white relative flex flex-wrap py-6 rounded shadow-md">
+        <div class="lg:w-1/2 px-6">
+          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">ADDRESS</h2>
+          <p class="mt-1">The Bacoor City Campus Library is located at the Second Floor of the Cavite State University – Bacoor City Campus, Phase 2, Soldiers Hills IV, Molino VI, Bacoor City, Cavite.</p>
+        </div>
+        <div class="lg:w-1/2 px-6 mt-4 lg:mt-0">
+          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">EMAIL</h2>
+          <a class="text-indigo-500 leading-relaxed">cvsubacoorlibrary@cvsu.edu.ph</a>
+          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">PHONE</h2>
+          <p class="leading-relaxed">123-456-7890</p>
+        </div>
+      </div> --}}
+    </div>
+  </div>
 <!-- Container for demo purpose -->
   <div class=" flex flex-wrap md:pl-24 px-9 py-24 mx-auto items-center">
     <div class="md:w-1/2 md:pr-12 md:py-8 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-green-800">

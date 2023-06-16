@@ -29,7 +29,7 @@
                     <x-user-sidebar/>
                 @endif
 
-                <div class="w-full bg-gray-100">
+                <div class="w-full bg-green-50">
                     <main class="w-full ">
                         {{ $slot }}
                     </main>

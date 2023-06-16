@@ -265,7 +265,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @if ($errors->any())
+                            {{-- @if ($errors->any())
                                 <div class="alert alert-error w-full animation">
                                     <ul>
                                         @foreach ($errors->all() as $error)
@@ -273,7 +273,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            @endif
+                            @endif --}}
                             <div class="flex">
                                 <div class="w-full px-3 mb-5">
                                     <label for="password" class="text-xs font-semibold px-1">Password</label>
