@@ -49,12 +49,10 @@ class BooksController extends Controller
 
 
     public function show(Book $book) {
-        
-        $books = Book::find($book->id)->first();
 
-        return view('books.show', [
-            'books' => $books
-        ]);
+        $book = Book::find($book->id)->first();
+
+        return view('books.show', compact(['book']));
 
 
     }

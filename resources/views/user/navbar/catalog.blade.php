@@ -35,12 +35,12 @@
                 <a class=" text-xm text-blue-500 underline" href="/admin/books">refresh</a>
             </div>
         @endif --}}
-        @forelse ($books as $book)
-            @csrf
-            <div class="flex flex-wrap -m-4">
+        <div class="flex flex-wrap -m-4">
+            @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
                     <div class="bg-green-200 p-6 rounded-lg">
-                        <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded" href="/admin/books?category={{$book->category}}" >{{$book->category}}</a>
+                        <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
+                            href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
                         <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
                             src="{{ asset('img/b1.jpg') }}" alt="content">
                         <span
@@ -49,17 +49,20 @@
                             Available
                         </span>
                         <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1">{{ $book->title }}</h2>
-                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $book->author }}</h3>
-                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b> {{ $book->published_year }}</h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $book->author }}
+                        </h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b>
+                            {{ $book->published_year }}</h3>
 
-                        <a href="{{ route('user.books.show', $book->id) }}" type="submit"
+                        <a href="{{ route('user.books.show', ['book' => $book]) }}" type="submit"
                             class="w-full md:w-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
                             View
                         </a>
                     </div>
                 </div>
-            </div>
+
             @empty
-        @endforelse
+            @endforelse
+        </div>
         </section>
 </x-app-layout>
