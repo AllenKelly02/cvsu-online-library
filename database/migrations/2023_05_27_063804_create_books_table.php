@@ -16,6 +16,16 @@ return new class extends Migration
             $table->string('title');
             $table->string('author');
             $table->string('category');
+            $table->string('published_year');
+            $table->string('publisher');
+            $table->string('accession_number');
+            $table->string('edition_number');
+            $table->string('call_number');
+            $table->string('ISBN');
+            $table->string('pages');
+            $table->string('description');
+            $table->string('bibliography');
+            $table->string('course');
             $table->unsignedBigInteger('course_id')->nullable();
             // $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
@@ -31,3 +41,6 @@ return new class extends Migration
         Schema::dropIfExists('books');
     }
 };
+
+
+

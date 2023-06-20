@@ -51,7 +51,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::get('/books/create', [BooksController::class, 'create'])->name('books.create');
 
-    Route::get('/books/store', [BooksController::class, 'store'])->name('books.store');
+    Route::post('/books/store', [BooksController::class, 'store'])->name('books.store');
 
     Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');
 
@@ -69,8 +69,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
 
 Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(function() {
-
-    Route::get('/dashboard', [DashboardController::class, 'user'])->name('dashboard');
 
     Route::get('/catalog', [CatalogController::class, 'catalog'])->name('catalog');
 

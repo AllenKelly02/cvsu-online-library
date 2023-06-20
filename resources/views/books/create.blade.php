@@ -9,7 +9,20 @@
                         {{-- <p class="text-sm text-black">Lorem ipsum dolor sit amet</p> --}}
                     </div>
                 </div>
-                <form action="">
+                @if (session()->has('message'))
+                    <div class="alert alert-success shadow-lg">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
+                                fill="none" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>{{ session()->get('message') }}</span>
+                        </div>
+                    </div>
+                @endif
+                <form action="{{ route('admin.books.store') }}" method="POST">
+                    @csrf
                     <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">Books Title</span>
@@ -51,8 +64,11 @@
                         </div>
                         <div class="w-full sm:w-2/3 px-3">
                             <div class="max-w-xl">
-                                <div class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
-                                         <select class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500" id="formInput1-4" name="course">
+                                <div
+                                    class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
+                                    <select
+                                        class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500"
+                                        id="formInput1-4" name="course">
                                         <option selected>Select Type</option>
                                         <option class="bg-white" value="1">E-Book</option>
                                         <option class="bg-white" value="1">Book</option>
@@ -143,7 +159,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">   
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">ISBN</span>
                         </div>
@@ -159,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">   
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">Pages</span>
                         </div>
@@ -201,7 +217,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     {{-- <div class="flex flex-wrap items-start -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
           <div class="w-full sm:w-1/3 px-4 mb-6 sm:mb-0">
             <span class="block text-sm font-medium text-black">Photo</span>
@@ -240,14 +256,17 @@
             </div>
           </div>
         </div> --}}
-        <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8">
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8">
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">Course</span>
                         </div>
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl">
-                                <div class="relative block px-3 w-full text-sm text-black placeholder-gray-700 rounded-lg">
-                                         <select class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500" id="formInput1-6" name="course">
+                                <div
+                                    class="relative block px-3 w-full text-sm text-black placeholder-gray-700 rounded-lg">
+                                    <select
+                                        class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500"
+                                        id="formInput1-6" name="course">
                                         <option selected>Select Course</option>
                                         <option class="bg-white" value="1">Bachelor of Secondary Education</option>
                                         <option class="bg-white" value="1">BS Business Management</option>
@@ -262,8 +281,8 @@
                             </div>
                         </div>
                     </div>
-                     
-                    
+
+
                     {{-- <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
           <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
             <span class="text-sm font-medium text-black">Timezone</span>
@@ -295,13 +314,14 @@
             </div>
           </div>
         </div> --}}
-                    <div class="flex flex-wrap items-start -mx-4 pb-8 mb-8 mr-2 border-b border-black border-opacity-20">
+                    {{-- <div
+                        class="flex flex-wrap items-start -mx-4 pb-8 mb-8 mr-2 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-6 sm:mb-0">
                             <span class="block text-sm font-medium text-black">Photo</span>
                             <span class="text-xs text-black">Upload photo of the book cover, manuscript, or
                                 journal.</span>
-                        </div>
-                        <div class="w-full sm:w-2/3 ">
+                        </div> --}}
+                        {{-- <div class="w-full sm:w-2/3 ">
                             <div class="flex flex-wrap sm:flex-nowrap max-w-xl">
                                 <div class="flex-shrink-0 w-20 h-20 mb-4 rounded-full">
                                     <img src="trizzle-assets/images/avatar-photo-form.png" alt="">
@@ -328,17 +348,17 @@
                                     <span class="text-xs text-black font-semibold">PNG, JPG, GIF or up to 10MB</span>
                                 </div>
                             </div>
+                        </div> --}}
+                    </div>
+                    <div class="w-full sm:w-auto pl-full pr-0">
+                        <div class="pl-98 pr-0 ml-98 mr-0">
+                            <a class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800" href="{{ route('admin.books.index') }}">Cancel</a>
+                            <button class="inline-block py-2 px-4 text-xs leading-normal border-green-600 hover:border-green-800 hover:bg-green-800 hover:text-white hover:border-[2px] border-[1px] rounded-3xl p-3 text-center text-green-800 font-bold transition duration-200"
+                                type="submit">Upload</button>
                         </div>
                     </div>
+
                 </form>
-                <div class="w-full sm:w-auto pl-full pr-0">
-                    <div class="pl-98 pr-0 ml-98 mr-0">
-                        <a
-                            class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800 href="#">Cancel</a>
-                        <a class="inline-block py-2 px-4 text-xs leading-normal border-green-600 hover:border-green-800 hover:bg-green-800 hover:text-white hover:border-[2px] border-[1px] rounded-3xl p-3 text-center text-green-800 font-bold transition duration-200"
-                            href="#">Upload</a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

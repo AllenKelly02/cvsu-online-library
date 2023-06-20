@@ -17,7 +17,7 @@
                     <div class="bg-white px-4 py-6 rounded-lg">
                         <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/users.png') }}"
                             alt="content">
-                        <h2 class="title-font font-medium text-3xl text-gray-900">1</h2>
+                        {{-- <h2 class="title-font font-medium text-3xl text-gray-900">{{ $user }}</h2> --}}
                         <p class="leading-relaxed">Users</p>
                     </div>
                 </div>

@@ -8,9 +8,5 @@ use Illuminate\Foundation\Auth\User;
 
 class AdminController extends Controller
 {
-    public function dashboard()
-    {
-        $userCount = User::count();
-        return view('dashboard.admin', compact('userCount'));
-    }
+
 }

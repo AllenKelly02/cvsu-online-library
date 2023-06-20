@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Books;
+use App\Models\Book;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
+use Database\Factories\BookFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,7 +23,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UserSeeder::class);
-        Books::factory(10)->create();
+        Book::factory(10)->create();
 
     }
 }

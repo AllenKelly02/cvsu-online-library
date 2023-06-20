@@ -388,135 +388,127 @@
             }
         </script>
         <script>
-            const validateForm = (formSelector) => {
+            const validateForm = (formSelector, callback) => {
                 return new Promise((resolve, reject) => {
+                    const formElement = document.querySelector(formSelector);
 
-                const formElement = document.querySelector(formSelector);
-
-                const validateOptions = [{
-                        attribute: 'minlength',
-                        isValid: input => input.value && input.value.length >= parseInt(input.minLength, 10),
-                        errorMessage: (input, label) => `needs at least ${input.minLength} characters`
-                    },
-                    {
-                        attribute: 'custommaxlength',
-                        isValid: input => input.value && input.value.length <= parseInt(input.getAttribute(
-                            'custommaxlength'), 10),
-                        errorMessage: (input, label) =>
-                            `needs to be less than ${input.getAttribute('custommaxlength')} characters`
-                    },
-                    {
-                        attribute: 'match',
-                        isValid: input => {
-                            const matchSelector = input.getAttribute('match');
-                            const matchedElement = formElement.querySelector(`#${matchSelector}`);
-                            return matchedElement && matchedElement.value.trim() === input.value.trim();
+                    const validateOptions = [
+                        {
+                            attribute: 'minlength',
+                            isValid: input => input.value && input.value.length >= parseInt(input.getAttribute('minlength'), 10),
+                            errorMessage: (input, label) => `needs at least ${input.getAttribute('minlength')} characters`
                         },
-                        errorMessage: (input, label) => {
-                            const matchSelector = input.getAttribute('match');
-                            const matchedElement = formElement.querySelector(`#${matchSelector}`);
-                            const matchedLabel = matchedElement.parentElement.parentElement.parentElement
-                                .querySelector('label');
-                            return `should match ${matchedLabel.textContent}`;
+                        {
+                            attribute: 'custommaxlength',
+                            isValid: input => input.value && input.value.length <= parseInt(input.getAttribute('custommaxlength'), 10),
+                            errorMessage: (input, label) => `needs to be less than ${input.getAttribute('custommaxlength')} characters`
                         },
-                    },
-                    {
-                        attribute: 'pattern',
-                        isValid: input => {
-                            const patternRegex = new RegExp(input.pattern);
-                            return patternRegex.test(input.value);
+                        {
+                            attribute: 'match',
+                            isValid: input => {
+                                const matchSelector = input.getAttribute('match');
+                                const matchedElement = formElement.querySelector(`#${matchSelector}`);
+                                return matchedElement && matchedElement.value.trim() === input.value.trim();
+                            },
+                            errorMessage: (input, label) => {
+                                const matchSelector = input.getAttribute('match');
+                                const matchedElement = formElement.querySelector(`#${matchSelector}`);
+                                const matchedLabel = matchedElement.parentElement.parentElement.parentElement.querySelector('label');
+                                return `should match ${matchedLabel.textContent}`;
+                            },
                         },
-                        errorMessage: (input, label) => `is not valid!`,
-                    },
-                    {
-                        attribute: 'required',
-                        isValid: input => input.value.trim() !== '',
-                        errorMessage: (input, label) => ` is required!`,
-                        errorMessage: (selector, label) => ` is required!`
-                    },
+                        {
+                            attribute: 'pattern',
+                            isValid: input => {
+                                const patternRegex = new RegExp(input.getAttribute('pattern'));
+                                return patternRegex.test(input.value);
+                            },
+                            errorMessage: (input, label) => `is not valid!`,
+                        },
+                        {
+                            attribute: 'required',
+                            isValid: input => input.value.trim() !== '',
+                            errorMessage: (input, label) => `${label.textContent} is required!`,
+                        },
+                    ];
 
-                ];
+                    const validateSingleFormGroup = formGroup => {
+                        const label = formGroup.querySelector('label');
+                        const input = formGroup.querySelector('input, textarea');
+                        const errorContainer = formGroup.querySelector('.error');
+                        const errorIcon = formGroup.querySelector('.error-icon');
+                        const successIcon = formGroup.querySelector('.success-icon');
 
-                const validateSingleFormGroup = formGroup => {
-                    const label = formGroup.querySelector('label');
-                    const input = formGroup.querySelector('input, textarea');
-                    const selector = formGroup.querySelector('selector, textarea');
-                    const errorContainer = formGroup.querySelector('.error');
-                    const errorIcon = formGroup.querySelector('.error-icon');
-                    const successIcon = formGroup.querySelector('.success-icon');
+                        let formGroupError = false;
 
-                    let formGroupError = false;
-
-                    for (const option of validateOptions) {
-                        if (input.hasAttribute(option.attribute) && !option.isValid(input)) {
-                            errorContainer.textContent = option.errorMessage(input, label);
-                            input.classList.add('border-red-700');
-                            input.classList.remove('border-green-700');
-                            successIcon.classList.add('hidden');
-                            errorIcon.classList.remove('hidden');
-                            formGroupError = true;
+                        for (const option of validateOptions) {
+                            if (input.hasAttribute(option.attribute) && !option.isValid(input)) {
+                                errorContainer.textContent = option.errorMessage(input, label);
+                                input.classList.add('border-red-700');
+                                input.classList.remove('border-green-700');
+                                successIcon.classList.add('hidden');
+                                errorIcon.classList.remove('hidden');
+                                formGroupError = true;
+                                break; // Stop checking other options if there is an error
+                            }
                         }
-                    }
 
-                    if (!formGroupError) {
-                        errorContainer.textContent = '';
-                        input.classList.add('border-green-700');
-                        input.classList.remove('border-red-700');
-                        successIcon.classList.remove('hidden');
-                        errorIcon.classList.add('hidden');
-                    }
+                        if (!formGroupError) {
+                            errorContainer.textContent = '';
+                            input.classList.add('border-green-700');
+                            input.classList.remove('border-red-700');
+                            successIcon.classList.remove('hidden');
+                            errorIcon.classList.add('hidden');
+                        }
 
-                    return !formGroupError;
-                };
+                        return !formGroupError;
+                    };
 
-                formElement.setAttribute('novalidate', '');
+                    formElement.setAttribute('novalidate', '');
 
-                Array.from(formElement.elements).forEach(element => {
-                    element.addEventListener('blur', event => {
-                        validateSingleFormGroup(event.srcElement.parentElement.parentElement);
+                    Array.from(formElement.elements).forEach(element => {
+                        element.addEventListener('blur', event => {
+                            validateSingleFormGroup(event.target.closest('.formGroup'));
+                        });
                     });
-                });
 
-                const validateAllFormGroups = formToValidate => {
-                    const formGroups = Array.from(formToValidate.querySelectorAll('.formGroup'));
+                    const validateAllFormGroups = formToValidate => {
+                        const formGroups = Array.from(formToValidate.querySelectorAll('.formGroup'));
+                        return formGroups.every(formGroup => validateSingleFormGroup(formGroup));
+                    };
 
-                return formGroups.every(formGroup => validateSingleFormGroup(formGroup));
-                };
-
-                formElement.addEventListener('register', (event) => {
-                    event.preventDefault();
-                    const formValid = validateAllFormGroups(formElement);
-
-                    if (!formValid) {
+                    formElement.addEventListener('submit', event => {
                         event.preventDefault();
-                    } else {
-                        event.preventDefault();
-                        console.log('Registered successfully');
-                        callback(formElement);
-                    }
+                        const formValid = validateAllFormGroups(formElement);
+
+                        if (!formValid) {
+                            console.log('Form has errors. Please fix them before submitting.');
+                        } else {
+                            console.log('Form submitted successfully');
+                            sendToAPI(formElement);
+                        }
                     });
+
+                    resolve(formElement); // Resolve the promise with the form element
                 });
             };
 
             const sendToAPI = (formElement) => {
                 const formObject = Array.from(formElement.elements)
-                .filter(element => element.type !== 'register')
-                .reduce(
-                    (accumulator, element) => (
-                        { ...accumulator,
-                            [element.id]: element.value
-                        }),
-                        {});
+                    .filter(element => element.type !== 'submit')
+                    .reduce((accumulator, element) => {
+                        return { ...accumulator, [element.id]: element.value };
+                    }, {});
 
                 console.log(formObject);
-
-            }
+            };
 
             validateForm('#registrationForm').then(formElement => {
                 console.log('Promise Resolved');
-                sendToAPI(formElement);
+                // You can perform any additional actions after the form is validated here
             });
         </script>
+
     </section>
     <x-footer />
 </x-guest-layout>

@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
 
 class CatalogController extends Controller
     {
         public function catalog ()
         {
+
+            $books = Book::all();
+
             // Logic for the catalog page
             // You can return a view or perform any other actions as needed
-            return view('user.navbar.catalog');
+            return view('user.navbar.catalog', compact('books'));
+
+
+
         }
 
         public function topCollections()
