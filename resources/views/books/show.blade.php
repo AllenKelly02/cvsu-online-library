@@ -24,61 +24,62 @@
             @endif
         @endauth
     </div>
-    <section class="text-gray-600 body-font overflow-hidden">
-        @if (count($books) == 0)
-            <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
-                <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>
-                <a class=" text-xm text-blue-500 underline" href="/admin/books">refresh</a>
+    @if (session()->has('message'))
+        <div class="alert alert-success shadow-lg">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session()->get('message') }}</span>
             </div>
-        @endif
-        @foreach ($books as $book)
-        <div class=" px-5 py-10 mx-auto">
+        </div>
+    @endif
+    <section class="text-gray-600 body-font overflow-hidden">
+        <div class="px-5 py-10 mx-auto">
+            @foreach ($books as $book)
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                <img alt="ecommerce" class=" w-80 h-2/4 object-cover object-center rounded"
+                <img alt="ecommerce" class="w-80 h-2/4 object-cover object-center rounded"
                     src="{{ asset('img/b1.jpg') }}" alt="content">
-                <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0"> <a
-                        class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
-                        href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
-                    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">The Knowledge GAP</h1>
-                    <p class="leading-relaxed text-blue-600">by Natalie Walker</p>
-
+                <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                    <h1 class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded">{{ $book->category }}</h1>
+                    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $book->title }}</h1>
+                    <p class="leading-relaxed text-blue-600">by {{ $book->author }}</p>
                     <div>
-                        <p class="leading-relaxed">Publiction Year: 2022</p>
-                        <p class="leading-relaxed">Publisher: Book of Books Inc.</p>
-                        <p class="leading-relaxed">ISBN: 0909090909090</p>
+                        <p class="leading-relaxed">Publication Year: {{ $book->publication_year }}</p>
+                        <p class="leading-relaxed">Publisher: {{ $book->publisher }}</p>
+                        <p class="leading-relaxed">ISBN: {{ $book->ISBN }}</p>
                     </div>
                     <div class="pt-5">
-                        <p class="leading-relaxed">The hidden cause of America's broken education system - and how to
-                            fix it.</p>
+                        <p class="leading-relaxed">{{ $book->description }}</p>
                         <p class="leading-relaxed text-red-500">Important note: Books borrowed should be returned within
                             3-5 days, otherwise you will pay accordingly.</p>
                     </div>
                     <div class="flex mt-6 justify-end pb-5 border-b-2 border-green-900 mb-5">
-
                         <div class="flex">
                             <span
                                 class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
                                 <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
                                 Available
                             </span>
-                            @endforeach
                             @auth
-                                @if (Auth::user()->role === 'admin')
-                                    <button
-                                        class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Save</button>
-                                @else
-                                    <button
-                                        class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Borrow</button>
-                                    <button
-                                        class="rounded-full w-10 h-10 bg-green-200 p-0 border-0 inline-flex items-center justify-center text-green-500 ml-4">
-                                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                            <path
-                                                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z">
-                                            </path>
-                                        </svg>
-                                    </button>
-                                @endif
+                            @if (Auth::user()->role === 'admin')
+                            <button
+                                class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Save</button>
+                            @else
+                            <button
+                                class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Borrow</button>
+                            <button
+                                class="rounded-full w-10 h-10 bg-green-200 p-0 border-0 inline-flex items-center justify-center text-green-500 ml-4">
+                                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z">
+                                    </path>
+                                </svg>
+                            </button>
+                            @endif
                             @endauth
                         </div>
                     </div>
@@ -95,14 +96,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Type
-                            </th>
-                            <td class="px-6 py-4">
-                                Silver
-                            </td>
+                        <tr class="bg-white dark:bg-white">
+
                         </tr>
                         <tr class="bg-white dark:bg-gray-800">
                             <th scope="row"
@@ -110,7 +105,7 @@
                                 Authors
                             </th>
                             <td class="px-6 py-4">
-                                White
+                                {{ $book->authors }}
                             </td>
                         </tr>
                         <tr class="bg-white dark:bg-gray-800">
@@ -119,7 +114,7 @@
                                 ISBN
                             </th>
                             <td class="px-6 py-4">
-                                Black
+                                {{ $book->ISBN }}
                             </td>
                         </tr>
                         <tr class="bg-white dark:bg-gray-800">
@@ -128,7 +123,7 @@
                                 Category
                             </th>
                             <td class="px-6 py-4">
-                                Black
+                                {{ $book->category }}
                             </td>
                         </tr>
                         <tr class="bg-white dark:bg-gray-800">
@@ -137,7 +132,7 @@
                                 Tags
                             </th>
                             <td class="px-6 py-4">
-                                Black
+                                {{ $book->tags }}
                             </td>
                         </tr>
                         <tr class="bg-white dark:bg-gray-800">
@@ -146,7 +141,7 @@
                                 Accession No
                             </th>
                             <td class="px-6 py-4">
-                                Black
+                                {{ $book->accession_no }}
                             </td>
                         </tr>
                         <tr class="bg-white dark:bg-gray-800">
@@ -155,7 +150,7 @@
                                 Call No
                             </th>
                             <td class="px-6 py-4">
-                                Black
+                                {{ $book->call_no }}
                             </td>
                         </tr>
                         <tr class="bg-white dark:bg-gray-800">
@@ -164,7 +159,7 @@
                                 Copy No
                             </th>
                             <td class="px-6 py-4">
-                                Black
+                                {{ $book->copy_no }}
                             </td>
                         </tr>
                     </tbody>
@@ -197,5 +192,7 @@
                     </a>
                 </div>
             </div>
+        @endforeach
+    </div>
     </section>
 </x-app-layout>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Book>
  */
-class BooksFactory extends Factory
+class BookFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -45,5 +45,4 @@ class BooksFactory extends Factory
             'course_id' => $this->faker->numberBetween(1, 7),
         ];
     }
-
 }

@@ -29,13 +29,14 @@
                     class="text-sm px-3 py-1 rounded border border-gray-500 hover:bg-blue-400 hover:text-white">Thesis</a>
             </div>
         </div>
-        @if (count($books) == 0)
+        {{-- @if (count($books) == 0)
             <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
                 <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>
                 <a class=" text-xm text-blue-500 underline" href="/admin/books">refresh</a>
             </div>
-        @endif
-        @foreach ($books as $book)
+        @endif --}}
+        @forelse ($books as $book)
+            @csrf
             <div class="flex flex-wrap -m-4">
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
                     <div class="bg-green-200 p-6 rounded-lg">
@@ -51,13 +52,14 @@
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $book->author }}</h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b> {{ $book->published_year }}</h3>
 
-                        <a href="{{ route('user.books.show') }}" type="submit"
+                        <a href="{{ route('user.books.show', $book->id) }}" type="submit"
                             class="w-full md:w-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
                             View
                         </a>
                     </div>
                 </div>
             </div>
-        @endforeach
+            @empty
+        @endforelse
         </section>
 </x-app-layout>

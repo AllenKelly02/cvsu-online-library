@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 
 class CatalogController extends Controller
@@ -12,13 +12,11 @@ class CatalogController extends Controller
         public function catalog ()
         {
 
-            $books = Book::all();
+            $books = Book::latest()->filter(request(['category', 'search']))->paginate(10);
 
-            // Logic for the catalog page
-            // You can return a view or perform any other actions as needed
-            return view('user.navbar.catalog', compact('books'));
-
-
+            return view('user.navbar.catalog', [
+                'books' => $books
+            ]);
 
         }
 

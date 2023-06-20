@@ -82,7 +82,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
 
     Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 
-    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');
+    Route::get('/books/show/{book}', [BooksController::class, 'show'])->name('books.show');
 
 
 });

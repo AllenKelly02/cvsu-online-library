@@ -10,7 +10,7 @@ class BooksController extends Controller
 {
     public function index() {
 
-        $books = Book::latest()->filter(Request(['category', 'search']))->paginate(10);
+        $books = Book::latest()->filter(request(['category', 'search']))->paginate(10);
 
         return view('books.index', [
             'books' => $books
@@ -47,8 +47,13 @@ class BooksController extends Controller
 
     }
 
-    public function show() {
-        return view('books.show');
+    public function show(Book $book) {
+
+        $books = Book::find($book->id)->first();
+
+        return view('books.show', [
+            'books' => $books
+        ]);
     }
 
 }
