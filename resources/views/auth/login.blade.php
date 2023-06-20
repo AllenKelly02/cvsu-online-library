@@ -5,7 +5,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
         @if (Session::has('message'))
-            <p class="alert alert-success pt-10">{{ Session::get('message') }}</p>
+            <p class="alert alert-success mt-32">{{ Session::get('message') }}</p>
         @endif
 
         <div class="flex justify-center items-center mt-24 -scroll-mb-28">

@@ -47,13 +47,16 @@ class BooksController extends Controller
 
     }
 
-    public function show(Book $book) {
 
+    public function show(Book $book) {
+        
         $books = Book::find($book->id)->first();
 
         return view('books.show', [
             'books' => $books
         ]);
+
+
     }
 
 }

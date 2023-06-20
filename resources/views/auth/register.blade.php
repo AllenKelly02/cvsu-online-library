@@ -362,7 +362,7 @@
                                 <div class="w-full px-3 mb-1">
                                     <button
                                         class="block w-full max-w-xs mx-auto bg-green-600 hover:bg-green3 text-white rounded-lg px-3 py-3 font-semibold"
-                                        @click="sendData()" type="register">REGISTER NOW</button>
+                                         type="submit">REGISTER NOW</button>
                                 </div>
                             </div>
                         </form>
@@ -388,124 +388,133 @@
             }
         </script>
         <script>
-            const validateForm = (formSelector, callback) => {
+            const validateForm = (formSelector) => {
                 return new Promise((resolve, reject) => {
-                    const formElement = document.querySelector(formSelector);
 
-                    const validateOptions = [
-                        {
-                            attribute: 'minlength',
-                            isValid: input => input.value && input.value.length >= parseInt(input.getAttribute('minlength'), 10),
-                            errorMessage: (input, label) => `needs at least ${input.getAttribute('minlength')} characters`
-                        },
-                        {
-                            attribute: 'custommaxlength',
-                            isValid: input => input.value && input.value.length <= parseInt(input.getAttribute('custommaxlength'), 10),
-                            errorMessage: (input, label) => `needs to be less than ${input.getAttribute('custommaxlength')} characters`
-                        },
-                        {
-                            attribute: 'match',
-                            isValid: input => {
-                                const matchSelector = input.getAttribute('match');
-                                const matchedElement = formElement.querySelector(`#${matchSelector}`);
-                                return matchedElement && matchedElement.value.trim() === input.value.trim();
-                            },
-                            errorMessage: (input, label) => {
-                                const matchSelector = input.getAttribute('match');
-                                const matchedElement = formElement.querySelector(`#${matchSelector}`);
-                                const matchedLabel = matchedElement.parentElement.parentElement.parentElement.querySelector('label');
-                                return `should match ${matchedLabel.textContent}`;
-                            },
-                        },
-                        {
-                            attribute: 'pattern',
-                            isValid: input => {
-                                const patternRegex = new RegExp(input.getAttribute('pattern'));
-                                return patternRegex.test(input.value);
-                            },
-                            errorMessage: (input, label) => `is not valid!`,
-                        },
-                        {
-                            attribute: 'required',
-                            isValid: input => input.value.trim() !== '',
-                            errorMessage: (input, label) => `${label.textContent} is required!`,
-                        },
-                    ];
+                const formElement = document.querySelector(formSelector);
 
-                    const validateSingleFormGroup = formGroup => {
-                        const label = formGroup.querySelector('label');
-                        const input = formGroup.querySelector('input, textarea');
-                        const errorContainer = formGroup.querySelector('.error');
-                        const errorIcon = formGroup.querySelector('.error-icon');
-                        const successIcon = formGroup.querySelector('.success-icon');
+                const validateOptions = [{
+                        attribute: 'minlength',
+                        isValid: input => input.value && input.value.length >= parseInt(input.minLength, 10),
+                        errorMessage: (input, label) => `needs at least ${input.minLength} characters`
+                    },
+                    {
+                        attribute: 'custommaxlength',
+                        isValid: input => input.value && input.value.length <= parseInt(input.getAttribute(
+                            'custommaxlength'), 10),
+                        errorMessage: (input, label) =>
+                            `needs to be less than ${input.getAttribute('custommaxlength')} characters`
+                    },
+                    {
+                        attribute: 'match',
+                        isValid: input => {
+                            const matchSelector = input.getAttribute('match');
+                            const matchedElement = formElement.querySelector(`#${matchSelector}`);
+                            return matchedElement && matchedElement.value.trim() === input.value.trim();
+                        },
+                        errorMessage: (input, label) => {
+                            const matchSelector = input.getAttribute('match');
+                            const matchedElement = formElement.querySelector(`#${matchSelector}`);
+                            const matchedLabel = matchedElement.parentElement.parentElement.parentElement
+                                .querySelector('label');
+                            return `should match ${matchedLabel.textContent}`;
+                        },
+                    },
+                    {
+                        attribute: 'pattern',
+                        isValid: input => {
+                            const patternRegex = new RegExp(input.pattern);
+                            return patternRegex.test(input.value);
+                        },
+                        errorMessage: (input, label) => `is not valid!`,
+                    },
+                    {
+                        attribute: 'required',
+                        isValid: input => input.value.trim() !== '',
+                        errorMessage: (input, label) => ` is required!`,
+                        errorMessage: (selector, label) => ` is required!`
+                    },
 
-                        let formGroupError = false;
+                ];
 
-                        for (const option of validateOptions) {
-                            if (input.hasAttribute(option.attribute) && !option.isValid(input)) {
-                                errorContainer.textContent = option.errorMessage(input, label);
-                                input.classList.add('border-red-700');
-                                input.classList.remove('border-green-700');
-                                successIcon.classList.add('hidden');
-                                errorIcon.classList.remove('hidden');
-                                formGroupError = true;
-                                break; // Stop checking other options if there is an error
-                            }
+                const validateSingleFormGroup = formGroup => {
+                    const label = formGroup.querySelector('label');
+                    const input = formGroup.querySelector('input, textarea');
+                    const selector = formGroup.querySelector('selector, textarea');
+                    const errorContainer = formGroup.querySelector('.error');
+                    const errorIcon = formGroup.querySelector('.error-icon');
+                    const successIcon = formGroup.querySelector('.success-icon');
+
+                    let formGroupError = false;
+
+                    for (const option of validateOptions) {
+                        if (input.hasAttribute(option.attribute) && !option.isValid(input)) {
+                            errorContainer.textContent = option.errorMessage(input, label);
+                            input.classList.add('border-red-700');
+                            input.classList.remove('border-green-700');
+                            successIcon.classList.add('hidden');
+                            errorIcon.classList.remove('hidden');
+                            formGroupError = true;
                         }
+                    }
 
-                        if (!formGroupError) {
-                            errorContainer.textContent = '';
-                            input.classList.add('border-green-700');
-                            input.classList.remove('border-red-700');
-                            successIcon.classList.remove('hidden');
-                            errorIcon.classList.add('hidden');
-                        }
+                    if (!formGroupError) {
+                        errorContainer.textContent = '';
+                        input.classList.add('border-green-700');
+                        input.classList.remove('border-red-700');
+                        successIcon.classList.remove('hidden');
+                        errorIcon.classList.add('hidden');
+                    }
 
-                        return !formGroupError;
-                    };
+                    return !formGroupError;
+                };
 
-                    formElement.setAttribute('novalidate', '');
+                formElement.setAttribute('novalidate', '');
 
-                    Array.from(formElement.elements).forEach(element => {
-                        element.addEventListener('blur', event => {
-                            validateSingleFormGroup(event.target.closest('.formGroup'));
-                        });
+                Array.from(formElement.elements).forEach(element => {
+                    element.addEventListener('blur', event => {
+                        validateSingleFormGroup(event.srcElement.parentElement.parentElement);
                     });
+                });
 
-                    const validateAllFormGroups = formToValidate => {
-                        const formGroups = Array.from(formToValidate.querySelectorAll('.formGroup'));
-                        return formGroups.every(formGroup => validateSingleFormGroup(formGroup));
-                    };
+                const validateAllFormGroups = formToValidate => {
+                    const formGroups = Array.from(formToValidate.querySelectorAll('.formGroup'));
 
-                    formElement.addEventListener('submit', event => {
+                return formGroups.every(formGroup => validateSingleFormGroup(formGroup));
+                };
+
+                formElement.addEventListener('register', (event) => {
+                    event.preventDefault();
+                    const formValid = validateAllFormGroups(formElement);
+
+                    if (!formValid) {
                         event.preventDefault();
-                        const formValid = validateAllFormGroups(formElement);
-
-                        if (!formValid) {
-                            console.log('Form has errors. Please fix them before submitting.');
-                        } else {
-                            console.log('Form submitted successfully');
-                            sendToAPI(formElement);
-                        }
+                    } else {
+                        event.preventDefault();
+                        console.log('Registered successfully');
+                        callback(formElement);
+                    }
                     });
-
-                    resolve(formElement); // Resolve the promise with the form element
                 });
             };
 
             const sendToAPI = (formElement) => {
                 const formObject = Array.from(formElement.elements)
-                    .filter(element => element.type !== 'submit')
-                    .reduce((accumulator, element) => {
-                        return { ...accumulator, [element.id]: element.value };
-                    }, {});
+                .filter(element => element.type !== 'register')
+                .reduce(
+                    (accumulator, element) => (
+                        { ...accumulator,
+                            [element.id]: element.value
+                        }),
+                        {});
 
                 console.log(formObject);
-            };
+
+            }
 
             validateForm('#registrationForm').then(formElement => {
                 console.log('Promise Resolved');
-                // You can perform any additional actions after the form is validated here
+                sendToAPI(formElement);
             });
         </script>
 

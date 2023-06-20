@@ -11,10 +11,10 @@
                 {{-- <br class="hidden lg:inline-block">Campus Library --}}
             </h1>
             <p class="sm:text-left mb-8 leading-relaxed">The Bacoor City Campus Library is located at the Second Floor of the Cavite State University – Bacoor City Campus, Phase 2, Soldiers Hills IV, Molino VI, Bacoor City, Cavite.</p>
-            <div class="flex justify-center">
+            {{-- <div class="flex justify-center">
                 <a href="{{ route('books.browse') }}" class="inline-flex text-white bg-green-600 border-0 py-2 px-6 focus:outline-none hover:bg-green3 rounded text-lg">Browse</a>
                 <a href="{{ route('login') }}" class="ml-4 inline-flex text-green-600 rounded border border-green-600 py-2 px-6 focus:outline-none hover:bg-green3 hover:text-white text-lg">Login</a>
-            </div>
+            </div> --}}
         </div>
   </div>
 </section>
