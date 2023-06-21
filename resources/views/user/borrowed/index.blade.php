@@ -2,7 +2,7 @@
     <div class="pl-9 px-5 pt-8 mx-auto py-24" src="{{ asset('img/wave.png') }}">
         <div class="flex flex-wrap w-full mb:pt-5">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Catalog</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Borrowed Books</h1>
                 <div class="h-1 w-20 bg-green-900 rounded"></div>
             </div>
         </div>
@@ -36,57 +36,63 @@
             </div>
         @endif --}}
         <div class="flex flex-wrap -m-4">
-            @forelse ($books as $book)
+            @forelse ($borrowed as $borrow)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
-
                     <div class="bg-green-200 p-6 rounded-lg">
-                        <div class="flex gap-2">
-                            <div class="grow">
-                                <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
-                                href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
-                            </div>
-                            @if ($book->created_at->diffInWeeks() < 1)
-                                <h1 class="bg-green-400 rounded-lg drop-shadow-lg text-xs py-1 px-3 text-white">
-                                    New
-                                </h1>
-                            @endif
-                        </div>
-                        @if ($book->image !== null)
+
+                        <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
+                            href="/admin/books?category={{ $borrow->book->category }}">{{ $borrow->book->category }}</a>
+
+                        @if ($borrow->book->image !== null)
                             <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
-                                src="{{ url($book->image) }}" alt="content">
+                                src="{{ $borrow->book->image }}" alt="content">
                         @else
                             <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
-                        @if ($book->status === 'available')
+                        @if ($borrow->book->status === 'available')
                             <span
                                 class="capitalize inline-flex items-center mb-2 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
                                 <span class="w-2 h-2 mr-1 bg-green-500 rounded-full">
                                 </span>
-                                {{ $book->status }}
 
+                                {{ $borrow->book->status }}
                             </span>
                         @else
                             <span
                                 class="capitalize inline-flex items-center mb-2 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">
                                 <span class="w-2 h-2 mr-1 bg-red-500 rounded-full">
                                 </span>
-                                {{ $book->status }}
+                                {{ $borrow->book->status }}
 
                             </span>
                         @endif
 
-                        <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1">{{ $book->title }}</h2>
-                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $book->author }}
+                        <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1">{{ $borrow->book->title }}
+                        </h2>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b>
+                            {{ $borrow->book->author }}
                         </h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b>
-                            {{ $book->published_year }}</h3>
+                            {{ $borrow->book->published_year }}</h3>
 
-                        <a href="{{ route('user.books.show', ['book' => $book]) }}" type="submit"
-                            class="w-full md:w-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
-                            View
-                        </a>
+                        <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Borrowed Date:</b>
+                            {{ $borrow->borrowed_date }}</h3>
+                        <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Return Date:</b>
+                            {{ $borrow->returned_date }}</h3>
+
+                        @if ($borrow->returned_date === '0000-00-00')
+                            <form action="{{route('user.returned-book', ['id' => $borrow->id])}}" method="post" class="w-full">
+
+                                @csrf
+                                <button
+                                    class="text-white bg-green-400 drop-shadow-lg px-4 py-2 rounded-lg text-xs capitalize">
+                                    return
+                                </button>
+                            </form>
+                        @endif
+
                     </div>
                 </div>
 

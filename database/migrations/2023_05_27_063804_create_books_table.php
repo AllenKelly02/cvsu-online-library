@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('image')->nullable();
             $table->string('title');
             $table->string('author');
             $table->string('category');
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('bibliography');
             $table->string('course');
+            $table->string('status')->default('available');
             $table->unsignedBigInteger('course_id')->nullable();
             // $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();

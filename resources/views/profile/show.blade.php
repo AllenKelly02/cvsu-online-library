@@ -42,7 +42,7 @@
                         </li>
                         <li class="flex border-b py-2">
                             <span class="font-bold w-24">Joined:</span>
-                            <span class="text-gray-700">10 Jan 2022 (25 days ago)</span>
+                            <span class="text-gray-700">{{$profile->created_at->diffInDays()}}Days Ago</span>
                         </li>
                         <li class="flex border-b py-2">
                             <span class="font-bold w-24">Mobile:</span>
@@ -52,7 +52,7 @@
                         <li class="flex border-b py-2">
                             <span class="font-bold w-24">Email:</span>
                             {{-- put email here --}}
-                            <span class="text-gray-700">amandaross@example.com</span>
+                            <span class="text-gray-700">{{$profile->email}}</span>
                         </li>
                         <li class="flex border-b py-2">
                             <span class="font-bold w-24">Address:</span>
@@ -69,7 +69,7 @@
         </div>
 
         {{-- Activity Log --}}
-        <div class="w-3/6 pr-5">
+        {{-- <div class="w-3/6 pr-5">
             <div class="bg-white rounded-lg shadow-xl p-8">
             <h4 class="text-xl text-gray-900 font-bold">Activity log</h4>
             <!-- Activity log content -->
@@ -138,6 +138,6 @@
                         <!-- end::Timeline item -->
                     </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-app-layout>

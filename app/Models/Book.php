@@ -13,8 +13,9 @@ class Book extends Model
     protected $fillable = [
         'title',
         'author',
-        'category_id',
-        'publication_year',
+        'image',
+        'category',
+        'published_year',
         'publisher',
         'accession_number',
         'edition_number',
@@ -23,7 +24,8 @@ class Book extends Model
         'pages',
         'description',
         'bibliography',
-        'course_id'
+        'course',
+        'status'
     ];
 
     public function categories()
@@ -53,6 +55,10 @@ class Book extends Model
     {
         return $this->attributes['category'] = json_decode($value);
 
+    }
+
+    public function bookIssuing() {
+        return $this->hasOne(BookIssuing::class);
     }
 
       /**
@@ -86,5 +92,5 @@ class Book extends Model
         }
     }
 
-   
+
 }

@@ -84,7 +84,10 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
 
     Route::get('/books/show/{book}', [BooksController::class, 'show'])->name('books.show');
 
+    Route::post('/book/borrow/{id}', [BooksController::class, 'borrow'])->name('borrow-book');
 
+    Route::get('/books/borrowed/list', [CatalogController::class, 'borrowedHistory'])->name('borrow-history');
+    Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned-book');
 });
 
 Route::get('/show', [BooksController::class, 'showPage'])->name('show');

@@ -32,6 +32,10 @@
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/ask.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Ask a Librarian</span>
 				</a>
+                <a href="{{ route('user.borrow-history') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-100">
+					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/history-line.png') }}" alt="content">
+					<span class="ml-2 text-sm font-medium">Borrowed History</span>
+				</a>
 			</div>
 		</div>
 	</div>

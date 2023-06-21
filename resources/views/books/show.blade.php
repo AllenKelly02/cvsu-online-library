@@ -37,9 +37,6 @@
         </div>
     @endif
     <section class="text-gray-600 body-font overflow-hidden">
-
-
-
         <div class="w-full bg-white p-4 flex justify-center">
             <div class="w-5/6 flex gap-4">
                 <img alt="ecommerce" class="w-80 h-2/4 object-cover object-center rounded"
@@ -57,6 +54,17 @@
                     <p>
                         {{ $book->publisher }}
                     </p>
+
+                    <div>
+
+
+                        @if ($book->status === 'available')
+                            <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
+                                @csrf
+                                <button class="btn btn-success">Borrow</button>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

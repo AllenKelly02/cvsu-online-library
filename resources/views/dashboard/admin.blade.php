@@ -1,5 +1,6 @@
 <x-app-layout>
-    <section class="text-gray-600 body-font w-full bg-no-repeat" style="background-image: url('../img/blob-scene-haikei.svg');">
+    <section class="text-gray-600 body-font w-full bg-no-repeat"
+        style="background-image: url('../img/blob-scene-haikei.svg');">
         <div class="px-5 py-5 mx-auto ml-8">
             <div class="flex flex-col text-left w-full mb-2 mt-2">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Dashboard</h1>
@@ -9,7 +10,7 @@
                     <div class="bg-white px-4 py-6 rounded-lg">
                         <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/book.png') }}"
                             alt="content">
-                        <h2 class="title-font font-medium text-3xl text-gray-900">3,547</h2>
+                        <h2 class="title-font font-medium text-3xl text-gray-900">{{ $books->count() }}</h2>
                         <p class="leading-relaxed">Core Collection</p>
                     </div>
                 </div>
@@ -17,8 +18,9 @@
                     <div class="bg-white px-4 py-6 rounded-lg">
                         <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/users.png') }}"
                             alt="content">
-                        {{-- <h2 class="title-font font-medium text-3xl text-gray-900">{{ $user }}</h2> --}}
+                        <h2 class="title-font font-medium text-3xl text-gray-900">{{ $user->count() }}</h2>
                         <p class="leading-relaxed">Users</p>
+
                     </div>
                 </div>
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
@@ -33,7 +35,7 @@
                     <div class="bg-white px-4 py-6 rounded-lg">
                         <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/borrow.png') }}"
                             alt="content">
-                        <h2 class="title-font font-medium text-3xl text-gray-900">6</h2>
+                        <h2 class="title-font font-medium text-3xl text-gray-900">{{ $bookIssuing->count() }}</h2>
                         <p class="leading-relaxed">Borrowed Books</p>
                     </div>
                 </div>
@@ -49,15 +51,104 @@
                         </div>
                     </div>
 
-                    <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
-                        <h2 class="text-xl font-bold">Total Books</h2>
-                        <span class="text-sm font-semibold text-gray-500">2023</span>
-                        <canvas id="myChart"></canvas>
+                    <div class="w-full flex space-x-5">
+                        <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
+                            <h2 class="text-xl font-bold">Total Books By Category</h2>
+                            <span class="text-sm font-semibold text-gray-500">2023</span>
+                            <div id="pieChart"></div>
+                        </div>
+                        <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
+                            <h2 class="text-xl font-bold">Total Books</h2>
+                            <span class="text-sm font-semibold text-gray-500">2023</span>
+                            <canvas id="myChart"></canvas>
+                        </div>
                     </div>
+
+
 
                 </div>
             </div>
-            <script>
+
+
+            @push('js')
+                <script>
+                    var options = {
+                        series: [{
+                            name: "Borrowed Books",
+                            data: [parseInt({{ $totalBorrowedBooksByMonths['Jan'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Feb'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Mar'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Apr'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['May'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Jun'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Jul'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Aug'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Sep'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Oct'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Nov'] }}),
+                                parseInt({{ $totalBorrowedBooksByMonths['Dec'] }})
+                            ]
+                        }],
+                        chart: {
+                            height: 350,
+                            type: 'line',
+                            zoom: {
+                                enabled: false
+                            }
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        stroke: {
+                            curve: 'straight'
+                        },
+                        title: {
+                            text: 'Product Trends by Month',
+                            align: 'left'
+                        },
+                        grid: {
+                            row: {
+                                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                                opacity: 0.5
+                            },
+                        },
+                        xaxis: {
+                            categories: [
+                                'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+                            ],
+                        }
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#chartContainer"), options);
+                    chart.render();
+
+
+                    var optionsOne = {
+                        series: [parseInt({{ $thesisBooks }}), parseInt({{ $journalBooks }}), parseInt({{ $eBooks }}),
+                            parseInt({{ $bookBooks }})
+                        ],
+                        labels: ['Thesis', 'Journal', 'E-book', 'Book'],
+                        chart: {
+                            type: 'donut',
+                        },
+                        responsive: [{
+                            breakpoint: 480,
+                            options: {
+                                chart: {
+                                    width: 200
+                                },
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }]
+                    };
+
+                    var chartPie = new ApexCharts(document.querySelector("#pieChart"), optionsOne);
+                    chartPie.render();
+                </script>
+            @endpush
+            {{-- <script>
                 // Data for the pie chart
                 const canvas = document.getElementById('myChart');
 
@@ -82,8 +173,8 @@
                     data: data,
                     options: options,
                 });
-            </script>
-            <script>
+            </script> --}}
+            {{-- <script>
                 // Data for the line chart
                 const monthlyVisitors = [200, 78, 67, 88, 89, 45, 0, 0, 0, 0, 0, 0];
                 const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -121,14 +212,14 @@
                     chartElement.appendChild(labelElement);
                     chartContainer.appendChild(chartElement);
                 }
-            </script>
+            </script> --}}
 
 
-            <script src="https://cdn.tailwindcss.com"></script>
+            {{-- <script src="https://cdn.tailwindcss.com"></script>
             <script src="https://kit.fontawesome.com/290d4f0eb4.js" crossorigin="anonymous"></script>
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
             <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
 
     </section>
 </x-app-layout>
