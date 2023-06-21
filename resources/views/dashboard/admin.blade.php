@@ -45,7 +45,7 @@
             <div class="container px-1 py-1 mx-auto">
                 <div class="flex flex-col text-center mb-2 mt-2">
                     <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
-                        <h2 class="text-xl font-bold">Monthly Visitors</h2>
+                        <h2 class="text-xl font-bold">Monthly Borrowed Books</h2>
                         <span class="text-sm font-semibold text-gray-500">2023</span>
                         <div id="chartContainer" class="flex items-end flex-grow w-full mt-2 space-x-2 sm:space-x-3">
                         </div>
@@ -101,10 +101,6 @@
                         },
                         stroke: {
                             curve: 'straight'
-                        },
-                        title: {
-                            text: 'Product Trends by Month',
-                            align: 'left'
                         },
                         grid: {
                             row: {

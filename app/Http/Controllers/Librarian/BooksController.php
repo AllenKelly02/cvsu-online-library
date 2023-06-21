@@ -33,7 +33,7 @@ class BooksController extends Controller
             'published_year' => 'required',
             'publisher' => 'required',
             'accession_number' => 'required',
-            'edition_number'=> 'required',
+            'edition_number' => 'required',
             'call_number' => 'required',
             'ISBN' => 'required',
             'pages' => 'required',
@@ -56,8 +56,6 @@ class BooksController extends Controller
                 'image' => asset('storage/book/image/' . $fileName)
             ]);
         }
-
-
 
         return back()->with(['message' => 'Book Added Successfully']);
     }

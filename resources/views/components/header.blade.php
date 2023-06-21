@@ -1,5 +1,5 @@
 <div class="header-container">
-    <div class="w-full z-50 border-b border-green-800 bg-green-200">
+    <div class="w-full z-50 border-b border-green-800 bg-green-600">
         <div class="navbar flex sticky justify-between items-center container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center">
                 <div class="flex items-center space-x-2">
@@ -8,16 +8,16 @@
                             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2">
                                 <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
                                 <div class="flex flex-col">
-                                    <p class="castoro text-sm font-bold text-black">CAVITE STATE UNIVERSITY</p>
-                                    <p class="castoro text-xs font-medium text-black">BACOOR CITY CAMPUS</p>
+                                    <p class="castoro text-sm font-bold text-white">CAVITE STATE UNIVERSITY</p>
+                                    <p class="castoro text-xs font-medium text-white">BACOOR CITY CAMPUS</p>
                                 </div>
                             </a>
                         @else
                             <a href="{{ route('user.catalog') }}" class="flex items-center space-x-2">
                                 <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
                                 <div class="flex flex-col">
-                                    <p class="castoro text-sm font-bold text-black">CAVITE STATE UNIVERSITY</p>
-                                    <p class="castoro text-xs font-medium text-black">BACOOR CITY CAMPUS</p>
+                                    <p class="castoro text-sm font-bold text-white">CAVITE STATE UNIVERSITY</p>
+                                    <p class="castoro text-xs font-medium text-white">BACOOR CITY CAMPUS</p>
                                 </div>
                             </a>
                         @endif
@@ -27,8 +27,8 @@
                         <a href="/" class="flex items-center space-x-2">
                             <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
                             <div class="flex flex-col">
-                                <p class="castoro text-sm font-bold text-black">CAVITE STATE UNIVERSITY</p>
-                                <p class="castoro text-xs font-medium text-black">BACOOR CITY CAMPUS</p>
+                                <p class="castoro text-sm font-bold text-white">CAVITE STATE UNIVERSITY</p>
+                                <p class="castoro text-xs font-medium text-white">BACOOR CITY CAMPUS</p>
                             </div>
                         </a>
                     @endguest
