@@ -39,22 +39,25 @@
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="w-full bg-white p-4 flex justify-center">
             <div class="w-5/6 flex gap-4">
-                <img alt="ecommerce" class="w-80 h-2/4 object-cover object-center rounded"
+                <img alt="ecommerce" class="w-3/6 h-full object-cover object-center rounded"
                     src="{{ asset('img/b1.jpg') }}" alt="content">
 
                 <div class="w-full">
-                    <p>
+                    <p class="text-xs w-max text-red-600 py-1 px-3 border capitalize border-red-600 rounded">
                         {{ $book->category }}
                     </p>
-                    <h1>{{ $book->title }}</h1>
-                    <p>{{ $book->author }}</p>
-                    <p>
+                    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $book->title }}</h1>
+                    <p class="text-gray-600 ml-3">by {{ $book->author }}</p>
+                    <p class="text-gray-600 ml-3">
                         {{ $book->published_year }}
                     </p>
-                    <p>
+                    <p class="text-gray-600 ml-3">
                         {{ $book->publisher }}
                     </p>
 
+                    <div class="p-10"> 
+                    <p class="leading-relaxed"> {{ $book->description }}</p>
+                    </div>
                     <div>
 
 

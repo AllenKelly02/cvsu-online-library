@@ -11,19 +11,19 @@
 
                 @forelse ($books as $book)
                     @if ($book->created_at->diffInDays() < 2)
-                        <div class="xl:w-1/4 md:w-1/2 p-4">
+                        <div class="w-full md:w-1/2 lg:w-1/4 p-4">
                             <div class="bg-gray-100 p-6 rounded-lg">
-                                <div class="w-full">
+                                <div class="w-max">
                                     <p class="bg-green-300 text-black text-xs rounded-lg p-2 mb-2 w-auto">
                                         New {{ $book->created_at->diffInDays() }} days Ago
                                     </p>
 
                                 </div>
                                 @if ($book->image !== null)
-                                    <img class="object-cover h-96 rounded w-96 object-center mb-6"
+                                    <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
                                         src="{{ url($book->image) }}" alt="content">
                                 @else
-                                    <img class="object-cover h-96 rounded w-96 object-center mb-6"
+                                    <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
                                         src="{{ asset('img/b1.jpg') }}" alt="content">
                                 @endif
 

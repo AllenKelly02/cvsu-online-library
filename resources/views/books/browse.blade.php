@@ -24,8 +24,8 @@
 
                                 <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{$book->author}}
                                 </h3>
-                                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{$book->title}}</h2>
-                                <p class="leading-relaxed text-base">{{$book->description}}</p>
+                                <h2 class="truncate text-lg text-gray-900 font-medium title-font mb-4">{{$book->title}}</h2>
+                                <p class="truncate leading-relaxed text-base">{{$book->description}}</p>
                             </div>
                         </div>
 
