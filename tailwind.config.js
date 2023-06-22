@@ -19,17 +19,18 @@ export default {
                 'green2': '#0E8504',
                 'green3': '#115F0C',
                 'green4': '#6A9A66',
-                'green5': '#52DE97'
+                'green5': '#52DE97',
+                'green6': '#006E33'
             },
             screens: {
                 'mobile': '320px',
-                
+
                 'tablet': '640px',
                 // => @media (min-width: 640px) { ... }
-          
+
                 'laptop': '1024px',
                 // => @media (min-width: 1024px) { ... }
-          
+
                 'desktop': '1280px',
                 // => @media (min-width: 1280px) { ... }
               },

@@ -18,23 +18,28 @@
         <div class="px-4 py-2">
             <div class="flex items-center space-x-2">
                 <a href="/admin/books"
-                    class="text-sm px-3 py-1 rounded border border-gray-500 hover:bg-blue-400 hover:text-white">All</a>
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">All</a>
                 <a href="/admin/books?category=book"
-                    class="text-sm px-3 py-1 rounded border border-gray-500 hover:bg-blue-400 hover:text-white">Book</a>
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Book</a>
                 <a href="/admin/books?category=e-book"
-                    class="text-sm px-3 py-1 rounded border border-gray-500 hover:bg-blue-400 hover:text-white">E-Book</a>
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">E-Book</a>
                 <a href="/admin/books?category=journal"
-                    class="text-sm px-3 py-1 rounded border border-gray-500 hover:bg-blue-400 hover:text-white">Journal</a>
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Journal</a>
                 <a href="/admin/books?category=thesis"
-                    class="text-sm px-3 py-1 rounded border border-gray-500 hover:bg-blue-400 hover:text-white">Thesis</a>
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Thesis</a>
             </div>
         </div>
-        {{-- @if (count($books) == 0)
+        @if (count($books) == 0)
             <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
                 <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>
-                <a class=" text-xm text-blue-500 underline" href="/admin/books">refresh</a>
+
             </div>
-        @endif --}}
+            <div class="alert alert-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                <span>No Books Available</span>
+                <a class=" text-xm text-black underline" href="/admin/books">Refresh</a>
+            </div>
+        @endif
         <div class="flex flex-wrap -m-4">
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
@@ -52,10 +57,10 @@
                             @endif
                         </div>
                         @if ($book->image !== null)
-                            <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
+                            <img class="h-70 rounded w-full object-cover object-center py-6"
                                 src="{{ url($book->image) }}" alt="content">
                         @else
-                            <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
+                            <img class="h-70 rounded w-full object-cover object-center py-6"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
@@ -91,6 +96,10 @@
                 </div>
 
             @empty
+            <div class="alert alert-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                <span>No Books Available</span>
+            </div>
             @endforelse
         </div>
         </section>

@@ -29,12 +29,7 @@
                     class="text-sm px-3 py-1 rounded border border-gray-500 hover:bg-blue-400 hover:text-white">Thesis</a>
             </div>
         </div>
-        {{-- @if (count($books) == 0)
-            <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
-                <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>
-                <a class=" text-xm text-blue-500 underline" href="/admin/books">refresh</a>
-            </div>
-        @endif --}}
+
         <div class="flex flex-wrap -m-4">
             @forelse ($borrowed as $borrow)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
@@ -44,10 +39,10 @@
                             href="/admin/books?category={{ $borrow->book->category }}">{{ $borrow->book->category }}</a>
 
                         @if ($borrow->book->image !== null)
-                            <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
+                            <img class="h-70 rounded w-full object-cover object-center py-6"
                                 src="{{ $borrow->book->image }}" alt="content">
                         @else
-                            <img class="object-cover h-48 md:h-64 lg:h-96 rounded w-full object-center py-2"
+                            <img class="h-70 rounded w-full object-cover object-center py-6"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 

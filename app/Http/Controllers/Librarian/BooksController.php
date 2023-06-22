@@ -40,7 +40,6 @@ class BooksController extends Controller
             'description' => 'required',
             'bibliography' => 'required',
             'course' => 'required',
-            'category' => 'required'
          ]);
         $books = Book::create($data);
 
