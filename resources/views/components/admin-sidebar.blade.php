@@ -25,6 +25,7 @@
 					<a href="{{ route('admin.books.index') }}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">All Books</a>
 					<a href="{{ route('admin.books.create') }}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">Add New</a>
 					<a href="{{route('admin.getAllBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">Borrowed Books</a>
+                    <a href="{{route('admin.listRequestBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white"> Request Borrowed Books</a>
 				</div>
 				<a href="{{ route('admin.verified-accounts') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-green-600 hover:text-white">
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/verified.png') }}" alt="content">

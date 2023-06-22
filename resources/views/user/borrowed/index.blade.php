@@ -76,7 +76,25 @@
                         <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Return Date:</b>
                             {{ $borrow->returned_date }}</h3>
 
-                        @if ($borrow->returned_date === '0000-00-00')
+                        @if ($borrow->status === 'pending')
+                            <h3 class="truncate tracking-widest text-black text-xs m-1"><b>status:</b>
+                                <span
+                                    class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5
+                                 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 capitalize">
+                                    {{ $borrow->status }}</span>
+                            </h3>
+                        @else
+                            <h3 class="truncate tracking-widest text-black text-xs m-1"><b>status:</b>
+                                <span
+                                    class="bg-green-100 text-green-800 text-xs font-medium mr-2
+                                    px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{$borrow->status}}</span>
+                            </h3>
+                        @endif
+
+
+
+
+                        @if ($borrow->is_approved === 1 && $borrow->returned_date === '0000-00-00')
                             <form action="{{ route('user.returned-book', ['id' => $borrow->id]) }}" method="post"
                                 class="w-full">
 
@@ -91,12 +109,16 @@
                     </div>
                 </div>
             @empty
-            <div class="m-auto mt-36">
-                <div class="alert alert-warning px-10 py-10 h-10 w-96">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                    <span>No Borrowed Books Available</span>
+                <div class="m-auto mt-36">
+                    <div class="alert alert-warning px-10 py-10 h-10 w-96">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>No Borrowed Books Available</span>
+                    </div>
                 </div>
-            </div>
             @endforelse
         </div>
     </div>

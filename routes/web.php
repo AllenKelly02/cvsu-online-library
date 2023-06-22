@@ -58,6 +58,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
     //list of Borrowed
     Route::get('/books/get/Borrow', [BooksController::class, 'allBorrowedBooks'])->name('getAllBorrowedBooks');
 
+    //approved Request borrowed books
+    Route::post('/books/{id}/borrowed/request', [BooksController::class, 'approvedBorrowBooks'])->name('approvedBorrowedBooks');
+
+    //reject Request Borrowed Books
+    Route::post('/books/{id}/borrowed/reject/request', [BooksController::class, 'rejectBorrowBooks'])->name('rejectBorrowedBooks');
+
+
+    //list request borrowed books
+    Route::get('/books/list/borrowed/request',[BooksController::class, 'listRequestBorrowedBooks'])->name('listRequestBorrowedBooks');
+
 
 
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');

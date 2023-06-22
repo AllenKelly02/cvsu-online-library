@@ -20,7 +20,7 @@ class CatalogController extends Controller
     {
 
         $user = Auth::user();
-        $borrowed = $user->booksIssuing()->get();
+        $borrowed = $user->booksIssuing()->where('status', '!=', 'reject')->get();
         return view('user.borrowed.index', compact('borrowed'));
     }
     public function topCollections()

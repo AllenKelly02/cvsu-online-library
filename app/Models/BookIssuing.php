@@ -13,7 +13,9 @@ class BookIssuing extends Model
         'borrowed_date',
         'returned_date',
         'user_id',
-        'book_id'
+        'book_id',
+        'status',
+        'is_approved'
     ];
 
 

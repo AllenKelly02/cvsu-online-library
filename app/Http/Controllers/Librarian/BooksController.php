@@ -85,14 +85,53 @@ class BooksController extends Controller
         BookIssuing::create([
             'borrowed_date' => Carbon::now()->format('Y-m-d'),
             'user_id' => $user->id,
-            'book_id' => $book->id
+            'book_id' => $book->id,
+            'status' => 'pending'
         ]);
 
-        $book->update([
-            'status' => 'Unavailable'
-        ]);
+        // $book->update([
+        //     'status' => 'Unavailable'
+        // ]);
 
         return back()->with(['message' => "Book Borrowed Success"]);
+    }
+
+    // approve request borrowed books
+    public function approvedBorrowBooks($id)
+    {
+        $bookIssuing = BookIssuing::find($id);
+
+        $bookIssuing->update(
+            [
+                'is_approved' => true,
+                'status' => 'approved'
+            ]
+        );
+
+
+        $bookIssuing->book->update([
+            'status' => 'Unavailable'
+        ]);
+        return back();
+    }
+//reject
+    public function rejectBorrowBooks($id)
+    {
+        $bookIssuing = BookIssuing::find($id);
+
+        $bookIssuing->update(
+            [
+                'status' => 'reject'
+            ]
+        );
+        return back();
+    }
+    // list request of borrowed Books
+
+    public function listRequestBorrowedBooks()
+    {
+        $bookRequest  = BookIssuing::where('is_approved', false)->where('status', '!=', 'reject')->with('user', 'book')->get();
+        return view('books.listrequestborrowedbooks', compact(['bookRequest']));
     }
 
     public function returnedBook($id)
@@ -135,7 +174,8 @@ class BooksController extends Controller
         $favoriteBook->delete();
         return back();
     }
-    public function allBorrowedBooks(){
+    public function allBorrowedBooks()
+    {
         $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->get();
 
         return view('books.borrowedbooks', compact(['bookIssuings']));

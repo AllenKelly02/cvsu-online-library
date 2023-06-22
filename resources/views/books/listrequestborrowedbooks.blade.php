@@ -2,7 +2,7 @@
     <div class="w-full pt-10 px-5">
         <div class="w-full">
             <h1 class="text-3xl text-black font-bold">
-                Borrowed Books
+                Request Borrowed Books
             </h1>
         </div>
         <div class="relative overflow-x-auto h-[35rem] bg-white drop-shadow-lg">
@@ -21,23 +21,46 @@
                         <th scope="col" class="px-6 py-3">
                             Borrowed date
                         </th>
+                        <th>
+                            Action
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @forelse ($bookIssuings as $bookIssuing)
+                    @forelse ($bookRequest as $request)
                         <tr class="bg-white border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ $bookIssuing->book->title }}
+                                {{ $request->book->title }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $bookIssuing->user->name }}
+                                {{ $request->user->name }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $bookIssuing->user->profile->student_id }}
+                                {{ $request->user->profile->student_id }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $bookIssuing->borrowed_date }}
+                                {{ $request->borrowed_date }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-2">
+                                    <div>
+                                        <form action="{{route('admin.approvedBorrowedBooks', ['id' => $request->id])}}" method="post">
+                                            @csrf
+                                            <button class="px-4 py-2 hover:bg-green-600 rounded-lg hover:scale-105 duration-700">
+                                                <img src="{{asset('img/check-line.png')}}">
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <form action="{{route('admin.rejectBorrowedBooks', ['id' => $request->id])}}" method="post">
+                                            @csrf
+                                            <button class="px-4 py-2 hover:bg-red-600 rounded-lg hover:scale-105 duration-700">
+                                                <img src="{{asset('img/close-line.png')}}">
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @empty
