@@ -17,8 +17,27 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    // public const HOME = '/dashboard';
     public const HOME = '/dashboard';
+    
+    public function handleAuthenticationAndRedirection($request)
+{
+    $request->authenticate();
 
+    $role = $request->user()->role;
+
+    switch ($role) {
+        case 'admin':
+            return redirect()->route('admin.dashboard');
+            break;
+        case 'user':
+            return redirect()->route('user.catalog');
+            break;
+        default:
+            // Handle other roles or scenarios
+            break;
+    }
+}
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */

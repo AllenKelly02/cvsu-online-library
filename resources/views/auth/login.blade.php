@@ -1,7 +1,7 @@
 <x-guest-layout>
     <section
         class="full-screen w-full sm:flex md:flex justify-center items-center sm:w-full bg-gradient-to-b from-green-200 to-emerald-400 p-12 body-font bg-bottom bg-no-repeat bg-white"
-        style="background-image: url('../img/wave.svg');">
+        style="background-image: url('../img/wave (9).svg');">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
         @if (Session::has('message'))

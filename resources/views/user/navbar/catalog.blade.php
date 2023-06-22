@@ -60,7 +60,8 @@
                             <img class="h-70 rounded w-full object-cover object-center py-6"
                                 src="{{ url($book->image) }}" alt="content">
                         @else
-                            <img class="h-70 rounded w-full object-cover object-center py-6"
+                            <img class="
+                            h-70 rounded w-full object-cover object-center py-6"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 

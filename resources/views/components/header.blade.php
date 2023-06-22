@@ -1,5 +1,5 @@
 <div class="header-container">
-    <div class="w-full z-50 border-b border-green-800 bg-green-500">
+    <div class="w-full z-50 border-b border-green-800 bg-green6">
         <div class="navbar flex justify-between items-center container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center">
                 <div class="flex items-center space-x-2">
@@ -134,12 +134,12 @@
                 @else
                     <div class="flex items-center space-x-2">
                         <a href="{{ route('login') }}"
-                            class="text-sm text-white py-2 px-4 rounded bg-green-700 border-green-800 hover:bg-green-900">
+                            class="text-sm text-white font-bold py-2 px-4 rounded bg-green-700 border-green-800 hover:bg-green-800">
                             LOGIN
                         </a>
 
                             <a href="{{ route('register') }}"
-                                class="text-sm text-white py-2 px-4 rounded bg-green-700 border-green-800 hover:bg-green-900">
+                                class="text-sm text-white font-bold py-2 px-4 rounded bg-green-700 border-green-800 hover:bg-green-800">
                                 REGISTER
                             </a>
                         </div>

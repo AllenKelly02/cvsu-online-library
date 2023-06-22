@@ -1,6 +1,6 @@
 <x-guest-layout>
     <section class="full-screen bg-gradient-to-b from-green-200 to-emerald-400 body-font bg-bottom bg-no-repeat bg-white"
-        style="background-image: url('../img/wave.svg');">
+        style="background-image: url('../img/wave (9).svg');">
         <div class="flex items-center justify-center py-28">
             <div class="text-gray-800 rounded-3xl shadow-xl w-full overflow-hidden border-green-800 bg-no-repeat"
                 style="background-image: url('../img/blob-scene-haikei.svg'); max-width:1000px">

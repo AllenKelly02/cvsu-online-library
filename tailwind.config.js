@@ -20,7 +20,7 @@ export default {
                 'green3': '#115F0C',
                 'green4': '#6A9A66',
                 'green5': '#52DE97',
-                'green6': '#006E33'
+                'green6': '#408c40'
             },
             screens: {
                 'mobile': '320px',

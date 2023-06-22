@@ -41,7 +41,6 @@
             <div class="w-5/6 flex gap-4">
                 <img alt="ecommerce" class="w-3/6 h-full object-cover object-center rounded"
                     src="{{ asset('img/b1.jpg') }}" alt="content">
-
                 <div class="w-full">
                     <p class="text-xs w-max text-red-600 py-1 px-3 border capitalize border-red-600 rounded">
                         {{ $book->category }}
