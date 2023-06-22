@@ -32,12 +32,14 @@
                     </div>
                 </div>
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-                    <div class="bg-white px-4 py-6 rounded-lg">
-                        <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/borrow.png') }}"
-                            alt="content">
-                        <h2 class="title-font font-medium text-3xl text-gray-900">{{ $bookIssuing->count() }}</h2>
-                        <p class="leading-relaxed">Borrowed Books</p>
-                    </div>
+                    <a href="{{route('admin.getAllBorrowedBooks')}}">
+                        <div class="bg-white px-4 py-6 rounded-lg">
+                            <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block"
+                                src="{{ asset('img/borrow.png') }}" alt="content">
+                            <h2 class="title-font font-medium text-3xl text-gray-900">{{ $bookIssuing->count() }}</h2>
+                            <p class="leading-relaxed">Borrowed Books</p>
+                        </div>
+                    </a>
                 </div>
             </div>
 

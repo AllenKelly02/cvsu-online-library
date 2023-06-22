@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Book;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use App\Models\BookIssuing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 
 class ProfileController extends Controller
@@ -31,9 +33,9 @@ class ProfileController extends Controller
     {
 
         $profile = User::where('id', $id)->with('profile')->first();
+        $bookIssuing = BookIssuing::where('user_id', $profile->id)->with('book')->get();
 
-
-        return view('profile.show', compact('profile'));
+        return view('profile.show', compact(['profile', 'bookIssuing']));
 
     }
 
@@ -43,7 +45,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
-        
+
         $user = $request->user();
         $user->name = $request->input('name');
 

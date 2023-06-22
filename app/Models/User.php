@@ -52,4 +52,7 @@ class User extends Authenticatable
     public function booksIssuing() {
         return $this->hasOne(BookIssuing::class);
     }
+    public function favourite_books(){
+        return $this->hasMany(UserFavouriteBook::class);
+    }
 }

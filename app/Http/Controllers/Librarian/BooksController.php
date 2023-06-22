@@ -6,12 +6,14 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\BookIssuing;
+use App\Models\UserFavouriteBook;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class BooksController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
         $books = Book::latest()->filter(request(['category', 'search']))->paginate(10);
 
@@ -20,11 +22,13 @@ class BooksController extends Controller
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('books.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $data = $request->validate([
             'title' => 'required',
@@ -40,13 +44,13 @@ class BooksController extends Controller
             'description' => 'required',
             'bibliography' => 'required',
             'course' => 'required',
-         ]);
+        ]);
         $books = Book::create($data);
 
         $image = $request->file('image');
 
 
-        if($image) {
+        if ($image) {
             $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/book/image', $fileName);
 
@@ -59,19 +63,21 @@ class BooksController extends Controller
         return back()->with(['message' => 'Book Added Successfully']);
     }
 
-    public function search() {
-
+    public function search()
+    {
     }
 
 
-    public function show(Book $book) {
+    public function show(Book $book)
+    {
 
         $book = Book::find($book->id);
 
         return view('books.show', compact(['book']));
     }
 
-    public function borrow ($id) {
+    public function borrow($id)
+    {
         $user =  Auth::user();
 
         $book = Book::find($id);
@@ -89,7 +95,8 @@ class BooksController extends Controller
         return back()->with(['message' => "Book Borrowed Success"]);
     }
 
-    public function returnedBook($id){
+    public function returnedBook($id)
+    {
         $bookIssuing = BookIssuing::find($id);
 
         $bookIssuing->book->update(['status' => 'available']);
@@ -100,12 +107,37 @@ class BooksController extends Controller
 
         return back()->with(['message' => "Book Return Success"]);
     }
-    public function browse(){
+    public function browse()
+    {
 
-        $books = Book::latest()->filter(request(['category', 'search']))->paginate(10);
+        $books = Book::get();
+        return view('books.browse', compact(['books']));
+    }
+    public function addFavourite($id)
+    {
+        $user  = Auth::user();
 
-        return view('books.browse', [
-            'books' => $books
+        $addFavourite = UserFavouriteBook::create([
+            'user_id' => $user->id,
+            'book_id' => $id
         ]);
+
+        if ($addFavourite) {
+            return back()->with([
+                'message' => 'Book has been added in Favorite'
+            ]);
+        }
+        return back();
+    }
+    public function removeFavourite($id)
+    {
+        $favoriteBook =  UserFavouriteBook::where('book_id', $id)->first();
+        $favoriteBook->delete();
+        return back();
+    }
+    public function allBorrowedBooks(){
+        $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->get();
+
+        return view('books.borrowedbooks', compact(['bookIssuings']));
     }
 }

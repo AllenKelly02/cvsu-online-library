@@ -25,10 +25,13 @@ class CatalogController extends Controller
     }
     public function topCollections()
     {
-        
+
         // Logic for the top collections page
-         $books = Book::latest()->get();
-        return view('user.navbar.top-collect', compact(['books']));
+
+        $user = Auth::user();
+         $favorites = $user->favourite_books()->with('book')->get();
+
+        return view('user.navbar.top-collect', compact(['favorites']));
     }
     public function newCollections()
     {

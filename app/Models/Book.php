@@ -60,6 +60,9 @@ class Book extends Model
     public function bookIssuing() {
         return $this->hasOne(BookIssuing::class);
     }
+    public function favourite_users(){
+        return $this->hasMany(UserFavouriteBook::class);
+    }
 
       /**
      * Set the course

@@ -9,8 +9,7 @@
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
             <form action="/admin/books" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
-                    <input type="text" name="search" class="border-gray-300 rounded w-1/2"
-                        placeholder="Type here..">
+                    <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
                     <button type="submit" class="px-4 py-2 rounded bg-green-600 text-white">Search</button>
                 </div>
             </form>
@@ -29,7 +28,7 @@
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Thesis</a>
             </div>
         </div>
-       @if (count($books) == 0)
+        {{-- @if (count($favorites) == 0)
             <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
                 <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>
 
@@ -39,38 +38,38 @@
                 <span>No Books Available</span>
                 <a class=" text-xm text-black underline" href="/admin/books">Refresh</a>
             </div>
-        @endif
+        @endif --}}
         <div class="flex flex-wrap -m-4">
-            @forelse ($books as $book)
+            @forelse ($favorites as $favorite)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
 
                     <div class="bg-green-200 p-6 rounded-lg">
                         <div class="flex gap-2">
                             <div class="grow">
                                 <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
-                                href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
+                                    href="/admin/books?category={{ $favorite->book->category }}">{{ $favorite->book->category }}</a>
                             </div>
-                            @if ($book->created_at->diffInWeeks() < 1)
+                            @if ($favorite->book->created_at->diffInWeeks() < 1)
                                 <h1 class="bg-green-400 rounded-lg drop-shadow-lg text-xs py-1 px-3 text-white">
                                     New
                                 </h1>
                             @endif
                         </div>
-                        @if ($book->image !== null)
+                        @if ($favorite->book->image !== null)
                             <img class="h-70 rounded w-full object-cover object-center py-6"
-                                src="{{ url($book->image) }}" alt="content">
+                                src="{{ url($favorite->book->image) }}" alt="content">
                         @else
                             <img class="
                             h-70 rounded w-full object-cover object-center py-6"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
-                        @if ($book->status === 'available')
+                        @if ($favorite->book->status === 'available')
                             <span
                                 class="capitalize inline-flex items-center mb-2 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
                                 <span class="w-2 h-2 mr-1 bg-green-500 rounded-full">
                                 </span>
-                                {{ $book->status }}
+                                {{ $favorite->book->status }}
 
                             </span>
                         @else
@@ -78,18 +77,20 @@
                                 class="capitalize inline-flex items-center mb-2 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">
                                 <span class="w-2 h-2 mr-1 bg-red-500 rounded-full">
                                 </span>
-                                {{ $book->status }}
+                                {{ $favorite->book->status }}
 
                             </span>
                         @endif
 
-                        <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1">{{ $book->title }}</h2>
-                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $book->author }}
+                        <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1">
+                            {{ $favorite->book->title }}</h2>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b>
+                            {{ $favorite->book->author }}
                         </h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b>
-                            {{ $book->published_year }}</h3>
+                            {{ $favorite->book->published_year }}</h3>
 
-                        <a href="{{ route('user.books.show', ['book' => $book]) }}" type="submit"
+                        <a href="{{ route('user.books.show', ['book' => $favorite->book]) }}" type="submit"
                             class="w-full md:w-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
                             View
                         </a>
@@ -97,10 +98,17 @@
                 </div>
 
             @empty
-            <div class="alert alert-warning">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                <span>No Books Available</span>
-            </div>
+                {{-- <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
+                    <p class=" text-base text-red-500 mt-5">Oops! No Favorite Books</p>
+
+                </div> --}}
+                <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
+                    <div class="alert alert-info">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>No Favorite Books </span>
+                        <a class=" text-xm text-black underline" href="{{route('user.catalog')}}">See More Books</a>
+                    </div>
+                </div>
             @endforelse
         </div>
 </x-app-layout>

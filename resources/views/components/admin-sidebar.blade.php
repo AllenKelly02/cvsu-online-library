@@ -5,7 +5,7 @@
 	<div class="flex flex-col items-center w-60 h-full overflow-hidden sticky border-r border-green-800 text-gray-700 bg-white" >
 		<div class="flex flex-row justify-between">
 		<img class="object-center w-10 ml-30 py-3" src="{{ asset('img/logo.png') }}" alt="logo">
-		<br>	
+		<br>
         <a href="{{ route('user.catalog') }}" class="flex items-center w-full px-3 mt-3">
 			<span class="ml-2 text-sm font-bold">CvSU Library</span>
 		</a>
@@ -24,7 +24,7 @@
 				<div id="bookLinks" class="w-full hidden flex flex-col space-y-2 px-6">
 					<a href="{{ route('admin.books.index') }}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">All Books</a>
 					<a href="{{ route('admin.books.create') }}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">Add New</a>
-					<a href="" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">Borrowed Books</a>
+					<a href="{{route('admin.getAllBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">Borrowed Books</a>
 				</div>
 				<a href="{{ route('admin.verified-accounts') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-green-600 hover:text-white">
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/verified.png') }}" alt="content">
@@ -51,7 +51,7 @@
  <script>
 	openBookLink();
 	function openBookLink() {
-		const openBtn = document.getElementById('openBooks'); 
+		const openBtn = document.getElementById('openBooks');
 		const links = document.getElementById('bookLinks');
 
 		openBtn.addEventListener('click', () => {

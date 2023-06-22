@@ -54,18 +54,35 @@
                         {{ $book->publisher }}
                     </p>
 
-                    <div class="p-10"> 
-                    <p class="leading-relaxed"> {{ $book->description }}</p>
+                    <div class="p-10">
+                        <p class="leading-relaxed"> {{ $book->description }}</p>
                     </div>
                     <div>
 
-
-                        @if ($book->status === 'available')
-                            <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
-                                @csrf
-                                <button class="btn btn-success">Borrow</button>
-                            </form>
-                        @endif
+                        <div class="flex space-x-5">
+                            @if (Auth::user()->favourite_books()->where('book_id', $book->id)->get()->count() === 0)
+                                <form action="{{ route('user.addBookFavourite', ['id' => $book->id]) }}"
+                                    method="post">
+                                    @csrf
+                                    <button>
+                                        <img src="{{ asset('img/heart-add-line.png') }}" alt="">
+                                    </button>
+                                </form>
+                            @else
+                                <form action="{{route('user.removeBookFavourite', ['id' => $book->id])}}" method="post">
+                                    @csrf
+                                    <button>
+                                        <img src="{{ asset('img/heart-3-fill.png') }}" alt="">
+                                    </button>
+                                </form>
+                            @endif
+                            @if ($book->status === 'available')
+                                <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
+                                    @csrf
+                                    <button class="btn btn-success">Borrow</button>
+                                </form>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

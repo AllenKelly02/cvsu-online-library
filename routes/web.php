@@ -53,7 +53,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::post('/books/store', [BooksController::class, 'store'])->name('books.store');
 
-    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');    
+    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');
+
+    //list of Borrowed
+    Route::get('/books/get/Borrow', [BooksController::class, 'allBorrowedBooks'])->name('getAllBorrowedBooks');
+
 
 
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');
@@ -88,6 +92,13 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
 
     Route::get('/books/borrowed/list', [CatalogController::class, 'borrowedHistory'])->name('borrow-history');
     Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned-book');
+
+    //add favorite book
+    Route::post('/books/show/{id}/addFavorite', [BooksController::class, 'addFavourite'])->name('addBookFavourite');
+
+    //remove favorite book
+    Route::post('/books/show/{id}/removeFavorite', [BooksController::class, 'removeFavourite'])->name('removeBookFavourite');
+
 });
 
 Route::get('/show', [BooksController::class, 'showPage'])->name('show');

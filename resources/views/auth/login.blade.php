@@ -21,7 +21,7 @@
                         <p class="mb-5">Enter your information to login</p>
                     </div>
                     @if ($errors->any())
-                        <div class="alert alert-error mt-10 w-72">
+                        <div class="alert alert-error w-72">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -29,21 +29,26 @@
                             </ul>
                         </div>
                     @endif
+                    @error('email')
+                        <span class="text-xs text-red-600">{{ $message }}</span>
+                    @enderror
                     {{-- Email Address --}}
                     <div class="flex">
                         <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                             <i class="mdi mdi-email-outline text-black text-lg"></i>
                         </div>
-                        <input type="mail" id="email" name="email" :value="old('Email')" required
-                            autocomplete="email"
+                        <input type="mail" id="email" name="email" :value="old('Email')" autocomplete="email"
                             class="w-72 -ml-10 pl-10 pr-3 py-2 bg-white text-black rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                             placeholder="Email">
                     </div>
+
+                    @error('pasword')
+                        <span class="text-xs text-red-600">{{ $message }}</span>
+                    @enderror
                     {{-- Password --}}
                     <div class="flex">
                         <div class="relative">
-                            <input type="password" id="password" name="password" required
-                                autocomplete="current-password"
+                            <input type="password" id="password" name="password" autocomplete="current-password"
                                 class="w-72 pl-10 pr-3 text-black py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                 placeholder="Password">
                             <i onclick="togglePasswordVisibility('password')"
