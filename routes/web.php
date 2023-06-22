@@ -53,7 +53,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::post('/books/store', [BooksController::class, 'store'])->name('books.store');
 
-    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');
+    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');    
 
 
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');

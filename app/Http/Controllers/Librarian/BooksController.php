@@ -102,7 +102,10 @@ class BooksController extends Controller
     }
     public function browse(){
 
-        $books = Book::get();
-        return view('books.browse', compact(['books']));
+        $books = Book::latest()->filter(request(['category', 'search']))->paginate(10);
+
+        return view('books.browse', [
+            'books' => $books
+        ]);
     }
 }

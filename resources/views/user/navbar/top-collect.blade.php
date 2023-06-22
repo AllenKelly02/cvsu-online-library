@@ -1,77 +1,106 @@
 <x-app-layout>
-    <section class="text-gray-600 body-font">
-    <div class="container px-5 pt-12 pb-24 mx-auto">
-        <div class="flex flex-wrap w-full mb-20">
-        <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Top Collections</h1>
-            <div class="h-1 w-20 bg-green-900 rounded"></div>
+    <div class="px-20 pt-8 mx-auto py-24">
+        <div class="flex flex-wrap w-full mb:pt-5">
+            <div class="lg:w-1/2 w-fulll lg:mb-0">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Top Collections</h1>
+                <div class="h-1 w-20 bg-green-900 rounded"></div>
+            </div>
         </div>
+        <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
+            <form action="/admin/books" class="w-full">
+                <div class="w-full flex justify-end space-x-3 ">
+                    <input type="text" name="search" class="border-gray-300 rounded w-1/2"
+                        placeholder="Type here..">
+                    <button type="submit" class="px-4 py-2 rounded bg-green-600 text-white">Search</button>
+                </div>
+            </form>
         </div>
+        <div class="px-4 py-2">
+            <div class="flex items-center space-x-2">
+                <a href="/admin/books"
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">All</a>
+                <a href="/admin/books?category=book"
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Book</a>
+                <a href="/admin/books?category=e-book"
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">E-Book</a>
+                <a href="/admin/books?category=journal"
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Journal</a>
+                <a href="/admin/books?category=thesis"
+                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Thesis</a>
+            </div>
+        </div>
+       @if (count($books) == 0)
+            <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
+                <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>
+
+            </div>
+            <div class="alert alert-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                <span>No Books Available</span>
+                <a class=" text-xm text-black underline" href="/admin/books">Refresh</a>
+            </div>
+        @endif
         <div class="flex flex-wrap -m-4">
-        <div class="xl:w-1/4 md:w-1/2 p-4">
-            <div class="bg-gray-100 p-6 rounded-lg">
-            <img class="object-cover h-96 rounded w-96 object-center mb-6" src="{{ asset('img/b1.jpg') }}" alt="content">
-            <h3 class="truncate tracking-widest text-indigo-500 text-xs font-medium title-font">Natalie Wexler</h3>
-            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
-                Available
-            </span>
-            <h2 class="truncate text-lg text-gray-900 font-medium title-font mb-4">The Knowledge GAP</h2>
-            <p class="leading-relaxed truncate text-base">The hidden cause of America's broken education system- and how to fix it.</p>
-            <button type="submit" class="w-50 px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
-            View
-            </button>
+            @forelse ($books as $book)
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+
+                    <div class="bg-green-200 p-6 rounded-lg">
+                        <div class="flex gap-2">
+                            <div class="grow">
+                                <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
+                                href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
+                            </div>
+                            @if ($book->created_at->diffInWeeks() < 1)
+                                <h1 class="bg-green-400 rounded-lg drop-shadow-lg text-xs py-1 px-3 text-white">
+                                    New
+                                </h1>
+                            @endif
+                        </div>
+                        @if ($book->image !== null)
+                            <img class="h-70 rounded w-full object-cover object-center py-6"
+                                src="{{ url($book->image) }}" alt="content">
+                        @else
+                            <img class="
+                            h-70 rounded w-full object-cover object-center py-6"
+                                src="{{ asset('img/b1.jpg') }}" alt="content">
+                        @endif
+
+                        @if ($book->status === 'available')
+                            <span
+                                class="capitalize inline-flex items-center mb-2 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full">
+                                </span>
+                                {{ $book->status }}
+
+                            </span>
+                        @else
+                            <span
+                                class="capitalize inline-flex items-center mb-2 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">
+                                <span class="w-2 h-2 mr-1 bg-red-500 rounded-full">
+                                </span>
+                                {{ $book->status }}
+
+                            </span>
+                        @endif
+
+                        <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1">{{ $book->title }}</h2>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $book->author }}
+                        </h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b>
+                            {{ $book->published_year }}</h3>
+
+                        <a href="{{ route('user.books.show', ['book' => $book]) }}" type="submit"
+                            class="w-full md:w-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
+                            View
+                        </a>
+                    </div>
+                </div>
+
+            @empty
+            <div class="alert alert-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                <span>No Books Available</span>
             </div>
+            @endforelse
         </div>
-        <div class="xl:w-1/4 md:w-1/2 p-4">
-            <div class="bg-gray-100 p-6 rounded-lg">
-            <img class="h-96 rounded w-96 object-cover object-center mb-6" src="{{ asset('img/b2.jpg') }}"  alt="content">
-            <h3 class="truncate tracking-widest text-indigo-500 text-xs font-medium title-font">Gilbert Brands</h3>
-            <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                <span class="w-2 h-2 mr-1 bg-red-500 rounded-full"></span>
-                Unavailable
-            </span>
-            <h2 class="truncate text-lg text-gray-900 font-medium title-font mb-4">Introduction to Computer Science</h2>
-            <p class="leading-relaxed truncate text-base">A Textbook for Beginners in Informatics </p>
-            <button type="submit"
-            class="w-50 px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
-            View
-            </button>
-            </div>
-        </div>
-        <div class="xl:w-1/4 md:w-1/2 p-4">
-            <div class="bg-gray-100 p-6 rounded-lg">
-            <img class="h-96 rounded w-96 object-cover object-center mb-6" src="{{ asset('img/b3.jpg') }}" alt="content">
-            <h3 class="truncate tracking-widest text-indigo-500 text-xs font-medium title-font">John R. Walker</h3>
-            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
-                Available
-            </span>
-            <h2 class="truncate text-lg text-gray-900 font-medium title-font mb-4">Introduction to Hospitality Management</h2>
-            <p class="leading-relaxed truncate text-base">Explores all aspects of the field including: travel and tourism; lodging; foodservice; meetings, conventions and expositions; and leisure and recreation.</p>
-            <button type="submit"
-            class="w-50 px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
-            View
-            </button>
-            </div>
-        </div>
-        <div class="xl:w-1/4 md:w-1/2 p-4">
-            <div class="bg-gray-100 p-6 rounded-lg">
-            <img class="h-96 rounded w-96 object-cover object-center mb-6" src="{{ asset('img/b4.jpg') }}" alt="content">
-            <h3 class="truncate tracking-widest text-indigo-500 text-xs font-medium title-font">Stuart Henry, Desiré J. M. Anastasia, Sanna King, and Nicole L. Bracy</h3>
-             <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
-                Available
-            </span>
-            <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Crime, Law, and Justice</h2>
-            <p class="leading-relaxed truncate text-base">Crime, Law, and Justice provides students with a comprehensive introduction to the field of criminal justice and the criminal justice system.</p>
-            <button type="submit"
-            class="w-50 px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
-            View
-            </button>
-            </div>
-        </div>
-        </div>
-    </div>
-</section>
 </x-app-layout>

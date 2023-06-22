@@ -40,7 +40,7 @@ class BookFactory extends Factory
             'ISBN' => $this->faker->unique()->isbn13(),
             'pages' => $this->faker->numberBetween(50, 1000),
             'description' => $this->faker->paragraph(),
-            'bibliography' => $this->faker->paragraph(),
+            'bibliography' => $this->faker->sentence(),
             'course' => $this->faker->randomElement($course),
             'course_id' => $this->faker->numberBetween(1, 7),
         ];

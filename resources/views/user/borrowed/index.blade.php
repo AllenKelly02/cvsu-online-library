@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="pl-9 px-5 pt-8 mx-auto py-24" src="{{ asset('img/wave.png') }}">
+    <div class="px-20 pt-8 mx-auto py-24">
         <div class="flex flex-wrap w-full mb:pt-5">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Borrowed Books</h1>
@@ -9,8 +9,7 @@
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
             <form action="/admin/books" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
-                    <input type="text" name="search" class="border-gray-300 rounded w-1/2"
-                        placeholder="Type here..">
+                    <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
                     <button type="submit" class="px-4 py-2 rounded bg-green-600 text-white">Search</button>
                 </div>
             </form>
@@ -78,7 +77,8 @@
                             {{ $borrow->returned_date }}</h3>
 
                         @if ($borrow->returned_date === '0000-00-00')
-                            <form action="{{route('user.returned-book', ['id' => $borrow->id])}}" method="post" class="w-full">
+                            <form action="{{ route('user.returned-book', ['id' => $borrow->id]) }}" method="post"
+                                class="w-full">
 
                                 @csrf
                                 <button
@@ -90,9 +90,14 @@
 
                     </div>
                 </div>
-
             @empty
+            <div class="m-auto mt-36">
+                <div class="alert alert-warning px-10 py-10 h-10 w-96">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    <span>No Borrowed Books Available</span>
+                </div>
+            </div>
             @endforelse
         </div>
-        </section>
+    </div>
 </x-app-layout>

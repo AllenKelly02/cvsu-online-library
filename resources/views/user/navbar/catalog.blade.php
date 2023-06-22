@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="pl-9 px-5 pt-8 mx-auto py-24" src="{{ asset('img/wave.png') }}">
+    <div class="px-20 pt-8 mx-auto py-24">
         <div class="flex flex-wrap w-full mb:pt-5">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Catalog</h1>
@@ -103,5 +103,5 @@
             </div>
             @endforelse
         </div>
-        </section>
+    </div>
 </x-app-layout>
