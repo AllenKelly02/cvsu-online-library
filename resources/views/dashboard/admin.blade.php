@@ -1,39 +1,43 @@
 <x-app-layout>
     <section class="text-gray-600 body-font w-full bg-no-repeat"
-        style="background-image: url('../img/blob-scene-haikei.svg');">
+        style="background-image: url('../img/blob-scene-haikei (1).svg');">
         <div class="px-5 py-5 mx-auto ml-8">
-            <div class="flex flex-col text-left w-full mb-2 mt-2">
+            <div class="lg:w-1/2 w-fulll lg:mb-5">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Dashboard</h1>
+                <div class="h-1 w-20 bg-green-900 rounded"></div>
             </div>
             <div class="flex flex-wrap -m-4 text-center">
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-                    <div class="bg-white px-4 py-6 rounded-lg">
-                        <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/book.png') }}"
-                            alt="content">
-                        <h2 class="title-font font-medium text-3xl text-gray-900">{{ $books->count() }}</h2>
-                        <p class="leading-relaxed">Core Collection</p>
-                    </div>
+                    <a href="{{ route('admin.books.index') }}">
+                        <div class="bg-white px-4 py-6 rounded-lg shadow-xl">
+                            <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block"
+                                src="{{ asset('img/book.png') }}" alt="content">
+                            <h2 class="title-font font-medium text-3xl text-gray-900">{{ $books->count() }}</h2>
+                            <p class="leading-relaxed">Core Collection</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-                    <div class="bg-white px-4 py-6 rounded-lg">
-                        <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/users.png') }}"
-                            alt="content">
-                        <h2 class="title-font font-medium text-3xl text-gray-900">{{ $user->count() }}</h2>
-                        <p class="leading-relaxed">Users</p>
-
-                    </div>
+                    <a href="{{ route('admin.verified-accounts') }}">
+                        <div class="bg-white px-4 py-6 rounded-lg shadow-xl">
+                            <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block"
+                                src="{{ asset('img/users.png') }}" alt="content">
+                            <h2 class="title-font font-medium text-3xl text-gray-900">{{ $user->count() }}</h2>
+                            <p class="leading-relaxed">Users</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-                    <div class="bg-white px-4 py-6 rounded-lg">
+                    <div class="bg-white px-4 py-6 rounded-lg shadow-xl">
                         <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block" src="{{ asset('img/visit.png') }}"
                             alt="content">
-                        <h2 class="title-font font-medium text-3xl text-gray-900">156</h2>
+                        <h2 class="title-font font-medium text-3xl text-gray-900">1</h2>
                         <p class="leading-relaxed">No. of Visits</p>
                     </div>
                 </div>
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
-                    <a href="{{route('admin.getAllBorrowedBooks')}}">
-                        <div class="bg-white px-4 py-6 rounded-lg">
+                    <a href="{{ route('admin.getAllBorrowedBooks') }}">
+                        <div class="bg-white px-4 py-6 rounded-lg shadow-xl">
                             <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block"
                                 src="{{ asset('img/borrow.png') }}" alt="content">
                             <h2 class="title-font font-medium text-3xl text-gray-900">{{ $bookIssuing->count() }}</h2>
@@ -60,10 +64,21 @@
                             <div id="pieChart"></div>
                         </div>
                         <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
-                            <h2 class="text-xl font-bold">Total Books</h2>
-                            <span class="text-sm font-semibold text-gray-500">2023</span>
+                            <h2 class="text-xl font-bold"></h2>
+                            <span class="text-sm font-semibold text-gray-500"></span>
                             <canvas id="myChart"></canvas>
                         </div>
+                        <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
+                            <h2 class="text-xl font-bold"></h2>
+                            <span class="text-sm font-semibold text-gray-500"></span>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
+                            <h2 class="text-xl font-bold"></h2>
+                            <span class="text-sm font-semibold text-gray-500"></span>
+                            <canvas id="myChart"></canvas>
+                        </div>
+
                     </div>
 
 

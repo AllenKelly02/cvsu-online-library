@@ -1,9 +1,10 @@
 <x-app-layout>
-    <div class="w-full pt-10 px-5">
-        <div class="w-full">
+    <div class="px-20 pt-8 mx-auto py-24">
+        <div class="lg:w-1/2 w-fulll lg:mb-5">
             <h1 class="text-3xl text-black font-bold">
                 Request Borrowed Books
             </h1>
+            <div class="h-1 w-20 bg-green-900 rounded"></div>
         </div>
         <div class="relative overflow-x-auto h-[35rem] bg-white drop-shadow-lg">
             <table class="w-full text-sm text-left text-gray-500">
