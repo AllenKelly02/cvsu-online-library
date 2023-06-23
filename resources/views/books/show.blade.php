@@ -37,7 +37,7 @@
         </div>
     @endif
     <section class="text-gray-600 body-font overflow-hidden">
-        <div class="w-full p-4 flex justify-center">
+        <div class="w-fulls p-4 flex justify-center">
             <div class="w-5/6 flex gap-4">
                 <img alt="ecommerce" class="w-3/6 h-full object-cover object-center rounded"
                     src="{{ asset('img/b1.jpg') }}" alt="content">
