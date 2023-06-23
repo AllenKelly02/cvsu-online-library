@@ -29,7 +29,7 @@ class BookFactory extends Factory
         ];
 
         return [
-            'title' => $this->faker->sentence(),
+            'title' => $this->faker->title(),
             'author' => $this->faker->name(),
             'category' => $this->faker->randomElement($categories),
             'published_year' => $this->faker->year(),
@@ -39,7 +39,7 @@ class BookFactory extends Factory
             'call_number' => $this->faker->randomLetter() . $this->faker->randomNumber(3),
             'ISBN' => $this->faker->unique()->isbn13(),
             'pages' => $this->faker->numberBetween(50, 1000),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->sentence(),
             'bibliography' => $this->faker->sentence(),
             'course' => $this->faker->randomElement($course),
             'course_id' => $this->faker->numberBetween(1, 7),

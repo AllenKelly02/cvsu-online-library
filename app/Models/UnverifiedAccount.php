@@ -13,14 +13,15 @@ class UnverifiedAccount extends Model
         'last_name',
         'first_name',
         'middle_name',
-        'student_id',
-        'sex',
         'block',
         'subdivision',
         'barangay',
         'municipality',
         'province',
         'zip_code',
+        'sex',
+        'student_id',
+        'contact_number',
         'email',
         'password'
     ];

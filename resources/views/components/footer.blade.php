@@ -3,6 +3,6 @@
             <p class="text-gray-900 text-sm text-center sm:text-left">© 2023 Cavite State Univeristy —
                 <a href="https://cvsu.edu.ph/bacoor/" class="text-gray-900 ml-1" target="_blank" rel="noopener noreferrer">Bacoor Campus</a>
             </p>
-          <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-900 text-sm">CvSU - Bacoor Campus Online Library</span>
+          <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-900 text-sm pr-56">CvSU - Bacoor Campus Online Library</span>
         </div>
 </footer>
