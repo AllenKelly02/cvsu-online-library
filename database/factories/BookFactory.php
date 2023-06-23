@@ -29,7 +29,7 @@ class BookFactory extends Factory
         ];
 
         return [
-            'title' => $this->faker->title(),
+            'title' => $this->faker->unique()->sentence(3),
             'author' => $this->faker->name(),
             'category' => $this->faker->randomElement($categories),
             'published_year' => $this->faker->year(),

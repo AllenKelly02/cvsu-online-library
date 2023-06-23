@@ -53,7 +53,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::post('/books/store', [BooksController::class, 'store'])->name('books.store');
 
-    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');
+    Route::get('/books/show/{book}', [BooksController::class, 'show'])->name('books.show');
 
     //list of Borrowed
     Route::get('/books/get/Borrow', [BooksController::class, 'allBorrowedBooks'])->name('getAllBorrowedBooks');
