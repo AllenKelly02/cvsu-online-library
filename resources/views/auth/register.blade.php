@@ -204,7 +204,7 @@
                             </div>
                             <div class="flex -mx-2">
                                 <div class="formGroup w-1/2 px-3 mb-16  ">
-                                    <label for="sex" class="text-xs font-semibold px-1">Sex</label>
+                                    <label for="sex" class="text-xs font-semibold px-1">Sex (male, female, prefer not to say)</label>
                                     <span class="error  text-red-700 text-xs"></span>
                                     <div class="flex">
                                         <div

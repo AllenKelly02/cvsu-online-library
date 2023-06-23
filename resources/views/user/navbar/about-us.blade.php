@@ -2,7 +2,7 @@
 <section class="text-gray-600 body-font">
   <div class="px-5 py-24 pl-9 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
-      <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">About Us</h1>
+      <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-gray-900">About Us</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">The campus library aims to share information and resources that might help learners and researchers to their academic needs.</p>
     </div>
     <div class="flex flex-wrap pl-24 -m-4 ml-5">
@@ -27,7 +27,7 @@
     </div>
   </div>
 
-<h1 class="mb-4 text-3xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Location</h1>
+<h1 class="mb-4 text-3xl tracking-tight font-extrabold text-center text-gray-900 dark:text-gray-900">Location</h1>
   <div class="flex sm:flex-nowrap justify-center object-center">
     <div class="lg:w-2/3 md:w-1/2 bg-green-100 rounded-lg overflow-hidden sm:mr-10 p-10 flex">
       <iframe   frameborder="0" title="map" marginheight="0" marginwidth="0" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d898.1361332043158!2d120.981349!3d14.412771!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d22f4810979f%3A0xaf0dae4457b7d498!2sCavite%20State%20University%20-%20Bacoor%20Campus!5e1!3m2!1sen!2sus!4v1686846602781!5m2!1sen!2sus" width="900" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
