@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('returned_date')->default('0000-00-00');
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Book::class);
+            $table->string('total_days');
+            $table->boolean('penalty')->default(false);
+            $table->string('penalty_payment')->nullable();
             $table->boolean('is_approved')->default(false);
             $table->string('status');
             $table->timestamps();

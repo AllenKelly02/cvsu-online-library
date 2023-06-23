@@ -58,7 +58,6 @@
                         <p class="leading-relaxed"> {{ $book->description }}</p>
                     </div>
                     <div>
-
                         <div class="flex space-x-5">
                             @if (Auth::user()->favourite_books()->where('book_id', $book->id)->get()->count() === 0)
                                 <form action="{{ route('user.addBookFavourite', ['id' => $book->id]) }}"
@@ -69,23 +68,58 @@
                                     </button>
                                 </form>
                             @else
-                                <form action="{{route('user.removeBookFavourite', ['id' => $book->id])}}" method="post">
+                                <form action="{{ route('user.removeBookFavourite', ['id' => $book->id]) }}"
+                                    method="post">
                                     @csrf
                                     <button>
                                         <img src="{{ asset('img/heart-3-fill.png') }}" alt="">
                                     </button>
                                 </form>
                             @endif
-                            @if ($book->status === 'available')
+                            <label for="my_modal_6" class="btn btn-success">Borrow</label>
+
+                            <!-- Put this part before </body> tag -->
+                            <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+                            <div class="modal">
+                                <div class="modal-box bg-white">
+                                    <h3 class="font-bold text-lg">Agreement!</h3>
+                                    <p class="py-4">In accordance with the terms of this agreement, you agree to pay a fine of 10 Pesos each day if the borrowing period exceedes than the allotted 3-9 day period.</p>
+                                    <div class="flex gap-2">
+                                        <label for=""> Start Date: </label>
+                                        <P>{{ now()->format('M-d-Y') }}</P>
+                                    </div>
+                                    <label for="">Days</label>
+                                    <input type="text" id="days" maxlength="1" class="w-1/2"
+                                        onchange="getTotalDays()">
+                                    <div class="modal-action">
+                                        {{-- action="{{ route('user.borrow-book', ['id' => $book->id]) }}" --}}
+                                        <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}"
+                                            method="POST">
+                                            <input type="hidden" id="totalDays" name="total_days" required>
+                                            @csrf
+                                            <button class="btn btn-success" onclick="getTotalDays()">Borrow</button>
+                                        </form>
+                                        <label for="my_modal_6" class="btn">Close!</label>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- @if ($book->status === 'available')
                                 <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
                                     @csrf
                                     <button class="btn btn-success">Borrow</button>
                                 </form>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function getTotalDays() {
+            const days = document.getElementById('days').value;
+            const totalDays = document.getElementById('totalDays').value = days;
+        }
+    </script>
 </x-app-layout>
