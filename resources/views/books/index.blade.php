@@ -47,7 +47,7 @@
                             @endif
 
                         </div>
-                        
+
                         <div class="md:flex-grow">
                          <h5 class="text-gray-900 text-lg title-font font-medium mb-1"><b>ISBN</b> {{ $book->ISBN }}</h5>
                             <div class="flex items-start space-x-4">
@@ -62,7 +62,8 @@
                             </div>
                             <a
                                 class="flex items-center space-x-2 border border-blue-500 px-2 rounded w-fit mt-4 hover:bg-lightgray">
-                                <a href="{{ route('admin.books.show', ['book' => $book]) }}" class="poppins text-sm text-blue-500">Edit</a>
+
+                                {{-- <a href="{{ route('admin.books.show', ['book' => $book]) }}" class="poppins text-sm text-blue-500">Edit</a> --}}
                                 <i class='bx bx-right-arrow-alt text-base text-blue-500'></i>
                             </a>
                         </div>

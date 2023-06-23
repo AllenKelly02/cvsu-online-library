@@ -87,11 +87,7 @@
                             <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Status:</b>
                                 <span
                                     class="bg-green-100 text-green-800 text-xs font-medium mr-2
-<<<<<<< HEAD
-                                    px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $borrow->status }}</span>
-=======
                                     px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 capitalize">{{$borrow->status}}</span>
->>>>>>> origin/master
                             </h3>
                         @endif
 
