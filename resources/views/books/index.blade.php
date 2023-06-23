@@ -47,18 +47,19 @@
                             @endif
 
                         </div>
-
+                        
                         <div class="md:flex-grow">
+                         <h5 class="text-gray-900 text-lg title-font font-medium mb-1"><b>ISBN</b> {{ $book->ISBN }}</h5>
                             <div class="flex items-start space-x-4">
                                 <h2 class="poppins text-xl font-medium text-gray-900 title-font mb-1">
                                     {{ $book->title }}</h2>
                                 <a class="text-xs text-red-600 py-1 px-2 border border-red-600 rounded capitalize"
                                     href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
                             </div>
-                            <div class="mb-1">
-                                <span class="poppins mt-1 text-gray-500 text-sm">Date</span>
+                            <p class="poppins text-sm">by {{ $book->author }}</p>
+                             <div class="mb-1">
+                                <span class="poppins mt-1 text-gray-500 text-sm"><b>Published Year:</b> {{$book->published_year}}</span>
                             </div>
-                            <p class="poppins text-sm">{{ $book->author }}</p>
                             <a
                                 class="flex items-center space-x-2 border border-blue-500 px-2 rounded w-fit mt-4 hover:bg-lightgray">
                                 <a href="{{ route('admin.books.show', ['book' => $book]) }}" class="poppins text-sm text-blue-500">Edit</a>

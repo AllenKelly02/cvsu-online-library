@@ -12,9 +12,11 @@ class CatalogController extends Controller
     public function catalog()
     {
 
-        $books = Book::latest()->get();
+        $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
 
-        return view('user.navbar.catalog', compact('books'));
+        return view('user.navbar.catalog', [
+            'books' => $books
+        ]);
     }
     public function borrowedHistory()
     {
@@ -54,7 +56,8 @@ class CatalogController extends Controller
         // Logic for the top collections page
 
         $user = Auth::user();
-         $favorites = $user->favourite_books()->with('book')->get();
+
+        $favorites = $user->favourite_books()->with('book')->get();
 
         return view('user.navbar.top-collect', compact(['favorites']));
     }
@@ -62,8 +65,11 @@ class CatalogController extends Controller
     {
         // Logic for the new collections page
 
-        $books = Book::latest()->get();
-        return view('user.navbar.new-collections', compact(['books']));
+       $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
+
+        return view('user.navbar.new-collections', [
+            'books' => $books
+        ]);
     }
 
     public function aboutUs()

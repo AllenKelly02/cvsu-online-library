@@ -396,28 +396,28 @@
                 const validateOptions = [{
                         attribute: 'minlength',
                         isValid: input => input.value && input.value.length >= parseInt(input.minLength, 10),
-                        errorMessage: (input, label) => `needs at least ${input.minLength} characters`
+                        errorMessage: (input, label) => needs at least ${input.minLength} characters
                     },
                     {
                         attribute: 'custommaxlength',
                         isValid: input => input.value && input.value.length <= parseInt(input.getAttribute(
                             'custommaxlength'), 10),
                         errorMessage: (input, label) =>
-                            `needs to be less than ${input.getAttribute('custommaxlength')} characters`
+                            needs to be less than ${input.getAttribute('custommaxlength')} characters
                     },
                     {
                         attribute: 'match',
                         isValid: input => {
                             const matchSelector = input.getAttribute('match');
-                            const matchedElement = formElement.querySelector(`#${matchSelector}`);
+                            const matchedElement = formElement.querySelector(#${matchSelector});
                             return matchedElement && matchedElement.value.trim() === input.value.trim();
                         },
                         errorMessage: (input, label) => {
                             const matchSelector = input.getAttribute('match');
-                            const matchedElement = formElement.querySelector(`#${matchSelector}`);
+                            const matchedElement = formElement.querySelector(#${matchSelector});
                             const matchedLabel = matchedElement.parentElement.parentElement.parentElement
                                 .querySelector('label');
-                            return `should match ${matchedLabel.textContent}`;
+                            return should match ${matchedLabel.textContent};
                         },
                     },
                     {
@@ -426,13 +426,13 @@
                             const patternRegex = new RegExp(input.pattern);
                             return patternRegex.test(input.value);
                         },
-                        errorMessage: (input, label) => `is not valid!`,
+                        errorMessage: (input, label) => is not valid!,
                     },
                     {
                         attribute: 'required',
                         isValid: input => input.value.trim() !== '',
-                        errorMessage: (input, label) => ` is required!`,
-                        errorMessage: (selector, label) => ` is required!`
+                        errorMessage: (input, label) =>  is required!,
+                        errorMessage: (selector, label) =>  is required!
                     },
 
                 ];

@@ -7,7 +7,7 @@
                 </div>
             </div>
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
-            <form action="/admin/books" class="w-full">
+            <form action="/user/new-collections" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
                     <input type="text" name="search" class="border-gray-300 rounded w-1/2"
                         placeholder="Type here..">
@@ -17,15 +17,15 @@
         </div>
         <div class="px-4 py-2">
             <div class="flex items-center space-x-2">
-                <a href="/admin/books"
+                <a href="/user/new-collections"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">All</a>
-                <a href="/admin/books?category=book"
+                <a href="/user/new-collections?category=book"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Book</a>
-                <a href="/admin/books?category=e-book"
+                <a href="/user/new-collections?category=e-book"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">E-Book</a>
-                <a href="/admin/books?category=journal"
+                <a href="/user/new-collections?category=journal"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Journal</a>
-                <a href="/admin/books?category=thesis"
+                <a href="/user/new-collections?category=thesis"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Thesis</a>
             </div>
         </div>
