@@ -41,25 +41,29 @@
             <div class="w-5/6 flex gap-4">
                 <img alt="ecommerce" class="w-3/6 h-full object-cover object-center rounded"
                     src="{{ asset('img/b1.jpg') }}" alt="content">
-                <div class="w-full">
-                    <p class="text-xs w-max text-red-600 py-1 px-3 border capitalize border-red-600 rounded">
+                <div class="w-full space-y-5">
+                    <p class="text-xs w-max text-red-600 py-1 px-3 border capitalize border-red-600 rounded mb-5">
                         {{ $book->category }}
                     </p>
+                    <h5 class="text-gray-900 text-lg title-font font-medium mb-1"><b>ISBN</b> {{ $book->ISBN }}</h5>
                     <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $book->title }}</h1>
-                    <p class="text-gray-600 ml-3">by {{ $book->author }}</p>
-                    <p class="text-gray-600 ml-3">
-                        {{ $book->published_year }}
+                    <p class="text-gray-600 ml-1">by {{ $book->author }}</p>
+                    <p class="text-gray-600 ml-1">
+                        <b>Published Year:</b> {{ $book->published_year }}
                     </p>
-                    <p class="text-gray-600 ml-3">
-                        {{ $book->publisher }}
+                    <p class="text-gray-600 ml-1">
+                        <b>Publisher:</b> {{ $book->publisher }}
                     </p>
 
-                    <div class="p-10">
-                        <p class="leading-relaxed"> {{ $book->description }}</p>
+                    <div class="ml-1">
+                        <p class="leading-relaxed"><b>Description:</b> {{ $book->description }}</p>
                     </div>
                     <div>
 
                         <div class="flex space-x-5">
+                           @if ((Auth::user()->role === 'admin'))
+
+                            @else
                             @if (Auth::user()->favourite_books()->where('book_id', $book->id)->get()->count() === 0)
                                 <form action="{{ route('user.addBookFavourite', ['id' => $book->id]) }}"
                                     method="post">
@@ -76,11 +80,20 @@
                                     </button>
                                 </form>
                             @endif
+                            @endif
+                           @if ((Auth::user()->role === 'admin'))
+                                {{-- <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post"> --}}
+                                <form>
+                                    @csrf
+                                    <button class="btn btn-success">Edit</button>
+                                </form>
+                            @else
                             @if ($book->status === 'available')
                                 <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
                                     @csrf
                                     <button class="btn btn-success">Borrow</button>
                                 </form>
+                            @endif
                             @endif
                         </div>
                     </div>
