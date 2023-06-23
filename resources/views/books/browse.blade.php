@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
-            <form action="/admin/books" class="w-full">
+            <form action="/browse" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
                     <input type="text" name="search" class="border-gray-300 rounded w-1/2"
                         placeholder="Type here..">
@@ -18,15 +18,15 @@
         </div>
         <div class="px-4 py-2">
             <div class="flex items-center space-x-2">
-                <a href="/admin/books"
+                <a href="/browse"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">All</a>
-                <a href="/admin/books?category=book"
+                <a href="/browse?category=book"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Book</a>
-                <a href="/admin/books?category=e-book"
+                <a href="/browse?category=e-book"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">E-Book</a>
-                <a href="/admin/books?category=journal"
+                <a href="/browse?category=journal"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Journal</a>
-                <a href="/admin/books?category=thesis"
+                <a href="/browse?category=thesis"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Thesis</a>
             </div>
         </div>
@@ -49,7 +49,7 @@
                         <div class="flex gap-2">
                             <div class="grow">
                                 <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
-                                href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
+                                href="/browse?category={{ $book->category }}">{{ $book->category }}</a>
                             </div>
                             @if ($book->created_at->diffInWeeks() < 1)
                                 <h1 class="bg-green-400 rounded-lg drop-shadow-lg text-xs py-1 px-3 text-white">

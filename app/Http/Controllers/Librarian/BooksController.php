@@ -148,9 +148,11 @@ class BooksController extends Controller
     }
     public function browse()
     {
+        $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
 
-        $books = Book::get();
-        return view('books.browse', compact(['books']));
+        return view('books.browse', [
+            'books' => $books
+        ]);
     }
     public function addFavourite($id)
     {
