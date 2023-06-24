@@ -15,7 +15,10 @@ class BookIssuing extends Model
         'user_id',
         'book_id',
         'status',
-        'is_approved'
+        'is_approved',
+        'total_days',
+        'penalty',
+        'penalty_payment'
     ];
 
 

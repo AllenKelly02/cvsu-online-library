@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
-            <form action="/admin/books" class="w-full">
+            <form action="/user/top-collect" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
                     <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
                     <button type="submit" class="px-4 py-2 rounded bg-green-600 text-white">Search</button>
@@ -16,22 +16,21 @@
         </div>
         <div class="px-4 py-2">
             <div class="flex items-center space-x-2">
-                <a href="/admin/books"
+                <a href="/user/top-collect"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">All</a>
-                <a href="/admin/books?category=book"
+                <a href="/user/top-collect?category=book"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Book</a>
-                <a href="/admin/books?category=e-book"
+                <a href="/user/top-collect?category=e-book"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">E-Book</a>
-                <a href="/admin/books?category=journal"
+                <a href="/user/top-collect?category=journal"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Journal</a>
-                <a href="/admin/books?category=thesis"
+                <a href="/user/top-collect?category=thesis"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Thesis</a>
             </div>
         </div>
         {{-- @if (count($favorites) == 0)
             <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
                 <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>
-
             </div>
             <div class="alert alert-warning">
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
@@ -47,7 +46,7 @@
                         <div class="flex gap-2">
                             <div class="grow">
                                 <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
-                                    href="/admin/books?category={{ $favorite->book->category }}">{{ $favorite->book->category }}</a>
+                                    href="/user/top-collect?category={{ $favorite->book->category }}">{{ $favorite->book->category }}</a>
                             </div>
                             @if ($favorite->book->created_at->diffInWeeks() < 1)
                                 <h1 class="bg-green-400 rounded-lg drop-shadow-lg text-xs py-1 px-3 text-white">
@@ -102,7 +101,7 @@
                     <p class=" text-base text-red-500 mt-5">Oops! No Favorite Books</p>
 
                 </div> --}}
-                <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
+                <div class="w-full h-96 flex flex-col items-center justify-center mt-18">
                     <div class="alert alert-info">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>No Favorite Books </span>

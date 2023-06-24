@@ -7,39 +7,28 @@
             </div>
         </div>
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
-            <form action="/admin/books" class="w-full">
+            <form action="/user/catalog" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
-                    <input type="text" name="search" class="border-gray-300 rounded w-1/2"
-                        placeholder="Type here..">
+                    <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
                     <button type="submit" class="px-4 py-2 rounded bg-green-600 text-white">Search</button>
                 </div>
             </form>
         </div>
         <div class="px-4 py-2">
             <div class="flex items-center space-x-2">
-                <a href="/admin/books"
+                <a href="/user/catalog"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">All</a>
-                <a href="/admin/books?category=book"
+                <a href="/user/catalog?category=book"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Book</a>
-                <a href="/admin/books?category=e-book"
+                <a href="/user/catalog?category=e-book"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">E-Book</a>
-                <a href="/admin/books?category=journal"
+                <a href="/user/catalog?category=journal"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Journal</a>
-                <a href="/admin/books?category=thesis"
+                <a href="/user/catalog?category=thesis"
                     class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Thesis</a>
             </div>
         </div>
-        @if (count($books) == 0)
-            <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
-                <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>
 
-            </div>
-            <div class="alert alert-warning">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                <span>No Books Available</span>
-                <a class=" text-xm text-black underline" href="/admin/books">Refresh</a>
-            </div>
-        @endif
         <div class="flex flex-wrap -m-4">
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
@@ -48,7 +37,7 @@
                         <div class="flex gap-2">
                             <div class="grow">
                                 <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
-                                href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
+                                    href="/admin/books?category={{ $book->category }}">{{ $book->category }}</a>
                             </div>
                             @if ($book->created_at->diffInWeeks() < 1)
                                 <h1 class="bg-green-400 rounded-lg drop-shadow-lg text-xs py-1 px-3 text-white">
@@ -97,6 +86,7 @@
                 </div>
 
             @empty
+<<<<<<< HEAD
             <div class="m-auto mt-36">
                 <div class="alert alert-warning px-10 py-10 h-10 w-96">
                     <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
@@ -107,6 +97,19 @@
                     <span>No Books Available</span>
                 </div>
             </div>
+=======
+                @if (count($books) == 0)
+                    <div class="alert alert-warning mt-28">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>No Books Available</span>
+                        <a class=" text-xm text-black underline" href="/user/catalog">Refresh</a>
+                    </div>
+                @endif
+>>>>>>> c540dd35d2f38cdc2beb408dfa9cbcf496138a95
             @endforelse
         </div>
     </div>

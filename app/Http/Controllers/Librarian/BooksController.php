@@ -76,8 +76,9 @@ class BooksController extends Controller
         return view('books.show', compact(['book']));
     }
 
-    public function borrow($id)
+    public function borrow(Request $request, $id)
     {
+
         $user =  Auth::user();
 
         $book = Book::find($id);
@@ -86,14 +87,15 @@ class BooksController extends Controller
             'borrowed_date' => Carbon::now()->format('Y-m-d'),
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'status' => 'pending'
+            'status' => 'pending',
+            'total_days' => $request->total_days
         ]);
 
         // $book->update([
         //     'status' => 'Unavailable'
         // ]);
 
-        return back()->with(['message' => "Book Borrowed Success"]);
+        return back()->with(['message' => "Your Book Request Has Send in Admin wait for the Approval"]);
     }
 
     // approve request borrowed books
@@ -101,10 +103,13 @@ class BooksController extends Controller
     {
         $bookIssuing = BookIssuing::find($id);
 
+
+
         $bookIssuing->update(
             [
                 'is_approved' => true,
-                'status' => 'approved'
+                'status' => 'approved',
+                'penalty_payment' => 0
             ]
         );
 
@@ -128,6 +133,8 @@ class BooksController extends Controller
     }
     // list request of borrowed Books
 
+
+    //admin side
     public function listRequestBorrowedBooks()
     {
         $bookRequest  = BookIssuing::where('is_approved', false)->where('status', '!=', 'reject')->with('user', 'book')->get();
@@ -148,9 +155,11 @@ class BooksController extends Controller
     }
     public function browse()
     {
+        $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
 
-        $books = Book::get();
-        return view('books.browse', compact(['books']));
+        return view('books.browse', [
+            'books' => $books
+        ]);
     }
     public function addFavourite($id)
     {

@@ -12,15 +12,42 @@ class CatalogController extends Controller
     public function catalog()
     {
 
-        $books = Book::latest()->get();
+        $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
 
-        return view('user.navbar.catalog', compact('books'));
+        return view('user.navbar.catalog', [
+            'books' => $books
+        ]);
     }
     public function borrowedHistory()
     {
 
+
+
         $user = Auth::user();
         $borrowed = $user->booksIssuing()->where('status', '!=', 'reject')->get();
+
+
+        //check if borrowed books have panalty
+        foreach($borrowed as $_borrowed) {
+            if($_borrowed->returned_date === '0000-00-00'){
+                if(!$_borrowed->penalty && $_borrowed->is_approved) {
+                    if($_borrowed->created_at->diffInDays() > $_borrowed->total_days) {
+                        $_borrowed->update([
+                            'penalty' => true,
+                            'penalty_payment' => 10
+                        ]);
+                    }
+                } else{
+                    if($_borrowed->penalty) {
+                        $total = $_borrowed->penalty_payment + 10;
+                        $_borrowed->update([
+                            'penalty_payment' => $total,
+                        ]);
+                    }
+                }
+            }
+        }
+
         return view('user.borrowed.index', compact('borrowed'));
     }
     public function topCollections()
@@ -29,7 +56,8 @@ class CatalogController extends Controller
         // Logic for the top collections page
 
         $user = Auth::user();
-         $favorites = $user->favourite_books()->with('book')->get();
+
+        $favorites = $user->favourite_books()->with('book')->get();
 
         return view('user.navbar.top-collect', compact(['favorites']));
     }
@@ -37,8 +65,11 @@ class CatalogController extends Controller
     {
         // Logic for the new collections page
 
-        $books = Book::latest()->get();
-        return view('user.navbar.new-collections', compact(['books']));
+       $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
+
+        return view('user.navbar.new-collections', [
+            'books' => $books
+        ]);
     }
 
     public function aboutUs()
