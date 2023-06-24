@@ -39,8 +39,11 @@
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="w-fulls p-4 flex justify-center">
             <div class="w-5/6 flex gap-4">
-                <img alt="ecommerce" class="w-3/6 h-full object-cover object-center rounded"
-                    src="{{ asset('img/b1.jpg') }}" alt="content">
+                @if ($book->image !== null)
+                                <img class="rounded h-full" src="{{url($book->image)}}" alt="image">
+                            @else
+                                <img class="rounded h-full" src="{{ asset('img/b1.jpg') }}" alt="image">
+                            @endif
                 <div class="w-full">
                     <p class="text-xs w-max text-red-600 py-1 px-3 border capitalize border-red-600 rounded">
                         {{ $book->category }}
@@ -60,6 +63,9 @@
                     <div>
 
                         <div class="flex space-x-5">
+                            @if ((Auth::user()->role === 'admin'))
+
+                            @else
                             @if (Auth::user()->favourite_books()->where('book_id', $book->id)->get()->count() === 0)
                                 <form action="{{ route('user.addBookFavourite', ['id' => $book->id]) }}"
                                     method="post">
@@ -76,11 +82,20 @@
                                     </button>
                                 </form>
                             @endif
+                            @endif
+                            @if ((Auth::user()->role === 'admin'))
+                                {{-- <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post"> --}}
+                                <form>
+                                    @csrf
+                                    <button class="btn btn-success">Edit</button>
+                                </form>
+                            @else
                             @if ($book->status === 'available')
                                 <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
                                     @csrf
                                     <button class="btn btn-success">Borrow</button>
                                 </form>
+                            @endif
                             @endif
                         </div>
                     </div>
