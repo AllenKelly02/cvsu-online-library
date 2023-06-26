@@ -18,7 +18,8 @@ class BookIssuing extends Model
         'is_approved',
         'total_days',
         'penalty',
-        'penalty_payment'
+        'penalty_payment',
+        'penalty_date'
     ];
 
 

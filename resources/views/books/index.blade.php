@@ -10,7 +10,8 @@
             <form action="" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
                     <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
-                    <button type="submit" class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
+                    <button type="submit"
+                        class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
                 </div>
             </form>
         </div>
@@ -28,7 +29,15 @@
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
             </div>
         </div>
+        @if (Session::has('delete'))
+        <div class="alert alert-success">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>{{Session::get('delete')}}</span>
+          </div>
+        @endif
         <div class="flex flex-wrap -m-4">
+
+
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4 ">
 
@@ -84,10 +93,10 @@
                             {{ $book->call_number }}</h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Publisher:</b>
                             {{ $book->publisher }}</h3>
-                            <a href="{{ route('admin.books.show', ['book' => $book]) }}" type="submit"
-                                class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black text-sm uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-500 active:shadow-lg transition duration-150 ease-in-out">
-                                <b>View</b>
-                            </a>
+                        <a href="{{ route('admin.books.show', ['book' => $book]) }}" type="submit"
+                            class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black text-sm uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-500 active:shadow-lg transition duration-150 ease-in-out">
+                            <b>View</b>
+                        </a>
 
                     </div>
                 </div>

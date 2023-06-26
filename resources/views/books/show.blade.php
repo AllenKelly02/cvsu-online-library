@@ -1,3 +1,14 @@
+@php
+
+    $BookIssuingIsNull =
+        Auth::user()
+            ->booksIssuing()
+            ->where('book_id', $book->id)
+            ->first() === null;
+
+@endphp
+
+
 <x-app-layout>
     <div class="pt-5 pl-20">
         @auth
@@ -63,11 +74,12 @@
                         @endif
                         @if (Auth::user()->role === 'admin')
                             {{-- <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post"> --}}
-                            <form method="GET" action="{{ route('admin.books.edit', $book->id) }}">
-                                @csrf
-                                <div class="flex flex-col">
-                                    <div class="relative">
-                                        <div class="flex items-center space-x-5">
+
+                            @csrf
+                            <div class="flex flex-col">
+                                <div class="relative">
+                                    <div class="flex items-center space-x-5">
+                                        <form method="GET" action="{{ route('admin.books.edit', $book->id) }}">
                                             <button class="Btn">
                                                 Edit
                                                 <svg class="svg" viewBox="0 0 512 512">
@@ -76,24 +88,39 @@
                                                     </path>
                                                 </svg>
                                             </button>
-                                            <a class="delete" href="{{ route('admin.books.archivedbooks') }}">
+                                        </form>
+                                        <form action="{{ route('admin.book-delete', ['id' => $book->id]) }}"
+                                            method="post">
+
+                                            @csrf
+                                            <button class="delete" href="{{ route('admin.books.archivedbooks') }}">
                                                 <svg viewBox="0 0 448 512" class="svgIcon">
                                                     <path
                                                         d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
                                                     </path>
                                                 </svg>
-                                            </a>
-                                        </div>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         @else
-                            @if ($book->status === 'available')
-                                <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
-                                    @csrf
-                                    <button
-                                        class="button-name text-black hover:bg-yellow-500">Borrow</button>
-                                </form>
+                            @if ($BookIssuingIsNull)
+                                @if ($book->status === 'available')
+                                    <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
+                                        @csrf
+                                        <button class="button-name text-black hover:bg-yellow-500">Borrow</button>
+                                    </form>
+                                @endif
+                            @else
+                                @if (
+                                    $book->status === 'available' &&
+                                        Auth::user()->booksIssuing()->where('book_id', $book->id)->where('returned_date', '!=','0000-00-00')->get()->count() === 1)
+                                    <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
+                                        @csrf
+                                        <button class="button-name text-black hover:bg-yellow-500">Borrow</button>
+                                    </form>
+                                @endif
                             @endif
                         @endif
                     </div>

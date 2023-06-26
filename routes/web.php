@@ -57,7 +57,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::put('/books/{id}/edit', [BooksController::class, 'update'])->name('books.update');
 
-    Route::get('/books/show{book}', [BooksController::class, 'show'])->name('books.show');
+    Route::get('/books/show/{book}', [BooksController::class, 'show'])->name('books.show');
 
     //list of Borrowed
     Route::get('/books/get/Borrow', [BooksController::class, 'allBorrowedBooks'])->name('getAllBorrowedBooks');
@@ -73,6 +73,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     //list archived books
     Route::get('/books/archivedbooks', [BooksController::class, 'archivedbooks'])->name('books.archivedbooks');
+
+    //return book
+    Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned-book');
+
+    //delete book
+    Route::post('/books/delete/{id}', [BooksController::class, 'destroy'])->name('book-delete');
+
 
 
 
@@ -107,7 +114,6 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     Route::post('/book/borrow/{id}', [BooksController::class, 'borrow'])->name('borrow-book');
 
     Route::get('/books/borrowed/list', [CatalogController::class, 'borrowedHistory'])->name('borrow-history');
-    Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned-book');
 
     //add favorite book
     Route::post('/books/show/{id}/addFavorite', [BooksController::class, 'addFavourite'])->name('addBookFavourite');
