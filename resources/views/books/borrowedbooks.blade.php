@@ -35,7 +35,7 @@
                     <tbody>
 
                         @forelse ($bookIssuings as $bookIssuing)
-                            <tr class="bg-white border-b">
+                            <tr class="bg-white border-b text-center">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     {{ $bookIssuing->book->title }}
                                 </th>
@@ -44,6 +44,9 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $bookIssuing->user->profile->student_id }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $bookIssuing->user->profile->course }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $bookIssuing->borrowed_date }}

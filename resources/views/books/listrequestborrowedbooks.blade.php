@@ -33,7 +33,7 @@
                 <tbody>
 
                     @forelse ($bookRequest as $request)
-                        <tr class="bg-white border-b">
+                        <tr class="bg-white border-b text-center">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $request->book->title }}
                             </th>
@@ -42,6 +42,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ $request->user->profile->student_id }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $request->user->profile->course }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $request->borrowed_date }}

@@ -34,7 +34,7 @@
                                         {{ $account->profile->student_id }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $account->profile->gender }}
+                                        {{ $account->profile->sex }}
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $account->email }}

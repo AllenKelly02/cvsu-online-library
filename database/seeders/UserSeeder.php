@@ -45,12 +45,12 @@ class UserSeeder extends Seeder
                 'first_name'  => 'Allen',
                 'middle_name' => 'Canon',
                 'student_id' => '09991234',
-                'gender' => 'Male',
-                'street' => 'street 1',
-                'village' => 'village 1',
-                'municipality' => 'muni',
-                'province' => 'cavite',
-                'zip_code' => '1234',
+                'course' => 'admin',
+                'sex' => 'Male',
+                'contact_number' => '09092342345',
+                'address' => 'Sample Address',
+                'email' => 'allen@email.com',
+                'password' => 'allen123',
                 'user_id' => $userOne->id
             ]
         );
@@ -61,12 +61,12 @@ class UserSeeder extends Seeder
             'first_name'  => 'Gia',
             'middle_name' => 'Secret',
             'student_id' => '09991234',
-            'gender' => 'Female',
-            'street' => 'street 1',
-            'village' => 'village 1',
-            'municipality' => 'muni',
-            'province' => 'cavite',
-            'zip_code' => '1234',
+            'course' => 'BSIT',
+            'sex' => 'Female',
+            'contact_number' => '09092342345',
+            'address' => 'Sample Address',
+            'email' => 'gia@email.com',
+            'password' => 'gia123',
             'user_id' => $userTwo->id
         ]
        );

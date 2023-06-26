@@ -152,9 +152,9 @@
                                         class="w-full py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3 capitalize"
                                         id="sex" name="sex" required>
                                         <option selected value="">Select Sex</option>
-                                        <option class="bg-white" value="audio">Male</option>
-                                        <option class="bg-white" value="book">Female</option>
-                                        <option class="bg-white" value="e-Book">Prefer not to say</option>
+                                        <option class="bg-white" value="Male">Male</option>
+                                        <option class="bg-white" value="Female">Female</option>
+                                        <option class="bg-white" value="Prefer not to say">Prefer not to say</option>
                                         </select>
                                         <span class="error-icon hidden mt-2 -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>

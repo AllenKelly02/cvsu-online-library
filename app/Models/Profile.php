@@ -16,12 +16,12 @@ class Profile extends Model
         'first_name',
         'middle_name',
         'student_id',
-        'gender',
-        'street',
-        'village',
-        'municipality',
-        'province',
-        'zip_code',
+        'course',
+        'sex',
+        'address',
+        'contact_number',
+        'email',
+        'password',
         'user_id'
     ];
 

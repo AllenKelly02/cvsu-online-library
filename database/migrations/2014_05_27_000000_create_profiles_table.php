@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('student_id');
-            $table->string('gender');
-            $table->string('street');
-            $table->string('village');
-            $table->string('municipality');
-            $table->string('province');
-            $table->string('zip_code');
+            $table->string('course');
+            $table->string('sex');
+            $table->string('contact_number');
+            $table->string('address');
+            $table->string('email');
+            $table->string('password');
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

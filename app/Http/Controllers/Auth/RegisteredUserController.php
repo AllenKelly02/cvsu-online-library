@@ -47,14 +47,15 @@ class RegisteredUserController extends Controller
             'address' => $request->address,
             'course' => $request->course,
             'sex' => $request->sex,
+            'contact_number' => $request->contact_number,
             'student_id' => $request->studentId,
             'email' => $request->email,
             'password' => $request->password,
 
 
         ]);
-
-      return Redirect::to('login')->with('message', 'Thanks for registering! Wait for the approval of the librarian.');
+   
+        return Redirect::to('login')->with('message', 'Thanks for registering! Wait for the approval of the librarian.');
 
     }
 

@@ -36,7 +36,7 @@
                                         {{ $account->student_id }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $account['sex'] }}
+                                        {{ $account->sex }}
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $account->course}}

@@ -34,13 +34,13 @@ class AccountsController extends Controller
             'last_name' => $account->last_name,
             'first_name' => $account->first_name,
             'middle_name' => $account->middle_name,
+            'course' => $account->course,
+            'address' => $account->address,
             'student_id' => $account->student_id,
-            'gender' => $account->sex,
-            'street' => $account->block,
-            'village' => $account->subdivision,
-            'municipality' => $account->municipality,
-            'province' => $account->province,
-            'zip_code' => $account->zip_code,
+            'sex' => $account->sex,
+            'contact_number' => $account->contact_number,
+            'email' => $account->email,
+            'password' => $account->password,
             'user_id' => $savedAccount->id
         ];
 
