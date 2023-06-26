@@ -21,8 +21,9 @@ return new class extends Migration
             $table->foreignIdFor(Book::class);
             $table->string('total_days');
             $table->boolean('penalty')->default(false);
-            $table->string('penalty_payment')->nullable();
+            $table->string('penalty_payment')->default(0);
             $table->boolean('is_approved')->default(false);
+            $table->string('penalty_date')->nullable();
             $table->string('status');
             $table->timestamps();
         });

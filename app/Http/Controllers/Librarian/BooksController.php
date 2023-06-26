@@ -100,7 +100,6 @@ class BooksController extends Controller
 
     public function search()
     {
-
     }
 
 
@@ -155,7 +154,7 @@ class BooksController extends Controller
         ]);
         return back();
     }
-    //reject
+    // Admin Request reject
     public function rejectBorrowBooks($id)
     {
         $bookIssuing = BookIssuing::find($id);
@@ -167,16 +166,16 @@ class BooksController extends Controller
         );
         return back();
     }
-    // list request of borrowed Books
 
 
-    //admin side
+    //admin side list request of borrowed Books
     public function listRequestBorrowedBooks()
     {
         $bookRequest = BookIssuing::where('is_approved', false)->where('status', '!=', 'reject')->with('user', 'book')->get();
         return view('books.listrequestborrowedbooks', compact(['bookRequest']));
     }
 
+    //admin side return book
     public function returnedBook($id)
     {
         $bookIssuing = BookIssuing::find($id);
@@ -196,7 +195,6 @@ class BooksController extends Controller
         return view('books.browse', [
             'books' => $books
         ]);
-
     }
     public function addFavourite($id)
     {
@@ -229,16 +227,41 @@ class BooksController extends Controller
     {
         $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->get();
 
+
+        foreach($bookIssuings as $bookIssuing){
+
+            if ($bookIssuing->created_at->diffInDays() > 3 && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')){
+                if(!$bookIssuing->penalty) {
+
+                    $bookIssuing->update([
+                        'penalty' => true,
+                        'penalty_payment' => ($bookIssuing->created_at->diffInDays() - $bookIssuing->total_days) * 5,
+                        'penalty_date' => Carbon::now()->format('M-d-Y')
+                    ]);
+                } else {
+                    $bookIssuing->update([
+                        'penalty_payment' => $bookIssuing->penalty_payment + 5,
+                        'penalty_date' => Carbon::now()->format('M-d-Y')
+                    ]);
+                }
+            }
+        }
         return view('books.borrowedbooks', compact(['bookIssuings']));
     }
 
     public function archivedbooks()
     {
-        $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
+        $books = Book::onlyTrashed()->get();
 
-        return view('books.archivedbooks', [
-            'books' => $books
-        ]);
 
+        return view('books.archivedbooks', compact(['books']));
+    }
+    public function destroy($id){
+        $book = Book::find($id);
+
+        $book->delete();
+
+
+        return to_route('admin.books.index')->with(['delete' => 'Book Deleted !']);
     }
 }

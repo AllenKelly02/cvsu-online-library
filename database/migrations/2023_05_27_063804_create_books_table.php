@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('course');
             $table->string('status')->default('available');
             $table->unsignedBigInteger('course_id')->nullable();
+            $table->softDeletes();
             // $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
         });
