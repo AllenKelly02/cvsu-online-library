@@ -34,8 +34,24 @@
                                     <input type="text" disabled autocomplete="off" name="author" class="text-left border-bluemain rounded-lg w-full text-black" value="{{ $profile->profile->sex }}">    
                                 </div>
                                 <div class="max-w-xl">
-                                    <x-input-label for="name" class="ml-1" :value="__('Sex')" />
-                                    <input type="text" disabled autocomplete="off" name="author" class="text-left border-bluemain rounded-lg w-full text-black" value="{{ $profile->profile->sex }}">    
+                                    <x-input-label for="name" class="ml-1" :value="__('Student ID')" />
+                                    <input type="text" disabled autocomplete="off" name="author" class="text-left border-bluemain rounded-lg w-full text-black" value="{{ $profile->profile->student_id }}">    
+                                </div>
+                                <div class="max-w-xl">
+                                    <x-input-label for="name" class="ml-1" :value="__('Course')" />
+                                    <input type="text" disabled autocomplete="off" name="author" class="text-left border-bluemain rounded-lg w-full text-black" value="{{ $profile->profile->course }}">    
+                                </div>
+                                <div class="max-w-xl">
+                                    <x-input-label for="name" class="ml-1" :value="__('Email')" />
+                                    <input type="text" disabled autocomplete="off" name="author" class="text-left border-bluemain rounded-lg w-full text-black" value="{{ $profile->profile->email }}">    
+                                </div>
+                                <div class="max-w-xl">
+                                    <x-input-label for="name" class="ml-1" :value="__('Contact Number')" />
+                                    <input type="text" disabled autocomplete="off" name="author" class="text-left border-bluemain rounded-lg w-full text-black" value="{{ $profile->profile->contact_number }}">    
+                                </div>
+                                <div class="max-w-xl">
+                                    <x-input-label for="name" class="ml-1" :value="__('Address')" />
+                                    <input type="text" disabled autocomplete="off" name="author" class="text-left border-bluemain rounded-lg w-full text-black" value="{{ $profile->profile->address }}">    
                                 </div>
                             </div>
                 
@@ -65,11 +81,8 @@
                 <div class="flex justify-center items-center pt-28">
                     <img src="{{ asset('img/userp.png') }}" class="flex justify-center items-center">
                 </div>
-                {{-- <div class = "flex justify-center items-center pt-5">
-            <a href="{{route('profile.edit')}}"> <button class="btn btn-ghost">Edit Profile</button></a>
-        </div>href="{{route('profile.edit')}}" --}}
                 <div class='flex items-center justify-center'>
-                    <div class="m-5">
+                    <div class="m-10 z-1">
                         <a href="{{ route('profile.edit') }}">
                             <button
                                 class="flex p-2.5 bg-green-500 rounded-xl hover:rounded-3xl hover:bg-green-600 transition-all duration-300 text-white">
@@ -83,10 +96,11 @@
                     </div>
                 </div>
             </div>
+             Hello
 
             <!--Personal Info -->
             <div class="my-4 grid grid-cols-1 gap-4 md:grid-cols-2 2xl:flex 2xl:space-x-4">
-                <div class="w-3/6 pl-5">
+                <div class="w-3/6 pl-5 grow">
                     <div class="bg-white rounded-lg shadow-xl p-8">
                         <h4 class="text-xl text-gray-900 font-bold">Personal Info</h4>
                         <!-- Personal Info content -->
