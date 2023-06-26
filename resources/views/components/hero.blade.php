@@ -1,40 +1,39 @@
-<section class="w-full pt-5 text-gray-600 body-font bg-bottom bg-no-repeat bg-white"
-    style="background-image: url('../img/wave (10).svg');">
+<section class="w-full pt-16 text-gray-600 body-font bg-bottom bg-no-repeat bg-bgmain"
+    style="background-image: url('../img/wave (7).svg');">
 
     <div class="w-full container mx-auto flex md:flex-row flex-col items-center md:space-x-32 lg:px-28 py-16 pb-44">
 
-        <div class="lg:max-w-lg lg:w-96 md:w-1/2 w-5/6 pt-5">
-            <img class="object-cover object-center rounded sm:flex-shrink" alt="hero"
-                src="{{ asset('img/liba.png') }}">
+        <div class="lg:max-w-lg w-3/6 pt-5 py-10">
+            <img class="object-cover object-center rounded shadow-2xl sm:flex-shrink" alt="hero"
+                src="{{ asset('img/cover.jpg') }}">
         </div>
 
         <div
-            class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center ">
-            <h1 class="title-font sm:text-2xl sm:text-center md:text-3xl text-3xl mb-4 font-medium text-gray-900">Cavite
-                State University - Bacoor Campus Library
+            class="lg:flex-grow w-full lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center ">
+            <h1
+                class="title-font sm:text-2xl sm:text-center md:text-3xl text-3xl mb-4 font-medium text-gray-900 w-full pr-12">
+                Cavite State University - Bacoor Campus Library
                 {{-- <br class="hidden lg:inline-block">Campus Library --}}
             </h1>
-            <p class="sm:text-left mb-8 leading-relaxed">The Bacoor City Campus Library is located at the Second Floor of
+            <p class="sm:text-left mb-8 leading-relaxed text-lg">The Bacoor City Campus Library is located at the Second Floor of
                 the Cavite State University – Bacoor City Campus, Phase 2, Soldiers Hills IV, Molino VI, Bacoor City,
                 Cavite.</p>
-            <div class="flex justify-center">
-                <a href="{{ route('books.browse') }}"
-                    class="inline-flex text-white bg-green-600 border-0 py-2 px-6 focus:outline-none hover:bg-green3 rounded text-lg">Browse</a>
+            <div class="flex justify-center space-x-5">
+                <a href="{{ route('books.browse') }}" role="button" class="button-name">I'm a guest</a>
                 @if (!Auth::user())
-                    <a href="{{ route('login') }}"
-                        class="ml-4 inline-flex text-green-600 rounded border border-green-600 py-2 px-6 focus:outline-none hover:bg-green3 hover:text-white text-lg">Login</a>
+                    <a href="{{ route('login') }}" class="button2 border border-yellowmain">Login</a>
                 @endif
             </div>
         </div>
     </div>
 </section>
 
-<section class="text-gray-600 body-font h-96 sm:flex-shrink-0 sm: bg-green6">
+<section class="text-gray-600 body-font h-96 sm:flex-shrink-0 sm: bg-bluemain">
     <div class="container px-5 mx-auto lg:px-28 py-16 pt-0">
         {{-- <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Testimonials</h1> --}}
         <div class="flex flex-wrap ">
             <div class="p-4 sm:w-5/6 md:w-1/2 w-full">
-                <div class="h-full bg-white p-8 rounded">
+                <div class="h-full bg-white shadow-2xl p-8 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-gray-900 mb-4"
                         viewBox="0 0 975.036 975.036">
                         <path
@@ -71,6 +70,27 @@
                             <span class="text-gray-900 text-sm">CAVITE STATE UNIVERSITY LIBRARY VISION</span>
                         </span>
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="text-gray-600 body-font h-96 sm:flex-shrink-0 bg-bluemain">
+    <div class="container px-5 mx-auto lg:px-28 py-16 pt-0">
+        {{-- <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Testimonials</h1> --}}
+        <div class="flex flex-wrap ">
+            <div class="p-4 sm:w-5/6 md:w-1/2 w-full">
+                <h1 class="flex justify-center text-white text-lg"><b>Virtual Tour at Cavite State University - Bacoor
+                        Campus</b></h1>
+                <div class="flex justify-center h-full w-full p-2 rounded">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bzDx6Q9KUOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="p-4 sm:w-5/6 md:w-1/2 w-full">
+                <h1 class="flex justify-center text-white text-lg"><b>The History of Cavite State University - Bacoor
+                        Campus</b></h1>
+                <div class="flex justify-center h-full w-full p-2 rounded">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/OoPI-7mHO9s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

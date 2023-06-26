@@ -2,7 +2,7 @@
 	<!-- Component Start -->
     <div class="wrapper">
     <div class="sidebar">
-	<div class="flex flex-col items-center w-60 h-full overflow-hidden sticky border-r border-green-800 text-gray-700 bg-green-50 rounded" >
+	<div class="flex flex-col items-center w-60 h-full overflow-hidden sticky shadow-2xl text-gray-700 bg-blue-50 rounded" >
 		<div class="flex flex-row justify-between">
 		<img class="object-center w-10 ml-30 py-3" src="{{ asset('img/logo.png') }}" alt="logo">
 		<br>
@@ -12,29 +12,33 @@
         <div class="close-btn ml-12 mt-4">X</div>
         </div>
 		<div class="w-full px-2">
-			<div class="flex flex-col items-center w-full mt-3 border-t border-green-800">
-				<a  href="{{ route('admin.dashboard') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-green-600 hover:text-white {{ request()->routeIs('admin.dashboard') ? 'bg-green-600 text-white' : '' }}">
-                    <img class="object-center w-6 ml-30 py-3" src="{{ asset('img/dashboard.png') }}" alt="content">
+			<div class="flex flex-col items-center w-full mt-3 border-t border-bluemain">
+				<a href="{{ route('admin.dashboard') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white {{ request()->routeIs('admin.dashboard') ? 'bg-blue2 text-white' : '' }}">
+					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/verified.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Dashboard</span>
 				</a>
-				<a id="openBooks" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-green-600 hover:text-white cursor-pointer {{ request()->routeIs('admin.books.index') ? 'bg-green-600 text-white' : '' }} {{ request()->routeIs('admin.books.create') ? 'bg-green-600 text-white' : '' }}
-                    {{ request()->routeIs('admin.getAllBorrowedBooks') ? 'bg-green-600 text-white' : '' }} {{ request()->routeIs('admin.listRequestBorrowedBooks') ? 'bg-green-600 text-white' : '' }}">
+				<a id="openBooks" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white cursor-pointer {{ request()->routeIs('admin.books.index') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.books.create') ? 'bg-blue2 text-white' : '' }}
+                    {{ request()->routeIs('admin.getAllBorrowedBooks') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.listRequestBorrowedBooks') ? 'bg-blue2 text-white' : '' }}">
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/top.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Books</span>
 				</a>
 				<div id="bookLinks" class="w-full hidden flex flex-col space-y-2 px-6">
-					<a href="{{ route('admin.books.index') }}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">All Books</a>
-					<a href="{{ route('admin.books.create') }}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">Add New</a>
-					<a href="{{route('admin.getAllBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white">Borrowed Books</a>
-                    <a href="{{route('admin.listRequestBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white"> Request Borrowed Books</a>
+					<a href="{{ route('admin.books.index') }}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white">All Books</a>
+					<a href="{{ route('admin.books.create') }}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white">Add New</a>
+					<a href="{{route('admin.getAllBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white">Borrowed Books</a>
+                    <a href="{{route('admin.listRequestBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white"> Request Borrowed Books</a>
 				</div>
-				<a href="{{ route('admin.verified-accounts') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-green-600 hover:text-white {{ request()->routeIs('admin.verified-accounts') ? 'bg-green-600 text-white' : '' }}">
+				<a href="{{ route('admin.verified-accounts') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white {{ request()->routeIs('admin.verified-accounts') ? 'bg-blue2 text-white' : '' }}">
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/verified.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Verified Accounts</span>
 				</a>
-				<a href="{{ route('admin.unverified-accounts') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-green-600 hover:text-white {{ request()->routeIs('admin.unverified-accounts') ? 'bg-green-600 text-white' : '' }}">
+				<a href="{{ route('admin.unverified-accounts') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white {{ request()->routeIs('admin.unverified-accounts') ? 'bg-blue2 text-white' : '' }}">
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/unverified.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Unverified Accounts</span>
+				</a>
+                <a href="{{ route('admin.books.archivedbooks') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white {{ request()->routeIs('admin.books.archivedbooks') ? 'bg-blue2 text-white' : '' }}">
+					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/delete.png') }}" alt="content">
+					<span class="ml-2 text-sm font-medium">Archive Books</span>
 				</a>
 			</div>
 		</div>

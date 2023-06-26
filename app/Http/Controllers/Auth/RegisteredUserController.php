@@ -41,16 +41,12 @@ class RegisteredUserController extends Controller
         ]);
 
         $unverified = UnverifiedAccount::create([
-            'last_name' => $request->lastName,
             'first_name' => $request->firstName,
             'middle_name' => $request->middle_name,
+            'last_name' => $request->lastName,
+            'address' => $request->address,
+            'course' => $request->course,
             'sex' => $request->sex,
-            'block' => $request->block,
-            'subdivision' => $request->subdivision,
-            'barangay' => $request->barangay,
-            'municipality'=> $request->municipality,
-            'province' => $request->province,
-            'zip_code' => $request->zip_code,
             'student_id' => $request->studentId,
             'email' => $request->email,
             'password' => $request->password,

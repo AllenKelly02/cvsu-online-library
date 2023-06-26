@@ -10,15 +10,11 @@ class UnverifiedAccount extends Model
     use HasFactory;
 
     protected $fillable = [
-        'last_name',
         'first_name',
         'middle_name',
-        'block',
-        'subdivision',
-        'barangay',
-        'municipality',
-        'province',
-        'zip_code',
+        'last_name',
+        'address',
+        'course',
         'sex',
         'student_id',
         'contact_number',

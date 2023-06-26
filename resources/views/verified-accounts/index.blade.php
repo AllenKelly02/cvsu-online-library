@@ -4,7 +4,7 @@
             <div class="flex flex-col space-y-2 p-4">
                 <div class="overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 ">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                        <thead class="text-xs text-gray-700 uppercase bg-blue-100 ">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
                                     Name

@@ -4,7 +4,7 @@
             <div class="flex flex-col space-y-2 p-4">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                        <thead class="text-xs text-gray-700 uppercase bg-blue-200 ">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
                                     Name
@@ -14,6 +14,9 @@
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Sex
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Course
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                    Email
@@ -34,6 +37,9 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $account['sex'] }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $account->course}}
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $account['email'] }}

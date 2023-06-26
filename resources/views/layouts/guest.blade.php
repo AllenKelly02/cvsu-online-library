@@ -20,8 +20,8 @@
 
             <x-header/>
 
-            <div class="w-full min-h-screen bg-white">
-                <main class="w-full h-full bg-green-100">
+            <div class="w-full h-screen-100vh">
+                <main class="w-full h-full bg-bgmain">
                     {{ $slot }}
                 </main>
             </div>

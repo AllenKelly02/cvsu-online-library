@@ -15,7 +15,7 @@ class BooksController extends Controller
     public function index()
     {
 
-        $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
+        $books = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
 
         return view('books.index', [
             'books' => $books
@@ -27,22 +27,55 @@ class BooksController extends Controller
         return view('books.create');
     }
 
+    public function edit($id)
+    {
+        // Retrieve the book with the given ID from the database
+        $book = Book::findOrFail($id);
+
+        // Pass the book data to the view for rendering the edit form
+        return view('books.edit', compact('book'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'title' => 'nullable|max:255',
+            'author' => 'nullable',
+            'published_year' => 'nullable|numeric',
+            'ISBN' => 'nullable|numeric',
+            'publisher' => 'nullable',
+            'pages' => 'nullable|numeric',
+            'description' => 'nullable',
+            'bibliography' => 'nullable',
+            'accession_number' => 'nullable|numeric',
+            'call_number' => 'nullable|numeric',
+            'edition' => 'nullable|numeric',
+            // Add validation rules for other book attributes
+        ]);
+
+        // Find the book with the given ID and update its attributes
+        $book = Book::findOrFail($id);
+        $book->update($validatedData);
+
+    }
     public function store(Request $request)
     {
 
         $data = $request->validate([
             'title' => 'required',
             'author' => 'required',
+            'type' => 'required',
             'category' => 'required',
             'published_year' => 'required',
-            'publisher' => 'required',
-            'accession_number' => 'required',
-            'edition_number' => 'required',
-            'call_number' => 'required',
+            'publisher',
+            'accession_number',
+            'edition_number',
+            'call_number',
             'ISBN' => 'required',
             'pages' => 'required',
             'description' => 'required',
-            'bibliography' => 'required',
+            'bibliography',
             'course' => 'required',
         ]);
         $books = Book::create($data);
@@ -65,6 +98,7 @@ class BooksController extends Controller
 
     public function search()
     {
+
     }
 
 
@@ -79,16 +113,16 @@ class BooksController extends Controller
     public function borrow(Request $request, $id)
     {
 
-        $user =  Auth::user();
+        $user = Auth::user();
 
         $book = Book::find($id);
 
         BookIssuing::create([
-            'borrowed_date' => Carbon::now()->format('Y-m-d'),
+            'borrowed_date' => Carbon::now()->format('m-d-Y'),
             'user_id' => $user->id,
             'book_id' => $book->id,
             'status' => 'pending',
-            'total_days' => $request->total_days
+            'total_days' => 3,
         ]);
 
         // $book->update([
@@ -119,7 +153,7 @@ class BooksController extends Controller
         ]);
         return back();
     }
-//reject
+    //reject
     public function rejectBorrowBooks($id)
     {
         $bookIssuing = BookIssuing::find($id);
@@ -137,7 +171,7 @@ class BooksController extends Controller
     //admin side
     public function listRequestBorrowedBooks()
     {
-        $bookRequest  = BookIssuing::where('is_approved', false)->where('status', '!=', 'reject')->with('user', 'book')->get();
+        $bookRequest = BookIssuing::where('is_approved', false)->where('status', '!=', 'reject')->with('user', 'book')->get();
         return view('books.listrequestborrowedbooks', compact(['bookRequest']));
     }
 
@@ -148,7 +182,7 @@ class BooksController extends Controller
         $bookIssuing->book->update(['status' => 'available']);
 
         $bookIssuing->update([
-            'returned_date' =>  Carbon::now()->format('Y-m-d')
+            'returned_date' => Carbon::now()->format('Y-m-d')
         ]);
 
         return back()->with(['message' => "Book Return Success"]);
@@ -160,10 +194,11 @@ class BooksController extends Controller
         return view('books.browse', [
             'books' => $books
         ]);
+
     }
     public function addFavourite($id)
     {
-        $user  = Auth::user();
+        $user = Auth::user();
 
         $addFavourite = UserFavouriteBook::create([
             'user_id' => $user->id,
@@ -179,8 +214,13 @@ class BooksController extends Controller
     }
     public function removeFavourite($id)
     {
-        $favoriteBook =  UserFavouriteBook::where('book_id', $id)->first();
+        $favoriteBook = UserFavouriteBook::where('book_id', $id)->first();
         $favoriteBook->delete();
+        if ($favoriteBook) {
+            return back()->with([
+                'message' => 'Book has been removed in Favorite'
+            ]);
+        }
         return back();
     }
     public function allBorrowedBooks()
@@ -188,5 +228,15 @@ class BooksController extends Controller
         $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->get();
 
         return view('books.borrowedbooks', compact(['bookIssuings']));
+    }
+
+    public function archivedbooks()
+    {
+        $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
+
+        return view('books.archivedbooks', [
+            'books' => $books
+        ]);
+
     }
 }

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class="py-3 px-32 items-center justify-center">
+    <section class="py-3 px-32 items-center justify-center bg-no-repeat">
         <div class="container px-4 mx-auto">
             <div class="p-8 bg-white rounded-xl" x-data="imageUploadHandler">
                 <div
@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 @if (session()->has('message'))
-                    <div class="alert alert-success shadow-lg">
+                    <div class="alert alert-success shadow-lg animate-bounce">
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
                                 fill="none" viewBox="0 0 24 24">
@@ -29,16 +29,15 @@
                         </div>
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl">
-                                <div class="flex flex-wrap items-center -mx-3">
+                                <div class="flex flex-wrap items-center -mx-4">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
-                                        <input name="image"
-                                            class="block py-4 px-3 w-96 text-sm text-black file-input-success file-input-bordered  placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
-                                            id="image" type="file" placeholder="Image" @change="uploadHanlder($event)">
+                                        <input type="file" name="image" id="image" placeholder="Image" @change="uploadHanlder($event)" class="w-96 file-input file-input-bordered file-input-info max-w-xs bg-white" />
                                     </div>
+
                                 </div>
-                                <div class="relative">
-                                    <img src="" alt="" id="previewImage" class="h-36 w-auto">
-                                    <a hef="#" class="absolute top-0 left-0 bg-green-600 rounded-full text-white px-1 py" @click="removeImage()">x</a>
+                                <div class="relative space-y-3">
+                                    <img src="" alt="" id="previewImage" class="h-full w-auto mb-5 py-3">
+                                    <a hef="#" class="absolute top-1 left-1 bg-yellowmain rounded-full text-black px-1 w-8 text-center cursor-pointer" @click="removeImage()">X</a>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +51,7 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="title"
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Title">
                                     </div>
                                 </div>
@@ -69,7 +68,7 @@
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl mb-4">
                                 <input name="author"
-                                    class="block py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                    class="block py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
                                     id="formInput1-3" type="text" placeholder="Author 1">
                                 @error('author')
                                     <span class="text-xs text-red-600">{{ $message }}</span>
@@ -78,9 +77,9 @@
                             <div id="authorFieldsContainer" class="max-w-xl">
                                 <!-- JavaScript will add new author input fields here -->
                             </div>
-                            <a id="addAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800"
+                            <a id="addAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
                                 href="#">Add Author</a>
-                            <a id="removeAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800"
+                            <a id="removeAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
                                 href="#">Remove Author</a>
                         </div>
                     </div>
@@ -93,16 +92,99 @@
                                 <div
                                     class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
                                     <select
-                                        class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500"
-                                        id="formInput1-4" name="category">
+                                        class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
+                                        id="type" name="type">
                                         <option selected value="">Select Type</option>
-                                        <option class="bg-white" value="e-Book">E-Book</option>
+                                        <option class="bg-white" value="audio">Audio/Visuals</option>
                                         <option class="bg-white" value="book">Book</option>
+                                        <option class="bg-white" value="e-Book">E-Book</option>
+                                        <option class="bg-white" value="e-Journal">E-Journal</option>
                                         <option class="bg-white" value="journal">Journal</option>
+                                        <option class="bg-white" value="clippings">New Clippings</option>
+                                        <option class="bg-white" value="other">Other</option>
+                                        <option class="bg-white" value="publications">Publications</option>
+                                        <option class="bg-white" value="references">References</option>
+                                        <option class="bg-white" value="software">Software</option>
                                         <option class="bg-white" value="thesis">Thesis</option>
                                     </select>
                                 </div>
-                                @error('category')
+                                @error('type')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Category</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-3">
+                            <div class="max-w-xl">
+                                <div
+                                    class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
+                                    <select
+                                        class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
+                                        id="category" name="category">
+                                        <option selected value="">Select Category</option>
+                                        <option class="bg-white" value="10th">10th</option>
+                                        <option class="bg-white" value="1st ed.">1st ed.</option>
+                                        <option class="bg-white" value="2nd">2nd</option>
+                                        <option class="bg-white" value="2nd ed.">2nd ed.</option>
+                                        <option class="bg-white" value="3rd">3rd</option>
+                                        <option class="bg-white" value="4th ed.">4th ed.</option>
+                                        <option class="bg-white" value="5th">5th</option>
+                                        <option class="bg-white" value="5th ed.">5th ed.</option>
+                                        <option class="bg-white" value="6th">6th</option>
+                                        <option class="bg-white" value="8th ed.">8th ed.</option>
+                                        <option class="bg-white" value="9th">9th</option>
+                                        <option class="bg-white" value="Agriculture sciences, life sciences and biosciences">Agriculture sciences, life sciences and biosciences</option>
+                                        <option class="bg-white" value="Arts">Arts</option>
+                                        <option class="bg-white" value="Basic and applied sciences">Basic and applied sciences</option>
+                                        <option class="bg-white" value="BSCS-Thesis">BSCS-Thesis</option>
+                                        <option class="bg-white" value="Business Management">Business Management</option>
+                                        <option class="bg-white" value="Criminology">Criminology</option>
+                                        <option class="bg-white" value="Education">Education</option>
+                                        <option class="bg-white" value="Ethics">Ethics</option>
+                                        <option class="bg-white" value="Fiction/Non-Fiction">Fiction/Non-Fiction</option>
+                                        <option class="bg-white" value="Filipiniana">Filipiniana</option>
+                                        <option class="bg-white" value="Gender-Focused">Gender-Focused</option>
+                                        <option class="bg-white" value="General Education">General Education</option>
+                                        <option class="bg-white" value="General reference books">General reference books</option>
+                                        <option class="bg-white" value="Geography">Geography</option>
+                                        <option class="bg-white" value="History">History</option>
+                                        <option class="bg-white" value="History: America">History: America</option>
+                                        <option class="bg-white" value="Hotel and Restaurant Management">Hotel and Restaurant Management</option>
+                                        <option class="bg-white" value="Humanities">Humanities</option>
+                                        <option class="bg-white" value="ICT in Education">ICT in Education</option>
+                                        <option class="bg-white" value="Information Technology">Information Technology</option>
+                                        <option class="bg-white" value="Language">Language</option>
+                                        <option class="bg-white" value="Law, criminology and forensics">Law, criminology and forensics</option>
+                                        <option class="bg-white" value="Logic">Logic</option>
+                                        <option class="bg-white" value="Management">Management</option>
+                                        <option class="bg-white" value="Philosophy">Philosophy</option>
+                                        <option class="bg-white" value="Psychology">Psychology</option>
+                                        <option class="bg-white" value="Religion">Religion</option>
+                                        <option class="bg-white" value="Research Book">Research Book</option>
+                                        <option class="bg-white" value="Reserve">Reserve</option>
+                                        <option class="bg-white" value="Science">Science</option>
+                                        <option class="bg-white" value="Science and Technology">Science and Technology</option>
+                                        <option class="bg-white" value="Science-Mathematics">Science-Mathematics</option>
+                                        <option class="bg-white" value="Social Science">Social Science</option>
+                                        <option class="bg-white" value="Social Science and Humanities">Social Science and Humanities</option>
+                                        <option class="bg-white" value="Social Science-Business">Social Science-Business</option>
+                                        <option class="bg-white" value="Social Sciences">Social Sciences</option>
+                                        <option class="bg-white" value="Sociology">Sociology</option>
+                                        <option class="bg-white" value="Technology">Technology</option>
+                                        <option class="bg-white" value="Thesis-BSBM">Thesis-BSBM</option>
+                                        <option class="bg-white" value="Thesis-BSIT">Thesis-BSIT</option>
+                                        <option class="bg-white" value="Tourism and hotel management">Tourism and hotel management</option>
+                                        <option class="bg-white" value="Travel Guide Book">Travel Guide Book</option>
+                                        <option class="bg-white" value="Values">Values</option>
+                                        <option class="bg-white" value="vol. 2">vol. 2</option>
+                                        <option class="bg-white" value="Women's Studies LGBT Gender Studies Feminism">Women's Studies LGBT Gender Studies Feminism</option>
+                                    </select>
+                                </div>
+                                @error('type')
                                     <span class="text-xs text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -117,7 +199,7 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="published_year"
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-00 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-00 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Number">
                                     </div>
                                 </div>
@@ -136,7 +218,7 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="publisher"
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Text">
                                     </div>
                                 </div>
@@ -155,7 +237,7 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="accession_number"
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Number">
                                     </div>
                                 </div>
@@ -174,7 +256,7 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="edition_number"
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Number">
                                     </div>
                                 </div>
@@ -193,7 +275,7 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="call_number"
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Number">
                                     </div>
                                 </div>
@@ -210,10 +292,10 @@
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl">
                                 <div class="flex flex-wrap items-center -mx-3">
-                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0" id="ISBN">
                                         <input name="ISBN"
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
-                                            id="formInput1-1" type="text" placeholder="Number">
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number" minlength="13" maxlength="13">
                                     </div>
                                 </div>
                                 @error('ISBN')
@@ -231,7 +313,7 @@
                                 <div class="flex flex-wrap items-center -mx-3">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="pages"
-                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
                                             id="formInput1-1" type="text" placeholder="Number">
                                     </div>
                                 </div>
@@ -249,7 +331,7 @@
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl">
                                 <textarea name="description"
-                                    class="block h-56 py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg resize-none"
+                                    class="block h-56 py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg resize-none"
                                     id="formInput1-9" type="text" placeholder="Write the description"></textarea>
                             </div>
                             @error('description')
@@ -265,7 +347,7 @@
                         <div class="w-full sm:w-2/3 px-4">
                             <div class="max-w-xl">
                                 <textarea name="bibliography"
-                                    class="block py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black focus:border-green-500 rounded-lg resize-none"
+                                    class="block py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg resize-none"
                                     id="formInput1-9" type="text" placeholder="Biblio"></textarea>
                             </div>
                             @error('bibliography')
@@ -284,7 +366,7 @@
                                 <div
                                     class="relative block px-3 w-full text-sm text-black placeholder-gray-700 rounded-lg">
                                     <select
-                                        class="w-full py-2 rounded-lg border-2 border-black outline-none focus:border-green-500"
+                                        class="w-full py-2 rounded-lg border-2 border-black outline-none"
                                         id="formInput1-6" name="course">
                                         <option selected value="">Select Course</option>
                                         <option class="bg-white" value="Bachelor of Secondary Education">Bachelor of
@@ -309,16 +391,15 @@
                         </div>
                     </div>
             </div>
-            <div class="w-full sm:w-auto pl-full pr-0">
+            <div class="w-full sm:w-auto pl-full pt-5 mb-20">
                 <div class="pl-98 pr-0 ml-98 mr-0">
-                    <a class="inline-block py-2 mr-3 text-xs leading-normal bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green-800"
+                    <a class="inline-block py-2 mr-3 text-xs w-32 leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
                         href="{{ route('admin.books.index') }}">Cancel</a>
                     <button
-                        class="inline-block py-2 px-4 text-xs leading-normal border-green-600 hover:border-green-800 hover:bg-green-800 hover:text-white hover:border-[2px] border-[1px] rounded-3xl p-3 text-center text-green-800 font-bold transition duration-200"
+                        class="inline-block py-2 px-4 text-xs w-32 leading-normal border-yellowmain hover:border-yellowmain hover:bg-yellowmain hover:text-black hover:border-[2px] border-[1px] rounded-3xl p-3 text-center text-black font-bold transition duration-200"
                         type="submit">Upload</button>
                 </div>
             </div>
-
             </form>
         </div>
         </div>
@@ -375,6 +456,18 @@
                     authorCount--;
                 }
             });
+        });
+    </script>
+    <script>
+        const categorySelect = document.getElementById('type');
+        const isbnField = document.getElementById('ISBN');
+
+        categorySelect.addEventListener('change', () => {
+            if (categorySelect.value === 'thesis') {
+                isbnField.style.display = 'none';
+            } else {
+                isbnField.style.display = 'block';
+            }
         });
     </script>
 </x-app-layout>

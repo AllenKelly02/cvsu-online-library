@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UserSeeder::class);
-        Book::factory(50)->create();
+        Book::factory(500)->create();
 
     }
 }

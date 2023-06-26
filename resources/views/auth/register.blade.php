@@ -1,10 +1,11 @@
 <x-guest-layout>
-    <section class="full-screen bg-gradient-to-b from-green-200 to-emerald-400 body-font bg-bottom bg-no-repeat bg-white"
-        style="background-image: url('../img/wave (9).svg');">
-        <div class="flex items-center justify-center py-28">
-            <div class="text-gray-800 rounded-3xl shadow-xl w-full overflow-hidden border-green-800 bg-no-repeat"
-                style="background-image: url('../img/blob-scene-haikei.svg'); max-width:1000px">
-                <div class="md:flex w-full">
+    <section class="full-screen body-font bg-bottom bg-no-repeat bg-bgmain"
+        style="background-image: url('../img/wave (7).svg');">
+
+        <div class="flex items-center justify-center py-20 pt-36">
+            <div class="text-gray-800 rounded-3xl shadow-xl w-full overflow-hidden bg-no-repeat"
+                style="background-image: url('../img/blob-scene-haikei (6).svg'); max-width:1000px">
+                <div class="md:flex w-full h-full">
 
                     <div class="w-full md:w-1/3.5 py-10 px-5 md:px-10" x-data="storeAccount">
                         <div class="text-center mb-10">
@@ -16,9 +17,11 @@
                             @csrf
                             <h1 class=" text-xl pl-2">Personal Information:</h1>
                             <div class="flex -mx-2">
+
                                 <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="firstName" class="text-xs font-semibold px-1">First name</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
                                     <div class="flex items-center">
@@ -38,29 +41,35 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="w-1/2 px-3 mb-5">
-                                    <label for="middle_name" class="text-xs font-semibold px-1">M. Name(Opt)</label>
-                                    <span class="error  text-red-700 text-xs"></span>
-                                    <div class="flex">
+                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                    <div class="flex space-x-2">
+                                        <label for="middle_name" class="text-xs font-semibold px-1">Middle Name</label>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
+                                    <div class="flex items-center">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
                                         </div>
-                                        <input type="text" name="middle_name" custommaxlength="20" minlength="2"
+                                        <input type="text" name="middle_name" custommaxlength="20"
+                                            minlength="2"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Middle Name">
-                                        <span class="error-icon hidden -ml-6 mt-2 text-red-700">
+                                            placeholder="Middle Name" />
+                                        <span class="error-icon hidden -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>
                                         </span>
-                                        <span class="success-icon hidden -ml-6 mt-2 text-green-700">
+                                        <span class="success-icon hidden -ml-6 text-green-700">
                                             <i class="ri-checkbox-fill"></i>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="lastName" class="text-xs font-semibold px-1">Last name</label>
-                                    <span class="error  text-red-700 text-xs"></span>
-                                    <div class="flex">
+                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                    <div class="flex space-x-2">
+                                        <label for="lastName" class="text-xs font-semibold px-1">Last Name</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
+                                    <div class="flex items-center">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
@@ -68,29 +77,33 @@
                                         <input type="text" name="lastName" required custommaxlength="20"
                                             minlength="2"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Last name">
-                                        <span class="error-icon hidden -ml-6 mt-2 text-red-700">
+                                            placeholder="Last Name" />
+                                        <span class="error-icon hidden -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>
                                         </span>
-                                        <span class="success-icon hidden -ml-6 mt-2 text-green-700">
+                                        <span class="success-icon hidden -ml-6 text-green-700">
                                             <i class="ri-checkbox-fill"></i>
                                         </span>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="flex -mx-2">
                                 <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="block" class="text-xs font-semibold px-1">Block & Lot</label>
-                                    <span class="error  text-red-700 text-xs"></span>
+                                    <div class="flex space-x-2">
+                                        <label for="address" class="text-xs font-semibold px-1">Address</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
                                     <div class="flex">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
                                         </div>
-                                        <input type="text" name="block" required custommaxlength="20"
+                                        <input type="text" name="address" required custommaxlength="20"
                                             minlength="2"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Block and Lot">
+                                            class="w-full -ml-10 pl-10 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
+                                            placeholder="Address....">
                                         <span class="error-icon hidden mt-2 -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>
                                         </span>
@@ -100,99 +113,24 @@
                                     </div>
                                 </div>
                                 <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="subdivision" class="text-xs font-semibold px-1">Subdivision</label>
-                                    <span class="error  text-red-700 text-xs"></span>
-                                    <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                            <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
-                                        </div>
-                                        <input type="text" name="subdivision" required custommaxlength="20"
-                                            minlength="2"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Subdivision">
-                                        <span class="error-icon hidden mt-2 -ml-6 text-red-700">
-                                            <i class="ri-error-warning-fill"></i>
-                                        </span>
-                                        <span class="success-icon hidden mt-2 -ml-6 text-green-700">
-                                            <i class="ri-checkbox-fill"></i>
-                                        </span>
+                                    <div class="flex space-x-2">
+                                        <label for="course" class="text-xs font-semibold px-1">Course</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
                                     </div>
-                                </div>
-                                <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="barangay" class="text-xs font-semibold px-1">Barangay</label>
-                                    <span class="error  text-red-700 text-xs"></span>
                                     <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                            <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
-                                        </div>
-                                        <input type="text" name="barangay" required custommaxlength="20"
-                                            minlength="2"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Barangay">
-                                        <span class="error-icon hidden mt-2 -ml-6 text-red-700">
-                                            <i class="ri-error-warning-fill"></i>
-                                        </span>
-                                        <span class="success-icon hidden mt-2 -ml-6 text-green-700">
-                                            <i class="ri-checkbox-fill"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="municipality" class="text-xs font-semibold px-1">Municipality</label>
-                                    <span class="error  text-red-700 text-xs"></span>
-                                    <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                            <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
-                                        </div>
-                                        <input type="text" name="municipality" required custommaxlength="20"
-                                            minlength="2"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Municipality">
-                                        <span class="error-icon hidden mt-2 -ml-6 text-red-700">
-                                            <i class="ri-error-warning-fill"></i>
-                                        </span>
-                                        <span class="success-icon hidden mt-2 -ml-6 text-green-700">
-                                            <i class="ri-checkbox-fill"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="province" class="text-xs font-semibold px-1">Province</label>
-                                    <span class="error  text-red-700 text-xs"></span>
-                                    <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                            <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
-                                        </div>
-                                        <input type="text" name="province" required custommaxlength="20"
-                                            minlength="2"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Province">
-                                        <span class="error-icon hidden mt-2 -ml-6 text-red-700">
-                                            <i class="ri-error-warning-fill"></i>
-                                        </span>
-                                        <span class="success-icon hidden mt-2 -ml-6 text-green-700">
-                                            <i class="ri-checkbox-fill"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="zip_code" class="text-xs font-semibold px-1">Zip Code</label>
-                                    <span class="error  text-red-700 text-xs"></span>
-                                    <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                            <i class="mdi mdi-home-outline text-gray-500 text-lg"></i>
-                                        </div>
-                                        <input type="text" name="zip_code" required custommaxlength="4"
-                                            minlength="4" pattern="[0-9]+"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Zip Code">
+                                        <select
+                                        class="w-full py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3 capitalize"
+                                        id="course" name="course" required>
+                                        <option selected value="">Select Course</option>
+                                        <option class="bg-white" value="BSE">Bachelor of Secondary Education</option>
+                                        <option class="bg-white" value="BSBM">BS Business Management</option>
+                                        <option class="bg-white" value="BSCS">BS Computer Science</option>
+                                        <option class="bg-white" value="BSC">BS Criminology</option>
+                                        <option class="bg-white" value="BSHM">BS Hospitality Management</option>
+                                        <option class="bg-white" value="BSIT">BS Information Technology</option>
+                                        <option class="bg-white" value="BSP">BS Psychology</option>
+                                        </select>
                                         <span class="error-icon hidden mt-2 -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>
                                         </span>
@@ -204,17 +142,20 @@
                             </div>
                             <div class="flex -mx-2">
                                 <div class="formGroup w-1/2 px-3 mb-16  ">
-                                    <label for="sex" class="text-xs font-semibold px-1">Sex (male, female, prefer not to say)</label>
-                                    <span class="error  text-red-700 text-xs"></span>
+                                    <div class="flex space-x-2">
+                                        <label for="course" class="text-xs font-semibold px-1">Sex</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
                                     <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                            <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
-                                        </div>
-                                        <input type="text" name="sex" required custommaxlength="20"
-                                            minlength="1"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                            placeholder="Type here...">
+                                        <select
+                                        class="w-full py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3 capitalize"
+                                        id="sex" name="sex" required>
+                                        <option selected value="">Select Sex</option>
+                                        <option class="bg-white" value="audio">Male</option>
+                                        <option class="bg-white" value="book">Female</option>
+                                        <option class="bg-white" value="e-Book">Prefer not to say</option>
+                                        </select>
                                         <span class="error-icon hidden mt-2 -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>
                                         </span>
@@ -224,8 +165,11 @@
                                     </div>
                                 </div>
                                 <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="studentId" class="text-xs font-semibold px-1">Student ID</label>
-                                    <span class="error  text-red-700 text-xs"></span>
+                                    <div class="flex space-x-2">
+                                        <label for="student_id" class="text-xs font-semibold px-1">Student ID</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
                                     <div class="flex">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -244,9 +188,11 @@
                                     </div>
                                 </div>
                                 <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="contact_number" class="text-xs font-semibold px-1">Contact
-                                        Number</label>
-                                    <span class="error  text-red-700 text-xs"></span>
+                                    <div class="flex space-x-2">
+                                        <label for="contact_number" class="text-xs font-semibold px-1">Contact Number</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
                                     <div class="flex">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -266,11 +212,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <h1 class=" text-xl pl-2">Email Address & Password:</h1>
+                            <h1 class=" text-xl pl-2 mb-2">Email Address & Password:</h1>
                             <div class="flex -mx-2 mb-16">
                                 <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="email" class="text-xs font-semibold px-1">Email Address</label>
-                                    <span class="error  text-red-700 text-xs"></span>
+                                    <div class="flex space-x-2">
+                                        <label for="email" class="text-xs font-semibold px-1">Email Address</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
                                     <div class="flex">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
@@ -288,18 +237,12 @@
                                         </span>
                                     </div>
                                 </div>
-                                {{-- @if ($errors->any())
-                                    <div class="alert alert-error w-full animation">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif --}}
                                 <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="password" class="text-xs font-semibold px-1">Password</label>
-                                    <span class="error  text-red-700 text-xs"></span>
+                                    <div class="flex space-x-2">
+                                        <label for="password" class="text-xs font-semibold px-1">Password</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
                                     <div class="flex">
                                         <div class="relative">
                                             <input type="password" id="password" name="password"
@@ -324,9 +267,11 @@
                                     </div>
                                 </div>
                                 <div class="formGroup w-1/2 px-3 mb-5">
-                                    <label for="confirm-password" class="text-xs font-semibold px-1">Confirm
-                                        Password</label>
-                                    <span class="error  text-red-700 text-xs"></span>
+                                    <div class="flex space-x-2">
+                                        <label for="confirm_password" class="text-xs font-semibold px-1">Confirm Password</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
                                     <div class="flex">
                                         <div class="relative">
                                             <input type="password" id="confirm-password" name="password_confirmation"
@@ -352,16 +297,16 @@
                                 </div>
                             </div>
 
-                            <div class="flex">
+                            <div class="flex justify-center">
                                 <div class="w-full px-3 mb-1">
 
                                     <a href="{{ route('login') }}"
-                                        class="block w-full max-w-xs mx-auto bg-green-600 hover:bg-green3 text-center text-white rounded-lg px-3 py-3 font-semibold">Back
+                                        class="button-name block w-56 max-w-xs mx-auto bg-yellowmain hover:bg-yellow-500 text-center rounded-lg px-3 py-3">Back
                                         to login</a>
                                 </div>
                                 <div class="w-full px-3 mb-1">
                                     <button
-                                        class="block w-full max-w-xs mx-auto bg-green-600 hover:bg-green3 text-white rounded-lg px-3 py-3 font-semibold"
+                                        class="button-name block w-56 max-w-xs mx-auto bg-yellowmain hover:bg-yellow-500 rounded-lg px-3 py-3 ml-96"
                                          type="submit">REGISTER NOW</button>
                                 </div>
                             </div>
@@ -519,5 +464,5 @@
         </script>
 
     </section>
-    <x-footer />
+    <x-footer/>
 </x-guest-layout>

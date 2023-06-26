@@ -1,5 +1,5 @@
 <div class="header-container">
-    <div class="w-full z-50 border-b border-green-800 bg-green6">
+    <div class="w-full z-50 shadow-2xl bg-bluemain">
         <div class="navbar flex justify-between items-center container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center">
                 <div class="flex items-center space-x-2">
@@ -106,7 +106,6 @@
                                 </form></div>
                         </div>
                         </div> --}}
-
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="avatar ml-10 hover:border-black">
                                 <div class="w-12 rounded-full">
@@ -115,7 +114,7 @@
                             </label>
 
                             <ul tabindex="1"
-                                class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
+                                class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-blue-100 rounded-box w-52 hover:bg-white">
                                 <a href="{{route('profile.show', ['id' => Auth::user()->id])}}">Profile</a>
 
                                 <form method="POST" action="{{ route('logout') }}">
@@ -123,8 +122,14 @@
                                     <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();"
-                                        class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
-                                        {{ __('Log Out') }}
+                                        class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-blue-100 rounded-box w-52 hover:bg-white">
+
+                                        <button class="logout">
+
+                                            <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+
+                                            <div class="text">{{ __('Log Out') }}</div>
+                                          </button>
                                     </x-dropdown-link>
                                 </form>
                             </ul>
@@ -132,14 +137,14 @@
                     @endif
 
                 @else
-                    <div class="flex items-center space-x-2">
+                    <div class="flex items-center space-x-5">
                         <a href="{{ route('login') }}"
-                            class="text-sm text-white font-bold py-2 px-4 rounded bg-green-700 border-green-800 hover:bg-green-800">
+                            class="buttonh text-sm text-black font-bold py-2 px-4 rounded shadow-2xl bg-yellowmain hover:bg-yellow-500">
                             LOGIN
                         </a>
 
                             <a href="{{ route('register') }}"
-                                class="text-sm text-white font-bold py-2 px-4 rounded bg-green-700 border-green-800 hover:bg-green-800">
+                                class="buttonh text-sm text-black font-bold py-2 px-4 rounded bg-yellowmain hover:bg-yellow-500">
                                 REGISTER
                             </a>
                         </div>

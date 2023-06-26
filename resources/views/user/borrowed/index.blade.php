@@ -2,40 +2,38 @@
     <div class="px-20 pt-8 mx-auto py-24">
         <div class="flex flex-wrap w-full mb:pt-5">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Borrowed Books</h1>
-                <div class="h-1 w-20 bg-green-900 rounded"></div>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">New Collection</h1>
+                <div class="h-1 w-20 bg-bluemain rounded"></div>
             </div>
         </div>
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
             <form action="" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
                     <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
-                    <button type="submit" class="px-4 py-2 rounded bg-green-600 text-white">Search</button>
+                    <button type="submit" class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
                 </div>
             </form>
         </div>
-        <div class="px-4 py-5">
-            <div class="flex items-center space-x-2">
-                <a href=""
-                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">All</a>
-                <a href="?category=book"
-                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Book</a>
-                <a href="?category=e-book"
-                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">E-Book</a>
-                <a href="?category=journal"
-                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Journal</a>
-                <a href="?category=thesis"
-                    class="text-sm px-3 py-1 rounded border text-black border-gray-500 hover:bg-green-400 hover:text-white">Thesis</a>
+        <div class="px-1 py-2 mb-5 flex justify-center">
+            <div class="flex items-center space-x-5">
+                <a href="{{ route('admin.books.index') }}"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->routeIs('default') ? 'bg-yellowmain text-black' : '' }}">All</a>
+                <a href="{{ route('admin.books.index') }}?category=book"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'book' ? 'bg-yellowmain text-black' : '' }}">Book</a>
+                <a href="{{ route('admin.books.index') }}??category=e-book"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'e-book' ? 'bg-yellowmain text-black' : '' }}">E-Book</a>
+                <a href="{{ route('admin.books.index') }}??category=journal"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'journal' ? 'bg-yellowmain text-black' : '' }}">Journal</a>
+                <a href="{{ route('admin.books.index') }}??category=thesis"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
             </div>
         </div>
-
         <div class="flex flex-wrap -m-4">
             @forelse ($borrowed as $borrow)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
-                    <div class="bg-green-200 p-6 rounded-lg">
+                    <div class="bg-white shadow-2xl p-6 rounded-lg h-full">
 
-                        <a class="text-xs text-red-600 py-1 px-3 border capitalize border-red-600 rounded"
-                            href="user/books/borrowed/list?category={{ $borrow->book->category }}">{{ $borrow->book->category }}</a>
+                        <a class="bg-white border-2 border-bluemain rounded-xl drop-shadow-lg w-32 flex justify-center text-sm py-1 px-3 text-black capitalize">{{ $borrow->book->type }}</a>
 
                         @if ($borrow->book->image !== null)
                             <img class="h-70 rounded w-full object-cover object-center py-6"
@@ -100,8 +98,9 @@
                             </h3>
                         @endif
 
+                        {{-- Return Button will be on admin --}}
 
-                        @if ($borrow->is_approved === 1 && $borrow->returned_date === '0000-00-00')
+                        {{-- @if ($borrow->is_approved === 1 && $borrow->returned_date === '0000-00-00')
                             <form action="{{ route('user.returned-book', ['id' => $borrow->id]) }}" method="post"
                                 class="w-full">
 
@@ -111,7 +110,7 @@
                                     return
                                 </button>
                             </form>
-                        @endif
+                        @endif --}}
 
                     </div>
                 </div>

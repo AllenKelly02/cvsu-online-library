@@ -14,6 +14,7 @@ class Book extends Model
         'title',
         'author',
         'image',
+        'type',
         'category',
         'published_year',
         'publisher',
@@ -36,6 +37,17 @@ class Book extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function setTypeAttribute($value)
+    {
+        $this->attributes['type'] = json_encode($value);
+    }
+
+    public function getTypeAttribute($value)
+    {
+        return $this->attributes['type'] = json_decode($value);
+
     }
 
     /**
@@ -84,13 +96,14 @@ class Book extends Model
 
 
     public function scopeFilter($query, array $filters) {
-        if ($filters['category'] ?? false) {
-            $query->where('category', request('category'));
+        if ($filters['type'] ?? false) {
+            $query->where('type', request('type'));
         }
 
         if ($filters['search'] ?? false) {
             $query->where('title', 'like', '%' . request('search') . '%' )
             ->orWhere('category', 'like', '%' . request('search') . '%' )
+            ->orWhere('type', 'like', '%' . request('search') . '%' )
             ->orWhere('author', 'like', '%' . request('search') . '%' );
         }
     }

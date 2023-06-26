@@ -53,7 +53,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::post('/books/store', [BooksController::class, 'store'])->name('books.store');
 
-    Route::get('/books/show', [BooksController::class, 'show'])->name('books.show');
+    Route::get('/books/{id}/edit', [BooksController::class, 'edit'])->name('books.edit');
+
+    Route::put('/books/{id}/edit', [BooksController::class, 'update'])->name('books.update');
+
+    Route::get('/books/show{book}', [BooksController::class, 'show'])->name('books.show');
 
     //list of Borrowed
     Route::get('/books/get/Borrow', [BooksController::class, 'allBorrowedBooks'])->name('getAllBorrowedBooks');
@@ -64,9 +68,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
     //reject Request Borrowed Books
     Route::post('/books/{id}/borrowed/reject/request', [BooksController::class, 'rejectBorrowBooks'])->name('rejectBorrowedBooks');
 
-
     //list request borrowed books
     Route::get('/books/list/borrowed/request',[BooksController::class, 'listRequestBorrowedBooks'])->name('listRequestBorrowedBooks');
+
+    //list archived books
+    Route::get('/books/archivedbooks', [BooksController::class, 'archivedbooks'])->name('books.archivedbooks');
 
 
 
