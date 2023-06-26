@@ -58,7 +58,9 @@ class BooksController extends Controller
         $book = Book::findOrFail($id);
         $book->update($validatedData);
 
+        return redirect()->route('admin.books.show', $book->id)->with(['message' => 'Update Book Successfully']);
     }
+
     public function store(Request $request)
     {
 

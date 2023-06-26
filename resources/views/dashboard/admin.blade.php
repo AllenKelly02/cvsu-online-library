@@ -1,12 +1,12 @@
 <x-app-layout>
     <section class="text-gray-600 body-font w-full bg-no-repeat"
         style="background-image: url('../img/blob-scene-haikei (9).svg');">
-        <div class="px-5 py-5 mx-auto ml-8">
+        <div class="px-1 py-5 mx-auto ml-10">
             <div class="lg:w-1/2 w-fulll lg:mb-5">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Dashboard</h1>
                 <div class="h-1 w-20 bg-bluemain rounded"></div>
             </div>
-            <div class="flex flex-wrap -m-6 my-5 text-center w-full">
+            <div class="flex flex-wrap -m-24 my-5 text-center w-full pl-3">
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                     <div class="card ml-20">
                         <div>
