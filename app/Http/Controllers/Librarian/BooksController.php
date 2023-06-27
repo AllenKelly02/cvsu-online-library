@@ -120,6 +120,11 @@ class BooksController extends Controller
 
         $book = Book::find($id);
 
+
+        if ($book->copy < 1) {
+            return back()->with(['message' => "Book is currently Unavailable"]);
+        }
+
         BookIssuing::create([
             'borrowed_date' => Carbon::now()->format('m-d-Y'),
             'user_id' => $user->id,
@@ -127,10 +132,6 @@ class BooksController extends Controller
             'status' => 'pending',
             'total_days' => 3,
         ]);
-
-        // $book->update([
-        //     'status' => 'Unavailable'
-        // ]);
 
         return back()->with(['message' => "Your Book Request Has Send in Admin wait for the Approval"]);
     }
