@@ -81,9 +81,10 @@
 
                     <div class="w-full flex space-x-10">
                         <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
-                            <h2 class="text-xl font-bold">Total Books By Category</h2>
-                            <span class="text-sm font-semibold text-gray-500">2023</span>
-                            <div id="pieChart"></div>
+                            <h2 class="text-xl font-bold"></h2>
+                            <span class="text-sm font-semibold text-gray-500"></span>
+                            {{-- <div id="pieChart"></div> --}}
+                            <canvas id="myChart"></canvas>
                         </div>
                         <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
                             <h2 class="text-xl font-bold"></h2>
