@@ -152,7 +152,7 @@ class BooksController extends Controller
 
         $book = $bookIssuing->book;
         
-        if ($book->copy < 0) {
+        if ($book->copy > 0) {
             $bookIssuing->book->update(['copy' => $book->copy - 1 ]);
         } else {
             $bookIssuing->book->update(['status' => 'unavailable', 'copy' => $book->copy - 1]);
