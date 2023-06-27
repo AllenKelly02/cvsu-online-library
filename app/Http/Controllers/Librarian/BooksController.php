@@ -184,6 +184,7 @@ class BooksController extends Controller
 
         $bookIssuing->book->update(['status' => 'available']);
 
+
         $bookIssuing->update([
             'returned_date' => Carbon::now()->format('Y-m-d')
         ]);
