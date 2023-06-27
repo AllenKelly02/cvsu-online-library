@@ -14,11 +14,14 @@ class DashboardController extends Controller
     public function admin()
     {
         $user = User::where('role', 'user')->get();
+
         $bookIssuing = BookIssuing::where('returned_date', '0000-00-00')->get();
-        $thesisBooks = $this->bookQueryByCategory('thesis');
-        $journalBooks = $this->bookQueryByCategory('journal');
-        $bookBooks = $this->bookQueryByCategory('book');
-        $eBooks = $this->bookQueryByCategory('e-book');
+
+        $thesisBooks = $this->bookQueryByType('thesis');
+        $journalBooks = $this->bookQueryByType('journal');
+        $bookBooks = $this->bookQueryByType('book');
+        $eBooks = $this->bookQueryByType('e-Book');
+
         $totalBorrowedBooksByMonths = $this->borrowedBookPerMonth();
         $books = Book::where('status', 'available');
         return view('dashboard.admin', compact(['user', 'books', 'bookIssuing',
@@ -28,9 +31,9 @@ class DashboardController extends Controller
     {
         return view('dashboard.user');
     }
-    private function bookQueryByCategory($category)
+    private function bookQueryByType($type)
     {
-        $books = Book::where('category', $category)->get()->count();
+        $books = Book::where('type', $type)->get()->count();
 
         return $books;
     }

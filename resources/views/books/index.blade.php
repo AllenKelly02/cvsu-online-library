@@ -19,14 +19,14 @@
             <div class="flex items-center space-x-5">
                 <a href="{{ route('admin.books.index') }}"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->routeIs('default') ? 'bg-yellowmain text-black' : '' }}">All</a>
-                <a href="{{ route('admin.books.index') }}?category=book"
-                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'book' ? 'bg-yellowmain text-black' : '' }}">Book</a>
-                <a href="{{ route('admin.books.index') }}??category=e-book"
-                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'e-book' ? 'bg-yellowmain text-black' : '' }}">E-Book</a>
-                <a href="{{ route('admin.books.index') }}??category=journal"
-                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'journal' ? 'bg-yellowmain text-black' : '' }}">Journal</a>
-                <a href="{{ route('admin.books.index') }}??category=thesis"
-                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
+                <a href="{{ route('admin.books.index') }}?type=book"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('type') === 'book' ? 'bg-yellowmain text-black' : '' }}">Book</a>
+                <a href="{{ route('admin.books.index') }}?type=e-Book"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('type') === 'e-book' ? 'bg-yellowmain text-black' : '' }}">E-Book</a>
+                <a href="{{ route('admin.books.index') }}?type=journal"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('type') === 'journal' ? 'bg-yellowmain text-black' : '' }}">Journal</a>
+                <a href="{{ route('admin.books.index') }}?type=thesis"
+                    class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('type') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
             </div>
         </div>
         @if (Session::has('delete'))

@@ -79,8 +79,8 @@
                                     <td class="px-6 py-4">
                                         <form action="{{route('admin.returned-book', ['id' => $bookIssuing->id])}}" method="post">
                                             @csrf
-                                            <button>
-                                                return
+                                            <button class="button-name">
+                                                Return
                                             </button>
                                         </form>
                                     </td>
