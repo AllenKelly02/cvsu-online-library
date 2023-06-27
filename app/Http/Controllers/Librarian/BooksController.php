@@ -150,10 +150,19 @@ class BooksController extends Controller
             ]
         );
 
-
-        $bookIssuing->book->update([
-            'status' => 'Unavailable'
+        $book = $bookIssuing->book;
+        
+        if ($book->copy == 0) {
+            $bookIssuing->book->update([
+                'status' => 'unavailable'
         ]);
+
+        } else {
+            $bookIssuing->book->update([
+                'copy' => $book->copy - 1
+            ]);
+        }
+
         return back();
     }
     // Admin Request reject
@@ -201,7 +210,7 @@ class BooksController extends Controller
         ]);
     }
 
-    
+
     public function addFavourite($id)
     {
         $user = Auth::user();
