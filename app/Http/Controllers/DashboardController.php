@@ -23,9 +23,7 @@ class DashboardController extends Controller
         $eBooks = $this->bookQueryByType('e-Book');
 
         $totalBorrowedBooksByMonths = $this->borrowedBookPerMonth();
-
-        $books = Book::get();
-        
+        $books = Book::where('status', 'available');
         return view('dashboard.admin', compact(['user', 'books', 'bookIssuing',
         'thesisBooks', 'journalBooks', 'bookBooks', 'eBooks', 'totalBorrowedBooksByMonths']));
     }

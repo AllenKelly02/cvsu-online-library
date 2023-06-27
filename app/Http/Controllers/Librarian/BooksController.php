@@ -150,10 +150,19 @@ class BooksController extends Controller
             ]
         );
 
-
-        $bookIssuing->book->update([
-            'status' => 'Unavailable'
+        $book = $bookIssuing->book;
+        
+        if ($book->copy == 0) {
+            $bookIssuing->book->update([
+                'status' => 'unavailable'
         ]);
+
+        } else {
+            $bookIssuing->book->update([
+                'copy' => $book->copy - 1
+            ]);
+        }
+
         return back();
     }
     // Admin Request reject
@@ -191,6 +200,8 @@ class BooksController extends Controller
 
         return back()->with(['message' => "Book Return Success"]);
     }
+
+
     public function browse()
     {
         $books = Book::latest()->filter(request(['category', 'search', 'type',]))->paginate(100);
@@ -199,6 +210,8 @@ class BooksController extends Controller
             'books' => $books
         ]);
     }
+
+
     public function addFavourite($id)
     {
         $user = Auth::user();
@@ -215,6 +228,7 @@ class BooksController extends Controller
         }
         return back();
     }
+
     public function removeFavourite($id)
     {
         $favoriteBook = UserFavouriteBook::where('book_id', $id)->first();
@@ -226,6 +240,7 @@ class BooksController extends Controller
         }
         return back();
     }
+
     public function allBorrowedBooks()
     {
         $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->get();
