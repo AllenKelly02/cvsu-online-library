@@ -323,6 +323,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">Number of Copy</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-4">
+                            <div class="max-w-xl">
+                                <div class="flex flex-wrap items-center -mx-3">
+                                    <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                        <input name="copy"
+                                            class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
+                                            id="formInput1-1" type="text" placeholder="Number">
+                                    </div>
+                                </div>
+                                @error('copy')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
                     <div class="flex flex-wrap items-start -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-5 sm:mb-0">
                             <span class="block mt-2 text-sm font-medium text-black">Description</span>
