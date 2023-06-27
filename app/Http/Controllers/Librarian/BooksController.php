@@ -77,7 +77,7 @@ class BooksController extends Controller
             'call_number',
             'ISBN' => 'required',
             'pages' => 'required',
-            'copy' => 'copy',
+            'copy' => 'required',
             'description' => 'required',
             'bibliography',
             'course' => 'required',
@@ -141,7 +141,9 @@ class BooksController extends Controller
     {
         $bookIssuing = BookIssuing::find($id);
 
-
+        if ($bookIssuing->book->copy < 1) {
+            return back()->with(['message' => "Book is currently Unavailable"]);
+        }
 
         $bookIssuing->update(
             [
@@ -153,9 +155,9 @@ class BooksController extends Controller
 
         $book = $bookIssuing->book;
         
-        if ($book->copy > 0) {
-            $bookIssuing->book->update(['copy' => $book->copy - 1 ]);
-        } else {
+        if ($book->copy > 1) {
+            $bookIssuing->book->update(['copy' => $book->copy - 1]);
+        } else if ($book->copy == 1) {
             $bookIssuing->book->update(['status' => 'unavailable', 'copy' => $book->copy - 1]);
         }
 
