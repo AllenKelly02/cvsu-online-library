@@ -55,7 +55,7 @@
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                     <div class="card ml-20">
                         <div>
-                            <a href="{{ route('admin.verified-accounts') }}">
+                            <a href="{{ route('admin.getAllBorrowedBooks') }}">
                                 <div class="bg bg-white px-4 py-6 rounded-lg shadow-xl h-full w-full">
                                     <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block"
                                         src="{{ asset('img/borrow.png') }}" alt="content">

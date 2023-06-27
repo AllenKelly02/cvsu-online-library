@@ -47,6 +47,7 @@ class BooksController extends Controller
             'publisher' => 'nullable',
             'pages' => 'nullable|numeric',
             'description' => 'nullable',
+            'copy' => 'nullable',
             'bibliography' => 'nullable',
             'accession_number' => 'nullable|numeric',
             'call_number' => 'nullable|numeric',
@@ -76,6 +77,7 @@ class BooksController extends Controller
             'call_number',
             'ISBN' => 'required',
             'pages' => 'required',
+            'copy' => 'copy',
             'description' => 'required',
             'bibliography',
             'course' => 'required',
@@ -190,7 +192,7 @@ class BooksController extends Controller
     }
     public function browse()
     {
-        $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
+        $books = Book::latest()->filter(request(['category', 'search', 'type',]))->paginate(100);
 
         return view('books.browse', [
             'books' => $books

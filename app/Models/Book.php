@@ -24,6 +24,7 @@ class Book extends Model
         'call_number',
         'ISBN',
         'pages',
+        'copy',
         'description',
         'bibliography',
         'course',
@@ -105,7 +106,12 @@ class Book extends Model
             $query->where('title', 'like', '%' . request('search') . '%' )
             ->orWhere('category', 'like', '%' . request('search') . '%' )
             ->orWhere('type', 'like', '%' . request('search') . '%' )
-            ->orWhere('author', 'like', '%' . request('search') . '%' );
+            ->orWhere('author', 'like', '%' . request('search') . '%' )
+            ->orWhere('published_year', 'like', '%' . request('search') . '%' )
+            ->orWhere('publisher', 'like', '%' . request('search') . '%' )
+            ->orWhere('ISBN', 'like', '%' . request('search') . '%' )
+            ->orWhere('bibliography', 'like', '%' . request('search') . '%' )
+            ->orWhere('description', 'like', '%' . request('search') . '%' );
         }
     }
 

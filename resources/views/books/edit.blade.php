@@ -71,7 +71,7 @@
                         </p>
                         <div class="flex">
                             <span class="title-font font-medium text-2xl text-gray-900">Number of Copies:
-                                <input type="text" autocomplete="off" name="copies" class="editbook2 text-center" value="{{ $book->call_number }}"></span>
+                                <input type="text" autocomplete="off" name="copies" class="editbook2 text-center" value="{{ $book->copy }}"></span>
                         </div>
                         <div class="flex flex-col">
                             {{-- Table --}}

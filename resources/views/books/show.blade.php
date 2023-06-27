@@ -148,7 +148,7 @@
                     <p class="leading-relaxed text-black mb-3"><b>Biblio Notes:</b><br>{{ $book->bibliography }}</p>
                     <div class="flex">
                         <span class="title-font font-medium text-2xl text-gray-900">Number of Copies:
-                            {{ $book->call_number }} </span>
+                            {{ $book->copy }} </span>
                     </div>
                     <div class="flex flex-col">
                         {{-- Table --}}
