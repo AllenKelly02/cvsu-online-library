@@ -152,15 +152,10 @@ class BooksController extends Controller
 
         $book = $bookIssuing->book;
         
-        if ($book->copy == 0) {
-            $bookIssuing->book->update([
-                'status' => 'unavailable'
-        ]);
-
+        if ($book->copy < 0) {
+            $bookIssuing->book->update(['copy' => $book->copy - 1 ]);
         } else {
-            $bookIssuing->book->update([
-                'copy' => $book->copy - 1
-            ]);
+            $bookIssuing->book->update(['status' => 'unavailable']);
         }
 
         return back();
@@ -191,7 +186,7 @@ class BooksController extends Controller
     {
         $bookIssuing = BookIssuing::find($id);
 
-        $bookIssuing->book->update(['status' => 'available']);
+        $bookIssuing->book->update(['status' => 'available', 'copy' => $bookIssuing->book->copy + 1 ]);
 
 
         $bookIssuing->update([
