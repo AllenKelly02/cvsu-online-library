@@ -18,7 +18,7 @@
                 </div>
             </form>
         </div>
-        <div class="px-1 py-2 mb-5 flex justify-center">
+        {{-- <div class="px-1 py-2 mb-5 flex justify-center">
             <div class="flex items-center space-x-5">
                 <a href="/browse"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->routeIs('default') ? 'bg-yellowmain text-black' : '' }}">All</a>
@@ -31,7 +31,7 @@
                 <a href="/browse?category=thesis"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
             </div>
-        </div>
+        </div> --}}
         <div class="flex flex-wrap -m-4">
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/5 p-4">

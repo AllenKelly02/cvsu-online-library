@@ -15,7 +15,7 @@
                 </div>
             </form>
         </div>
-        <div class="px-1 py-2 mb-5 flex justify-center">
+        {{-- <div class="px-1 py-2 mb-5 flex justify-center">
             <div class="flex items-center space-x-5">
                 <a href="{{ route('admin.books.index') }}"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->routeIs('default') ? 'bg-yellowmain text-black' : '' }}">All</a>
@@ -28,7 +28,7 @@
                 <a href="{{ route('admin.books.index') }}?type=thesis"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('type') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
             </div>
-        </div>
+        </div> --}}
         @if (Session::has('delete'))
         <div class="alert alert-success">
             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>

@@ -14,7 +14,7 @@
                 </div>
             </form>
         </div>
-        <div class="px-1 py-2 mb-5 flex justify-center">
+        {{-- <div class="px-1 py-2 mb-5 flex justify-center">
             <div class="flex items-center space-x-5">
                 <a href="{{ route('admin.books.index') }}"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->routeIs('default') ? 'bg-yellowmain text-black' : '' }}">All</a>
@@ -27,7 +27,7 @@
                 <a href="{{ route('admin.books.index') }}??category=thesis"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
             </div>
-        </div>
+        </div> --}}
         {{-- @if (count($favorites) == 0)
             <div class="w-full h-96 flex flex-col items-center justify-center mt-20">
                 <p class=" text-base text-red-500 mt-5">Oops! No book found.</p>

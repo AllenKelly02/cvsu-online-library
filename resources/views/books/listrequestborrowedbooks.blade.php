@@ -54,7 +54,7 @@
                                     <div>
                                         <form action="{{route('admin.approvedBorrowedBooks', ['id' => $request->id])}}" method="post">
                                             @csrf
-                                            <button class="px-4 py-2 hover:bg-green-600 rounded-lg hover:scale-105 duration-700">
+                                            <button class="w-12 px-4 py-2 hover:bg-green-600 rounded-lg hover:scale-105 duration-700">
                                                 <img src="{{asset('img/check-line.png')}}">
                                             </button>
                                         </form>
@@ -62,7 +62,7 @@
                                     <div>
                                         <form action="{{route('admin.rejectBorrowedBooks', ['id' => $request->id])}}" method="post">
                                             @csrf
-                                            <button class="px-4 py-2 hover:bg-red-600 rounded-lg hover:scale-105 duration-700">
+                                            <button class="w-12 px-4 py-2 hover:bg-red-600 rounded-lg hover:scale-105 duration-700">
                                                 <img src="{{asset('img/close-line.png')}}">
                                             </button>
                                         </form>

@@ -9,74 +9,75 @@
                 </div>
             </div>
             <div class="flex flex-col space-y-2 p-4">
-                <div class="h-[35rem] bg-white overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500">
+                <div class="relative overflow-x-auto w-full h-[35rem] bg-white drop-shadow-lg sm:rounded-lg">
+                    <table class="w-full table-auto text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-blue-100 text-center">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="w-[10%] px-6 py-3">
                                     Book title
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    user
+                                <th scope="col" class="w-[10%] px-6 py-3">
+                                    User
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    student id
+                                <th scope="col" class="w-[5%] px-6 py-3">
+                                    Student ID
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="w-[10%] px-6 py-3">
                                     Course
                                 </th>
-                                <th scope="col" class="px-6 py-3 ">
+                                <th scope="col" class="w-[10%] px-6 py-3">
                                     Borrowed date
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="w-[10%] px-6 py-3">
                                     Returned date
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="w-[10%] px-6 py-3">
                                     Due Date
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="w-[10%] px-6 py-3">
                                     Days Borrowed
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="w-[10%] px-6 py-3">
                                     Penalty Payment
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="w-[10%] px-6 py-3">
                                     Action
                                 </th>
                             </tr>
                         </thead>
+                        
                         <tbody>
 
                             @forelse ($bookIssuings as $bookIssuing)
                                 <tr class="bg-white border-b text-center">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    <th scope="row" class="w-[10%] px-6 py-3">
                                         {{ $bookIssuing->book->title }}
                                     </th>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[10%] px-6 py-3">
                                         {{ $bookIssuing->user->name }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[5%] px-6 py-3">
                                         {{ $bookIssuing->user->profile->student_id }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[10%] px-6 py-3">
                                         {{ $bookIssuing->user->profile->course }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[10%] px-6 py-3">
                                         {{ $bookIssuing->borrowed_date }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[10%] px-6 py-3">
                                         {{ $bookIssuing->returned_date }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[10%] px-6 py-3">
                                         {{ $bookIssuing->total_days }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[10%] px-6 py-3">
                                         {{ $bookIssuing->created_at->diffInDays() }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[10%] px-6 py-3">
                                         {{ $bookIssuing->penalty_payment }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="w-[10%] px-6 py-3">
                                         <form action="{{route('admin.returned-book', ['id' => $bookIssuing->id])}}" method="post">
                                             @csrf
                                             <button class="button-name">
@@ -99,7 +100,7 @@
                                                 </svg>
                                                 <span>No Borrowed Books</span>
                                                 <a class=" text-xm text-black underline object-center"
-                                                    href="{{ route('user.catalog') }}">See More Books</a>
+                                                    href="{{ route('admin.books.index') }}">See More Books</a>
                                             </div>
                                         </div>
                                     </td>

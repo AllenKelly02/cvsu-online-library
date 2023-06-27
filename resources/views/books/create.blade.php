@@ -470,4 +470,10 @@
             }
         });
     </script>
+    <script>
+        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+        setTimeout(function() {
+            document.querySelector('.alert').remove();
+        }, 2200);
+    </script>
 </x-app-layout>
