@@ -77,7 +77,7 @@ class BooksController extends Controller
             'call_number',
             'ISBN' => 'required',
             'pages' => 'required',
-            'copy' => 'copy',
+            'copy',
             'description' => 'required',
             'bibliography',
             'course' => 'required',
