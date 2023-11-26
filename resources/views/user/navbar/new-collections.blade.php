@@ -40,7 +40,7 @@
                                     {{ $book->type }}
                                 </h1>
                             </div>
-                            @if ($book->created_at->diffInHours() < 1)
+                            @if ($book->created_at->diffInDays() < 3)
                                 <h1 class="bg-bluemain rounded-lg drop-shadow-lg text- py-1 px-3 text-bgmain">
                                     New
                                 </h1>

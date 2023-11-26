@@ -35,9 +35,9 @@
             </div>
         </div>
     @endif
-    <section class="text-gray-600 body-font overflow-hidden">
+    <section class="text-gray-600 body-font overflow-hidden relative" x-data="removeModal">
         <div class="container px-5 py-24 mx-auto">
-            <div class="lg:w-4/5 mx-auto flex flex-wrap">
+            <div class="w-full mx-auto flex flex-wrap">
                 @if ($book->image !== null)
                     <img class="h-full py-9" src="{{ url($book->image) }}" alt="image">
                 @else
@@ -89,7 +89,11 @@
                                                 </svg>
                                             </button>
                                         </form>
-                                        <form action="{{ route('admin.book-delete', ['id' => $book->id]) }}"
+
+
+                                        <button class="btn btn-error" @click="openToggle()"> <span><i
+                                                    class="fi fi-rr-trash mr-2"></i></span>Remove</button>
+                                        {{-- <form action="{{ route('admin.book-delete', ['id' => $book->id]) }}"
                                             method="post">
 
                                             @csrf
@@ -100,7 +104,7 @@
                                                     </path>
                                                 </svg>
                                             </button>
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +119,7 @@
                             @else
                                 @if (
                                     $book->status === 'available' &&
-                                        Auth::user()->booksIssuing()->where('book_id', $book->id)->where('returned_date', '!=','0000-00-00')->get()->count() === 1)
+                                        Auth::user()->booksIssuing()->where('book_id', $book->id)->where('returned_date', '!=', '0000-00-00')->get()->count() === 1)
                                     <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" method="post">
                                         @csrf
                                         <button class="button-name text-black hover:bg-yellow-500">Borrow</button>
@@ -134,8 +138,15 @@
                             <span class="text-black ml-1"> {{ $book->published_year }}</span>
                         </span>
                     </div>
-                    <p class="text-black mb-3">
+                    <p class="text-black mb-3 flex flex-col gap-2">
                         <b>ISBN:</b> {{ $book->ISBN }}
+
+                    </p>
+                    <p class="flex flex-col gap-2">
+                        {!! DNS1D::getBarcodeHTML($book->ISBN, 'CODABAR') !!}
+                        <span>
+                           ISBN -  {{ $book->ISBN }}
+                        </span>
                     </p>
                     <p class="text-black mb-3">
                         <b>Publisher:</b> {{ $book->publisher }}
@@ -143,6 +154,7 @@
                     <p class="text-black mb-3">
                         <b>Pages:</b> {{ $book->pages }}
                     </p>
+
 
                     <p class="leading-relaxed text-black mb-3"><b>Description:</b><br>{{ $book->description }}</p>
                     <p class="leading-relaxed text-black mb-3"><b>Biblio Notes:</b><br>{{ $book->bibliography }}</p>
@@ -194,6 +206,31 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div x-show="toggle"
+            class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-auto
+         bg-gray-100 rounded-lg shadow-lg flex flex-col space-y-5 p-5"
+            x-cloak>
+            <h1 class="text-lg font-bold">are you sure remove this book ? </h1>
+            <div class="flex justify-end items-center space-x-2">
+                <div class="pt-3">
+                    <button class="btn btn-warning" @click="openToggle()">Cancel</button>
+                </div>
+
+                <form action="{{ route('admin.book-delete', ['id' => $book->id]) }}" method="post">
+
+                    @csrf
+                    <button class="delete" href="{{ route('admin.books.archivedbooks') }}">
+                        <svg viewBox="0 0 448 512" class="svgIcon">
+                            <path
+                                d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
+                            </path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
         </div>
     </section>
     <script>

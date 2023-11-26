@@ -6,6 +6,7 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\BookIssuing;
+use App\Models\Categories;
 use App\Models\UserFavouriteBook;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,10 @@ class BooksController extends Controller
 
     public function create()
     {
-        return view('books.create');
+
+        $categories = Categories::get();
+
+        return view('books.create', compact(['categories']));
     }
 
     public function edit($id)
@@ -154,7 +158,7 @@ class BooksController extends Controller
         );
 
         $book = $bookIssuing->book;
-        
+
         if ($book->copy > 1) {
             $bookIssuing->book->update(['copy' => $book->copy - 1]);
         } else if ($book->copy == 1) {
@@ -279,5 +283,13 @@ class BooksController extends Controller
 
 
         return to_route('admin.books.index')->with(['delete' => 'Book Deleted !']);
+    }
+    public function bookBarcode(){
+
+        $books = Book::get();
+
+
+        return view('scan.book.barcodes', compact(['books']));
+
     }
 }

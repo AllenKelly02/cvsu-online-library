@@ -44,11 +44,11 @@
                                     {{ $book->type }}
                                 </h1>
                             </div>
-                            @if ($book->created_at->diffInWeeks() < 1)
+                            {{-- @if ($book->created_at->diffInWeeks() < 1)
                                 <h1 class="bg-bluemain rounded-lg drop-shadow-lg text- py-1 px-3 text-bgmain">
                                     New
                                 </h1>
-                            @endif
+                            @endif --}}
                         </div>
                         @if ($book->image !== null)
                             <img class="h-70 rounded w-full object-cover object-center py-6"

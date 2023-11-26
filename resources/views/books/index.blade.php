@@ -1,9 +1,12 @@
 <x-app-layout>
     <div class="px-20 pt-8 mx-auto py-24 bg-bgmain">
-        <div class="flex flex-wrap w-full mb:pt-5">
+        <div class="flex w-full mb:pt-5 justify-between">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">List of Books</h1>
                 <div class="h-1 w-20 bg-bluemain rounded"></div>
+            </div>
+            <div>
+                <a href="{{route('admin.scan.book.index')}}" target="_blank">Scan Book</a>
             </div>
         </div>
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
@@ -49,11 +52,11 @@
                                     {{ $book->type }}
                                 </h1>
                             </div>
-                            @if ($book->created_at->diffInWeeks() < 1)
+                            {{-- @if ($book->created_at->diffInWeeks() < 1)
                                 <h1 class="bg-bluemain rounded-lg drop-shadow-lg text- py-1 px-3 text-bgmain">
                                     New
                                 </h1>
-                            @endif
+                            @endif --}}
                         </div>
                         @if ($book->image !== null)
                             <img class="h-70 rounded w-full object-cover object-center py-6"

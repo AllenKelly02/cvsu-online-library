@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use Illuminate\Support\Facades\Auth;
 
 class CatalogController extends Controller
 {
-    public function catalog()
+    public function catalog(Request $request)
     {
 
         $books = Book::latest()->filter(request(['category', 'search']))->paginate(100);
+        if($request->category != null){
+           $books = Book::latest()->whereCategory($request->category)->get();
+        }
 
-        return view('user.navbar.catalog', [
-            'books' => $books
-        ]);
+        $categories = Categories::get();
+
+        return view('user.navbar.catalog', compact(['books', 'categories']));
     }
     public function borrowedHistory()
     {
