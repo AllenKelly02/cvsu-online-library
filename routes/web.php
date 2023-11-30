@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookScannerController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Guest\MessageController;
+use App\Http\Controllers\Librarian\ImportBookController;
 use App\Http\Middleware\Role;
 use Symfony\Component\Mime\MessageConverter;
 
@@ -73,6 +74,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
         Route::post('/reply', [MessageController::class, 'reply'])->name('reply');
     });
 
+
+    Route::prefix('books')->as('book.')->group(function(){
+        Route::prefix('import')->as('import.')->group(function(){
+            Route::get('/create', [ImportBookController::class,'create'])->name('create');
+            Route::post('/upload', [ImportBookController::class,'upload'])->name('upload');
+        });
+    });
 
       //barcodes
       Route::get('/books/barcodes', [BooksController::class, 'bookBarcode'])->name('books.barcodes');

@@ -6,6 +6,7 @@
                 <div class="h-1 w-20 bg-bluemain rounded"></div>
             </div>
             <div>
+                <a href="{{route('admin.book.import.create')}}" class="btn btn-primary btn-xs">Import</a>
                 <a href="{{route('admin.scan.book.index')}}" target="_blank">Scan Book</a>
             </div>
         </div>

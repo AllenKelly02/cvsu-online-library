@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Librarian;
 
+use App\Enums\EbookSourceType;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -69,6 +70,10 @@ class BooksController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->all());
+
+        // dd(EbookSourceType::LOCAL->value);
+
         $data = $request->validate([
             'title' => 'required',
             'author' => 'required',
@@ -89,6 +94,22 @@ class BooksController extends Controller
         $books = Book::create($data);
 
         $image = $request->file('image');
+        $ebook_source = $request->ebook_source;
+        $ebook_source_type = $request->ebook_source_type;
+
+
+        if($ebook_source_type === EbookSourceType::LOCAL->value){
+
+
+            $ebook_name = 'EBOOK-' . uniqid() . '.' . $ebook_source->extension();
+
+            $dir = $ebook_source->storeAs('/ebook', $ebook_name, 'public');
+
+            $ebook_source = asset('/storage/' . $dir);
+
+        }
+
+
 
 
         if ($image) {
@@ -97,7 +118,9 @@ class BooksController extends Controller
 
 
             $books->update([
-                'image' => asset('storage/book/image/' . $fileName)
+                'image' => asset('storage/book/image/' . $fileName),
+                'ebook_link' => $ebook_source,
+                'ebook_source' => $ebook_source_type
             ]);
         }
 

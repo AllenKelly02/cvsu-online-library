@@ -28,7 +28,9 @@ class Book extends Model
         'description',
         'bibliography',
         'course',
-        'status'
+        'status',
+        'ebook_link',
+        'ebook_source'
     ];
 
     public function categories()

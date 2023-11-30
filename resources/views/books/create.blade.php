@@ -1,7 +1,14 @@
+@php
+    use App\Enums\EbookSourceType;
+
+    $enumsEBookSourceType = EbookSourceType::cases();
+
+@endphp
+
 <x-app-layout>
     <section class="py-3 px-32 items-center justify-center bg-no-repeat">
         <div class="container px-4 mx-auto">
-            <div class="p-8 bg-white rounded-xl" x-data="imageUploadHandler">
+            <div class="p-8 bg-white rounded-xl" x-data="bookDynamicForm">
                 <div
                     class="flex flex-wrap items-center justify-between -mx-4 mb-8 pb-6 border-b border-black border-opacity-20">
                     <div class="w-full sm:w-auto px-4 mb-6 sm:mb-0">
@@ -97,7 +104,7 @@
                                 <div
                                     class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
                                     <select class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
-                                        id="type" name="type">
+                                        @change="getBookType($event)" id="type" name="type">
                                         <option selected value="">Select Type</option>
                                         <option class="bg-white" value="audio">Audio/Visuals</option>
                                         <option class="bg-white" value="book">Book</option>
@@ -118,6 +125,87 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20"
+                        x-show="bookType !== null" x-transition.duration.700ms>
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">E-book Source</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-3">
+                            <div class="max-w-xl">
+                                <div
+                                    class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
+                                    <select @change="selectSourceType"
+                                        class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
+                                        id="type" name="ebook_source_type">
+                                        <option selected value="">Select Type</option>
+
+                                        @foreach ($enumsEBookSourceType as $ebookType)
+                                            <option class="bg-white" value="{{ $ebookType->value }}">
+                                                {{ $ebookType->value }}</option>
+                                        @endforeach
+
+
+                                    </select>
+                                </div>
+                                @error('type')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <template x-if="sourceType === `{{$enumsEBookSourceType[0]->value}}`">
+                        <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                            <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                                <span class="text-sm font-medium text-black">E-book Link</span>
+                            </div>
+                            <div class="w-full sm:w-2/3 px-4">
+                                <div class="max-w-xl">
+                                    <div class="flex flex-wrap items-center -mx-3">
+                                        <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                            <input name="ebook_source"
+                                                class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
+                                                 type="text" placeholder="e-book link">
+                                        </div>
+                                    </div>
+                                    @error('title')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+
+                    <template x-if="sourceType === `{{$enumsEBookSourceType[1]->value}}`">
+                        <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                            <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                                <span class="text-sm font-medium text-black">E-book File</span>
+                            </div>
+                            <div class="w-full sm:w-2/3 px-4">
+                                <div class="max-w-xl">
+                                    <div class="flex flex-wrap items-center -mx-3">
+                                        <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                            <input name="ebook_source"
+                                                class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
+                                                 type="file" placeholder="e-book file">
+                                        </div>
+                                    </div>
+                                    @error('title')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+
                     <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">Category</span>
@@ -138,7 +226,7 @@
                                     </select>
                                     <div>
                                         <a class="inline-block py-2 mr-3 text-xs leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
-                                            href="{{route('admin.category.create')}}">Add Category</a>
+                                            href="{{ route('admin.category.create') }}">Add Category</a>
                                     </div>
 
                                 </div>
@@ -383,30 +471,79 @@
 
         @push('js')
             <script>
-                function imageUploadHandler() {
-                    return {
-                        uploadHanlder(e) {
-                            const {
-                                files
-                            } = e.target;
-
-                            const reader = new FileReader();
-                            let image = null;
-                            reader.onload = function() {
-                                let image = document.getElementById('previewImage').src = reader.result;
-                                console.log(image)
-                            }
-
-                            reader.readAsDataURL(files[0])
-                        },
-                        removeImage() {
-                            const imagePriview = document.getElementById('previewImage');
-                            const imageInput = document.getElementById('image').value = null
-
-                            imagePriview.src = ''
+                const bookDynamicForm = () => ({
+                    bookType: null,
+                    sourceType : null,
+                    getBookType(e) {
+                        const type = e.target.value;
+                        if (type !== 'e-Book' || this.bookType !== null){
+                            this.bookType = null
+                            this.sourceType = null
+                            return
                         }
+                        console.log('book Type function')
+                        this.bookType = type;
+                    },
+                    selectSourceType(e){
+                        const srcType = e.target.value;
+                        this.sourceType = srcType;
+                    },
+                    uploadHanlder(e) {
+                        const {
+                            files
+                        } = e.target;
+
+                        const reader = new FileReader();
+                        let image = null;
+                        reader.onload = function() {
+                            let image = document.getElementById('previewImage').src = reader.result;
+                            console.log(image)
+                        }
+
+                        reader.readAsDataURL(files[0])
+                    },
+                    removeImage() {
+                        const imagePriview = document.getElementById('previewImage');
+                        const imageInput = document.getElementById('image').value = null
+
+                        imagePriview.src = ''
                     }
-                }
+                });
+
+
+
+                // function imageUploadHandler() {
+                //     return {
+                //         bookType : null,
+                //         eBookFieldToggle : false,
+                //         getBookType(e){
+                //             const type = e.target.value;
+                //            if(type !== 'e-Book') return
+
+                //           this.bookType = type;
+                //         },
+                //         uploadHanlder(e) {
+                //             const {
+                //                 files
+                //             } = e.target;
+
+                //             const reader = new FileReader();
+                //             let image = null;
+                //             reader.onload = function() {
+                //                 let image = document.getElementById('previewImage').src = reader.result;
+                //                 console.log(image)
+                //             }
+
+                //             reader.readAsDataURL(files[0])
+                //         },
+                //         removeImage() {
+                //             const imagePriview = document.getElementById('previewImage');
+                //             const imageInput = document.getElementById('image').value = null
+
+                //             imagePriview.src = ''
+                //         }
+                //     }
+                // }
             </script>
         @endpush
     </section>
