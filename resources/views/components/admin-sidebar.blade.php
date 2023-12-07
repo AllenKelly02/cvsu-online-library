@@ -41,7 +41,7 @@
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/delete.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Archive Books</span>
 				</a>
-                <a href="{{ route('admin.messages.index') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white {{ request()->routeIs('admin.books.archivedbooks') ? 'bg-blue2 text-white' : '' }}">
+                <a href="{{ route('admin.messages.index') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white {{ request()->routeIs('admin.messages.index') ? 'bg-blue2 text-white' : '' }}">
                     <i class="fi fi-rr-inbox-in text-2xl"></i>
 					{{-- <img class="object-center w-6 ml-30 py-3" src="{{ asset('img/delete.png') }}" alt="content"> --}}
 					<span class="ml-2 text-sm font-medium">Inbox</span>
