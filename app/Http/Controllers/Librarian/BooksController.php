@@ -11,6 +11,7 @@ use App\Models\Categories;
 use App\Models\UserFavouriteBook;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class BooksController extends Controller
 {
@@ -268,7 +269,7 @@ class BooksController extends Controller
 
     public function allBorrowedBooks()
     {
-        $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->get();
+        $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->where('is_approved', true)->get();
 
 
         foreach($bookIssuings as $bookIssuing){
@@ -299,8 +300,13 @@ class BooksController extends Controller
 
         return view('books.archivedbooks', compact(['books']));
     }
-    public function destroy($id){
+    public function destroy(Request $request, $id){
         $book = Book::find($id);
+
+
+        $book->update([
+            'reason_remove' => $request->reason
+        ]);
 
         $book->delete();
 

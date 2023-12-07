@@ -226,7 +226,7 @@
                 </div>
 
                 @if ($bookType == 'e-Book')
-                    <div class="w-full h-96" x-data="disableRightClicked" x-init="disableRClicked($event)">
+                    <div class="w-full h-96 relative" x-data="disableRightClicked" x-init="disableRClicked($event)">
 
 
                         @if ($book->ebook_source === `{{ App\Enums\EbookSourceType::OUTSIDE->value }}`)
@@ -235,6 +235,11 @@
                             <embed id="pdfCanvas" src="{{ $book->ebook_link }}#toolbar=0" type="" class="w-full h-full">
                         @endif
 
+                        @if( Auth::user()->booksIssuing()->where('book_id', $book->id)->where('is_approved', true)->first() === null)
+                        <div class="w-full backdrop-blur-sm bg-white/30 h-full top-0 absolute z-10">
+
+                        </div>
+                        @endif
                     </div>
                 @endif
 
@@ -247,21 +252,30 @@
          bg-gray-100 rounded-lg shadow-lg flex flex-col space-y-5 p-5"
             x-cloak>
             <h1 class="text-lg font-bold">are you sure remove this book ? </h1>
-            <div class="flex justify-end items-center space-x-2">
-                <div class="pt-3">
+            <div class="flex justify-end items-center">
+                {{-- <div class="pt-3">
                     <button class="btn btn-warning" @click="openToggle()">Cancel</button>
-                </div>
-
-                <form action="{{ route('admin.book-delete', ['id' => $book->id]) }}" method="post">
+                </div> --}}
+                <form action="{{ route('admin.book-delete', ['id' => $book->id]) }}" method="post" class="flex flex-col gap-2">
 
                     @csrf
-                    <button class="delete" href="{{ route('admin.books.archivedbooks') }}">
-                        <svg viewBox="0 0 448 512" class="svgIcon">
-                            <path
-                                d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
-                            </path>
-                        </svg>
-                    </button>
+
+                    <textarea name="reason" id="" cols="30" rows="10" placeholder="Reason" class="w-full">
+
+                    </textarea>
+
+
+                    <div class="flex items-center space-x-5">
+                        <a class="btn btn-warning" @click="openToggle()">Cancel</a>
+                        <button class="delete" href="{{ route('admin.books.archivedbooks') }}">
+                            <svg viewBox="0 0 448 512" class="svgIcon">
+                                <path
+                                    d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+
                 </form>
             </div>
 

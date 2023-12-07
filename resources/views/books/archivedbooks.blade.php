@@ -15,6 +15,9 @@
                             author
                         </th>
                         <th scope="col" class="px-6 py-3">
+                           Reason
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Deleted Date
                         </th>
                     </tr>
@@ -28,6 +31,9 @@
                         <td class="px-6 py-4">
                            {{$book->author}}
                         </td>
+                        <td class="px-6 py-4">
+                            {{$book->reason_remove}}
+                         </td>
                         <td class="px-6 py-4">
                            {{$book->deleted_at->format('M-d-Y')}}
                         </td>

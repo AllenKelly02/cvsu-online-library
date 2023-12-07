@@ -30,7 +30,8 @@ class Book extends Model
         'course',
         'status',
         'ebook_link',
-        'ebook_source'
+        'ebook_source',
+        'reason_remove'
     ];
 
     public function categories()
