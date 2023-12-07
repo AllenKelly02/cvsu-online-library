@@ -63,7 +63,9 @@
                 <img src="data:image/jpeg;base64,{{base64_encode(file_get_contents(public_path('img/logo.png')))}}" alt="" srcset="" class="logo">
                 <div>
                     <h1>Cavite State University Online Library</h1>
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                    <p>Phase 2, Soldiers Hills 4, Molino 6,
+                        City of Bacoor, Cavite
+                         (046) 476 - 5029
                     </p>
                 </div>
             </div>
