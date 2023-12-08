@@ -17,25 +17,30 @@ class DashboardController extends Controller
 
         $bookIssuing = BookIssuing::where('returned_date', '0000-00-00')->get();
 
-        $thesisBooks = $this->bookQueryByType('thesis');
-        $journalBooks = $this->bookQueryByType('journal');
-        $bookBooks = $this->bookQueryByType('book');
-        $eBooks = $this->bookQueryByType('e-Book');
 
+        $booksRanking = Book::withCount('bookIssuing')->orderBy('book_issuing_count', 'desc')->get();
+
+
+        $booksTotalByCategory = $this->booksDataByType();
         $totalBorrowedBooksByMonths = $this->borrowedBookPerMonth();
+
         $books = Book::where('status', 'available');
-        return view('dashboard.admin', compact(['user', 'books', 'bookIssuing',
-        'thesisBooks', 'journalBooks', 'bookBooks', 'eBooks', 'totalBorrowedBooksByMonths']));
+        return view('dashboard.admin', compact(['user', 'books', 'bookIssuing', 'booksTotalByCategory', 'booksRanking', 'totalBorrowedBooksByMonths']));
     }
     public function user()
     {
         return view('dashboard.user');
     }
-    private function bookQueryByType($type)
+    private function booksDataByType()
     {
-        $books = Book::where('type', $type)->get()->count();
 
-        return $books;
+       $books = Book::get()->groupBy('category')->map(function($q){
+           return $q->count();
+       });
+
+
+       return $books;
+
     }
     private function borrowedBookPerMonth()
     {

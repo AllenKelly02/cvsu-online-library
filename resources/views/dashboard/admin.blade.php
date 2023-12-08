@@ -20,7 +20,7 @@
                             </a>
                         </div>
                         <div class="blob"></div>
-                     </div>
+                    </div>
                 </div>
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                     <div class="card ml-20">
@@ -29,13 +29,13 @@
                                 <div class="bg bg-white px-4 py-6 rounded-lg shadow-xl h-full w-full">
                                     <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block"
                                         src="{{ asset('img/users.png') }}" alt="content">
-                                        <h2 class="title-font font-medium text-3xl text-gray-900">{{ $user->count() }}</h2>
+                                    <h2 class="title-font font-medium text-3xl text-gray-900">{{ $user->count() }}</h2>
                                     <p class="leading-relaxed">Users</p>
                                 </div>
                             </a>
                         </div>
                         <div class="blob"></div>
-                     </div>
+                    </div>
                 </div>
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                     <div class="card ml-20">
@@ -44,13 +44,13 @@
                                 <div class="bg bg-white px-4 py-6 rounded-lg shadow-xl h-full w-full">
                                     <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block"
                                         src="{{ asset('img/visit.png') }}" alt="content">
-                                        <h2 class="title-font font-medium text-3xl text-gray-900">1</h2>
+                                    <h2 class="title-font font-medium text-3xl text-gray-900">1</h2>
                                     <p class="leading-relaxed">Visits</p>
                                 </div>
                             </a>
                         </div>
                         <div class="blob"></div>
-                     </div>
+                    </div>
                 </div>
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                     <div class="card ml-20">
@@ -59,13 +59,14 @@
                                 <div class="bg bg-white px-4 py-6 rounded-lg shadow-xl h-full w-full">
                                     <img class="object-center ml-15 mr-3 mb-3 py-2 inline-block"
                                         src="{{ asset('img/borrow.png') }}" alt="content">
-                                        <h2 class="title-font font-medium text-3xl text-gray-900">{{ $bookIssuing->count() }}</h2>
+                                    <h2 class="title-font font-medium text-3xl text-gray-900">
+                                        {{ $bookIssuing->count() }}</h2>
                                     <p class="leading-relaxed">Borrowed Books</p>
                                 </div>
                             </a>
                         </div>
                         <div class="blob"></div>
-                     </div>
+                    </div>
                 </div>
             </div>
 
@@ -79,23 +80,62 @@
                         </div>
                     </div>
 
-                    <div class="w-full flex space-x-10">
-                        <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
+                    <div class="grid grid-cols-2 h-84 w-full py-5 gap-5">
+                        <div class="w-full bg-white rounded-lg shadow-xl sm:p-8 h-full flex flex-col gap-2">
+                            <h2 class="text-xl font-bold w-full bg-blue-500">  Book Category</h2>
+                            <div id="pieChart" class="w-full h-full"></div>
+                            {{-- <canvas id="myChart"></canvas> --}}
+                        </div>
+                        <div class="w-full bg-white rounded-lg shadow-xl sm:p-8 h-full">
                             <h2 class="text-xl font-bold"></h2>
                             <span class="text-sm font-semibold text-gray-500"></span>
-                            {{-- <div id="pieChart"></div> --}}
-                            <canvas id="myChart"></canvas>
+                            <div  class="w-full h-full flex flex-col gap-2">
+                                <h1 class="text-lg font-bold p-2">
+                                    Ranking
+                                </h1>
+                                <div class="overflow-x-auto h-96">
+                                    <table class=" w-full bg-gray-50">
+                                      <!-- head -->
+                                      <thead>
+                                        <tr>
+                                          <th></th>
+                                          <th>Title</th>
+                                          <th>Borrowed</th>
+
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <!-- row 1 -->
+
+                                        @foreach ($booksRanking as $book)
+                                        <tr>
+                                            <th>{{$book->id}}</th>
+                                            <td>{{$book->title}}</td>
+                                            <td>{{$book->bookIssuing()->count()}}</td>
+
+                                          </tr>
+
+                                        @endforeach
+
+
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+
+                            </div>
+                            {{-- <canvas id="myChart"></canvas> --}}
+                        </div>
+                        {{-- <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
+                            <h2 class="text-xl font-bold"></h2>
+                            <span class="text-sm font-semibold text-gray-500"></span>
+
                         </div>
                         <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
                             <h2 class="text-xl font-bold"></h2>
                             <span class="text-sm font-semibold text-gray-500"></span>
-                            <canvas id="myChart"></canvas>
-                        </div>
-                        <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
-                            <h2 class="text-xl font-bold"></h2>
-                            <span class="text-sm font-semibold text-gray-500"></span>
-                            <canvas id="myChart"></canvas>
-                        </div>
+
+                        </div> --}}
                     </div>
 
                 </div>
@@ -150,15 +190,26 @@
                     var chart = new ApexCharts(document.querySelector("#chartContainer"), options);
                     chart.render();
 
+                    const booksData = @json($booksTotalByCategory);
+
+                    const books = {
+                        type: Object.keys(booksData),
+                        total: Object.values(booksData)
+                    }
+
+
+
+
+                    console.log(books)
+
 
                     var optionsOne = {
-                        series: [parseInt({{ $thesisBooks }}), parseInt({{ $journalBooks }}), parseInt({{ $eBooks }}),
-                            parseInt({{ $bookBooks }})
-                        ],
-                        labels: ['Thesis', 'Journal', 'E-book', 'Book'],
+                        series: [...books.total],
                         chart: {
-                            type: 'donut',
+                            // width: 500,
+                            type: 'pie',
                         },
+                        labels: [...books.type],
                         responsive: [{
                             breakpoint: 480,
                             options: {
@@ -171,6 +222,7 @@
                             }
                         }]
                     };
+
 
                     var chartPie = new ApexCharts(document.querySelector("#pieChart"), optionsOne);
                     chartPie.render();
