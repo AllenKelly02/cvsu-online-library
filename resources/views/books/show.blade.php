@@ -160,9 +160,9 @@
 
                         </p>
                         <p class="flex flex-col gap-2">
-                            {!! DNS1D::getBarcodeHTML($book->ISBN, 'CODABAR') !!}
+                            {!! DNS1D::getBarcodeHTML($book->accession_number, 'CODABAR') !!}
                             <span>
-                                ISBN - {{ $book->ISBN }}
+                                Accession Number - {{ $book->accession_number }}
                             </span>
                         </p>
                         <p class="text-black mb-3">

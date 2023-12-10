@@ -20,7 +20,7 @@
                     <template x-if="state.bookData !== null">
                         <div class="h-full w-full flex flex-col gap-2 ">
                             <div class="w-full flex gap-2 p-2">
-                                <img :src="state.bookData.image" alt="" srcset=""
+                                <img :src="state.bookData.image !== null ? state.bookData.image : '{{asset('img/books/uc-6231abdf1ff2d.jpg')}}'"  alt="" srcset=""
                                     class="object object-center h-96 w-96">
                                 <div class="w-full flex flex-col gap-2">
                                     <h1 class="text-4xl font-bold text-gray-900 text-center">

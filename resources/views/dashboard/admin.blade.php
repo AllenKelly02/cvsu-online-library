@@ -82,7 +82,7 @@
 
                     <div class="grid grid-cols-2 h-84 w-full py-5 gap-5">
                         <div class="w-full bg-white rounded-lg shadow-xl sm:p-8 h-full flex flex-col gap-2">
-                            <h2 class="text-xl font-bold w-full bg-blue-500">  Book Category</h2>
+                            <h2 class="text-xl font-bold w-full">  Book Category</h2>
                             <div id="pieChart" class="w-full h-full"></div>
                             {{-- <canvas id="myChart"></canvas> --}}
                         </div>

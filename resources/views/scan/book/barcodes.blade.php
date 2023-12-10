@@ -9,8 +9,8 @@
 
             @forelse ($books as $book)
             <div class="flex flex-col gap-2">
-               {!! DNS1D::getBarcodeHTML($book->ISBN, 'CODABAR')  !!}
-               <p>ISBN - {{$book->ISBN}}</p>
+               {!! DNS1D::getBarcodeHTML($book->accession_number, 'CODABAR')  !!}
+               <p>Accession Number - {{$book->accession_number}}</p>
             </div>
             @empty
 

@@ -17,7 +17,7 @@ class BookScannerController extends Controller
 
     public function show(String $id){
 
-        $book = Book::where('ISBN', $id)->with(['bookIssuing.user'])->first();
+        $book = Book::where('accession_number', $id)->with(['bookIssuing.user'])->first();
 
         if($book == null){
             return response(['message' => 'Book Not Found'], 404);

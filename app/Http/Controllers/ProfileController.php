@@ -17,7 +17,6 @@ class ProfileController extends Controller
 {
     public function index()
     {
-
     }
     /**
      * Display the user's profile form.
@@ -36,7 +35,6 @@ class ProfileController extends Controller
         $bookIssuing = BookIssuing::where('user_id', $profile->id)->with('book')->get();
 
         return view('profile.show', compact(['profile', 'bookIssuing']));
-
     }
 
     /**
@@ -79,5 +77,30 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
+    public function avatar(Request $request)
+    {
 
+
+        $request->validate([
+            'image' => 'mimes:png,jpg',
+        ]);
+
+        $image = $request->image;
+
+
+        $imageName =  'AVTR-' . uniqid() . '.' . $image->extension();
+
+        $dir = $request->image->storeAs('/avatar', $imageName, 'public');
+
+
+        $profile = Auth::user()->profile;
+
+
+        $profile->update([
+            'avatar' => asset('/storage/' . $dir)
+        ]);
+
+
+        return to_route('profile.show', ['id' => $profile->id]);
+    }
 }

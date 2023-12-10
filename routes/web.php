@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
+    Route::post('/profile/update/avatar', [ProfileController::class, 'avatar'])->name('update.avatar');
+
     Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

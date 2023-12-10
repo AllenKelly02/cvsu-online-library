@@ -1,7 +1,14 @@
 @php
     use App\Enums\EbookSourceType;
+    use App\Models\Book;
 
     $enumsEBookSourceType = EbookSourceType::cases();
+
+
+
+    $bookID =  book::latest()->first()?->id + 1 ?? 1;
+    $accession_number = str_pad($bookID, 8, '0', STR_PAD_LEFT);;
+
 
 @endphp
 
@@ -160,8 +167,9 @@
 
 
 
-                    <template x-if="sourceType === `{{$enumsEBookSourceType[0]->value}}`">
-                        <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                    <template x-if="sourceType === `{{ $enumsEBookSourceType[0]->value }}`">
+                        <div
+                            class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                             <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                                 <span class="text-sm font-medium text-black">E-book Link</span>
                             </div>
@@ -171,7 +179,7 @@
                                         <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                             <input name="ebook_source"
                                                 class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
-                                                 type="text" placeholder="e-book link">
+                                                type="text" placeholder="e-book link">
                                         </div>
                                     </div>
                                     @error('title')
@@ -183,8 +191,9 @@
                     </template>
 
 
-                    <template x-if="sourceType === `{{$enumsEBookSourceType[1]->value}}`">
-                        <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                    <template x-if="sourceType === `{{ $enumsEBookSourceType[1]->value }}`">
+                        <div
+                            class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
                             <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                                 <span class="text-sm font-medium text-black">E-book File</span>
                             </div>
@@ -194,7 +203,7 @@
                                         <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                             <input name="ebook_source"
                                                 class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
-                                                 type="file" placeholder="e-book file">
+                                                type="file" placeholder="e-book file">
                                         </div>
                                     </div>
                                     @error('title')
@@ -284,7 +293,8 @@
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="accession_number"
                                             class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
-                                            id="formInput1-1" type="text" placeholder="Number">
+                                            id="formInput1-1" type="text" placeholder="{{ $accession_number }}"
+                                            value="{{ $accession_number }}">
                                     </div>
                                 </div>
                                 @error('accession_number')
@@ -473,10 +483,10 @@
             <script>
                 const bookDynamicForm = () => ({
                     bookType: null,
-                    sourceType : null,
+                    sourceType: null,
                     getBookType(e) {
                         const type = e.target.value;
-                        if (type !== 'e-Book' || this.bookType !== null){
+                        if (type !== 'e-Book' || this.bookType !== null) {
                             this.bookType = null
                             this.sourceType = null
                             return
@@ -484,7 +494,7 @@
                         console.log('book Type function')
                         this.bookType = type;
                     },
-                    selectSourceType(e){
+                    selectSourceType(e) {
                         const srcType = e.target.value;
                         this.sourceType = srcType;
                     },
