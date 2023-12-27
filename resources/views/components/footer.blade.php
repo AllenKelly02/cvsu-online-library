@@ -1,8 +1,10 @@
-<footer class="bottom-0 text-gray-600 content w-auto t bg-bgmain">
-        <div class="container h-15 py-5 px-5 md:px-22 lg:px-28 flex flex-wrap flex-col sm:flex-row grow">
-            <p class="text-gray-900 text-sm text-center sm:text-left">© 2023 Cavite State Univeristy —
-                <a href="https://cvsu.edu.ph/bacoor/" class="text-gray-900 ml-1" target="_blank" rel="noopener noreferrer">Bacoor Campus</a>
-            </p>
-          <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-900 text-sm">CvSU - Bacoor Campus Online Library</span>
-        </div>
-</footer>
+<div class="flex items-center justify-center bg-bgmain">
+  <div class="m-2 max-w-5xl items-center">
+      <div class="flex flex-col items-center"> <img class="flex m-1 w-18 h-16" src="{{ asset('img/logo.png') }}" />
+          <div class="text-gray-500 font-medium mt-4 text-xs"> Copyright 2023. All rights reserved by <a href="#"
+                  class="text-blue-600">Cavite State University — Bacoor Campus</a> </div>
+      </div>
+  </div>
+  </div>
+  <script src="https://use.fontawesome.com/03f8a0ebd4.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
