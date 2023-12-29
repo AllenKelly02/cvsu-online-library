@@ -1,7 +1,7 @@
 <x-guest-layout>
-    <section class="full-screen body-font bg-bottom bg-no-repeat bg-bgmain"
+    <section class="full-screen body-font bg-bottom bg-no-repeat solid-bg-bgmain"
         style="background-image: url('../img/wave (7).svg');">
-        <div class="flex items-center justify-center py-20 pt-36">
+        <div class="flex items-center justify-center py-40 pt-36 mt-16 w-full">
             <div class="text-gray-800 rounded-3xl shadow-xl w-full overflow-hidden bg-no-repeat"
                 style="background-image: url('../img/blob-scene-haikei (6).svg'); max-width:1000px">
                 <div class="md:flex w-full h-full">
@@ -220,14 +220,14 @@
                                 </div>
                             </div>
 
-                            <div class="flex -mx-2 mb-16">
-                                <div class="formGroup w-1/2 px-3 mb-5">
+                            <div class="flex -mx-2">
+                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
-                                        <label for="email" class="text-xs font-semibold px-1">Email Address</label>
+                                        <label for="firstName" class="text-xs font-semibold px-1">Email Address</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
-                                    <div class="flex">
+                                    <div class="flex items-center">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="mdi mdi-email-outline text-gray-500 text-lg"></i>
@@ -236,21 +236,22 @@
                                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                             placeholder="cvsubacoor@gmail.com" required>
-                                        <span class="error-icon hidden mt-2 -ml-6 text-red-700">
+                                        <span class="error-icon hidden -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>
                                         </span>
-                                        <span class="success-icon hidden mt-2 -ml-6 text-green-700">
+                                        <span class="success-icon hidden -ml-6 text-green-700">
                                             <i class="ri-checkbox-fill"></i>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="formGroup w-1/2 px-3 mb-5">
+
+                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
-                                        <label for="password" class="text-xs font-semibold px-1">Password</label>
+                                        <label for="middle_name" class="text-xs font-semibold px-1">Password</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
-                                    <div class="flex">
+                                    <div class="flex items-center">
                                         <div class="relative">
                                             <input type="password" id="password" name="password"
                                                 class="w-72 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -273,14 +274,15 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="formGroup w-1/2 px-3 mb-5">
+
+                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="confirm_password" class="text-xs font-semibold px-1">Confirm
                                             Password</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
-                                    <div class="flex">
+                                    <div class="flex items-center">
                                         <div class="relative">
                                             <input type="password" id="confirm-password" name="password_confirmation"
                                                 match="password"

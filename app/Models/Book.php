@@ -99,6 +99,13 @@ class Book extends Model
         return $this->attributes['course'] = json_decode($value);
     }
 
+    public function browse()
+    {
+        $books = Book::orderBy('published_year')->get();
+        dd($books); // Add this line to debug
+
+        return view('books.browse', compact('books'));
+    }
 
     public function scopeFilter($query, array $filters) {
         if ($filters['type'] ?? false) {

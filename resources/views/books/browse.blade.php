@@ -81,13 +81,8 @@
                             </h2>
                             <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b>
                                 {{ $book->author }}</h3>
-                            <h3 class="truncate tracking-widest text-black text-sm m-1"><b>ISBN:</b>
-                                {{ $book->ISBN }}
-                            </h3>
                             <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b>
                                 {{ $book->published_year }}</h3>
-                            <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Call Number:</b>
-                                {{ $book->call_number }}</h3>
                             <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Publisher:</b>
                                 {{ $book->publisher }}</h3>
                             <a href="{{ route('user.catalog', ['book' => $book]) }}" type="submit"
