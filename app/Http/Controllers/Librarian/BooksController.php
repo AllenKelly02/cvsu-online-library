@@ -136,7 +136,7 @@ class BooksController extends Controller
 
 
             $books->update([
-                'image' => asset('storage/book/image/' . $fileName),
+                'image' => $fileName,
                 'ebook_link' => $ebook_source,
                 'ebook_source' => $ebook_source_type
             ]);
@@ -313,10 +313,10 @@ class BooksController extends Controller
                     ]);
                 }
             }
-        }
-*/
+        }*/
 
-        //comment this if you want to test the penalty then uncomment the testing logic in the upper parts of this
+
+       // comment this if you want to test the penalty then uncomment the testing logic in the upper parts of this
         foreach ($bookIssuings as $bookIssuing) {
 
             if ($bookIssuing->created_at->diffInDays() > 3 && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')) {
