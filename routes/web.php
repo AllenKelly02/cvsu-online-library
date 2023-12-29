@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookScannerController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Guest\MessageController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Librarian\ImportBookController;
 use App\Http\Middleware\Role;
 use Symfony\Component\Mime\MessageConverter;
@@ -32,6 +33,8 @@ Route::get('/', function () {
 
 Route::post('/message', [MessageController::class, 'store'])->name('message');
 
+Route::get('/image/{name}', [ImageController::class, 'view'])->name('image-view');
+
 // Route::get('/dashboard', function () {
 //     return view('user.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -43,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
     Route::post('/profile/update/avatar', [ProfileController::class, 'avatar'])->name('update.avatar');
+
 
     Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.show');
 

@@ -62,7 +62,7 @@
 
                         @if ($book->image !== null)
                             <img class="h-70 rounded w-full object-cover object-center py-6"
-                                src="{{ asset('storage/book/image/' . $book->image )}}" alt="content">
+                                src="{{route('image-view', ['name' => $book->image])}}" alt="content">
                         @else
                             <img class="
                                 h-70 rounded w-full object-cover object-center py-6"
