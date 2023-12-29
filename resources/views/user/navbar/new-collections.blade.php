@@ -28,7 +28,7 @@
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
             </div>
         </div> --}}
-        <div class="flex flex-wrap -m-4">
+        <div class="flex flex-wrap -m-4 py-5">
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4 ">
 
