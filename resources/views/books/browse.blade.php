@@ -87,7 +87,7 @@
                                 {{ $book->publisher }}</h3>
                             <a href="{{ route('user.catalog', ['book' => $book]) }}" type="submit"
                                 class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">
-                                View
+                                View Book
                             </a>
                         </div>
 
