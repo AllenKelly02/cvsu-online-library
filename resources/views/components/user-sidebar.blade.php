@@ -4,7 +4,7 @@
     <div class="wrapper">
         <div class="sidebar">
             <div class="flex flex-col items-center w-60 h-full overflow-hidden sticky shadow-2xl text-gray-700 bg-blue-50 rounded">
-                <div class="flex flex-row justify-between py-6 p-2 space-x-4">
+                <div class="flex flex-row justify-between md:py-6 p-2 space-x-4 mt-20 md:mt-0">
                     <img src="{{ Auth::user()->profile->avatar ?? 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' }}" class="w-12 h-12 rounded-full shadow-lg">
                     <div>
                         <h2 class="text-lg font-semibold">Hello! {{ Auth::user()->profile->first_name }}</h2>
@@ -78,6 +78,8 @@
     <!-- Component End  -->
 
 </body>
+
+
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://use.fontawesome.com/03f8a0ebd4.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -89,7 +91,8 @@
     const closeBtn = document.querySelector('.close-btn');
 
     toggleBtn.addEventListener('click', function() {
-        wrapper.classList.toggle('hide-sidebar');
+        console.log('click toggle')
+        wrapper.classList.remove('hide-sidebar');
     });
 
     closeBtn.addEventListener('click', function() {
@@ -103,9 +106,9 @@
 
         // If the screen size is smaller than a certain breakpoint, hide the sidebar
         if (window.innerWidth <= 480) {
-            sidebar.classList.add('hidden');
-        } else {
-            sidebar.classList.remove('hidden');
-        }
+            wrapper.classList.add('hide-sidebar');
+        } //else {
+        //     sidebar.classList.remove('hidden');
+        // }
     });
 </script>
