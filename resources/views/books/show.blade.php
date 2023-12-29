@@ -43,10 +43,9 @@
             <div class="w-auto h-auto flex flex-col gap-2">
                 <div class="w-full h-full mx-auto flex flex-wrap space-x-10">
                     @if ($book->image !== null)
-                        <a href="{{ $book->image }}" class="venobox h-full w-auto">
-                            <img class="h-auto py-9 w-96 object object-center" src="{{ url($book->image) }}"
-                                alt="image">
-                        </a>
+                    <a href="{{ $book->image }}" class="venobox h-full w-auto">
+                        <img class="h-48 w-96 object-cover object-center" src="{{ route('image-view', ['name' => $book->image]) }}" alt="image">
+                    </a>
                     @else
                         <a href="{{ asset('img/b1.jpg') }}" class="venobox h-full w-auto">
                             <img class="h-full py-9" src="{{ asset('img/b1.jpg') }}" alt="image">
