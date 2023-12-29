@@ -39,8 +39,8 @@
                             </div>
                         </div>
                         @if ($book->image !== null)
-                            <img class="h-70 rounded w-full object-cover object-center py-6"
-                                src="{{ url($book->image) }}" alt="content">
+                        <img class="h-70 rounded w-full object-cover object-center py-6"
+                        src="{{route('image-view', ['name' => $book->image])}}" alt="content">
                         @else
                             <img class="h-70 rounded w-full object-cover object-center py-6"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">

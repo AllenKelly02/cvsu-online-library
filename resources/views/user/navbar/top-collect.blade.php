@@ -52,8 +52,8 @@
                         </div>
                     </div>
                     @if ($favorite->book->image !== null)
-                        <img class="h-70 rounded w-full object-cover object-center py-6"
-                            src="{{ url($favorite->book->image) }}" alt="content">
+                            <img class="h-70 rounded w-full object-cover object-center py-6"
+                                src="{{route('image-view', ['name' => $favorite->book->image])}}" alt="content">
                     @else
                         <img class="
                             h-70 rounded w-full object-cover object-center py-6"
