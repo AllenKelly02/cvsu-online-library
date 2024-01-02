@@ -93,8 +93,8 @@
                                 <h1 class="text-lg font-bold p-2">
                                     Ranking
                                 </h1>
-                                <div class="overflow-x-auto h-96">
-                                    <table class=" w-full bg-gray-50">
+                                <div class="overflow-x-auto h-full">
+                                    <table class=" w-full">
                                       <!-- head -->
                                       <thead>
                                         <tr>

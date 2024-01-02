@@ -5,9 +5,9 @@
                 <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">List of Books</h1>
                 <div class="h-1 w-20 bg-bluemain rounded"></div>
             </div>
-            <div>
-                <a href="{{route('admin.book.import.create')}}" class="btn btn-primary btn-xs">Import</a>
-                <a href="{{route('admin.scan.book.index')}}" target="_blank">Scan Book</a>
+            <div class="py-3">
+                <a href="{{route('admin.book.import.create')}}" class="btn btn-primary rounded-full text-black bg-yellowmain border-yellowmain hover:bg-yellow-500 hover:border-yellow-500 hover:text-black ">Import</a>
+                <a href="{{route('admin.scan.book.index')}}" target="_blank" class="text-black hover:underline">Scan Book</a>
             </div>
         </div>
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
@@ -43,7 +43,7 @@
 
 
             @forelse ($books as $book)
-                <div class="w-full md:w-1/2 lg:w-1/4 p-4 ">
+                <div class="w-full md:w-1/2 lg:w-1/4 p-4 py-10">
 
                     <div class="bg-white shadow-2xl p-6 rounded-lg h-full">
                         <div class="flex gap-2">
@@ -61,13 +61,15 @@
                         </div>
 
                         @if ($book->image !== null)
-                            <img class="h-70 rounded w-full object-cover object-center py-6"
-                                src="{{route('image-view', ['name' => $book->image])}}" alt="content">
+                            <img class="w-full object-cover object-center py-6 rounded"
+                                style="height: 480px; width: 100%;"
+                                src="{{ route('image-view', ['name' => $book->image]) }}" alt="content">
                         @else
-                            <img class="
-                                h-70 rounded w-full object-cover object-center py-6"
+                        <img class="w-full object-cover object-center py-6 rounded"
+                        style="height: 480px; width: 100%;"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
+
 
                         @if ($book->status === 'available')
                             <span
@@ -98,9 +100,8 @@
                             {{ $book->call_number }}</h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Publisher:</b>
                             {{ $book->publisher }}</h3>
-                        <a href="{{ route('admin.books.show', ['book' => $book]) }}" type="submit"
-                            class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black text-sm uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-500 active:shadow-lg transition duration-150 ease-in-out">
-                            <b>View</b>
+                        <a href="{{ route('admin.books.show', ['book' => $book]) }}" class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">
+                            View Book
                         </a>
 
                     </div>

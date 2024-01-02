@@ -2,7 +2,7 @@
     <div class="pt-5 pl-20">
         @auth
             @if (Auth::user()->role === 'admin')
-                <a class="cta" href="{{ route('admin.books.index') }}">
+                <a class="cta" href="{{ route('admin.books.show', ['book' => $book]) }}">
                     <span class="black">Back</span>
                 </a>
             @else
@@ -28,10 +28,14 @@
         <div class="container px-5 py-24 mx-auto">
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
                 @if ($book->image !== null)
-                    <img class="h-full py-9" src="{{ url($book->image) }}" alt="image">
-                @else
-                    <img class="h-full py-9" src="{{ asset('img/b1.jpg') }}" alt="image">
-                @endif
+                        <a href="{{ route('admin.books.show', ['book' => $book]) }}" class="h-full w-auto">
+                            <img class=" px-10 h-full py-9 rounded object-cover object-center" src="{{route('image-view', ['name' => $book->image])}}" alt="content">
+                        </a>
+                        @else
+                            <img class="
+                            h-full py-9 object-cover object-center"
+                                src="{{ asset('img/b1.jpg') }}" alt="content">
+                        @endif
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <form method="POST" action="{{ route('admin.books.update', ['id' => $book->id]) }}">
                         @csrf

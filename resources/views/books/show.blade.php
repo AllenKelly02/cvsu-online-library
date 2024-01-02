@@ -43,20 +43,22 @@
             <div class="w-auto h-auto flex flex-col gap-2">
                 <div class="w-full h-full mx-auto flex flex-wrap space-x-10">
                     @if ($book->image !== null)
-                    <a href="{{ $book->image }}" class="venobox h-full w-auto">
-                        <img class="h-48 w-96 object-cover object-center" src="{{ route('image-view', ['name' => $book->image]) }}" alt="image">
-                    </a>
-                    @else
-                        <a href="{{ asset('img/b1.jpg') }}" class="venobox h-full w-auto">
-                            <img class="h-full py-9" src="{{ asset('img/b1.jpg') }}" alt="image">
+                        <a href="{{ route('admin.books.show', ['book' => $book]) }}" class="h-full w-auto">
+                            <img class=" px-10 h-96 rounded w-full object-cover object-center py-6" src="{{route('image-view', ['name' => $book->image])}}" alt="content">
                         </a>
-                    @endif
+                        @else
+                        <a href="{{ route('admin.books.show', ['book' => $book]) }}" class="h-full w-auto">
+                            <img class="px-10 h-96 rounded w-full object-cover object-center py-6"
+                                src="{{ asset('img/b1.jpg') }}" alt="content">
+                        </a>
+                        @endif
+
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
 
                         <div class="flex gap-2">
                             <div class="grow">
                                 <h1
-                                    class="bg-white rounded-lg drop-shadow-lg w-44 flex justify-center text-lg px-3 text-black border-2 border-bluemain capitalize mb-5">
+                                    class="bg-white rounded-lg drop-shadow-lg w-44 flex justify-center text-lg px-5 text-black border-2 border-bluemain capitalize mb-5">
                                     {{ $bookType }}
                                     {{-- {{ $book->type }} --}}
                                 </h1>
@@ -144,7 +146,7 @@
                             @endif
                         </div>
 
-                        <h1 class="text-black text-4xl title-font font-bold mb-2 tracking-widest">{{ $book->title }}
+                        <h1 class="text-black text-4xl title-font font-bold py-5 tracking-widest">{{ $book->title }}
                         </h1>
                         <div class="flex mb-4">
                             <span class="flex items-center">
@@ -154,17 +156,16 @@
                                 <span class="text-black ml-1"> {{ $book->published_year }}</span>
                             </span>
                         </div>
-                        <p class="text-black mb-3 flex flex-col gap-2">
+                        <p class="text-black mb-3 py-3">
                             <b>ISBN:</b> {{ $book->ISBN }}
-
                         </p>
-                        <p class="flex flex-col gap-2">
+                        <p class="flex flex-col gap-2 text-black">
                             {!! DNS1D::getBarcodeHTML($book->accession_number, 'CODABAR') !!}
-                            <span>
-                                Accession Number - {{ $book->accession_number }}
+                            <span class="text-black">
+                                <b>Accession Number</b> - {{ $book->accession_number }}
                             </span>
                         </p>
-                        <p class="text-black mb-3">
+                        <p class="text-black py-3">
                             <b>Publisher:</b> {{ $book->publisher }}
                         </p>
                         <p class="text-black mb-3">
@@ -172,7 +173,7 @@
                         </p>
 
 
-                        <p class="leading-relaxed text-black mb-3"><b>Description:</b><br>{{ $book->description }}</p>
+                        <p class="leading-relaxed text-black mb-3 text-justify"><b>Description:</b><br>{{ $book->description }}</p>
                         <p class="leading-relaxed text-black mb-3"><b>Biblio Notes:</b><br>{{ $book->bibliography }}
                         </p>
                         <div class="flex">

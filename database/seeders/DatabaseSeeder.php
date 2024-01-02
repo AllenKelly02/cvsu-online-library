@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategoriesSeeder::class
         ]);
-        Book::factory(20)->create();
+        // Book::factory(20)->create();
 
     }
 }

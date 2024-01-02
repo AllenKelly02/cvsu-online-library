@@ -47,11 +47,12 @@
                             @endif
                         </div>
                         @if ($book->image !== null)
-                        <img class="h-70 rounded w-full object-cover object-center py-6"
+                        <img class="w-full object-cover object-center py-6 rounded"
+                        style="height: 480px; width: 100%;"
                         src="{{route('image-view', ['name' => $book->image])}}" alt="content">
                         @else
-                            <img class="
-                                h-70 rounded w-full object-cover object-center py-6"
+                            <img class="w-full object-cover object-center py-6 rounded"
+                            style="height: 480px; width: 100%;"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
@@ -84,9 +85,9 @@
                             {{ $book->call_number }}</h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Publisher:</b>
                             {{ $book->publisher }}</h3>
-                            <a href="{{ route('user.books.show', ['book' => $book]) }}" type="submit"
-                                class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black text-sm uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-500 active:shadow-lg transition duration-150 ease-in-out">
-                                <b>View</b>
+                            <a href="{{ route('user.books.show', ['book' => $book]) }}"
+                                class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">
+                                <b>View Book</b>
                             </a>
 
                     </div>

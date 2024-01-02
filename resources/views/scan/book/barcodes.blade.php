@@ -8,9 +8,9 @@
         <div class="w-full h-screen flex flex-wrap gap-2 bg-white rounded-lg justify-center p-4" id="barcode-print-data">
 
             @forelse ($books as $book)
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2 px-4">
                {!! DNS1D::getBarcodeHTML($book->accession_number, 'CODABAR')  !!}
-               <p>Accession Number - {{$book->accession_number}}</p>
+               <p class="text-black"><b>Accession Number</b> - {{$book->accession_number}}</p>
             </div>
             @empty
 

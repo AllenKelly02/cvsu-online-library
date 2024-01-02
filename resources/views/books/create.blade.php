@@ -113,17 +113,15 @@
                                     <select class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
                                         @change="getBookType($event)" id="type" name="type">
                                         <option selected value="">Select Type</option>
-                                        <option class="bg-white" value="audio">Audio/Visuals</option>
                                         <option class="bg-white" value="book">Book</option>
                                         <option class="bg-white" value="e-Book">E-Book</option>
-                                        <option class="bg-white" value="e-Journal">E-Journal</option>
                                         <option class="bg-white" value="journal">Journal</option>
-                                        <option class="bg-white" value="clippings">New Clippings</option>
-                                        <option class="bg-white" value="other">Other</option>
                                         <option class="bg-white" value="publications">Publications</option>
                                         <option class="bg-white" value="references">References</option>
                                         <option class="bg-white" value="software">Software</option>
                                         <option class="bg-white" value="thesis">Thesis</option>
+                                        <option class="bg-white" value="other">Other</option>
+
                                     </select>
                                 </div>
                                 @error('type')
@@ -351,7 +349,7 @@
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0" id="ISBN">
                                         <input name="ISBN"
                                             class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
-                                            id="formInput1-1" type="text" placeholder="Number" minlength="13"
+                                            id="formInput1-1" type="text" placeholder="Number"
                                             maxlength="13">
                                     </div>
                                 </div>
@@ -468,10 +466,10 @@
             </div>
             <div class="w-full sm:w-auto pl-full pt-5 mb-20">
                 <div class="pl-98 pr-0 ml-98 mr-0">
-                    <a class="inline-block py-2 mr-3 text-xs w-32 leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
+                    <a class="inline-block py-2 mr-3 text-xs w-32 leading-normal bg-red-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-red-500 hover:text-black"
                         href="{{ route('admin.books.index') }}">Cancel</a>
                     <button
-                        class="inline-block py-2 px-4 text-xs w-32 leading-normal border-yellowmain hover:border-yellowmain hover:bg-yellowmain hover:text-black hover:border-[2px] border-[1px] rounded-3xl p-3 text-center text-black font-bold transition duration-200"
+                        class="inline-block py-2 px-4 text-xs w-32 leading-normal bg-green-600 text-white hover:bg-green-500 hover:text-black rounded-3xl p-3 text-center text-black font-bold transition duration-200"
                         type="submit">Upload</button>
                 </div>
             </div>
