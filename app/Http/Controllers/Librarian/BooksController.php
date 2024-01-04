@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Librarian;
 
+use App\Enums\EbookSourceType;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\BookIssuing;
+use App\Models\Categories;
 use App\Models\UserFavouriteBook;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class BooksController extends Controller
 {
@@ -24,7 +27,10 @@ class BooksController extends Controller
 
     public function create()
     {
-        return view('books.create');
+
+        $categories = Categories::get();
+
+        return view('books.create', compact(['categories']));
     }
 
     public function edit($id)
@@ -65,6 +71,12 @@ class BooksController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->all());
+
+        // dd(EbookSourceType::LOCAL->value);
+
+
+
         $data = $request->validate([
             'title' => 'required',
             'author' => 'required',
@@ -72,7 +84,7 @@ class BooksController extends Controller
             'category' => 'required',
             'published_year' => 'required',
             'publisher',
-            'accession_number',
+            'accession_number' => 'required',
             'edition_number',
             'call_number',
             'ISBN' => 'required',
@@ -82,9 +94,40 @@ class BooksController extends Controller
             'bibliography',
             'course' => 'required',
         ]);
-        $books = Book::create($data);
+        $books = Book::create([
+            'title' => $request->title,
+            'author' => $request->author,
+            'type' => $request->type,
+            'category' => $request->category,
+            'published_year' => $request->published_year,
+            'publisher' => $request->publisher,
+            'accession_number' => $request->accession_number,
+            'edition_number' => $request->edition_number,
+            'call_number' => $request->call_number,
+            'ISBN' => $request->ISBN,
+            'pages' => $request->pages,
+            'copy' => $request->copy,
+            'description' => $request->description,
+            'bibliography' => $request->bibliography,
+            'course' => $request->course
+        ]);
 
         $image = $request->file('image');
+        $ebook_source = $request->ebook_source;
+        $ebook_source_type = $request->ebook_source_type;
+
+
+        if ($ebook_source_type === EbookSourceType::LOCAL->value) {
+
+
+            $ebook_name = 'EBOOK-' . uniqid() . '.' . $ebook_source->extension();
+
+            $dir = $ebook_source->storeAs('/ebook', $ebook_name, 'public');
+
+            $ebook_source = asset('/storage/' . $dir);
+        }
+
+
 
 
         if ($image) {
@@ -93,7 +136,9 @@ class BooksController extends Controller
 
 
             $books->update([
-                'image' => asset('storage/book/image/' . $fileName)
+                'image' => $fileName,
+                'ebook_link' => $ebook_source,
+                'ebook_source' => $ebook_source_type
             ]);
         }
 
@@ -154,7 +199,7 @@ class BooksController extends Controller
         );
 
         $book = $bookIssuing->book;
-        
+
         if ($book->copy > 1) {
             $bookIssuing->book->update(['copy' => $book->copy - 1]);
         } else if ($book->copy == 1) {
@@ -189,7 +234,7 @@ class BooksController extends Controller
     {
         $bookIssuing = BookIssuing::find($id);
 
-        $bookIssuing->book->update(['status' => 'available', 'copy' => $bookIssuing->book->copy + 1 ]);
+        $bookIssuing->book->update(['status' => 'available', 'copy' => $bookIssuing->book->copy + 1]);
 
 
         $bookIssuing->update([
@@ -241,13 +286,41 @@ class BooksController extends Controller
 
     public function allBorrowedBooks()
     {
-        $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->get();
+        $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->where('is_approved', true)->get();
+
+        // uncomment this
+        /*
+        $testing_future_date_for_penalty = Carbon::now()->addDays(10)->format('M-d-Y');
+
+        $testing_present_date_for_penalty = Carbon::now()->subDays(5)->diffInDays();
+
 
 
         foreach($bookIssuings as $bookIssuing){
 
-            if ($bookIssuing->created_at->diffInDays() > 3 && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')){
+            if ($testing_present_date_for_penalty > 3 && $bookIssuing->penalty_date !== $testing_future_date_for_penalty){
                 if(!$bookIssuing->penalty) {
+
+                    $bookIssuing->update([
+                        'penalty' => true,
+                        'penalty_payment' => ($testing_present_date_for_penalty - $bookIssuing->total_days) * 5,
+                        'penalty_date' => $testing_future_date_for_penalty
+                    ]);
+                } else {
+                    $bookIssuing->update([
+                        'penalty_payment' => $bookIssuing->penalty_payment + 5,
+                        'penalty_date' => $testing_future_date_for_penalty
+                    ]);
+                }
+            }
+        }*/
+
+
+       // comment this if you want to test the penalty then uncomment the testing logic in the upper parts of this
+        foreach ($bookIssuings as $bookIssuing) {
+
+            if ($bookIssuing->created_at->diffInDays() > 3 && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')) {
+                if (!$bookIssuing->penalty) {
 
                     $bookIssuing->update([
                         'penalty' => true,
@@ -272,12 +345,26 @@ class BooksController extends Controller
 
         return view('books.archivedbooks', compact(['books']));
     }
-    public function destroy($id){
+    public function destroy(Request $request, $id)
+    {
         $book = Book::find($id);
+
+
+        $book->update([
+            'reason_remove' => $request->reason
+        ]);
 
         $book->delete();
 
 
         return to_route('admin.books.index')->with(['delete' => 'Book Deleted !']);
+    }
+    public function bookBarcode()
+    {
+
+        $books = Book::get();
+
+
+        return view('scan.book.barcodes', compact(['books']));
     }
 }

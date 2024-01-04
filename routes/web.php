@@ -7,6 +7,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Librarian\BooksController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BookScannerController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Guest\MessageController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\Librarian\ImportBookController;
+use App\Http\Middleware\Role;
+use Symfony\Component\Mime\MessageConverter;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +30,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::post('/message', [MessageController::class, 'store'])->name('message');
+
+Route::get('/image/{name}', [ImageController::class, 'view'])->name('image-view');
+
 // Route::get('/dashboard', function () {
 //     return view('user.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -32,6 +44,9 @@ Route::get('/browse', [BooksController::class, 'browse'])->name('books.browse');
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+
+    Route::post('/profile/update/avatar', [ProfileController::class, 'avatar'])->name('update.avatar');
+
 
     Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
@@ -47,6 +62,35 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
 
+
+    Route::prefix('scan')->as('scan.')->group(function(){
+        Route::prefix('book')->as('book.')->group(function(){
+            Route::get('index', [BookScannerController::class, 'index'])->name('index');
+            Route::get('show/{book}', [BookScannerController::class, 'show'])->name('show');
+        });
+    });
+
+
+    Route::resource('category', CategoriesController::class);
+
+
+    Route::prefix('messages')->as('messages.')->group(function (){
+        Route::get('', [MessageController::class, 'index'])->name('index');
+        Route::get('/show/{message}', [MessageController::class, 'show'])->name('show');
+        Route::post('/reply', [MessageController::class, 'reply'])->name('reply');
+    });
+
+
+    Route::prefix('books')->as('book.')->group(function(){
+        Route::prefix('import')->as('import.')->group(function(){
+            Route::get('/create', [ImportBookController::class,'create'])->name('create');
+            Route::post('/upload', [ImportBookController::class,'upload'])->name('upload');
+        });
+    });
+
+      //barcodes
+      Route::get('/books/barcodes', [BooksController::class, 'bookBarcode'])->name('books.barcodes');
+
     Route::get('/books', [BooksController::class, 'index'])->name('books.index');
 
     Route::get('/books/create', [BooksController::class, 'create'])->name('books.create');
@@ -58,6 +102,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
     Route::put('/books/{id}/edit', [BooksController::class, 'update'])->name('books.update');
 
     Route::get('/books/show/{book}', [BooksController::class, 'show'])->name('books.show');
+
+
+
 
     //list of Borrowed
     Route::get('/books/get/Borrow', [BooksController::class, 'allBorrowedBooks'])->name('getAllBorrowedBooks');

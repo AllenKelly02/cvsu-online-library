@@ -7,7 +7,7 @@
             <p class="alert alert-success shadow-lg w-96 ml-96 animate-bounce mt-32">{{ Session::get('message') }}</p>
         @endif
 
-        <div class="flex items-center justify-center py-40 pt-36 mt-16 w-full">
+        <div class="flex items-center justify-center py-40 px-4 mt-16 w-full">
             <form method="POST" action="{{ route('login') }}" class="max-w-md w-full">
                 @csrf
                 <div class="p-10 border-[1px] -mt-10 bg-no-repeat solid-border-bgmain rounded-3xl shadow-2xl flex flex-col items-center space-y-6"
@@ -35,22 +35,24 @@
                             <p class="text-red-500 text-center text-xs">*</p>
                             <span class="error  text-red-700 text-xs"></span>
                         </div>
-                        <div class="flex">
-                            <div
-                                class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                <i class="mdi mdi-email-outline text-bluemain text-lg"></i>
+                            <div class="flex">
+                                <div class="md:w-2/3 relative">
+                                    <input type="email" name="email" custommaxlength="50" minlength="5"
+                                        :value="old('Email')" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                        class="w-full md:w-80 sm:w-96 pl-10 pr-3 py-2 rounded-lg text-black border-2 border-blue-100 outline-none focus:border-green3"
+                                        placeholder="cvsubacoor@gmail.com" required>
+                                    <div class="absolute top-1/2 left-3 transform -translate-y-1/2">
+                                        <i class="mdi mdi-email-outline text-bluemain text-lg"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <input type="email" name="email" custommaxlength="50" minlength="5"
-                                :value="old('Email')" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                class="w-80 -ml-10 pl-10 pr-3 py-2 rounded-lg text-black border-2 border-blue-100 outline-none focus:border-green3"
-                                placeholder="cvsubacoor@gmail.com" required>
                             <span class="error-icon hidden mt-2 -ml-6 text-red-700">
                                 <i class="ri-error-warning-fill"></i>
                             </span>
                             <span class="success-icon hidden mt-2 -ml-6 text-green-700">
                                 <i class="ri-checkbox-fill"></i>
                             </span>
-                        </div>
+
                     </div>
                     {{-- Password --}}
                     <div class="formGroup w-full px-5 mb-5">
@@ -60,20 +62,19 @@
                             <span class="error  text-red-700 text-xs"></span>
                         </div>
                         <div class="flex">
-                        <div class="relative">
-                            <input type="password" name="password" id="password" custommaxlength="20"
-                                class=" w-80 pl-10 pr-3 py-2 rounded-lg text-black border-2 border-blue-100 outline-none focus:border-green3"
-                                placeholder="************" required>
-                            <i onclick="togglePasswordVisibility('password')"
-                                class="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer">
-                                <i id="toggle_icon"
-                                    class="mdi mdi-eye-off-outline text-gray-400 text-lg"></i>
-                            </i>
-                            <div class="absolute top-1/2 left-3 transform -translate-y-1/2">
-                                <i class="mdi mdi-lock-outline text-bluemain text-lg"></i>
+                            <div class="md:w-3/3 relative">
+                                <input type="password" name="password" id="password" custommaxlength="20"
+                                    class="w-full md:w-80 sm:w-full pl-10 pr-3 py-2 rounded-lg text-black border-2 border-blue-100 outline-none focus:border-green3"
+                                    placeholder="************" required>
+                                <i onclick="togglePasswordVisibility('password')"
+                                    class="absolute top-1/2 right-8 transform -translate-y-1/2 cursor-pointer">
+                                    <i id="toggle_icon" class="mdi mdi-eye-off-outline text-gray-400 text-lg"></i>
+                                </i>
+                                <div class="absolute top-1/2 left-3 transform -translate-y-1/2">
+                                    <i class="mdi mdi-lock-outline text-bluemain text-lg"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
                         <span class="error-icon hidden mt-2 -ml-6 text-red-700">
                             <i class="ri-error-warning-fill"></i>
                         </span>

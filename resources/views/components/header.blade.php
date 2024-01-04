@@ -6,7 +6,7 @@
                     @auth
                         @if (Auth::user()->role === 'admin')
                             <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2">
-                                <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
+                                <img class="w-18 h-16" src="{{ asset('img/logo.png') }}" alt="">
                                 <div class="flex flex-col">
                                     <p class="castoro text-sm font-bold text-white">CAVITE STATE UNIVERSITY</p>
                                     <p class="castoro text-xs font-medium text-white">BACOOR CITY CAMPUS</p>
@@ -14,7 +14,7 @@
                             </a>
                         @else
                             <a href="{{ route('user.catalog') }}" class="flex items-center space-x-2">
-                                <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
+                                <img class="w-18 h-16" src="{{ asset('img/logo.png') }}" alt="">
                                 <div class="flex flex-col">
                                     <p class="castoro text-sm font-bold text-white">CAVITE STATE UNIVERSITY</p>
                                     <p class="castoro text-xs font-medium text-white">BACOOR CITY CAMPUS</p>
@@ -25,7 +25,7 @@
 
                     @guest
                         <a href="/" class="flex items-center space-x-2">
-                            <img class="w-16 h-16" src="{{ asset('img/logo.png') }}" alt="">
+                            <img class="w-18 h-16" src="{{ asset('img/logo.png') }}" alt="">
                             <div class="flex flex-col">
                                 <p class="castoro text-sm font-bold text-white">CAVITE STATE UNIVERSITY</p>
                                 <p class="castoro text-xs font-medium text-white">BACOOR CITY CAMPUS</p>
@@ -52,7 +52,7 @@
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="avatar ml-10 hover:border-black">
                                 <div class="w-12 rounded-full">
-                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <img src=" {{ Auth::user()->profile->avatar ?? 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}}" />
                                 </div>
                             </label>
 
@@ -72,7 +72,7 @@
                                 </form>
                             </ul>
                         </div>
-                    @else
+                    {{-- @else --}}
                         {{-- <div class="dropdown dropdown-end" tabindex="0">
                         <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer" src="/img/logo.png" alt="User dropdown">
 
@@ -106,10 +106,11 @@
                                 </form></div>
                         </div>
                         </div> --}}
-                        <div class="dropdown dropdown-end">
+                        {{-- <div class="dropdown dropdown-end">
                             <label tabindex="0" class="avatar ml-10 hover:border-black">
                                 <div class="w-12 rounded-full">
-                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <img src=" {{ Auth::user()->profile->avatar ?? 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}}" />
+
                                 </div>
                             </label>
 
@@ -133,21 +134,22 @@
                                     </x-dropdown-link>
                                 </form>
                             </ul>
-                        </div>
+                        </div> --}}
                     @endif
 
                 @else
-                    <div class="flex items-center space-x-5">
+                    <div class="flex items-center space-x-5 hidden sm:flex">
                         <a href="{{ route('login') }}"
-                            class="buttonh text-sm text-black font-bold py-2 px-4 rounded shadow-2xl bg-yellowmain hover:bg-yellow-500">
+                            class="buttonh text-sm text-black font-semibold py-2 px-4 rounded shadow-2xl bg-yellowmain hover:bg-yellow-500">
                             LOGIN
                         </a>
 
                             <a href="{{ route('register') }}"
-                                class="buttonh text-sm text-black font-bold py-2 px-4 rounded bg-yellowmain hover:bg-yellow-500">
+                                class="buttonh text-sm text-black font-semibold py-2 px-4 rounded bg-yellowmain hover:bg-yellow-500">
                                 REGISTER
                             </a>
                         </div>
+
                     @endauth
                 </div>
         </div>

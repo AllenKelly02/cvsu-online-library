@@ -1,7 +1,21 @@
+@php
+    use App\Enums\EbookSourceType;
+    use App\Models\Book;
+
+    $enumsEBookSourceType = EbookSourceType::cases();
+
+
+
+    $bookID =  book::latest()->first()?->id + 1 ?? 1;
+    $accession_number = str_pad($bookID, 8, '0', STR_PAD_LEFT);;
+
+
+@endphp
+
 <x-app-layout>
     <section class="py-3 px-32 items-center justify-center bg-no-repeat">
         <div class="container px-4 mx-auto">
-            <div class="p-8 bg-white rounded-xl" x-data="imageUploadHandler">
+            <div class="p-8 bg-white rounded-xl" x-data="bookDynamicForm">
                 <div
                     class="flex flex-wrap items-center justify-between -mx-4 mb-8 pb-6 border-b border-black border-opacity-20">
                     <div class="w-full sm:w-auto px-4 mb-6 sm:mb-0">
@@ -31,13 +45,18 @@
                             <div class="max-w-xl">
                                 <div class="flex flex-wrap items-center -mx-4">
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
-                                        <input type="file" name="image" id="image" placeholder="Image" @change="uploadHanlder($event)" class="w-96 file-input file-input-bordered file-input-info max-w-xs bg-white" />
+                                        <input type="file" name="image" id="image" placeholder="Image"
+                                            @change="uploadHanlder($event)"
+                                            class="w-96 file-input file-input-bordered file-input-info max-w-xs bg-white" />
                                     </div>
 
                                 </div>
                                 <div class="relative space-y-3">
-                                    <img src="" alt="" id="previewImage" class="h-full w-auto mb-5 py-3">
-                                    <a hef="#" class="absolute top-1 left-1 bg-yellowmain rounded-full text-black px-1 w-8 text-center cursor-pointer" @click="removeImage()">X</a>
+                                    <img src="" alt="" id="previewImage"
+                                        class="h-full w-auto mb-5 py-3">
+                                    <a hef="#"
+                                        class="absolute top-1 left-1 bg-yellowmain rounded-full text-black px-1 w-8 text-center cursor-pointer"
+                                        @click="removeImage()">X</a>
                                 </div>
                             </div>
                         </div>
@@ -91,21 +110,18 @@
                             <div class="max-w-xl">
                                 <div
                                     class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
-                                    <select
-                                        class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
-                                        id="type" name="type">
+                                    <select class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
+                                        @change="getBookType($event)" id="type" name="type">
                                         <option selected value="">Select Type</option>
-                                        <option class="bg-white" value="audio">Audio/Visuals</option>
                                         <option class="bg-white" value="book">Book</option>
                                         <option class="bg-white" value="e-Book">E-Book</option>
-                                        <option class="bg-white" value="e-Journal">E-Journal</option>
                                         <option class="bg-white" value="journal">Journal</option>
-                                        <option class="bg-white" value="clippings">New Clippings</option>
-                                        <option class="bg-white" value="other">Other</option>
                                         <option class="bg-white" value="publications">Publications</option>
                                         <option class="bg-white" value="references">References</option>
                                         <option class="bg-white" value="software">Software</option>
                                         <option class="bg-white" value="thesis">Thesis</option>
+                                        <option class="bg-white" value="other">Other</option>
+
                                     </select>
                                 </div>
                                 @error('type')
@@ -114,6 +130,89 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20"
+                        x-show="bookType !== null" x-transition.duration.700ms>
+                        <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                            <span class="text-sm font-medium text-black">E-book Source</span>
+                        </div>
+                        <div class="w-full sm:w-2/3 px-3">
+                            <div class="max-w-xl">
+                                <div
+                                    class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
+                                    <select @change="selectSourceType"
+                                        class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
+                                        id="type" name="ebook_source_type">
+                                        <option selected value="">Select Type</option>
+
+                                        @foreach ($enumsEBookSourceType as $ebookType)
+                                            <option class="bg-white" value="{{ $ebookType->value }}">
+                                                {{ $ebookType->value }}</option>
+                                        @endforeach
+
+
+                                    </select>
+                                </div>
+                                @error('type')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <template x-if="sourceType === `{{ $enumsEBookSourceType[0]->value }}`">
+                        <div
+                            class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                            <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                                <span class="text-sm font-medium text-black">E-book Link</span>
+                            </div>
+                            <div class="w-full sm:w-2/3 px-4">
+                                <div class="max-w-xl">
+                                    <div class="flex flex-wrap items-center -mx-3">
+                                        <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                            <input name="ebook_source"
+                                                class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
+                                                type="text" placeholder="e-book link">
+                                        </div>
+                                    </div>
+                                    @error('title')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+
+                    <template x-if="sourceType === `{{ $enumsEBookSourceType[1]->value }}`">
+                        <div
+                            class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                            <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                                <span class="text-sm font-medium text-black">E-book File</span>
+                            </div>
+                            <div class="w-full sm:w-2/3 px-4">
+                                <div class="max-w-xl">
+                                    <div class="flex flex-wrap items-center -mx-3">
+                                        <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                            <input name="ebook_source"
+                                                class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
+                                                type="file" placeholder="e-book file">
+                                        </div>
+                                    </div>
+                                    @error('title')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+
                     <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20">
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">Category</span>
@@ -121,68 +220,22 @@
                         <div class="w-full sm:w-2/3 px-3">
                             <div class="max-w-xl">
                                 <div
-                                    class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg">
+                                    class="relative block px-4 w-full text-sm text-black placeholder-gray-700 rounded-lg flex flex-col gap-2">
                                     <select
                                         class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
                                         id="category" name="category">
-                                        <option selected value="">Select Category</option>
-                                        <option class="bg-white" value="10th">10th</option>
-                                        <option class="bg-white" value="1st ed.">1st ed.</option>
-                                        <option class="bg-white" value="2nd">2nd</option>
-                                        <option class="bg-white" value="2nd ed.">2nd ed.</option>
-                                        <option class="bg-white" value="3rd">3rd</option>
-                                        <option class="bg-white" value="4th ed.">4th ed.</option>
-                                        <option class="bg-white" value="5th">5th</option>
-                                        <option class="bg-white" value="5th ed.">5th ed.</option>
-                                        <option class="bg-white" value="6th">6th</option>
-                                        <option class="bg-white" value="8th ed.">8th ed.</option>
-                                        <option class="bg-white" value="9th">9th</option>
-                                        <option class="bg-white" value="Agriculture sciences, life sciences and biosciences">Agriculture sciences, life sciences and biosciences</option>
-                                        <option class="bg-white" value="Arts">Arts</option>
-                                        <option class="bg-white" value="Basic and applied sciences">Basic and applied sciences</option>
-                                        <option class="bg-white" value="BSCS-Thesis">BSCS-Thesis</option>
-                                        <option class="bg-white" value="Business Management">Business Management</option>
-                                        <option class="bg-white" value="Criminology">Criminology</option>
-                                        <option class="bg-white" value="Education">Education</option>
-                                        <option class="bg-white" value="Ethics">Ethics</option>
-                                        <option class="bg-white" value="Fiction/Non-Fiction">Fiction/Non-Fiction</option>
-                                        <option class="bg-white" value="Filipiniana">Filipiniana</option>
-                                        <option class="bg-white" value="Gender-Focused">Gender-Focused</option>
-                                        <option class="bg-white" value="General Education">General Education</option>
-                                        <option class="bg-white" value="General reference books">General reference books</option>
-                                        <option class="bg-white" value="Geography">Geography</option>
-                                        <option class="bg-white" value="History">History</option>
-                                        <option class="bg-white" value="History: America">History: America</option>
-                                        <option class="bg-white" value="Hotel and Restaurant Management">Hotel and Restaurant Management</option>
-                                        <option class="bg-white" value="Humanities">Humanities</option>
-                                        <option class="bg-white" value="ICT in Education">ICT in Education</option>
-                                        <option class="bg-white" value="Information Technology">Information Technology</option>
-                                        <option class="bg-white" value="Language">Language</option>
-                                        <option class="bg-white" value="Law, criminology and forensics">Law, criminology and forensics</option>
-                                        <option class="bg-white" value="Logic">Logic</option>
-                                        <option class="bg-white" value="Management">Management</option>
-                                        <option class="bg-white" value="Philosophy">Philosophy</option>
-                                        <option class="bg-white" value="Psychology">Psychology</option>
-                                        <option class="bg-white" value="Religion">Religion</option>
-                                        <option class="bg-white" value="Research Book">Research Book</option>
-                                        <option class="bg-white" value="Reserve">Reserve</option>
-                                        <option class="bg-white" value="Science">Science</option>
-                                        <option class="bg-white" value="Science and Technology">Science and Technology</option>
-                                        <option class="bg-white" value="Science-Mathematics">Science-Mathematics</option>
-                                        <option class="bg-white" value="Social Science">Social Science</option>
-                                        <option class="bg-white" value="Social Science and Humanities">Social Science and Humanities</option>
-                                        <option class="bg-white" value="Social Science-Business">Social Science-Business</option>
-                                        <option class="bg-white" value="Social Sciences">Social Sciences</option>
-                                        <option class="bg-white" value="Sociology">Sociology</option>
-                                        <option class="bg-white" value="Technology">Technology</option>
-                                        <option class="bg-white" value="Thesis-BSBM">Thesis-BSBM</option>
-                                        <option class="bg-white" value="Thesis-BSIT">Thesis-BSIT</option>
-                                        <option class="bg-white" value="Tourism and hotel management">Tourism and hotel management</option>
-                                        <option class="bg-white" value="Travel Guide Book">Travel Guide Book</option>
-                                        <option class="bg-white" value="Values">Values</option>
-                                        <option class="bg-white" value="vol. 2">vol. 2</option>
-                                        <option class="bg-white" value="Women's Studies LGBT Gender Studies Feminism">Women's Studies LGBT Gender Studies Feminism</option>
+                                        <option selected disabled>Select Category</option>
+
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->name }}">{{ $category->name }}</optionv>
+                                        @endforeach
+
                                     </select>
+                                    <div>
+                                        <a class="inline-block py-2 mr-3 text-xs leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
+                                            href="{{ route('admin.category.create') }}">Add Category</a>
+                                    </div>
+
                                 </div>
                                 @error('type')
                                     <span class="text-xs text-red-600">{{ $message }}</span>
@@ -238,7 +291,8 @@
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
                                         <input name="accession_number"
                                             class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
-                                            id="formInput1-1" type="text" placeholder="Number">
+                                            id="formInput1-1" type="text" placeholder="{{ $accession_number }}"
+                                            value="{{ $accession_number }}">
                                     </div>
                                 </div>
                                 @error('accession_number')
@@ -295,7 +349,8 @@
                                     <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0" id="ISBN">
                                         <input name="ISBN"
                                             class="block py-4 px-3 w-96 text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
-                                            id="formInput1-1" type="text" placeholder="Number" minlength="13" maxlength="13">
+                                            id="formInput1-1" type="text" placeholder="Number"
+                                            maxlength="13">
                                     </div>
                                 </div>
                                 @error('ISBN')
@@ -384,8 +439,7 @@
                             <div class="max-w-xl">
                                 <div
                                     class="relative block px-3 w-full text-sm text-black placeholder-gray-700 rounded-lg">
-                                    <select
-                                        class="w-full py-2 rounded-lg border-2 border-black outline-none"
+                                    <select class="w-full py-2 rounded-lg border-2 border-black outline-none"
                                         id="formInput1-6" name="course">
                                         <option selected value="">Select Course</option>
                                         <option class="bg-white" value="Bachelor of Secondary Education">Bachelor of
@@ -412,10 +466,10 @@
             </div>
             <div class="w-full sm:w-auto pl-full pt-5 mb-20">
                 <div class="pl-98 pr-0 ml-98 mr-0">
-                    <a class="inline-block py-2 mr-3 text-xs w-32 leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
+                    <a class="inline-block py-2 mr-3 text-xs w-32 leading-normal bg-red-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-red-500 hover:text-black"
                         href="{{ route('admin.books.index') }}">Cancel</a>
                     <button
-                        class="inline-block py-2 px-4 text-xs w-32 leading-normal border-yellowmain hover:border-yellowmain hover:bg-yellowmain hover:text-black hover:border-[2px] border-[1px] rounded-3xl p-3 text-center text-black font-bold transition duration-200"
+                        class="inline-block py-2 px-4 text-xs w-32 leading-normal bg-green-600 text-white hover:bg-green-500 hover:text-black rounded-3xl p-3 text-center text-black font-bold transition duration-200"
                         type="submit">Upload</button>
                 </div>
             </div>
@@ -425,28 +479,79 @@
 
         @push('js')
             <script>
-                function imageUploadHandler(){
-                    return {
-                        uploadHanlder(e){
-                            const {files} = e.target;
-
-                            const reader = new FileReader();
-                            let image = null;
-                            reader.onload = function() {
-                                let image = document.getElementById('previewImage').src = reader.result;
-                                console.log(image)
-                            }
-
-                            reader.readAsDataURL(files[0])
-                        },
-                        removeImage() {
-                            const imagePriview = document.getElementById('previewImage');
-                            const imageInput = document.getElementById('image').value = null
-
-                            imagePriview.src = ''
+                const bookDynamicForm = () => ({
+                    bookType: null,
+                    sourceType: null,
+                    getBookType(e) {
+                        const type = e.target.value;
+                        if (type !== 'e-Book' || this.bookType !== null) {
+                            this.bookType = null
+                            this.sourceType = null
+                            return
                         }
+                        console.log('book Type function')
+                        this.bookType = type;
+                    },
+                    selectSourceType(e) {
+                        const srcType = e.target.value;
+                        this.sourceType = srcType;
+                    },
+                    uploadHanlder(e) {
+                        const {
+                            files
+                        } = e.target;
+
+                        const reader = new FileReader();
+                        let image = null;
+                        reader.onload = function() {
+                            let image = document.getElementById('previewImage').src = reader.result;
+                            console.log(image)
+                        }
+
+                        reader.readAsDataURL(files[0])
+                    },
+                    removeImage() {
+                        const imagePriview = document.getElementById('previewImage');
+                        const imageInput = document.getElementById('image').value = null
+
+                        imagePriview.src = ''
                     }
-                }
+                });
+
+
+
+                // function imageUploadHandler() {
+                //     return {
+                //         bookType : null,
+                //         eBookFieldToggle : false,
+                //         getBookType(e){
+                //             const type = e.target.value;
+                //            if(type !== 'e-Book') return
+
+                //           this.bookType = type;
+                //         },
+                //         uploadHanlder(e) {
+                //             const {
+                //                 files
+                //             } = e.target;
+
+                //             const reader = new FileReader();
+                //             let image = null;
+                //             reader.onload = function() {
+                //                 let image = document.getElementById('previewImage').src = reader.result;
+                //                 console.log(image)
+                //             }
+
+                //             reader.readAsDataURL(files[0])
+                //         },
+                //         removeImage() {
+                //             const imagePriview = document.getElementById('previewImage');
+                //             const imageInput = document.getElementById('image').value = null
+
+                //             imagePriview.src = ''
+                //         }
+                //     }
+                // }
             </script>
         @endpush
     </section>

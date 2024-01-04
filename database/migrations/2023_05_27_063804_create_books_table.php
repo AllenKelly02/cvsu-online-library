@@ -30,7 +30,10 @@ return new class extends Migration
             $table->string('bibliography')->nullable();
             $table->string('course');
             $table->string('status')->default('available');
+            $table->string('ebook_link')->nullable();
+            $table->string('ebook_source')->nullable();
             $table->unsignedBigInteger('course_id')->nullable();
+            $table->string('reason_remove')->nullable();
             $table->softDeletes();
             // $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();

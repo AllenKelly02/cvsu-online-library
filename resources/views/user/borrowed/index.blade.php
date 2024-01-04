@@ -14,7 +14,7 @@
                 </div>
             </form>
         </div>
-        <div class="px-1 py-2 mb-5 flex justify-center">
+        {{-- <div class="px-1 py-2 mb-5 flex justify-center">
             <div class="flex items-center space-x-5">
                 <a href="{{ route('admin.books.index') }}"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->routeIs('default') ? 'bg-yellowmain text-black' : '' }}">All</a>
@@ -27,8 +27,8 @@
                 <a href="{{ route('admin.books.index') }}??category=thesis"
                     class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'thesis' ? 'bg-yellowmain text-black' : '' }}">Thesis</a>
             </div>
-        </div>
-        <div class="flex flex-wrap -m-4">
+        </div> --}}
+        <div class="flex flex-wrap -m-4 py-5">
             @forelse ($borrowed as $borrow)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
                     <div class="bg-white shadow-2xl p-6 rounded-lg h-full">
@@ -36,10 +36,12 @@
                         <a class="bg-white border-2 border-bluemain rounded-xl drop-shadow-lg w-32 flex justify-center text-sm py-1 px-3 text-black capitalize">{{ $borrow->book->type }}</a>
 
                         @if ($borrow->book->image !== null)
-                            <img class="h-70 rounded w-full object-cover object-center py-6"
-                                src="{{ $borrow->book->image }}" alt="content">
+                           <img class="w-full object-cover object-center py-6 rounded"
+                                style="height: 480px; width: 100%;"
+                                src="{{ route('image-view', ['name' => $borrow->book->image]) }}" alt="content">
                         @else
-                            <img class="h-70 rounded w-full object-cover object-center py-6"
+                        <img class="w-full object-cover object-center py-6 rounded"
+                        style="height: 480px; width: 100%;"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
@@ -61,28 +63,21 @@
                             </span>
                         @endif
 
-                        <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1">{{ $borrow->book->title }}
-                        </h2>
-                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b>
-                            {{ $borrow->book->author }}
-                        </h3>
-                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b>
-                            {{ $borrow->book->published_year }}</h3>
-
-                        <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Borrowed Date:</b>
-                            {{ $borrow->borrowed_date }}</h3>
-                        <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Return Date:</b>
-                            {{ $borrow->returned_date }}</h3>
+                        <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1"> {{ $borrow->book->title }}</h2>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $borrow->book->author }}</h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>ISBN:</b> {{ $borrow->book->ISBN }}</h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Borrowed Date:</b> {{ $borrow->borrowed_date }}</h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Return Date:</b> {{ $borrow->returned_date }}</h3>
 
                         @if ($borrow->status === 'pending')
-                            <h3 class="truncate tracking-widest text-black text-xs m-1"><b>status:</b>
+                            <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Status:</b></h3>
                                 <span
                                     class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5
                                  py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 capitalize">
                                     {{ $borrow->status }}</span>
                             </h3>
                         @else
-                            <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Status:</b>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Status:</b></h3>
                                 <span
                                     class="bg-green-100 text-green-800 text-xs font-medium mr-2
                                     px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 capitalize">{{$borrow->status}}</span>

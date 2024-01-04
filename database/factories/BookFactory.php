@@ -112,10 +112,11 @@ class BookFactory extends Factory
             'ISBN' => $type === 'thesis' ? 'none' : $this->faker->unique()->isbn13(),
             'pages' => $this->faker->numberBetween(50, 1000),
             'copy' => $this->faker->numberBetween(1, 10),
-            'description' => $this->faker->sentence(),
+            'description' => $this->faker->sentence(50),
             'bibliography' => $this->faker->sentence(),
             'course' => $this->faker->randomElement($course),
             'course_id' => $this->faker->numberBetween(1, 7),
+            'image' => $this->faker->imageUrl()
         ];
     }
 }

@@ -28,7 +28,10 @@ class Book extends Model
         'description',
         'bibliography',
         'course',
-        'status'
+        'status',
+        'ebook_link',
+        'ebook_source',
+        'reason_remove'
     ];
 
     public function categories()
@@ -72,7 +75,7 @@ class Book extends Model
     }
 
     public function bookIssuing() {
-        return $this->hasOne(BookIssuing::class);
+        return $this->hasMany(BookIssuing::class);
     }
     public function favourite_users(){
         return $this->hasMany(UserFavouriteBook::class);
@@ -96,6 +99,13 @@ class Book extends Model
         return $this->attributes['course'] = json_decode($value);
     }
 
+    public function browse()
+    {
+        $books = Book::orderBy('published_year')->get();
+        dd($books); // Add this line to debug
+
+        return view('books.browse', compact('books'));
+    }
 
     public function scopeFilter($query, array $filters) {
         if ($filters['type'] ?? false) {
