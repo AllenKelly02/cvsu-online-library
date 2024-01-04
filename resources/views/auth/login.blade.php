@@ -62,12 +62,12 @@
                             <span class="error  text-red-700 text-xs"></span>
                         </div>
                         <div class="flex">
-                            <div class="md:w-2/3 relative">
+                            <div class="md:w-3/3 relative">
                                 <input type="password" name="password" id="password" custommaxlength="20"
-                                    class="w-full md:w-80 sm:w-96 pl-10 pr-3 py-2 rounded-lg text-black border-2 border-blue-100 outline-none focus:border-green3"
+                                    class="w-full md:w-80 sm:w-full pl-10 pr-3 py-2 rounded-lg text-black border-2 border-blue-100 outline-none focus:border-green3"
                                     placeholder="************" required>
                                 <i onclick="togglePasswordVisibility('password')"
-                                    class="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer">
+                                    class="absolute top-1/2 right-8 transform -translate-y-1/2 cursor-pointer">
                                     <i id="toggle_icon" class="mdi mdi-eye-off-outline text-gray-400 text-lg"></i>
                                 </i>
                                 <div class="absolute top-1/2 left-3 transform -translate-y-1/2">
