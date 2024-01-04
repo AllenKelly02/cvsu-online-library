@@ -4,7 +4,7 @@
         <div class="flex items-center justify-center py-40 pt-36 mt-16 w-full">
             <div class="text-gray-800 rounded-3xl shadow-xl w-full overflow-hidden bg-no-repeat"
                 style="background-image: url('../img/blob-scene-haikei (6).svg'); max-width:1000px">
-                <div class="md:flex w-full h-full">
+                <div class="md:flex md:px-10 sm:px-10 h-full">
 
                     <div class="w-full md:w-1/3.5 py-10 px-5 md:px-10" x-data="storeAccount">
                         <div class="text-center mb-10">

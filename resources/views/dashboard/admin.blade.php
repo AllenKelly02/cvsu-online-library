@@ -98,7 +98,7 @@
                                       <!-- head -->
                                       <thead>
                                         <tr>
-                                          <th></th>
+                                          <th class="w-16">Rank</th>
                                           <th>Title</th>
                                           <th>Borrowed</th>
 
@@ -106,26 +106,26 @@
                                       </thead>
                                       <tbody>
                                         <!-- row 1 -->
-
+                                        <?php
+                                        $count = 1;
+                                        ?>
                                         @foreach ($booksRanking as $book)
                                         <tr>
-                                            <th>{{$book->id}}</th>
-                                            <td>{{$book->title}}</td>
-                                            <td>{{$book->bookIssuing()->count()}}</td>
-
-                                          </tr>
-
+                                            <th>{{ $count++ }}</th>
+                                            <td>{{ $book->title }}</td>
+                                            <td>{{ $book->bookIssuing()->count() }}</td>
+                                        </tr>
                                         @endforeach
-
-
-                                      </tbody>
+                                    </tbody>
                                     </table>
                                   </div>
 
 
                             </div>
-                            {{-- <canvas id="myChart"></canvas> --}}
                         </div>
+
+
+
                         {{-- <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
                             <h2 class="text-xl font-bold"></h2>
                             <span class="text-sm font-semibold text-gray-500"></span>
