@@ -183,22 +183,19 @@
                                                     Date Borrowed
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
-                                                    date returned
+                                                    Date returned
                                                 </th>
                                                 <th scope="col" class="px-6 py-3" colspan="5">
                                                     Title
                                                 </th>
                                                 <th scope="col" class="px-6 py-3" colspan="2">
-                                                    Description
-                                                </th>
-                                                <th scope="col" class="px-6 py-3" colspan="2">
                                                     Author
                                                 </th>
                                                 <th scope="col" class="px-6 py-3" colspan="4">
-                                                    piblished_year
+                                                    published_year
                                                 </th>
                                                 <th scope="col" class="px-6 py-3">
-                                                    piblisher
+                                                    Publisher
                                                 </th>
                                             </tr>
                                         </thead>
@@ -218,9 +215,6 @@
                                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                                         {{ $book->book->title }}
                                                     </th>
-                                                    <td class="px-6 py-4" colspan="2">
-                                                        <p class="truncate w-10">{{ $book->book->description }}</p>
-                                                    </td>
                                                     <td class="px-6 py-4" colspan="2">
                                                         <p>{{ $book->book->author }}</p>
                                                     </td>

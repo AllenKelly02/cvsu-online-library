@@ -24,6 +24,7 @@ class AccountsController extends Controller
 
         $userAccount = [
             'name' => $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name,
+            'student_id' => $account->student_id,
             'email' => $account->email,
             'password' => Hash::make($account->password),
         ];
