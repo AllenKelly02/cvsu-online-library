@@ -33,9 +33,9 @@ class AuthenticatedSessionController extends Controller
         $role = $request->user()->role;
 
         switch($role){
-            case 'admin' : return redirect(route('admin.dashboard'));
+            case 'admin' : return redirect(route('admin.dashboard'))->with('message', 'Successfully logged in!');
             break;
-            case 'user' : return redirect(route('user.catalog'));
+            case 'user' : return redirect(route('user.catalog'))->with('message', 'Successfully logged in!');;
         }
 
         // if ($role === 'admin') {
@@ -60,6 +60,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login')->with(['message' => 'Logout Succesfully']);
     }
 }

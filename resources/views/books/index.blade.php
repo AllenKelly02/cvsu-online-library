@@ -10,11 +10,11 @@
                 <a href="{{route('admin.scan.book.index')}}" target="_blank" class="text-black hover:underline">Scan Book</a>
             </div>
         </div>
-        <div class="w-full flex items-center justify-end px-4 py-3 border-b border-gray-300">
+        <div class="w-full flex items-center justify-end px-4 py-3 border-b border-black mb-5">
             <form action="" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
                     <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
-                    <button type="submit"
+                    <button type="buttonh"
                         class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
                 </div>
             </form>

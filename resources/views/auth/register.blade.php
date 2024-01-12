@@ -140,7 +140,7 @@
                                 </div>
                             </div>
                             <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-16">
+                                <div class="formGroup w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
                                         <label for="course" class="text-xs font-semibold px-1">Sex</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
@@ -221,7 +221,7 @@
                             </div>
 
                             <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                <div class="formGroup w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
                                         <label for="firstName" class="text-xs font-semibold px-1">Email Address</label>
                                         <p class="text-red-500 text-center text-xs">*</p>

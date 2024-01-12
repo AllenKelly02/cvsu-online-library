@@ -24,7 +24,6 @@ class AccountsController extends Controller
 
         $userAccount = [
             'name' => $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name,
-            'student_id' => $account->student_id,
             'email' => $account->email,
             'password' => Hash::make($account->password),
         ];
@@ -49,7 +48,7 @@ class AccountsController extends Controller
 
         $account->delete();
 
-        return redirect()->back();
+        return redirect(route('admin.unverified-accounts'))->with(['message' => 'Accepted Succesfully']);
 
     }
 
@@ -67,9 +66,7 @@ class AccountsController extends Controller
 
         $account->delete();
 
-
-
-        return back()->with(['message' => 'deleted Successfully']);
+        return redirect(route('admin.unverified-accounts'))->with(['message' => 'Delete Succesfully']);
 
     }
     public function destroy($id){

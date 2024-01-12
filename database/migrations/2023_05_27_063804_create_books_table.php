@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('ISBN');
             $table->string('pages');
             $table->string('copy')->default('1');
-            $table->string('description', 10000)->nullable();
+            $table->string('description', 10000);
             $table->string('bibliography')->nullable();
             $table->string('course');
             $table->string('status')->default('available');

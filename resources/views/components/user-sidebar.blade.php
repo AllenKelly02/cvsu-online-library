@@ -62,6 +62,7 @@
                             <span class="ml-2 text-sm font-medium">{{ __('Log Out') }}</span>
                         </a>
                         </form>
+                        
                     </li>
                 </ul>
             </div>
