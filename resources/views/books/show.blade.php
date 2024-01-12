@@ -37,6 +37,18 @@
             </div>
         </div>
     @endif
+    @if (session()->has('warning'))
+    <div class="alert alert-warning shadow-lg w-80 ml-60 animate-bounce bg-yellow-200">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{{ session()->get('warning') }}</span>
+        </div>
+    </div>
+@endif
     <section class="text-gray-600 body-font overflow-hidden relative pt-5" x-data="removeModal">
         <div class="w-auto h-auto flex flex-col gap-2">
             @if ($bookType == 'e-Book')
