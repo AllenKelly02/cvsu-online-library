@@ -134,6 +134,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::get('/unverified-accounts', [AccountsController::class, 'unverifiedAccounts'])->name('unverified-accounts');
 
+    Route::get('/edit-accounts/{id}', [AccountsController::class, 'edit'])->name('edit-account');
+
+    Route::post('/update-accounts/{id}', [AccountsController::class, 'update'])->name('update-account');
+
     Route::post('/accept-account/{id}', [AccountsController::class, 'acceptAccount'])->name('accept-account');
 
     Route::post('/reject-account/{id}',[AccountsController::class, 'rejectAccount'])->name('reject-account');

@@ -12,13 +12,15 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountsController extends Controller
 {
-    public function verifiedAccounts() {
+    public function verifiedAccounts()
+    {
 
         $accounts = User::where('role', 'user')->get();
         return view('verified-accounts.index', compact(['accounts']));
     }
 
-    public function acceptAccount($id) {
+    public function acceptAccount($id)
+    {
 
         $account = UnverifiedAccount::where('id', $id)->first();
 
@@ -49,10 +51,10 @@ class AccountsController extends Controller
         $account->delete();
 
         return redirect(route('admin.unverified-accounts'))->with(['message' => 'Accepted Succesfully']);
-
     }
 
-    public function unverifiedAccounts() {
+    public function unverifiedAccounts()
+    {
 
         $accounts = UnverifiedAccount::get();
 
@@ -60,16 +62,17 @@ class AccountsController extends Controller
         return view('unverified-accounts.index', compact('accounts'));
     }
 
-    public function rejectAccount($id) {
+    public function rejectAccount($id)
+    {
 
         $account = UnverifiedAccount::where('id', $id)->first();
 
         $account->delete();
 
         return redirect(route('admin.unverified-accounts'))->with(['message' => 'Delete Succesfully']);
-
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
 
         $user = User::find($id);
 
@@ -80,7 +83,45 @@ class AccountsController extends Controller
 
 
         return back()->with(['message' => 'Account Sucessfully Deleted']);
-
-
     }
-}
+    public function edit($id)
+    {
+
+        $user = User::find($id);
+
+        return view('verified-accounts.edit', compact(['user']));
+    }
+    public function update(Request $request, string $id)
+    {
+
+
+
+        // $request->validate(['password' => 'confirmed|nullable']);
+
+        $user = User::find($id);
+
+        $user->update([
+            'email' => $request->email ?? $user->email,
+            'password' => $request->password !== null ? Hash::make($request->password) : $user->password
+        ]);
+
+        $profile = $user->profile;
+
+        $profile->update([
+            'last_name' => $request->last_name ?? $user->profile->last_name,
+            'first_name' => $request->first_name ?? $user->profile->first_name,
+            'middle_name' => $request->middle_name ?? $user->middle_name,
+            'course' => $request->course ?? $user->profile->course,
+            'address' => $request->address ?? $user->profile->address,
+            'student_id' => $request->student_id ?? $user->profile->student_id,
+            'sex' => $request->sex ?? $user->profile->sex,
+            'contact_number' => $request->contact_number ?? $user->profile->contact_number,
+            'email' => $request->email ?? $user->email,
+            'password' => $request->password ?? $user->password,
+            'user_id' => $user->id
+        ]);
+
+
+        return back()->with(['message' => 'Data Updated ']);
+    }
+ }
