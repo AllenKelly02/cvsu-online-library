@@ -1,6 +1,10 @@
 <x-app-layout>
-    <section>
-        <div class="mx-auto ml-12 mt-8">
+    @if (Session::has('message'))
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-99999">
+            <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ Session::get('message') }}</p>
+        </div>
+    @endif
+        <div class="mx-auto ml-12 mt-2">
             <div class="flex flex-col space-y-2 p-4">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500">
@@ -48,13 +52,18 @@
                                    <td class="flex items-center px-6 py-4 space-x-3">
                                        <form method="POST" action="{{route('admin.accept-account', ['id' => $account->id])}}">
                                         @csrf
-                                        <button class="font-medium text-blue-600 hover:underline">Accept</button>
+                                        <button class="font-medium text-white py-2 px-4 rounded-full bg-green-500 hover:bg-green-600">Accept</button>
                                        </form>
                                        <form method="POST" action="{{route('admin.reject-account', ['id' => $account->id])}}">
                                         @csrf
-                                        <button class="font-medium text-red-600 hover:underline">Remove</button>
+                                        <button class="font-medium text-white py-2 px-4 rounded-full bg-red-500 hover:bg-red-600">Remove</button>
                                        </form>
                                     </td>
+                                     @if (Session::has('message'))
+                                        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-99999">
+                                            <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ Session::get('message') }}</p>
+                                        </div>
+                                    @endif
                                     @empty
 
                                 @endforelse
@@ -64,4 +73,10 @@
             </div>
         </div>
     </section>
+    <script>
+        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+        setTimeout(function() {
+            document.querySelector('.alert').remove();
+        }, 2200);
+    </script>
 </x-app-layout>

@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
 
 
         ]);
-   
+
         return Redirect::to('login')->with('message', 'Thanks for registering! Wait for the approval of the librarian.');
 
     }

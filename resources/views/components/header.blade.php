@@ -49,6 +49,9 @@
                     </form> --}}
 
                     @if (Auth::user()->role === 'admin')
+                        <div>
+                            <h2 class="text-lg font-bold text-white">Hello! {{ Auth::user()->profile->first_name }}</h2>
+                        </div>
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="avatar ml-10 hover:border-black">
                                 <div class="w-12 rounded-full">
@@ -57,19 +60,20 @@
                             </label>
 
                             <ul tabindex="1"
-                                class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
-                                <a href="{{route('profile.show', ['id' => Auth::user()->id])}}">Profile</a>
-                                <a href="{{route('profile.show', ['id' => Auth::user()->id])}}"> </a>
+                                 class="text-black font-semibold text-center menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-100 rounded-box w-24 hover:bg-white">
+                                    <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">Profile</a>
 
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();"
-                                        class="text-black menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-100 rounded-box w-52 hover:bg-white">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
+                                    <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}"></a>
+
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"
+                                            class="text-white font-semibold text-center menu menu-compact dropdown-content mt-3 p-2 shadow bg-red-500 rounded-box w-24 hover:bg-red-600 active:bg-red-600 focus:bg-red-600">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </div>
+
                             </ul>
                         </div>
                     {{-- @else --}}

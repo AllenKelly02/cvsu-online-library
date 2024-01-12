@@ -3,9 +3,6 @@
         style="background-image: url('../img/wave (13).svg');">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
-        @if (Session::has('message'))
-            <p class="alert alert-success shadow-lg w-96 ml-96 animate-bounce mt-32">{{ Session::get('message') }}</p>
-        @endif
 
         <div class="flex items-center justify-center py-40 px-4 mt-16 w-full">
             <form method="POST" action="{{ route('login') }}" class="max-w-md w-full">
@@ -35,23 +32,28 @@
                             <p class="text-red-500 text-center text-xs">*</p>
                             <span class="error  text-red-700 text-xs"></span>
                         </div>
-                            <div class="flex">
-                                <div class="md:w-2/3 relative">
-                                    <input type="email" name="email" custommaxlength="50" minlength="5"
-                                        :value="old('Email')" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                        class="w-full md:w-80 sm:w-96 pl-10 pr-3 py-2 rounded-lg text-black border-2 border-blue-100 outline-none focus:border-green3"
-                                        placeholder="cvsubacoor@gmail.com" required>
-                                    <div class="absolute top-1/2 left-3 transform -translate-y-1/2">
-                                        <i class="mdi mdi-email-outline text-bluemain text-lg"></i>
-                                    </div>
+                        <div class="flex">
+                            <div class="md:w-2/3 relative">
+                                <input type="email" name="email" custommaxlength="50" minlength="5"
+                                    :value="old('Email')" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    class="w-full md:w-80 sm:w-96 pl-10 pr-3 py-2 rounded-lg text-black border-2 border-blue-100 outline-none focus:border-green3"
+                                    placeholder="cvsubacoor@gmail.com" required>
+                                <div class="absolute top-1/2 left-3 transform -translate-y-1/2">
+                                    <i class="mdi mdi-email-outline text-bluemain text-lg"></i>
                                 </div>
                             </div>
-                            <span class="error-icon hidden mt-2 -ml-6 text-red-700">
-                                <i class="ri-error-warning-fill"></i>
-                            </span>
-                            <span class="success-icon hidden mt-2 -ml-6 text-green-700">
-                                <i class="ri-checkbox-fill"></i>
-                            </span>
+                        </div>
+                         @if (Session::has('message'))
+                            <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-99999">
+                                <p class="justify-center alert alert-success shadow-lg w-auto text-center animate-bounce">{{ Session::get('message') }}</p>
+                            </div>
+                        @endif
+                        <span class="error-icon hidden mt-2 -ml-6 text-red-700">
+                            <i class="ri-error-warning-fill"></i>
+                        </span>
+                        <span class="success-icon hidden mt-2 -ml-6 text-green-700">
+                            <i class="ri-checkbox-fill"></i>
+                        </span>
 
                     </div>
                     {{-- Password --}}
@@ -126,7 +128,7 @@
                 // Remove the alert message after 5 seconds (adjust the timeout value as needed)
                 setTimeout(function() {
                     document.querySelector('.alert').remove();
-                }, 2200);
+                }, 1000);
             </script>
     </section>
     <x-footer />

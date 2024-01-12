@@ -27,6 +27,9 @@
 </head>
 
 <body class="font-sans antialiased">
+    <div class="loader">
+        <img src="{{ asset('img/loader/waves.svg') }}" alt="content">
+    </div>
     <div class="relative">
 
         <x-header />
@@ -101,7 +104,10 @@
             <span
                 class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
         </div> --}}
-        @if (Auth::user() == null)
+        @php
+            $currentRoute = \Route::currentRouteName();
+        @endphp
+        @if (Auth::user() == null && $currentRoute !== 'login')
             <div class="fixed bottom-12 right-12 z-10 flex flex-col gap-p-2" x-data="{ toggle: true }">
 
                 <form method="post" action="{{ route('message') }}"
@@ -110,7 +116,7 @@
                     <h1 class="font-bold text-lg text-center text-black">Message</h1>
                     @csrf
                     @if (Session::has('message'))
-                        <div class="alert alert-success shadow-lg">
+                        <div class="alert alert-success animate-bounce shadow-lg">
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
                                     fill="none" viewBox="0 0 24 24">
@@ -166,6 +172,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
+<script>
+    $(function() {
+        setTimeout(function() {
+            $(".loader").fadeOut(200);
+        }, 600); // 3000 milliseconds (3 seconds) delay before fading out
+    });
+</script>
 <style>
     @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css')
 </style>

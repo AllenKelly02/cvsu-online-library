@@ -232,26 +232,22 @@
                             </button>
                         @else
                             @if ($BookIssuingIsNull)
-                                @if ($book->status === 'available')
-                                    <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}"
-                                        class="flex ml-auto py-2 px-6" method="post">
+                                    @if ($book->status === 'available')
+                                        <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" class="flex ml-auto py-2 px-6" method="post">
                                         @csrf
-                                        <button
-                                            class="flex ml-auto py-2 px-6 focus:outline-none button-name text-black hover:bg-yellow-500">Borrow</button>
+                                        <button class="flex ml-auto py-2 px-6 focus:outline-none button-name text-black hover:bg-yellow-500">Borrow</button>
                                     </form>
+                                    @endif
+                                @else
+                                    @if (
+                                        $book->status === 'available' &&
+                                            Auth::user()->booksIssuing()->where('book_id', $book->id)->where('returned_date', '!=', '0000-00-00')->get()->count() === 1)
+                                        <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" class="flex ml-auto py-2 px-6" method="post">
+                                            @csrf
+                                            <button class="flex ml-auto py-2 px-6 focus:outline-none button-name text-black hover:bg-yellow-500">Borrow</button>
+                                        </form>
+                                    @endif
                                 @endif
-                            @else
-                                @if (
-                                    $book->status === 'available' &&
-                                        Auth::user()->booksIssuing()->where('book_id', $book->id)->where('returned_date', '!=', '0000-00-00')->get()->count() === 1)
-                                    <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}"
-                                        method="post">
-                                        @csrf
-                                        <button
-                                            class="flex ml-auto py-2 px-6 focus:outline-none button-name text-black hover:bg-yellow-500">Borrow</button>
-                                    </form>
-                                @endif
-                            @endif
                         @endif
 
                         @if (Auth::user()->role === 'admin')

@@ -48,7 +48,7 @@ class AccountsController extends Controller
 
         $account->delete();
 
-        return redirect()->back();
+        return redirect(route('admin.unverified-accounts'))->with(['message' => 'Accepted Succesfully']);
 
     }
 
@@ -66,9 +66,7 @@ class AccountsController extends Controller
 
         $account->delete();
 
-
-
-        return back()->with(['message' => 'deleted Successfully']);
+        return redirect(route('admin.unverified-accounts'))->with(['message' => 'Delete Succesfully']);
 
     }
     public function destroy($id){

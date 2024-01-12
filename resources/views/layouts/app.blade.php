@@ -44,7 +44,9 @@
     </head>
 
     <body class="font-sans antialiased bg-bgmain">
-
+        <div class="loader">
+            <img src="{{ asset('img/loader/waves.svg') }}" alt="content">
+        </div>
         <div>
 
             <x-header/>
@@ -83,6 +85,13 @@
             })
         </script>
 
+        <script>
+            $(function() {
+                setTimeout(function() {
+                    $(".loader").fadeOut(200);
+                }, 600); // 3000 milliseconds (3 seconds) delay before fading out
+            });
+        </script>
         @stack('js')
     </body>
 
