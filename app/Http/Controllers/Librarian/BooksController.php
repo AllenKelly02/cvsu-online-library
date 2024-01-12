@@ -218,11 +218,17 @@ class BooksController extends Controller
     {
         $bookIssuing = BookIssuing::find($id);
 
+        $bookIssuing->book->update([
+            'status' => 'available'
+        ]);
+
         $bookIssuing->update(
             [
                 'status' => 'reject'
             ]
         );
+
+
         return back();
     }
 
