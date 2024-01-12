@@ -22,37 +22,46 @@
                 </div>
             </form>
         </div>
-        {{-- <div class="relative flex flex-wrap -m-4 py-5 z-[1000] float-left">
-            <div class="py-1 px-4 flex gap-2 my-2 overflow-x-auto w-full relative z-9999999">
-                <div class="relative inline-block text-left">
-                    <button
-                        class="button-name inline-flex justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-black transition duration-150 ease-in-out bg-yellowmain border border-yellowmain rounded-md hover:text-black focus:outline-none focus:border-yellowmain focus:shadow-outline-blue active:bg-yellowmain active:text-black"
-                        aria-haspopup="true" aria-expanded="true" aria-controls="categoryDropdown"
-                        id="categoryDropdownButton">
-                        Filter by Category
-                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <div class="absolute hidden mt-2 w-48 bg-white z-99999999 rounded-md shadow-lg"
-                        id="categoryDropdown">
-                        <a href="{{ route('user.catalog') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
-                            All
-                        </a>
-                        @foreach ($categories as $category)
-                            <a href="{{ route('user.catalog') . '?category=' . $category->name }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
-                                {{ $category->name }}
-                            </a>
-                        @endforeach
+        
+<!-- Filter Category -->
+<div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
+    <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="dropdown">Filter by Category <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+    <!-- Dropdown menu -->
+    <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
+        <ul class="py-1" aria-labelledby="dropdown">
+        <li>
+            <a href="{{ route('user.catalog') }}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
+                All
+            </a>
+        </li>
+        <li>
+            @foreach ($categories as $category)
+                <a href="{{ route('user.catalog') . '?category=' . $category->name }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
+                    {{ $category->name }}
+                </a>
+            @endforeach
+        </li>
+        </ul>
+    </div>
+        <!-- Filter by Book type -->
+
+        <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="dropdown">Filter by Type <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+        <!-- Dropdown menu -->
+        <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
+            <ul class="py-1" aria-labelledby="typedropdown">
+            <li>
+                <a href="{{ route('user.catalog') }}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
+                    All
+                </a>
+            </li>
+            
+            </ul>
+        </div>
+    </div>
+    
             <div class="flex flex-wrap -m-4 py-5">
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
@@ -134,9 +143,26 @@
         });
     </script>
     <script>
+        document.getElementById('typeDropdownButton').addEventListener('click', function() {
+            document.getElementById('typeDropdown').classList.toggle('hidden');
+        });
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('#typeDropdownButton')) {
+                var dropdown = document.getElementById('typeDropdown');
+                if (dropdown.classList.contains('hidden') === false) {
+                    dropdown.classList.add('hidden');
+                }
+            }
+        });
+    </script>
+    <script>
         // Remove the alert message after 5 seconds (adjust the timeout value as needed)
         setTimeout(function() {
             document.querySelector('.alert').remove();
         }, 1200);
     </script>
+
+    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
 </x-app-layout>
