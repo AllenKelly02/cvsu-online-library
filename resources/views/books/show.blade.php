@@ -251,7 +251,7 @@
                                 @else
                                     @if (
                                         $book->status === 'available' &&
-                                            Auth::user()->booksIssuing()->where('book_id', $book->id)->where('returned_date', '!=', '0000-00-00')->get()->count() === 1)
+                                            Auth::user()->booksIssuing()->where('book_id', $book->id)->where('returned_date', '!=', '0000-00-00')->get()->count() > 0)
                                         <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}"
                                             class="flex ml-auto py-2 px-6" method="post">
                                             @csrf
