@@ -82,12 +82,12 @@
                 <form action="{{ route('admin.book-delete', ['id' => $book->id]) }}" method="post"
                     class="flex flex-col gap-2 w-full">
                     @csrf
-                    <select class="select select-bordered w-full bg-white" name="reason">
+                    <select class="select select-bordered w-full bg-white capitalize" name="reason">
                         <option disabled selected>Select Reason</option>
-                        <option>the materials have not been used for more than ten years;</option>
-                        <option>the condition of the item is bad, e.g. missing pages, worn-out, and text is unreadable;</option>
-                        <option>the Science and Technology materials that are copyrighted/published more than three to five years;</option>
-                        <option> the materials are no longer in demand or do not support the curriculum or current academie programs:</option>
+                        <option>the materials have not been used for more than ten years</option>
+                        <option>the condition of the item is bad, e.g. missing pages, worn-out, and text is unreadable</option>
+                        <option>the Science and Technology materials that are copyrighted/published more than three to five years</option>
+                        <option> the materials are no longer in demand or do not support the curriculum or current academie programs</option>
                         <option> older edition of the book is no longer used</option>
                         <option>books become obsolete</option>
                       </select>
