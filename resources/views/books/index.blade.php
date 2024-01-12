@@ -45,7 +45,7 @@
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4 py-10">
 
-                    <div class="bg-white shadow-2xl p-6 rounded-lg h-full">
+                    <div class="bg-white shadow-2xl p-6 rounded-lg h-full w-full">
                         <div class="flex gap-2">
                             <div class="grow">
                                 <h1
