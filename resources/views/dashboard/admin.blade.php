@@ -69,7 +69,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Add the chart container element -->
             <div class="container px-1 py-1 mx-auto">
                 <div class="flex flex-col text-center mb-2 mt-2">
@@ -140,7 +139,11 @@
 
                 </div>
             </div>
-
+            @if (Session::has('message'))
+                <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                    <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">{{ Session::get('message') }}</p>
+                </div>
+            @endif
 
             @push('js')
                 <script>
@@ -226,6 +229,12 @@
 
                     var chartPie = new ApexCharts(document.querySelector("#pieChart"), optionsOne);
                     chartPie.render();
+                </script>
+                <script>
+                    // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+                    setTimeout(function() {
+                        document.querySelector('.alert').remove();
+                    }, 1000);
                 </script>
             @endpush
     </section>

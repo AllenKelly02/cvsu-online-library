@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="px-20 pt-8 mx-auto py-24 bg-bgmain min-h-screen w-full">
         <div class="h-full w-full flex flex-col gap-2">
-            <h1 class="font-bold text-black">Inbox</h1>
+            <h1 class="font-bold text-black ml-2">Inbox</h1>
             @forelse ($messages as $message)
                 <a href="{{route('admin.messages.show', ['message' => $message->id])}}">
                     <div
@@ -16,7 +16,7 @@
                     </div>
                 </a>
             @empty
-                <div class=" border  p-4 flex items-center justify-between text-gray-800 hover:bg-gray-600 duration-700">
+                <div class=" border p-4 flex items-center justify-between bg-white rounded-box text-black hover:bg-gray-200 duration-700">
                     <h1 class="w-full text-center font-bold">No messages</h1>
 
                 </div>

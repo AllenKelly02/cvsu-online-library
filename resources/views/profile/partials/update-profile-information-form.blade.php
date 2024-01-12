@@ -27,14 +27,14 @@
         @else
         <div>
             <x-input-label for="student_id" :value="__('Student ID')" />
-            <x-text-input id="student_id" name="student_id" type="text" class="mt-1 block w-full text-black" :value="old('student_id', $user->student_id)" required autofocus autocomplete="student_id" />
+            <x-text-input type="text" id="student_id" name="studentId" type="text" class="mt-1 block w-full text-black" placeholder="Student ID" pattern="[0-9]+" custommaxlength="15" minlength="5" :value="old('student_id', $user->student_id)" required autofocus autocomplete="studentId" />
             <x-input-error class="mt-2" :messages="$errors->get('student_id')" />
         </div>
         @endif
         @endauth
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full text-black" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full text-black" :value="old('email', $user->email)" required autocomplete="email" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -55,7 +55,7 @@
                 </div>
             @endif
         </div>
-        
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

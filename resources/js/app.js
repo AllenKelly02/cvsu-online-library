@@ -42,3 +42,5 @@ Alpine.data('printBarcode', () => ({
 Alpine.data('bookScanner', bookScanner);
 
 Alpine.start();
+
+

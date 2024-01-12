@@ -33,7 +33,7 @@ export const bookScanner = () => ({
             };
 
             const response = await axios.get(
-                `http://127.0.0.1:8000/admin/scan/book/show/${bookID}`,
+                `/admin/scan/book/show/${bookID}`,
                 config
             );
 

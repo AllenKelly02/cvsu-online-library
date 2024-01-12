@@ -90,7 +90,7 @@ class BooksController extends Controller
             'ISBN' => 'required',
             'pages' => 'required',
             'copy' => 'required',
-            'description' => 'required',
+            'description' => 'nullable',
             'bibliography',
             'course' => 'required',
         ]);
