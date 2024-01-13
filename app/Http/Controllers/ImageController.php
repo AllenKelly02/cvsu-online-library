@@ -14,4 +14,11 @@ class ImageController extends Controller
 
         return $url;
     }
+    public function profile(string $name){
+
+
+        $url = response()->file(storage_path('app/public/avatar/'. $name));
+
+       return $url;
+   }
 }

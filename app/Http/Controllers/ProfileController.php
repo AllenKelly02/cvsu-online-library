@@ -120,7 +120,7 @@ class ProfileController extends Controller
 
 
         $profile->update([
-            'avatar' => asset('/storage/' . $dir)
+            'avatar' => $imageName
         ]);
 
 
