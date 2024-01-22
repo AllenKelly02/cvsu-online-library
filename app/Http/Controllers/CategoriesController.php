@@ -41,7 +41,7 @@ class CategoriesController extends Controller
 
 
 
-        return back()->with(['message' => 'category added success']);
+        return back()->with(['message' => 'Category Added Successfully!']);
 
     }
 
@@ -72,14 +72,15 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id)
     {
         $category = Categories::find($id);
 
 
         $category->delete();
 
-        return back()->with(['message' => 'Category deleted!']);
+        return to_route('admin.category.index')->with(['delete' => 'Category Succesfully Deleted!']);
 
     }
+
 }

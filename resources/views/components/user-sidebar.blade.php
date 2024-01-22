@@ -35,7 +35,7 @@
                         <a rel="noopener noreferrer" href="{{ route('user.new-collections') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white cursor-pointer {{ request()->routeIs('user.new-collections') ? 'bg-blue2 text-white' : '' }}">
 
                             <img class="object-center w-6 ml-30 py-3" src="{{ asset('img/new.png') }}" alt="content">
-                            <span class="ml-2 text-sm font-medium">New Collection</span>
+                            <span class="ml-2 text-sm font-medium">New Acquisition</span>
                         </a>
                         </a>
                     </li>
@@ -62,7 +62,7 @@
                             <span class="ml-2 text-sm font-medium">{{ __('Log Out') }}</span>
                         </a>
                         </form>
-                        
+
                     </li>
                 </ul>
             </div>

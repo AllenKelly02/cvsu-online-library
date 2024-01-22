@@ -171,7 +171,7 @@ class BooksController extends Controller
         }
 
         BookIssuing::create([
-            'borrowed_date' => Carbon::now()->format('m-d-Y'),
+            'borrowed_date' => Carbon::now()->format('Y-m-d'),
             'user_id' => $user->id,
             'book_id' => $book->id,
             'status' => 'pending',
@@ -206,7 +206,7 @@ class BooksController extends Controller
             $bookIssuing->book->update(['status' => 'unavailable', 'copy' => $book->copy - 1]);
         }
 
-        return back();
+        return back()->with(['message' => "Request for borrowing book has been Approved!"]);
     }
     // Admin Request reject
     public function rejectBorrowBooks($id)
@@ -218,7 +218,7 @@ class BooksController extends Controller
                 'status' => 'reject'
             ]
         );
-        return back();
+        return back()->with(['message' => "Request for borrowing book has been Rejected!"]);;
     }
 
 
@@ -230,24 +230,45 @@ class BooksController extends Controller
     }
 
     //admin side return book
-    public function returnedBook($id)
+    // public function returnedBook($id)
+    // {
+    //     $bookIssuing = BookIssuing::find($id);
+
+    //     $bookIssuing->book->update(['status' => 'available', 'copy' => $bookIssuing->book->copy + 1]);
+
+
+    //     $bookIssuing->update([
+    //         'returned_date' => Carbon::now()->format('Y-m-d')
+    //     ]);
+
+    //     return back()->with(['message' => "Book Return Success"]);
+    // }
+
+    public function returnedBook($request, $id)
     {
         $bookIssuing = BookIssuing::find($id);
 
-        $bookIssuing->book->update(['status' => 'available', 'copy' => $bookIssuing->book->copy + 1]);
-
+        // Increment the copy attribute of the associated book
+        $book = $bookIssuing->book;
+        $book->status = 'available';
+        $book->copy += 1;
+        $book->save();
 
         $bookIssuing->update([
-            'returned_date' => Carbon::now()->format('Y-m-d')
+            'bookCondition' => $request->book_condition, // Assuming you have an input named 'bookCondition' in your form
         ]);
 
-        return back()->with(['message' => "Book Return Success"]);
-    }
+        // Update the returned_date and book_condition of the book issuing record
+        $bookIssuing->update([
+            'returned_date' => now()->format('Y-m-d'),
+        ]);
 
+        return back()->with(['message' => 'Book Return Success']);
+    }
 
     public function browse()
     {
-        $books = Book::latest()->filter(request(['category', 'search', 'type',]))->paginate(100);
+        $books = Book::latest()->filter(request(['category', 'search', 'type',]))->paginate(250);
 
         return view('books.browse', [
             'books' => $books
@@ -338,6 +359,17 @@ class BooksController extends Controller
         return view('books.borrowedbooks', compact(['bookIssuings']));
     }
 
+
+    public function allReturnedBooks()
+    {
+        // Fetch all returned books
+        $returnedBooks = BookIssuing::with('book')->whereNotNull('returned_date')->get();
+
+        return view('books.returnedbooks', compact('returnedBooks'));
+
+    }
+
+
     public function archivedbooks()
     {
         $books = Book::onlyTrashed()->get();
@@ -362,9 +394,12 @@ class BooksController extends Controller
     public function bookBarcode()
     {
 
-        $books = Book::get();
-
+        $books = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
+        ;
 
         return view('scan.book.barcodes', compact(['books']));
     }
+
+
+
 }

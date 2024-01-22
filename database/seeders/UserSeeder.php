@@ -22,9 +22,9 @@ class UserSeeder extends Seeder
 
         $userOne = User::create(
             [
-                'name' => 'Allen Kelly Baluyut',
-                'email' => 'allen@email.com',
-                'password' => Hash::make('allen123'),
+                'name' => 'Librarian Staff',
+                'email' => 'librarian@email.com',
+                'password' => Hash::make('librarian123'),
                 'role' => 'admin',
                 // 'profile_id' => 1,
             ]
@@ -41,16 +41,16 @@ class UserSeeder extends Seeder
             );
         Profile::create(
             [
-                'last_name' => 'Baluyut',
-                'first_name'  => 'Allen',
-                'middle_name' => 'Canon',
+                'last_name' => 'Staff',
+                'first_name'  => 'Librarian',
+                'middle_name' => '',
                 'student_id' => '09991234',
                 'course' => 'admin',
                 'sex' => 'Male',
                 'contact_number' => '09092342345',
                 'address' => 'Sample Address',
-                'email' => 'allen@email.com',
-                'password' => 'allen123',
+                'email' => 'librarian@email.com',
+                'password' => 'librarian123',
                 'user_id' => $userOne->id
             ]
         );
@@ -59,8 +59,8 @@ class UserSeeder extends Seeder
         [
             'last_name' => 'Condes',
             'first_name'  => 'Gia',
-            'middle_name' => 'Secret',
-            'student_id' => '09991234',
+            'middle_name' => 'Soledad',
+            'student_id' => '20011175',
             'course' => 'BSIT',
             'sex' => 'Female',
             'contact_number' => '09092342345',

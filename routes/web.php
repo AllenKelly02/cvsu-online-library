@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Guest\MessageController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Librarian\ImportBookController;
+use App\Exports\ReturnedBooksExport;
 use App\Http\Middleware\Role;
 use Symfony\Component\Mime\MessageConverter;
 
@@ -70,8 +71,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
         });
     });
 
-
+    //categories
     Route::resource('category', CategoriesController::class);
+    //delete category
+    Route::post('/delete-category/{category}', [CategoriesController::class, 'destroy'])->name('category-delete');
+
 
 
     Route::prefix('messages')->as('messages.')->group(function (){
@@ -80,7 +84,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
         Route::post('/reply', [MessageController::class, 'reply'])->name('reply');
     });
 
+    //export returned books
+    Route::get('/export-returned-books', function () {
+        return \Maatwebsite\Excel\Facades\Excel::download(new ReturnedBooksExport(), 'returned_books.xlsx');
+    })->name('export.returned.books');
 
+    //import books from excel
     Route::prefix('books')->as('book.')->group(function(){
         Route::prefix('import')->as('import.')->group(function(){
             Route::get('/create', [ImportBookController::class,'create'])->name('create');
@@ -123,11 +132,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     //return book
     Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned-book');
+    Route::post('/returned-book/{id}', [BooksController::class, 'returnedBook'])->name('admin.returned-book');
 
     //delete book
     Route::post('/books/delete/{id}', [BooksController::class, 'destroy'])->name('book-delete');
 
 
+    //lisft of Returned Books
+    Route::get('/books/get/Returned', [BooksController::class, 'allReturnedBooks'])->name('getAllReturnedBooks');
 
 
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');

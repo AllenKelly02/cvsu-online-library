@@ -51,13 +51,11 @@
                             @endif --}}
                         </div>
                         @if ($book->image !== null)
-                        <img class="w-full object-cover object-center py-6 rounded"
-                        style="max-height: 450px;"
-                        src="{{ route('image-view', ['name' => $book->image]) }}" alt="content">
+                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 437px;"
+                                src="{{ route('image-view', ['name' => $book->image]) }}" alt="content">
                         @else
-                        <img class="w-full object-cover object-center py-6 rounded"
-                        style="max-height: 450px;"
-                        src="{{ asset('img/b1.jpg') }}" alt="content">
+                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 437px;"
+                                src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
                         @if ($book->status === 'available')
@@ -88,7 +86,7 @@
                                 {{ $book->publisher }}</h3>
                             <a href="{{ route('user.catalog', ['book' => $book]) }}" type="submit"
                                 class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">
-                                View Book
+                                Details
                             </a>
                         </div>
 

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="px-20 pt-8 mx-auto py-24 bg-bgmain">
-    
+
     @if (session('message'))
     <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-md">
         <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ session('message') }}</p>
@@ -22,37 +22,72 @@
                 </div>
             </form>
         </div>
-        {{-- <div class="relative flex flex-wrap -m-4 py-5 z-[1000] float-left">
-            <div class="py-1 px-4 flex gap-2 my-2 overflow-x-auto w-full relative z-9999999">
-                <div class="relative inline-block text-left">
-                    <button
-                        class="button-name inline-flex justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-black transition duration-150 ease-in-out bg-yellowmain border border-yellowmain rounded-md hover:text-black focus:outline-none focus:border-yellowmain focus:shadow-outline-blue active:bg-yellowmain active:text-black"
-                        aria-haspopup="true" aria-expanded="true" aria-controls="categoryDropdown"
-                        id="categoryDropdownButton">
-                        Filter by Category
-                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <div class="absolute hidden mt-2 w-48 bg-white z-99999999 rounded-md shadow-lg"
-                        id="categoryDropdown">
-                        <a href="{{ route('user.catalog') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
-                            All
-                        </a>
-                        @foreach ($categories as $category)
-                            <a href="{{ route('user.catalog') . '?category=' . $category->name }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
-                                {{ $category->name }}
-                            </a>
-                        @endforeach
 
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+<!-- Filter Category -->
+<div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
+    <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="dropdown">Filter by Category <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+    <!-- Dropdown menu -->
+    <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 overflow-y-auto max-h-48 w-32" id="dropdown">
+        <ul class="py-1" aria-labelledby="dropdown">
+        <li>
+            <a href="{{ route('user.catalog') }}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
+                All
+            </a>
+        </li>
+        <li>
+            @foreach ($categories as $category)
+                <a href="{{ route('user.catalog') . '?category=' . $category->name }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
+                    {{ $category->name }}
+                </a>
+            @endforeach
+        </li>
+        </ul>
+    </div>
+    {{-- <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="typedropdown">Filter by Type <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+<!-- Dropdown menu -->
+<div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 overflow-y-auto max-h-48 w-32" id="typedropdown">
+    <ul class="py-1" aria-labelledby="typedropdown">
+        <li>
+            <a href="{{ route('user.catalog') }}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
+                All
+            </a>
+        </li>
+        @foreach ($books as $book)
+        <li>
+            <a href="{{ route('user.catalog') . '?type=book' }}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100 {{ request()->query('type') === 'book' ? 'bg-gray text-black' : '' }}">
+                {{ $book->type }}
+            </a>
+        </li>
+
+        @endforeach
+    </ul>
+</div>
+
+    <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="typedropdown">Filter by Category <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+    <!-- Dropdown menu -->
+    <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 overflow-y-auto max-h-48 w-32" id="typedropdown">
+        <ul class="py-1" aria-labelledby="typedropdown">
+        <li>
+            <a href="{{ route('user.catalog') }}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
+                All
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('user.catalog') . '?type=book' }}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100 {{ request()->query('category') === 'book' ? 'bg-yellowmain text-black' : '' }}">
+                Book
+            </a>
+            <a href="{{ route('admin.books.index') }}?category=book"
+            class="text-lg px-3 py-1 rounded border text-black border-yellowmain hover:bg-yellowmain hover:text-black {{ request()->query('category') === 'book' ? 'bg-yellowmain text-black' : '' }}">Book</a>
+        </li>
+
+        </ul>
+    </div> --}}
+    </div>
+
             <div class="flex flex-wrap -m-4 py-5">
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
@@ -98,7 +133,7 @@
                             {{ $book->publisher }}</h3>
                         <a href="{{ route('user.books.show', ['book' => $book]) }}"
                             class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">
-                            <b>View Book</b>
+                            <b>Details</b>
                         </a>
                     </div>
                 </div>
@@ -134,9 +169,26 @@
         });
     </script>
     <script>
-        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+        document.getElementById('typeDropdownButton').addEventListener('click', function() {
+            document.getElementById('typeDropdown').classList.toggle('hidden');
+        });
+
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('#typeDropdownButton')) {
+                var dropdown = document.getElementById('typeDropdown');
+                if (dropdown.classList.contains('hidden') === false) {
+                    dropdown.classList.add('hidden');
+                }
+            }
+        });
+    </script>
+    <script>
+        // Remove the alert message after seconds (adjust the timeout value as needed)
         setTimeout(function() {
-            document.querySelector('.alert').remove();
+            document.querySelector('.alert-success').remove();
         }, 1200);
     </script>
+
+    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
 </x-app-layout>

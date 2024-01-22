@@ -117,11 +117,7 @@
                                         <option class="bg-white" value="e-Book">E-Book</option>
                                         <option class="bg-white" value="journal">Journal</option>
                                         <option class="bg-white" value="publications">Publications</option>
-                                        <option class="bg-white" value="references">References</option>
-                                        <option class="bg-white" value="software">Software</option>
                                         <option class="bg-white" value="thesis">Thesis</option>
-                                        <option class="bg-white" value="other">Other</option>
-
                                     </select>
                                 </div>
                                 @error('type')

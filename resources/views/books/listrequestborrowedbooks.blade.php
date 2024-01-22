@@ -1,31 +1,36 @@
 <x-app-layout>
+    @if (Session::has('message'))
+        <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+            <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ Session::get('message') }}</p>
+        </div>
+    @endif
     <div class="px-20 pt-8 mx-auto py-24">
         <div class="lg:w-1/2 w-fulll lg:mb-5">
             <h1 class="text-3xl text-black font-bold">
                 Request Borrowed Books
             </h1>
-            <div class="h-1 w-20 bg-green-900 rounded"></div>
+            <div class="h-1 w-20 bg-bluemain rounded"></div>
         </div>
         <div class="relative overflow-x-auto h-[35rem] bg-white drop-shadow-lg sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-blue-100">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             Book title
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             user
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             student id
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            course
+                        <th scope="col" class="px-6 py-3 text-center">
+                            Program
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             Borrowed date
                         </th>
-                        <th>
+                        <th scope="col" class="px-6 py-3 text-center">
                             Action
                         </th>
                     </tr>
@@ -37,19 +42,19 @@
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $request->book->title }}
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-center">
                                 {{ $request->user->name }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-center">
                                 {{ $request->user->profile->student_id }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-center">
                                 {{ $request->user->profile->course }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-center">
                                 {{ $request->borrowed_date }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 flex justify-center">
                                 <div class="flex gap-2">
                                     <div>
                                         <form action="{{route('admin.approvedBorrowedBooks', ['id' => $request->id])}}" method="post">
@@ -91,6 +96,11 @@
                 </tbody>
             </table>
         </div>
-
     </div>
+    <script>
+        // Remove the alert message (adjust the timeout value as needed)
+        setTimeout(function() {
+            document.querySelector('.alert-success').remove();
+        }, 2200);
+    </script>
 </x-app-layout>

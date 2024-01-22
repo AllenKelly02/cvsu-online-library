@@ -60,6 +60,7 @@
 
         </div>
 
+        {{-- Remove book --}}
         <div x-show="toggle"
             class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-auto
          bg-gray-100 rounded-lg shadow-2xl flex flex-col space-y-5 p-5"

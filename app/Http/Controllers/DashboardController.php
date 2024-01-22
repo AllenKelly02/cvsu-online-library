@@ -61,8 +61,13 @@ class DashboardController extends Controller
         foreach ($months as $month) {
             $count = $data[$month] ?? 0;
             $result[$month] = $count;
+
         }
 
-        return $result;
+        return $result
+        ;
     }
+
+        //borrowed Book Report
+
 }

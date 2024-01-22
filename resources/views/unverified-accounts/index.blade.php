@@ -4,28 +4,35 @@
             <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ Session::get('message') }}</p>
         </div>
     @endif
-        <div class="mx-auto ml-12 mt-2">
+
+    <section>
+        <div class="mx-auto ml-5 mt-2">
             <div class="flex flex-col space-y-2 p-4">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500">
-                        <thead class="text-xs text-gray-700 uppercase bg-blue-200 ">
+                <div class="lg:w-1/2 w-fulll lg:mb-0 mx-2">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Unverified Accounts</h1>
+                    <div class="h-1 w-20 bg-bluemain rounded"></div>
+                </div>
+                <div class="overflow-x-auto shadow-md sm:rounded-2xl w-full h-full lg:h-screen flex flex-col gap-2 overflow-y-auto mx-auto"
+                    style="height: 780px">
+                    <table class="w-full text-sm text-left text-black h-2">
+                        <thead class="text-xs text-black uppercase bg-blue-200 ">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-center">
                                     Name
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-center">
                                     Student ID
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-center">
                                     Sex
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-center">
                                     Course
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                   Email
+                                <th scope="col" class="px-6 py-3 text-center">
+                                    Email
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 text-center">
                                     Action
                                 </th>
                             </tr>
@@ -33,50 +40,63 @@
                         <tbody>
                             @forelse($accounts as $account)
                                 <tr class="bg-white border-b">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        {{$account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name}}
-                                    </th>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 capitalize text-center">
+                                        {{ $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name }}
+                                    </td>
+                                    <td class="px-6 py-4 text-center capitalize">
                                         {{ $account->student_id }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 text-center">
                                         {{ $account->sex }}
                                     </td>
-                                    <td class="px-6 py-4">
-                                        {{ $account->course}}
+                                    <td class="px-6 py-4 capitalize text-center">
+                                        {{ $account->course }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 text-center">
                                         {{ $account['email'] }}
                                     </td>
-
-                                   <td class="flex items-center px-6 py-4 space-x-3">
-                                       <form method="POST" action="{{route('admin.accept-account', ['id' => $account->id])}}">
-                                        @csrf
-                                        <button class="font-medium text-white py-2 px-4 rounded-full bg-green-500 hover:bg-green-600">Accept</button>
-                                       </form>
-                                       <form method="POST" action="{{route('admin.reject-account', ['id' => $account->id])}}">
-                                        @csrf
-                                        <button class="font-medium text-white py-2 px-4 rounded-full bg-red-500 hover:bg-red-600">Remove</button>
-                                       </form>
+                                    <td class="flex justify-center px-6 py-4 space-x-3">
+                                        <form method="POST"
+                                            action="{{ route('admin.accept-account', ['id' => $account->id]) }}">
+                                            @csrf
+                                            <button
+                                                class="font-medium text-white py-2 px-4 rounded-full bg-green-500 hover:bg-green-600">Accept</button>
+                                        </form>
+                                        <form method="POST"
+                                            action="{{ route('admin.reject-account', ['id' => $account->id]) }}">
+                                            @csrf
+                                            <button
+                                                class="font-medium text-white py-2 px-4 rounded-full bg-red-500 hover:bg-red-600">Remove</button>
+                                        </form>
                                     </td>
-                                     @if (Session::has('message'))
-                                        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-99999">
-                                            <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ Session::get('message') }}</p>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="px-6 py-4 whitespace-nowrap">
+                                        <div class="alert alert-warning">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="stroke-current shrink-0 h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                            </svg>
+                                            <span>No new registered students</span>
                                         </div>
-                                    @endif
-                                    @empty
+                                    </td>
+                                </tr>
+                            @endforelse
 
-                                @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
     </section>
     <script>
-        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+        // Remove the alert message (adjust the timeout value as needed)
         setTimeout(function() {
-            document.querySelector('.alert').remove();
+            document.querySelector('.alert-success').remove();
         }, 2200);
     </script>
 </x-app-layout>

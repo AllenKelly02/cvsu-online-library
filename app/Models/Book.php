@@ -121,9 +121,16 @@ class Book extends Model
             ->orWhere('publisher', 'like', '%' . request('search') . '%' )
             ->orWhere('ISBN', 'like', '%' . request('search') . '%' )
             ->orWhere('bibliography', 'like', '%' . request('search') . '%' )
-            ->orWhere('description', 'like', '%' . request('search') . '%' );
+            ->orWhere('bibliography', 'like', '%' . request('search') . '%' )
+            ->orWhere('accession_number', 'like', '%' . request('search') . '%' );
+
         }
     }
 
+    public function bookBarcode()
+    {
+
+
+    }
 
 }
