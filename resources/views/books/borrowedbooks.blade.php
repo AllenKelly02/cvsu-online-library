@@ -1,8 +1,8 @@
 <x-app-layout>
     @if (session('message'))
-    <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-md z-50">
-        <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ session('message') }}</p>
-    </div>
+        <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-md z-50">
+            <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ session('message') }}</p>
+        </div>
     @endif
     <section>
         <div class="px-20 pt-8 mx-auto py-24">
@@ -95,13 +95,12 @@
                                             </select>
                                         </form>
                                     </td> --}}
-                                    <td class="w-[10%] px-6 py-3">
-                                        <form action="{{route('admin.returned-book', ['id' => $bookIssuing->id])}}" method="post">
-                                            @csrf
-                                            <button class="button-name" @click="openToggle()"">
-                                                Return
-                                            </button>
-                                        </form>
+                                    <td class="w-[10%] px-6 py-3" x-data="{ toggle: false }">
+
+                                        <button class="button-name" @click="toggle = true">
+                                            Return
+                                        </button>
+
 
                                         {{-- Remove book --}}
                                         <div x-show="toggle"
@@ -110,26 +109,30 @@
                                             x-cloak>
                                             <h1 class="text-lg font-bold">What is the condition of the book? </h1>
                                             <div class="flex justify-end items-center">
-                                                <form action="{{ route('admin.returned-book', ['id' => $bookIssuing->id]) }}" method="post"
-                                                    class="flex flex-col gap-2">
-                                                @csrf
-                                                <select id="bookCondition" name="bookCondition" class="mt-1 block w-full py-2 px-3 pr-7 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                    <option value="Good">Book in Good Condition</option>
-                                                    <option value="Fair">Book in Fair Condition (minimal damage)</option>
-                                                    <option value="Poor">Book in Poor Condition (major damage)</option>
-                                                </select>
-                                            </form>
-                                                <div class="flex items-center space-x-5 pl-5">
-                                                    <a class="button-name" @click="openToggle()">Cancel</a>
-                                                    <button class="return" href="{{ route('admin.returned-book', ['id' => $bookIssuing->id]) }}">
-                                                        <svg viewBox="0 0 448 512" class="svgIcon">
-                                                            <path
-                                                                d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
-                                                            </path>
-                                                        </svg>
-                                                    </button>
-                                                </div>
+                                                <form
+                                                    action="{{ route('admin.returned-book', ['id' => $bookIssuing->id]) }}"
+                                                    method="post" class="flex flex-col gap-2">
+                                                    @csrf
+                                                    <select id="bookCondition" name="book_condition"
+                                                        class="mt-1 block w-full py-2 px-3 pr-7 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        <option value="Good">Book in Good Condition</option>
+                                                        <option value="Fair">Book in Fair Condition (minimal damage)
+                                                        </option>
+                                                        <option value="Poor">Book in Poor Condition (major damage)
+                                                        </option>
+                                                    </select>
+                                                    <div class="flex items-center gap-2">
+                                                        <button class="btn btn-accent">
+                                                            SUBMIT
+                                                        </button>
+                                                        <div class="flex items-center space-x-5 pl-5">
+                                                            <a class="button-name" @click="toggle = false">Cancel</a>
+                                                        </div>
+
+                                                    </div>
                                                 </form>
+
+
                                             </div>
                                         </div>
                                     </td>

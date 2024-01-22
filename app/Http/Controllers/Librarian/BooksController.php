@@ -227,13 +227,12 @@ class BooksController extends Controller
                 'status' => 'reject'
             ]
         );
-<<<<<<< HEAD
+
         return back()->with(['message' => "Request for borrowing book has been Rejected!"]);;
-=======
 
 
-        return back();
->>>>>>> origin/master
+//         return back();
+// >>>>>>> origin/master
     }
 
 
@@ -259,18 +258,23 @@ class BooksController extends Controller
     //     return back()->with(['message' => "Book Return Success"]);
     // }
 
-    public function returnedBook($request, $id)
+    public function returnedBook(Request $request, $id)
     {
         $bookIssuing = BookIssuing::find($id);
 
         // Increment the copy attribute of the associated book
         $book = $bookIssuing->book;
-        $book->status = 'available';
-        $book->copy += 1;
-        $book->save();
+
+        $book->update([
+            'status' =>  'available',
+            'copy' => $book->copy + 1
+        ]);
+        // $book->status ;
+        // $book->copy += 1;
+        // $book->save();
 
         $bookIssuing->update([
-            'bookCondition' => $request->book_condition, // Assuming you have an input named 'bookCondition' in your form
+            'book_condition' => $request->book_condition, // Assuming you have an input named 'bookCondition' in your form
         ]);
 
         // Update the returned_date and book_condition of the book issuing record
