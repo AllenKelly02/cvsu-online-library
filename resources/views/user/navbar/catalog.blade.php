@@ -22,19 +22,11 @@
                 </div>
             </form>
         </div>
-<<<<<<< HEAD
 
 <!-- Filter Category -->
 <div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
     <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="dropdown">Filter by Category <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
-=======
-        
-<!-- Filter Category -->
-<div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
-    <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="dropdown">Filter by Category <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-
->>>>>>> origin/master
     <!-- Dropdown menu -->
     <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 overflow-y-auto max-h-48 w-32" id="dropdown">
         <ul class="py-1" aria-labelledby="dropdown">
@@ -69,11 +61,6 @@
                 {{ $book->type }}
             </a>
         </li>
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> origin/master
         @endforeach
     </ul>
 </div>
@@ -99,11 +86,6 @@
         </ul>
     </div> --}}
     </div>
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> origin/master
             <div class="flex flex-wrap -m-4 py-5">
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
@@ -200,11 +182,7 @@
         });
     </script>
     <script>
-<<<<<<< HEAD
         // Remove the alert message after seconds (adjust the timeout value as needed)
-=======
-        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
->>>>>>> origin/master
         setTimeout(function() {
             document.querySelector('.alert-success').remove();
         }, 1200);
