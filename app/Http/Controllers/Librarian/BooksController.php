@@ -227,13 +227,7 @@ class BooksController extends Controller
                 'status' => 'reject'
             ]
         );
-<<<<<<< HEAD
-        return back()->with(['message' => "Request for borrowing book has been Rejected!"]);;
-=======
-
-
-        return back();
->>>>>>> origin/master
+        return back()->with(['message' => "Request for borrowing book has been Rejected!"]);
     }
 
 
