@@ -165,6 +165,11 @@ class BooksController extends Controller
 
         $book = Book::find($id);
 
+        if($book->bookIssuing()->where('user_id', $user->id)
+        ->where('status', 'pending')->orWhere('returned_date', '0000-00-00')->latest()->first() !== null){
+            return back()->with(['warning' => "You have Pending Borrowed Book Request! or Doesn't Return yet this Book "]);
+        }
+
 
         if ($book->copy < 1) {
             return back()->with(['message' => "Book is currently Unavailable"]);
@@ -213,12 +218,22 @@ class BooksController extends Controller
     {
         $bookIssuing = BookIssuing::find($id);
 
+        $bookIssuing->book->update([
+            'status' => 'available'
+        ]);
+
         $bookIssuing->update(
             [
                 'status' => 'reject'
             ]
         );
+<<<<<<< HEAD
         return back()->with(['message' => "Request for borrowing book has been Rejected!"]);;
+=======
+
+
+        return back();
+>>>>>>> origin/master
     }
 
 

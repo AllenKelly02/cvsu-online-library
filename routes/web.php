@@ -35,6 +35,7 @@ Route::get('/', function () {
 Route::post('/message', [MessageController::class, 'store'])->name('message');
 
 Route::get('/image/{name}', [ImageController::class, 'view'])->name('image-view');
+Route::get('/avatar/{name}', [ImageController::class, 'profile'])->name('avatar-profile');
 
 // Route::get('/dashboard', function () {
 //     return view('user.index');
@@ -51,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
@@ -145,6 +146,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');
 
     Route::get('/unverified-accounts', [AccountsController::class, 'unverifiedAccounts'])->name('unverified-accounts');
+
+    Route::get('/edit-accounts/{id}', [AccountsController::class, 'edit'])->name('edit-account');
+
+    Route::post('/update-accounts/{id}', [AccountsController::class, 'update'])->name('update-account');
 
     Route::post('/accept-account/{id}', [AccountsController::class, 'acceptAccount'])->name('accept-account');
 

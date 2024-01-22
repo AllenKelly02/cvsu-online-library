@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
                 'email' => 'librarian@email.com',
                 'password' => Hash::make('librarian123'),
                 'role' => 'admin',
+                'student_id' => 123123213123
                 // 'profile_id' => 1,
             ]
             );
@@ -36,6 +37,7 @@ class UserSeeder extends Seeder
                     'email' => 'gia@email.com',
                     'password' => Hash::make('gia123'),
                     'role' => 'user',
+                    'student_id' => 1231331321321313
                     // 'profile_id' => 2,
                 ]
             );

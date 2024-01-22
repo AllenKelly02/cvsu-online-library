@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use App\Models\BookIssuing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -23,7 +24,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        return view('user.profile.edit', [
             'user' => $request->user(),
         ]);
     }
@@ -47,18 +48,33 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request, string $id): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = User::find($id);
 
-        $user = $request->user();
-        $user->name = $request->input('name');
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
 
-        $request->user()->save();
+        $user->update([
+            'email' => $request->email ?? $user->email,
+            'password' => $request->password !== null ? Hash::make($request->password) : $user->password
+        ]);
+
+        $profile = $user->profile;
+
+        $profile->update([
+            'last_name' => $request->last_name ?? $user->profile->last_name,
+            'first_name' => $request->first_name ?? $user->profile->first_name,
+            'middle_name' => $request->middle_name ?? $user->middle_name,
+            'course' => $request->course ?? $user->profile->course,
+            'address' => $request->address ?? $user->profile->address,
+            'student_id' => $request->student_id ?? $user->profile->student_id,
+            'sex' => $request->sex ?? $user->profile->sex,
+            'contact_number' => $request->contact_number ?? $user->profile->contact_number,
+            'email' => $request->email ?? $user->email,
+            'password' => $request->password ?? $user->password,
+            'user_id' => $user->id
+        ]);
+
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -104,7 +120,7 @@ class ProfileController extends Controller
 
 
         $profile->update([
-            'avatar' => asset('/storage/' . $dir)
+            'avatar' => $imageName
         ]);
 
 
