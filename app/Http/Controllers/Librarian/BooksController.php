@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Librarian;
 
-use App\Enums\EbookSourceType;
-use App\Models\Book;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\BookIssuing;
-use App\Models\Categories;
-use App\Models\UserFavouriteBook;
 use Carbon\Carbon;
+use App\Models\Book;
+use App\Models\User;
+use App\Models\Categories;
+use App\Models\BookIssuing;
+use Illuminate\Http\Request;
+use App\Enums\EbookSourceType;
+use App\Models\UserFavouriteBook;
+use App\Http\Controllers\Controller;
+use App\Notifications\BookNotification;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
@@ -161,6 +163,9 @@ class BooksController extends Controller
     public function borrow(Request $request, $id)
     {
 
+
+        $admin = User::where('role', 'admin')->first();
+
         $user = Auth::user();
 
         $book = Book::find($id);
@@ -183,6 +188,12 @@ class BooksController extends Controller
             'total_days' => 3,
         ]);
 
+        $message = [
+            'content' => "Student: {$user->name}, requesting to a borrowed a book {$book->title} Accession no. {$book->accession_number}"
+        ];
+
+        $admin->notify(new BookNotification($message));
+
         return back()->with(['message' => "Your Book Request Has Send in Admin wait for the Approval"]);
     }
 
@@ -190,6 +201,8 @@ class BooksController extends Controller
     public function approvedBorrowBooks($id)
     {
         $bookIssuing = BookIssuing::find($id);
+
+        $user = User::find($bookIssuing->user->id);
 
         if ($bookIssuing->book->copy < 1) {
             return back()->with(['message' => "Book is currently Unavailable"]);
@@ -210,6 +223,13 @@ class BooksController extends Controller
         } else if ($book->copy == 1) {
             $bookIssuing->book->update(['status' => 'unavailable', 'copy' => $book->copy - 1]);
         }
+        $message = [
+            'content' => "Your Books Request title {$book->title} is Approved Date: " . now()->format('F d, Y')
+        ];
+
+        $user->notify(new BookNotification($message));
+
+
 
         return back()->with(['message' => "Request for borrowing book has been Approved!"]);
     }
@@ -217,6 +237,8 @@ class BooksController extends Controller
     public function rejectBorrowBooks($id)
     {
         $bookIssuing = BookIssuing::find($id);
+
+        $user = User::find($bookIssuing->user->id);
 
         $bookIssuing->book->update([
             'status' => 'available'
@@ -227,6 +249,14 @@ class BooksController extends Controller
                 'status' => 'reject'
             ]
         );
+
+
+        $message = [
+            'content' => "Your Books Request title {$bookIssuing->book->title} is Rejected Date: " . now()->format('F d, Y')
+        ];
+
+        $user->notify(new BookNotification($message));
+
         return back()->with(['message' => "Request for borrowing book has been Rejected!"]);
     }
 
@@ -260,6 +290,8 @@ class BooksController extends Controller
         // Increment the copy attribute of the associated book
         $book = $bookIssuing->book;
 
+        $user = User::find($bookIssuing->user->id);
+
         $book->update([
             'status' =>  'available',
             'copy' => $book->copy + 1
@@ -276,6 +308,14 @@ class BooksController extends Controller
         $bookIssuing->update([
             'returned_date' => now()->format('Y-m-d'),
         ]);
+
+
+        $message = [
+            'content' => "Book title {$bookIssuing->book->title} is Returned on Date: " . now()->format('F d, Y')
+        ];
+
+        $user->notify(new BookNotification($message));
+
 
         return back()->with(['message' => 'Book Return Success']);
     }
