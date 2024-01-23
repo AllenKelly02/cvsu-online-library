@@ -36,6 +36,7 @@ Route::post('/message', [MessageController::class, 'store'])->name('message');
 
 Route::get('/image/{name}', [ImageController::class, 'view'])->name('image-view');
 Route::get('/avatar/{name}', [ImageController::class, 'profile'])->name('avatar-profile');
+Route::get('/student-cor/{name}', [ImageController::class, 'student_cor'])->name('student_cor');
 
 // Route::get('/dashboard', function () {
 //     return view('user.index');

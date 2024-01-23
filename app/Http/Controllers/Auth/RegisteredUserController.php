@@ -41,7 +41,19 @@ class RegisteredUserController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
+
+
+
         $user = User::where('role', 'admin')->first();
+
+
+
+
+        $student_cor = 'stdntcr-' . $request->last_name . '-' . uniqid() . '.' . $request->student_cor->extension();
+        $validID_dir = $request->student_cor->storeAs('/unverified/student/COR', $student_cor, 'public');
+
+
+
 
         $unverified = UnverifiedAccount::create([
             'first_name' => $request->firstName,
@@ -54,8 +66,9 @@ class RegisteredUserController extends Controller
             'student_id' => $request->studentId,
             'email' => $request->email,
             'password' => $request->password,
+            'student_cor' => $student_cor
         ]);
-        
+
 
         $message = [
             'content' => "New Registered Student: {$request->lastName}, {$request->firstName} {$request->middle_name} Student ID {$request->studentId}"
@@ -65,7 +78,5 @@ class RegisteredUserController extends Controller
         $user->notify(new NewUserNotification($message));
 
         return Redirect::to('login')->with('message', 'Thanks for registering! Wait for the approval of the librarian.');
-
     }
-
 }

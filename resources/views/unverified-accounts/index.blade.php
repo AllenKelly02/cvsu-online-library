@@ -44,7 +44,9 @@
                             @forelse($accounts as $account)
                                 <tr class="bg-white border-b">
                                     <td class="px-6 py-4 capitalize text-center">
-                                        {{ $account->student_cor}}
+                                        <a href="{{route('student_cor', ['name' => $account->student_cor])}}" class="venobox">
+                                        <img src="{{route('student_cor', ['name' => $account->student_cor])}}" alt="" class="h-16 w-auto object object-center">
+                                    </a>
                                     </td>
                                     <td class="px-6 py-4 capitalize text-center">
                                         {{ $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name }}
