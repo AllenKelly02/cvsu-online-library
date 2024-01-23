@@ -50,8 +50,9 @@
                                             </td>
 
                                             <td class="flex justify-center px-6 py-4 space-x-3">
-                                                <form>
-                                                    {{-- @csrf --}}
+                                                <form  action="{{ route('admin.edit-account', ['id' => $account->id]) }}"
+                                                    method="POST">
+                                                    @csrf
                                                     <button
                                                         class="font-medium text-white py-2 px-4 rounded-full bg-blue-400 hover:bg-blue-500">Edit</button>
                                                 </form>

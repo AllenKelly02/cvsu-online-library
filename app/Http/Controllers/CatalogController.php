@@ -87,4 +87,9 @@ class CatalogController extends Controller
         // Logic for the ask a librarian page
         return view('user.navbar.ask-librarian');
     }
+
+    public function penalty()
+    {
+        return view('user.borrowed.penalty');
+    }
 }

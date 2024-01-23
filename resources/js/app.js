@@ -34,7 +34,12 @@ Alpine.data('printBarcode', () => ({
     printElement(){
         const elementDiv = document.getElementById('barcode-print-data');
 
-        window.html2pdf().from(elementDiv).save();
+        var options = {
+            filename: 'Accession Number Barcodes.pdf',
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf(elementDiv, options);
     }
 }));
 

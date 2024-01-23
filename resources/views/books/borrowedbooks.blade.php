@@ -110,7 +110,7 @@
                                             <h1 class="text-lg font-bold">What is the condition of the book? </h1>
                                             <div class="flex justify-end items-center">
                                                 <form
-                                                    action="{{ route('admin.returned-book', ['id' => $bookIssuing->id]) }}"
+                                                    action="{{ route('admin.returned_book', ['id' => $bookIssuing->id]) }}"
                                                     method="post" class="flex flex-col gap-2">
                                                     @csrf
                                                     <select id="bookCondition" name="book_condition"

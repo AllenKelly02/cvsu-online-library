@@ -85,15 +85,14 @@
                     @csrf
                     <select class="select select-bordered w-full bg-white" name="reason">
                         <option disabled selected>Select Reason</option>
-                        <option>the materials have not been used for more than ten years;</option>
-                        <option>the condition of the item is bad, e.g. missing pages, worn-out, and text is unreadable;
+                        <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">The materials have not been used for more than ten years</option>
+                        <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">The condition of the item is bad, e.g. missing pages, worn-out, and text is unreadable
                         </option>
-                        <option>the Science and Technology materials that are copyrighted/published more than three to
-                            five years;</option>
-                        <option> the materials are no longer in demand or do not support the curriculum or current
-                            academie programs:</option>
-                        <option> older edition of the book is no longer used</option>
-                        <option>books become obsolete</option>
+                        <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">The Science and Technology materials that are copyrighted/published more than three to five years</option>
+                        <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">The materials are no longer in demand or do not support the curriculum or current
+                            academie programs</option>
+                        <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">Older edition of the book is no longer used</option>
+                        <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">Books become obsolete</option>
                     </select>
 
 

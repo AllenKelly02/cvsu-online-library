@@ -1,5 +1,18 @@
 <x-app-layout>
     <section>
+        <div class="pt-5 pl-10">
+            @auth
+                @if (Auth::user()->role === 'admin')
+                    <a class="cta" href="{{ route('admin.verified-accounts') }}">
+                        <span class="black">Back</span>
+                    </a>
+                @else
+                    <a class="cta" href="{{ route('user.catalog') }}">
+                        <span class="black">Back</span>
+                    </a>
+                @endif
+            @endauth
+        </div>
         <div class="mx-auto ml-20 mt-2">
             <div class="flex flex-col space-y-2 p-4">
                 @if (session()->has('message'))

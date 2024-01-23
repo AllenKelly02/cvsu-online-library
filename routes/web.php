@@ -143,12 +143,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
     //lisft of Returned Books
     Route::get('/books/get/Returned', [BooksController::class, 'allReturnedBooks'])->name('getAllReturnedBooks');
 
-
+    //accounts
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');
 
     Route::get('/unverified-accounts', [AccountsController::class, 'unverifiedAccounts'])->name('unverified-accounts');
 
-    Route::get('/edit-accounts/{id}', [AccountsController::class, 'edit'])->name('edit-account');
+    Route::post('/edit-accounts/{id}', [AccountsController::class, 'edit'])->name('edit-account');
 
     Route::post('/update-accounts/{id}', [AccountsController::class, 'update'])->name('update-account');
 
@@ -179,6 +179,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     Route::post('/book/borrow/{id}', [BooksController::class, 'borrow'])->name('borrow-book');
 
     Route::get('/books/borrowed/list', [CatalogController::class, 'borrowedHistory'])->name('borrow-history');
+    Route::get('/books/borrowed/penalty', [CatalogController::class, 'penalty'])->name('penalty');
 
     //add favorite book
     Route::post('/books/show/{id}/addFavorite', [BooksController::class, 'addFavourite'])->name('addBookFavourite');

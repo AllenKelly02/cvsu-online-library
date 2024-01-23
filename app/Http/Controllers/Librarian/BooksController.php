@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Enums\EbookSourceType;
 use App\Models\UserFavouriteBook;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Notifications\BookNotification;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
@@ -44,28 +45,24 @@ class BooksController extends Controller
         return view('books.edit', compact('book'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
-        // Validate the request data
-        $validatedData = $request->validate([
-            'title' => 'nullable|max:255',
-            'author' => 'nullable',
-            'published_year' => 'nullable|numeric',
-            'ISBN' => 'nullable|numeric',
-            'publisher' => 'nullable',
-            'pages' => 'nullable|numeric',
-            'description' => 'nullable',
-            'copy' => 'nullable',
-            'bibliography' => 'nullable',
-            'accession_number' => 'nullable|numeric',
-            'call_number' => 'nullable|numeric',
-            'edition' => 'nullable|numeric',
-            // Add validation rules for other book attributes
-        ]);
+        $book = Book::find($id);
 
-        // Find the book with the given ID and update its attributes
-        $book = Book::findOrFail($id);
-        $book->update($validatedData);
+        $book->update([
+            'title' => $request->title ?? $book->title,
+            'author' => $request->author ?? $book->author,
+            'published_year' => $request->published_year ?? $book->published_year,
+            'ISBN' => $request->ISBN ?? $book->ISBN,
+            'publisher' => $request->publisher ?? $book->publisher,
+            'pages' => $request->pages ?? $book->pages,
+            'description' => $request->description ?? $book->description,
+            'copy' => $request->copy ?? $book->copy,
+            'bibliography' => $request->bibliography ?? $book->bibliography,
+            'accession_number' => $request->accession_number ?? $book->accession_number,
+            'call_number' => $request->call_number ?? $book->call_number,
+            'edition' => $request->edition ?? $book->edition,
+        ]);
 
         return redirect()->route('admin.books.show', $book->id)->with(['message' => 'Update Book Successfully']);
     }
@@ -229,7 +226,8 @@ class BooksController extends Controller
             $bookIssuing->book->update(['status' => 'unavailable', 'copy' => $book->copy - 1]);
         }
         $message = [
-            'content' => "Your Books Request Title: {$book->title} has been approved. <br> Approved Date: " . now()->format('F d, Y')
+            'content' => "Your Books Request Title: {$book->title} has been approved." .
+             " Approved Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));
@@ -258,7 +256,8 @@ class BooksController extends Controller
         $bookIssuing->delete();
 
         $message = [
-            'content' => "Your Books Request title {$bookIssuing->book->title} has been rejected. <br> Rejected Date: " . now()->format('F d, Y')
+            'content' => "Your Books Request title {$bookIssuing->book->title} has been rejected." .
+             " Rejected Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));
@@ -317,8 +316,8 @@ class BooksController extends Controller
 
 
         $message = [
-            'content' => "Book Title: {$bookIssuing->book->title} has been returned with a {$bookIssuing->book_condition} condition.
-            <br> Return Date: " . now()->format('F d, Y')
+            'content' => "Book Title: {$bookIssuing->book->title} has been returned with a {$bookIssuing->book_condition} condition." .
+            " Return Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));
@@ -399,9 +398,7 @@ class BooksController extends Controller
 
 
        // comment this if you want to test the penalty then uncomment the testing logic in the upper parts of this
-        foreach ($bookIssuings as $bookIssuing) {
-
-        $user = User::find($bookIssuing->user->id);
+       foreach ($bookIssuings as $bookIssuing) {
 
             if ($bookIssuing->created_at->diffInDays() > 3 && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')) {
                 if (!$bookIssuing->penalty) {
@@ -418,14 +415,16 @@ class BooksController extends Controller
                     ]);
                 }
             }
+            // $user = User::find($bookIssuing->user->id);
+
+            // $message = [
+            //     'content' => "Reminder: The book you borrowed is on due date, please return it to our campus librarian otherwise, you will have a penalty." .
+            //      " Reminder Date: " . now()->format('F d, Y')
+            // ];
+
+            // $user->notify(new BookNotification($message));
+
         }
-
-        $message = [
-            'content' => "Reminder: The book you borrowed is on due date, please return it to our campus librarian otherwise, you will have a penalty.
-            <br> Reminder Date: " . now()->format('F d, Y')
-        ];
-
-        $user->notify(new BookNotification($message));
 
         return view('books.borrowedbooks', compact(['bookIssuings']));
     }

@@ -43,10 +43,10 @@
                         <tbody>
                             @forelse($accounts as $account)
                                 <tr class="bg-white border-b">
-                                    <td class="px-6 py-4 capitalize text-center">
-                                        <a href="{{route('student_cor', ['name' => $account->student_cor])}}" class="venobox">
-                                        <img src="{{route('student_cor', ['name' => $account->student_cor])}}" alt="" class="h-16 w-auto object object-center">
-                                    </a>
+                                    <td class="px-6 py-4 capitalize text-center flex items-center justify-center">
+                                        <a href="{{ route('student_cor', ['name' => $account->student_cor]) }}" class="venobox">
+                                            <img src="{{ route('student_cor', ['name' => $account->student_cor]) }}" alt="" class="flex flex-col item-center justify-center h-16 w-auto">
+                                        </a>
                                     </td>
                                     <td class="px-6 py-4 capitalize text-center">
                                         {{ $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name }}
@@ -63,18 +63,14 @@
                                     <td class="px-6 py-4 text-center">
                                         {{ $account['email'] }}
                                     </td>
-                                    <td class="flex justify-center px-6 py-4 space-x-3">
-                                        <form method="POST"
-                                            action="{{ route('admin.accept-account', ['id' => $account->id]) }}">
+                                    <td class="px-6 py-4 text-center space-y-2">
+                                        <form method="POST" action="{{ route('admin.accept-account', ['id' => $account->id]) }}">
                                             @csrf
-                                            <button
-                                                class="font-medium text-white py-2 px-4 rounded-full bg-green-500 hover:bg-green-600">Accept</button>
+                                            <button class="font-medium text-white py-2 px-4 rounded-full bg-green-500 hover:bg-green-600">&nbsp;Accept&nbsp;</button>
                                         </form>
-                                        <form method="POST"
-                                            action="{{ route('admin.reject-account', ['id' => $account->id]) }}">
+                                        <form method="POST" action="{{ route('admin.reject-account', ['id' => $account->id]) }}">
                                             @csrf
-                                            <button
-                                                class="font-medium text-white py-2 px-4 rounded-full bg-red-500 hover:bg-red-600">Remove</button>
+                                            <button class="font-medium text-white py-2 px-4 rounded-full bg-red-500 hover:bg-red-600">Remove</button>
                                         </form>
                                     </td>
                                 </tr>

@@ -10,7 +10,6 @@
                 </div>
             </div>
 
-            {{-- Include this link in your view --}}
             <div x-data="printReturnedBooks">
                 <div class="flex justify-end pr-4 py-2">
                     <button
@@ -19,12 +18,12 @@
                         <span><i class="fi fi-rr-download"></i></span> Export to Excel
                     </button>
                 </div>
-                <!-- Filter Category -->
-            {{-- <div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
+            <!-- Filter Program/Course -->
+            <div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
                 <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" onclick="toggleDropdown()">Filter by Program <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
- --}}
+
                 <!-- Dropdown menu -->
-                {{-- <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 overflow-y-auto max-h-48 w-32" id="dropdown">
+                <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 overflow-y-auto max-h-48 w-32" id="dropdown">
                     <ul class="py-1" aria-labelledby="dropdown">
                         <a href="{{route('admin.getAllReturnedBooks')}}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
                             All
@@ -40,7 +39,7 @@
                     </li>
                     </ul>
                 </div>
-            </div> --}}
+            </div>
                 <div class="flex flex-col space-y-2 p-4">
                     <div class="relative overflow-x-auto w-full h-[35rem] bg-white drop-shadow-lg sm:rounded-lg">
                         <table class="w-full table-auto text-sm text-left text-gray-500" id="returnedbooks-print-data">
