@@ -54,6 +54,19 @@ Alpine.data('printBarcode', () => ({
 
             /* generate XLSX file and send to client */
             XLSX.writeFile(wb, 'Returned_Books.xlsx');
+        },
+        printTableData() {
+            const table = document.getElementById('returnedbooks-print-data');
+            var options = {
+                filename: 'Borrowed Books.pdf',
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            };
+
+            html2pdf(table, options);
         }
     }));
 
