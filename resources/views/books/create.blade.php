@@ -52,10 +52,8 @@
 
                                 </div>
                                 <div class="relative space-y-3">
-                                    <img src="" alt="" id="previewImage"
-                                        class="h-full w-auto mb-5 py-3">
-                                    <a hef="#"
-                                        class="absolute top-1 left-1 bg-yellowmain rounded-full text-black px-1 w-8 text-center cursor-pointer"
+                                    <img src="" alt="" id="previewImage" class="h-full w-auto mb-5 py-3">
+                                    <a hef="#" id="removeImageButton" class="absolute top-1 left-1 bg-yellowmain rounded-full text-black px-1 w-8 text-center cursor-pointer z-50"
                                         @click="removeImage()">X</a>
                                 </div>
                             </div>

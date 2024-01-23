@@ -86,12 +86,15 @@
                     <select class="select select-bordered w-full bg-white" name="reason">
                         <option disabled selected>Select Reason</option>
                         <option>the materials have not been used for more than ten years;</option>
-                        <option>the condition of the item is bad, e.g. missing pages, worn-out, and text is unreadable;</option>
-                        <option>the Science and Technology materials that are copyrighted/published more than three to five years;</option>
-                        <option> the materials are no longer in demand or do not support the curriculum or current academie programs:</option>
+                        <option>the condition of the item is bad, e.g. missing pages, worn-out, and text is unreadable;
+                        </option>
+                        <option>the Science and Technology materials that are copyrighted/published more than three to
+                            five years;</option>
+                        <option> the materials are no longer in demand or do not support the curriculum or current
+                            academie programs:</option>
                         <option> older edition of the book is no longer used</option>
                         <option>books become obsolete</option>
-                      </select>
+                    </select>
 
 
                     <div class="flex items-center space-x-5 pl-5 justify-end">
@@ -240,51 +243,53 @@
                                     <span><i class="fi fi-rr-trash mr-2 flex ml-auto"></i></span>Remove
                                 </button>
                             @else
-                                @if ($BookIssuingIsNull)
-                                    @if ($book->status === 'available')
-                                        <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}"
-                                            class="flex ml-auto py-2 px-6" method="post">
-                                            @csrf
-                                            <button
-                                                class="flex ml-auto py-2 px-6 focus:outline-none button-name text-black hover:bg-yellow-500">Borrow</button>
-                                        </form>
-                                    @endif
-                                @else
-                                    @if (
-                                        $book->status === 'available' &&
-                                            Auth::user()->booksIssuing()->where('book_id', $book->id)->where('returned_date', '!=', '0000-00-00')->get()->count() > 0)
-                                        <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}"
-                                            class="flex ml-auto py-2 px-6" method="post">
-                                            @csrf
-                                            <button
-                                                class="flex ml-auto py-2 px-6 focus:outline-none button-name text-black hover:bg-yellow-500">Borrow</button>
-                                        </form>
-                                    @endif
-                                @endif
+                            @if ($BookIssuingIsNull)
+                            @if ($book->status === 'available')
+                                <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" class="flex ml-auto py-2 px-6" method="post">
+                                    @csrf
+                                    <button class="flex ml-auto py-2 px-6 focus:outline-none button-name text-black hover:bg-yellow-500">Borrow</button>
+                                </form>
                             @endif
+                        @else
+                            @php
+                                $existingBorrowing = Auth::user()
+                                    ->booksIssuing()
+                                    ->where('book_id', $book->id)
+                                    ->where('returned_date', '!=', '0000-00-00')
+                                    ->first();
+                            @endphp
 
-                            @if (Auth::user()->role === 'admin')
-                            @else
-                                @if (Auth::user()->favourite_books()->where('book_id', $book->id)->get()->count() === 0)
-                                    <form action="{{ route('user.addBookFavourite', ['id' => $book->id]) }}"
-                                        method="post">
-                                        @csrf
-                                        <button
-                                            class="rounded-full w-10 h-10 bg-red-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-1 mt-3 hover:bg-red-500">
-                                            <img src="{{ asset('img/heart-add-line.png') }}" alt="">
-                                        </button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('user.removeBookFavourite', ['id' => $book->id]) }}"
-                                        method="post">
-                                        @csrf
-                                        <button
-                                            class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-1 mt-3 hover:bg-red-300">
-                                            <img src="{{ asset('img/heart-3-fill.png') }}" alt="">
-                                        </button>
-                                    </form>
-                                @endif
+                            @if ($book->status === 'available' || ($existingBorrowing && $existingBorrowing->returned_date != '0000-00-00'))
+                                <form action="{{ route('user.borrow-book', ['id' => $book->id]) }}" class="flex ml-auto py-2 px-6" method="post">
+                                    @csrf
+                                    <button class="flex ml-auto py-2 px-6 focus:outline-none button-name text-black hover:bg-yellow-500">Borrow</button>
+                                </form>
                             @endif
+                        @endif
+
+                            @endif
+                                @if (Auth::user()->role === 'admin')
+                                @else
+                                    @if (Auth::user()->favourite_books()->where('book_id', $book->id)->get()->count() === 0)
+                                        <form action="{{ route('user.addBookFavourite', ['id' => $book->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            <button
+                                                class="rounded-full w-10 h-10 bg-red-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-1 mt-3 hover:bg-red-500">
+                                                <img src="{{ asset('img/heart-add-line.png') }}" alt="">
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('user.removeBookFavourite', ['id' => $book->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            <button
+                                                class="rounded-full w-10 h-10 bg-red-100 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-1 mt-3 hover:bg-red-300">
+                                                <img src="{{ asset('img/heart-3-fill.png') }}" alt="">
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endif
                         </div>
         </section>
     </section>

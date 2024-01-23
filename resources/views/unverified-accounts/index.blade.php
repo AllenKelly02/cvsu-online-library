@@ -18,6 +18,9 @@
                         <thead class="text-xs text-black uppercase bg-blue-200 ">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-center">
+                                    STUDENT ID PICTURE / LATEST COR
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center">
                                     Name
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center">
@@ -40,6 +43,9 @@
                         <tbody>
                             @forelse($accounts as $account)
                                 <tr class="bg-white border-b">
+                                    <td class="px-6 py-4 capitalize text-center">
+                                        {{ $account->student_cor}}
+                                    </td>
                                     <td class="px-6 py-4 capitalize text-center">
                                         {{ $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name }}
                                     </td>
@@ -72,7 +78,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="px-6 py-4 whitespace-nowrap">
+                                    <td colspan="7" class="px-6 py-4 whitespace-nowrap">
                                         <div class="alert alert-warning">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 class="stroke-current shrink-0 h-6 w-6" fill="none"

@@ -182,11 +182,7 @@
         });
     </script>
     <script>
-<<<<<<< HEAD
         // Remove the alert message after seconds (adjust the timeout value as needed)
-=======
-        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
->>>>>>> origin/master
         setTimeout(function() {
             document.querySelector('.alert-success').remove();
         }, 1200);

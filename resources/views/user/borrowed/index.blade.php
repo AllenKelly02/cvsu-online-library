@@ -54,7 +54,9 @@
                         <h3 class="truncate tracking-widest text-black text-sm m-1">
                             <b>Duration:</b> {{ $borrow->created_at->diffForHumans() }}
                         </h3>
-
+                        <h3 class="truncate tracking-widest text-black text-sm m-1">
+                            <b>Returned Book Condition:</b> {{ $borrow->book_condition }}
+                        </h3>
                         @if ($borrow->penalty)
                         <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Penalty</b>
                             <span

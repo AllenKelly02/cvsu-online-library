@@ -76,7 +76,6 @@ class AccountsController extends Controller
 
         $user = User::find($id);
 
-
         $user->profile->delete();
 
         $user->delete();

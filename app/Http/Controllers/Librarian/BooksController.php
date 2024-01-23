@@ -162,24 +162,28 @@ class BooksController extends Controller
 
     public function borrow(Request $request, $id)
     {
-
-
         $admin = User::where('role', 'admin')->first();
-
         $user = Auth::user();
-
         $book = Book::find($id);
 
-        if($book->bookIssuing()->where('user_id', $user->id)
-        ->where('status', 'pending')->orWhere('returned_date', '0000-00-00')->latest()->first() !== null){
-            return back()->with(['warning' => "You have Pending Borrowed Book Request! or Doesn't Return yet this Book "]);
-        }
+        // Check if the user already has a book
+        $existingBook = $book->bookIssuing()
+            ->where('user_id', $user->id)
+            ->where(function ($query) {
+                $query->where('status', 'pending')->orWhere('returned_date', '0000-00-00');
+            })
+            ->latest()
+            ->first();
 
+        if ($existingBook !== null) {
+            return back()->with(['warning' => "You already have a book that is pending or hasn't been returned yet."]);
+        }
 
         if ($book->copy < 1) {
             return back()->with(['message' => "Book is currently Unavailable"]);
         }
 
+        // Create a book issuing record
         BookIssuing::create([
             'borrowed_date' => Carbon::now()->format('Y-m-d'),
             'user_id' => $user->id,
@@ -188,13 +192,14 @@ class BooksController extends Controller
             'total_days' => 3,
         ]);
 
+        // Notify the admin about the book request
         $message = [
-            'content' => "Student: {$user->name}, requesting to a borrowed a book {$book->title} Accession no. {$book->accession_number}"
+            'content' => "Student: {$user->name}, requesting to borrow a book {$book->title} Accession no. {$book->accession_number}"
         ];
 
         $admin->notify(new BookNotification($message));
 
-        return back()->with(['message' => "Your Book Request Has Send in Admin wait for the Approval"]);
+        return back()->with(['success' => 'Book borrowing request submitted successfully.']);
     }
 
     // approve request borrowed books
@@ -224,14 +229,14 @@ class BooksController extends Controller
             $bookIssuing->book->update(['status' => 'unavailable', 'copy' => $book->copy - 1]);
         }
         $message = [
-            'content' => "Your Books Request title {$book->title} is Approved Date: " . now()->format('F d, Y')
+            'content' => "Your Books Request Title: {$book->title} has been approved. <br> Approved Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));
 
 
 
-        return back()->with(['message' => "Request for borrowing book has been Approved!"]);
+        return back()->with(['message' => "Request for borrowing book has been approved!"]);
     }
     // Admin Request reject
     public function rejectBorrowBooks($id)
@@ -250,9 +255,10 @@ class BooksController extends Controller
             ]
         );
 
+        $bookIssuing->delete();
 
         $message = [
-            'content' => "Your Books Request title {$bookIssuing->book->title} is Rejected Date: " . now()->format('F d, Y')
+            'content' => "Your Books Request title {$bookIssuing->book->title} has been rejected. <br> Rejected Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));
@@ -311,7 +317,8 @@ class BooksController extends Controller
 
 
         $message = [
-            'content' => "Book title {$bookIssuing->book->title} is Returned on Date: " . now()->format('F d, Y')
+            'content' => "Book Title: {$bookIssuing->book->title} has been returned with a {$bookIssuing->book_condition} condition.
+            <br> Return Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));
@@ -394,6 +401,8 @@ class BooksController extends Controller
        // comment this if you want to test the penalty then uncomment the testing logic in the upper parts of this
         foreach ($bookIssuings as $bookIssuing) {
 
+        $user = User::find($bookIssuing->user->id);
+
             if ($bookIssuing->created_at->diffInDays() > 3 && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')) {
                 if (!$bookIssuing->penalty) {
 
@@ -410,6 +419,14 @@ class BooksController extends Controller
                 }
             }
         }
+
+        $message = [
+            'content' => "Reminder: The book you borrowed is on due date, please return it to our campus librarian otherwise, you will have a penalty.
+            <br> Reminder Date: " . now()->format('F d, Y')
+        ];
+
+        $user->notify(new BookNotification($message));
+
         return view('books.borrowedbooks', compact(['bookIssuings']));
     }
 

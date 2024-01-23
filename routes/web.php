@@ -77,7 +77,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
     //delete category
     Route::post('/delete-category/{category}', [CategoriesController::class, 'destroy'])->name('category-delete');
 
-
+    Route::get('/users-per-month', [DashboardController::class, 'getUsersPerMonth']);
 
     Route::prefix('messages')->as('messages.')->group(function (){
         Route::get('', [MessageController::class, 'index'])->name('index');
@@ -132,7 +132,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
     Route::get('/books/archivedbooks', [BooksController::class, 'archivedbooks'])->name('books.archivedbooks');
 
     //return book
-    Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned-book');
+    Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned_book');
     Route::post('/returned-book/{id}', [BooksController::class, 'returnedBook'])->name('admin.returned-book');
 
     //delete book

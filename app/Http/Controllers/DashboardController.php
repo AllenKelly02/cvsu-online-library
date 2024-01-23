@@ -70,4 +70,15 @@ class DashboardController extends Controller
 
         //borrowed Book Report
 
+    private function getUsersPerMonth()
+    {
+        $user = User::where('role', 'user')->selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
+            ->groupBy('month')
+            ->get();
+
+        return view('user.line-chart', compact('usersPerMonth'));
+    }
 }
+// UserController.php
+
+

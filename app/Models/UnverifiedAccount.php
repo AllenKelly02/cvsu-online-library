@@ -10,6 +10,7 @@ class UnverifiedAccount extends Model
     use HasFactory;
 
     protected $fillable = [
+        'student_cor',
         'first_name',
         'middle_name',
         'last_name',

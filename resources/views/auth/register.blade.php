@@ -16,7 +16,6 @@
                             @csrf
                             <h1 class=" text-xl pl-2">Personal Information:</h1>
                             <div class="flex -mx-2">
-
                                 <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="firstName" class="text-xs font-semibold px-1">First name</label>
@@ -306,6 +305,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="flex -mx-2">
+                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                    <div class="flex space-x-2">
+                                        <label for="student_cor" class="text-xs font-semibold px-1 pb-2">Upload Student ID or COR PDF:</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="file" name="student_cor" accept="image/*, .pdf" class="border rounded-lg">
+                                        <span class="error-icon hidden mt-2 -ml-6 text-red-700">
+                                            <i class="ri-error-warning-fill"></i>
+                                        </span>
+                                        <span class="success-icon hidden mt-2 -ml-6 text-green-700">
+                                            <i class="ri-checkbox-fill"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="flex flex-col md:flex-row items-center justify-center">
                                 <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
@@ -318,7 +335,6 @@
                                     </button>
                                 </div>
                             </div>
-
 
                         </form>
                     </div>

@@ -74,7 +74,7 @@
                 <div class="flex flex-col text-center mb-2 mt-2">
                     <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
                         <h2 class="text-xl font-bold">Monthly Borrowed Books</h2>
-                        <span class="text-sm font-semibold text-gray-500">2023</span>
+                        <span class="text-sm font-semibold text-gray-500">{{ date('Y') }}</span>
                         <div id="chartContainer" class="flex items-end flex-grow w-full mt-2 space-x-2 sm:space-x-3">
                         </div>
                     </div>
@@ -131,6 +131,7 @@
                         {{ Session::get('message') }}</p>
                 </div>
             @endif
+            <canvas id="userLineChart" width="400" height="200"></canvas>
             @push('js')
                 <script>
                     var options = {
@@ -222,6 +223,38 @@
                         document.querySelector('.alert').remove();
                     }, 1000);
                 </script>
+
+                {{-- <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var ctx = document.getElementById('userLineChart').getContext('2d');
+                        var usersPerMonth = @json($usersPerMonth);
+
+                        var chart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: usersPerMonth.map(entry => entry.month),
+                                datasets: [{
+                                    label: 'Users per Month',
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    data: usersPerMonth.map(entry => entry.count),
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    x: {
+                                        type: 'category',
+                                        labels: usersPerMonth.map(entry => entry.month),
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                        precision: 0,
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script> --}}
             @endpush
         </div>
     </section>

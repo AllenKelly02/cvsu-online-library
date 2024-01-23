@@ -55,7 +55,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ]);
-
+        
 
         $message = [
             'content' => "New Registered Student: {$request->lastName}, {$request->firstName} {$request->middle_name} Student ID {$request->studentId}"

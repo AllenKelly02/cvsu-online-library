@@ -21,4 +21,14 @@ class ImageController extends Controller
 
        return $url;
    }
+
+   public function student_cor(string $name){
+
+
+    $url = response()->file(storage_path('app/public/student_cor/'. $name));
+
+   return $url;
+}
+
+
 }
