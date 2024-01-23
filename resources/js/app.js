@@ -71,6 +71,79 @@ Alpine.data('printBarcode', () => ({
     }));
 
 
+    Alpine.data('monthlyUser', () =>  ({
+        monthLabels: [],
+        totalUser: [],
+        initUser(data) {
+            data.forEach(item => {
+
+                this.monthLabels.push(item.name)
+                this.totalUser.push(item.users)
+
+            });
+
+            console.log(this.totalUser);
+        },
+        initBarGraph() {
+           const  colors = [
+                '#eb422f',
+                '#742ad4',
+                '#0c5c87'
+            ];
+            const element = this.$refs.monthlyUserGraph;
+
+            console.log(element);
+
+            var options = {
+                series: [{
+                    data: [...this.totalUser]
+                }],
+                chart: {
+                    height: 350,
+                    type: 'bar',
+                    events: {
+                        click: function(chart, w, e) {
+                            // console.log(chart, w, e)
+                        }
+                    }
+                },
+                colors: colors,
+                plotOptions: {
+                    bar: {
+                        columnWidth: '45%',
+                        distributed: true,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                legend: {
+                    show: false
+                },
+                xaxis: {
+                    categories: [
+                       ...this.monthLabels
+                    ],
+                    labels: {
+                        style: {
+                            colors: colors,
+                            fontSize: '12px'
+                        }
+                    }
+                }
+            };
+
+
+
+
+
+
+            const barChart = new ApexCharts(element, options);
+            barChart.render()
+        }
+    }))
+
+
 
 
 

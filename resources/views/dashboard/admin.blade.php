@@ -78,6 +78,12 @@
                         <div id="chartContainer" class="flex items-end flex-grow w-full mt-2 space-x-2 sm:space-x-3">
                         </div>
                     </div>
+                    <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8" x-data="monthlyUser">
+                        <h2 class="text-xl font-bold">Monthly Student User</h2>
+                        <span class="text-sm font-semibold text-gray-500">{{ date('Y') }}</span>
+                        <div x-ref="monthlyUserGraph" class="flex items-end flex-grow w-full mt-2 space-x-2 sm:space-x-3" x-init="initBarGraph, initUser({{$monthlyUsers}})">
+                        </divre=>
+                    </div>
                     <div class="grid grid-cols-2 h-84 w-full py-5 gap-5">
                         <div class="w-full bg-white rounded-lg shadow-xl sm:p-8 h-full flex flex-col gap-2">
                             <h2 class="text-xl font-bold w-full"> Book Category</h2>
@@ -217,6 +223,67 @@
                     var chartPie = new ApexCharts(document.querySelector("#pieChart"), optionsOne);
                     chartPie.render();
                 </script>
+                {{-- <script>
+                    const monthyUser = () => ({
+                        monthlyUser: [],
+                        initUser(data) {
+                            this.monthlyUser = [...data]
+                        },
+                        initBarGraph() {
+
+                            const element = document.getElementById('monthlyUserGraph')
+                            dd(element);
+
+                            var optionsTwo = {
+                                series: [{
+                                    data: [21, 22, 10, 28, 16, 21, 13, 30]
+                                }],
+                                chart: {
+                                    height: 350,
+                                    type: 'bar',
+                                    events: {
+                                        click: function(chart, w, e) {
+                                            // console.log(chart, w, e)
+                                        }
+                                    }
+                                },
+                                colors: colors,
+                                plotOptions: {
+                                    bar: {
+                                        columnWidth: '45%',
+                                        distributed: true,
+                                    }
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                legend: {
+                                    show: false
+                                },
+                                xaxis: {
+                                    categories: [
+                                        ['John', 'Doe'],
+                                        ['Joe', 'Smith'],
+                                        ['Jake', 'Williams'],
+                                        'Amber',
+                                        ['Peter', 'Brown'],
+                                        ['Mary', 'Evans'],
+                                        ['David', 'Wilson'],
+                                        ['Lily', 'Roberts'],
+                                    ],
+                                    labels: {
+                                        style: {
+                                            colors: colors,
+                                            fontSize: '12px'
+                                        }
+                                    }
+                                }
+                            };
+                            const barChart = ApexCharts(element, optionsTwo);
+                            barChart.render();
+                        }
+                    });
+                </script> --}}
                 <script>
                     // Remove the alert message after 5 seconds (adjust the timeout value as needed)
                     setTimeout(function() {
