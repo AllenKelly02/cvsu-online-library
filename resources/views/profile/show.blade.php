@@ -82,9 +82,8 @@
                     <div class="w-1/3 flex border-r-2 border-gray-200">
 
                         <div class="flex flex-col gap-2 p-5">
-
                             @if ($profile->profile->avatar !== null)
-                            <img src="{{$profile->profile->avatar }}" class="flex justify-center items-center object object-center w-full h-auto">
+                            <img src="{{route('avatar-profile', ['name' => $profile->profile->avatar]) }}" class="flex justify-center items-center object object-center w-full h-auto">
 
                             @else
                             <img src="{{ asset('img/userp.png') }}" class="flex justify-center items-center object object-center w-full h-auto">

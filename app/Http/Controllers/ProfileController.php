@@ -30,21 +30,21 @@ class ProfileController extends Controller
     }
 
     public function show($id)
-{
-    // Find the user by ID with their profile
-    $profile = User::where('id', $id)->with('profile')->first();
+    {
+        // Find the user by ID with their profile
+        $profile = User::where('id', $id)->with('profile')->first();
 
-    // Check if the user was found
-    if (!$profile) {
-        // Handle the case where the user was not found
-        return abort(404); // or redirect to an error page or do something else
+        // Check if the user was found
+        if (!$profile) {
+            // Handle the case where the user was not found
+            return abort(404); // or redirect to an error page or do something else
+        }
+
+        // Now, you can safely access the user's properties
+        $bookIssuing = BookIssuing::where('user_id', $profile->id)->with('book')->get();
+
+        return view('profile.show', compact('profile', 'bookIssuing'));
     }
-
-    // Now, you can safely access the user's properties
-    $bookIssuing = BookIssuing::where('user_id', $profile->id)->with('book')->get();
-
-    return view('profile.show', compact('profile', 'bookIssuing'));
-}
     /**
      * Update the user's profile information.
      */
@@ -53,11 +53,24 @@ class ProfileController extends Controller
         $user = User::find($id);
 
 
-
         $user->update([
             'email' => $request->email ?? $user->email,
             'password' => $request->password !== null ? Hash::make($request->password) : $user->password
         ]);
+
+        if ($request->has('image')) {
+
+            $imageName =  'AVTR-' . uniqid() . '.' . $request->image->extension();
+
+            $dir = $request->image->storeAs('/avatar', $imageName, 'public');
+
+
+            $profile = Auth::user()->profile;
+
+            $profile->update([
+                'avatar' => $imageName
+            ]);
+        }
 
         $profile = $user->profile;
 
