@@ -11,7 +11,7 @@
                     {{-- For Deployment Profile --}}
                     <img src="{{ Auth::user()->profile->avatar ? route('avatar-profile', ['name' => Auth::user()->profile->avatar]) : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' }}" class="w-12 h-12 rounded-full shadow-lg">
                     <div>
-                        <h2 class="text-lg font-semibold">Hello! {{ Auth::user()->profile->first_name }}</h2>
+                        <h2 class="text-lg font-semibold">Hello! {{ Auth::user()->profile->last_name }}</h2>
                         <span class="flex items-center space-x-1">
                             <a rel="noopener noreferrer" href="{{route('profile.show', ['id' => Auth::user()->id])}}" class="text-xs hover:underline text-gray-400">View profile</a>
                         </span>

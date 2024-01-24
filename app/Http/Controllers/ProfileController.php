@@ -87,9 +87,11 @@ class ProfileController extends Controller
             'password' => $request->password ?? $user->password,
             'user_id' => $user->id
         ]);
+        if (!$profile) {
+            return redirect()->back()->with('message','Unable to update profile.');
+        }
 
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('status', 'profile-updated')->with(['message' => 'Profile Update Successfully']);
     }
 
     /**
