@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\BookIssuing;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use LDAP\Result;
 
 class DashboardController extends Controller
 {
@@ -24,8 +26,10 @@ class DashboardController extends Controller
         $booksTotalByCategory = $this->booksDataByType();
         $totalBorrowedBooksByMonths = $this->borrowedBookPerMonth();
 
+        $monthlyUsers = json_encode($this->getUsersCreatedPerMonth());
+
         $books = Book::where('status', 'available');
-        return view('dashboard.admin', compact(['user', 'books', 'bookIssuing', 'booksTotalByCategory', 'booksRanking', 'totalBorrowedBooksByMonths']));
+        return view('dashboard.admin', compact(['user', 'books', 'bookIssuing', 'booksTotalByCategory', 'booksRanking', 'totalBorrowedBooksByMonths', 'monthlyUsers']));
     }
     public function user()
     {
@@ -34,13 +38,12 @@ class DashboardController extends Controller
     private function booksDataByType()
     {
 
-       $books = Book::get()->groupBy('category')->map(function($q){
-           return $q->count();
-       });
+        $books = Book::get()->groupBy('category')->map(function ($q) {
+            return $q->count();
+        });
 
 
-       return $books;
-
+        return $books;
     }
     private function borrowedBookPerMonth()
     {
@@ -61,14 +64,12 @@ class DashboardController extends Controller
         foreach ($months as $month) {
             $count = $data[$month] ?? 0;
             $result[$month] = $count;
-
         }
 
-        return $result
-        ;
+        return $result;
     }
 
-        //borrowed Book Report
+    //borrowed Book Report
 
     private function getUsersPerMonth()
     {
@@ -78,7 +79,33 @@ class DashboardController extends Controller
 
         return view('user.line-chart', compact('usersPerMonth'));
     }
+    function getUsersCreatedPerMonth()
+    {
+        // Get all months
+        // Retrieve user count by month
+        $startDate = now()->startOfYear();
+        $endDate = now()->endOfYear();
+
+        $annualUserData = [];
+
+        for ($date = $startDate; $date->lte($endDate); $date->addMonth()) {
+            $monthOfYear = $date->format('F'); // Get the month name
+
+            $users = User::whereYear('created_at', $date->year)
+                ->whereMonth('created_at', $date->month)
+                ->count();
+
+            // Initialize count to 0 if no users found
+            $users = ($users) ? $users : 0;
+
+            $annualUserData[] = [
+                'name' => $monthOfYear,
+                'users' => $users,
+            ];
+        }
+
+        return $annualUserData;
+    }
 }
+
 // UserController.php
-
-
