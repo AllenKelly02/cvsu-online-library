@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Guest\MessageController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Librarian\ImportBookController;
+use App\Exports\ReturnedBooksExport;
 use App\Http\Middleware\Role;
 use Symfony\Component\Mime\MessageConverter;
 
@@ -34,6 +35,8 @@ Route::get('/', function () {
 Route::post('/message', [MessageController::class, 'store'])->name('message');
 
 Route::get('/image/{name}', [ImageController::class, 'view'])->name('image-view');
+Route::get('/avatar/{name}', [ImageController::class, 'profile'])->name('avatar-profile');
+Route::get('/student-cor/{name}', [ImageController::class, 'student_cor'])->name('student_cor');
 
 // Route::get('/dashboard', function () {
 //     return view('user.index');
@@ -47,10 +50,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/profile/update/avatar', [ProfileController::class, 'avatar'])->name('update.avatar');
 
-
     Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
-    Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
@@ -70,9 +72,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
         });
     });
 
-
+    //categories
     Route::resource('category', CategoriesController::class);
+    //delete category
+    Route::post('/delete-category/{category}', [CategoriesController::class, 'destroy'])->name('category-delete');
 
+    Route::get('/users-per-month', [DashboardController::class, 'getUsersPerMonth']);
 
     Route::prefix('messages')->as('messages.')->group(function (){
         Route::get('', [MessageController::class, 'index'])->name('index');
@@ -80,7 +85,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
         Route::post('/reply', [MessageController::class, 'reply'])->name('reply');
     });
 
+    //export returned books
+    Route::get('/export-returned-books', function () {
+        return \Maatwebsite\Excel\Facades\Excel::download(new ReturnedBooksExport(), 'returned_books.xlsx');
+    })->name('export.returned.books');
 
+    //import books from excel
     Route::prefix('books')->as('book.')->group(function(){
         Route::prefix('import')->as('import.')->group(function(){
             Route::get('/create', [ImportBookController::class,'create'])->name('create');
@@ -122,19 +132,22 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
     Route::get('/books/archivedbooks', [BooksController::class, 'archivedbooks'])->name('books.archivedbooks');
 
     //return book
-    Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned-book');
+    Route::post('/books/return/book/{id}', [BooksController::class, 'returnedBook'])->name('returned_book');
+    Route::post('/returned-book/{id}', [BooksController::class, 'returnedBook'])->name('admin.returned-book');
 
     //delete book
     Route::post('/books/delete/{id}', [BooksController::class, 'destroy'])->name('book-delete');
 
 
+    //lisft of Returned Books
+    Route::get('/books/get/Returned', [BooksController::class, 'allReturnedBooks'])->name('getAllReturnedBooks');
 
-
+    //accounts
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');
 
     Route::get('/unverified-accounts', [AccountsController::class, 'unverifiedAccounts'])->name('unverified-accounts');
 
-    Route::get('/edit-accounts/{id}', [AccountsController::class, 'edit'])->name('edit-account');
+    Route::post('/edit-accounts/{id}', [AccountsController::class, 'edit'])->name('edit-account');
 
     Route::post('/update-accounts/{id}', [AccountsController::class, 'update'])->name('update-account');
 
@@ -165,6 +178,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     Route::post('/book/borrow/{id}', [BooksController::class, 'borrow'])->name('borrow-book');
 
     Route::get('/books/borrowed/list', [CatalogController::class, 'borrowedHistory'])->name('borrow-history');
+    Route::get('/books/borrowed/penalty', [CatalogController::class, 'penalty'])->name('penalty');
 
     //add favorite book
     Route::post('/books/show/{id}/addFavorite', [BooksController::class, 'addFavourite'])->name('addBookFavourite');

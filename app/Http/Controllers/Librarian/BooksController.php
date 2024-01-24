@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Librarian;
 
-use App\Enums\EbookSourceType;
-use App\Models\Book;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\BookIssuing;
-use App\Models\Categories;
-use App\Models\UserFavouriteBook;
 use Carbon\Carbon;
+use App\Models\Book;
+use App\Models\User;
+use App\Models\Categories;
+use App\Models\BookIssuing;
+use Illuminate\Http\Request;
+use App\Enums\EbookSourceType;
+use App\Models\UserFavouriteBook;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use App\Notifications\BookNotification;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
@@ -42,28 +45,24 @@ class BooksController extends Controller
         return view('books.edit', compact('book'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
-        // Validate the request data
-        $validatedData = $request->validate([
-            'title' => 'nullable|max:255',
-            'author' => 'nullable',
-            'published_year' => 'nullable|numeric',
-            'ISBN' => 'nullable|numeric',
-            'publisher' => 'nullable',
-            'pages' => 'nullable|numeric',
-            'description' => 'nullable',
-            'copy' => 'nullable',
-            'bibliography' => 'nullable',
-            'accession_number' => 'nullable|numeric',
-            'call_number' => 'nullable|numeric',
-            'edition' => 'nullable|numeric',
-            // Add validation rules for other book attributes
-        ]);
+        $book = Book::find($id);
 
-        // Find the book with the given ID and update its attributes
-        $book = Book::findOrFail($id);
-        $book->update($validatedData);
+        $book->update([
+            'title' => $request->title ?? $book->title,
+            'author' => $request->author ?? $book->author,
+            'published_year' => $request->published_year ?? $book->published_year,
+            'ISBN' => $request->ISBN ?? $book->ISBN,
+            'publisher' => $request->publisher ?? $book->publisher,
+            'pages' => $request->pages ?? $book->pages,
+            'description' => $request->description ?? $book->description,
+            'copy' => $request->copy ?? $book->copy,
+            'bibliography' => $request->bibliography ?? $book->bibliography,
+            'accession_number' => $request->accession_number ?? $book->accession_number,
+            'call_number' => $request->call_number ?? $book->call_number,
+            'edition' => $request->edition ?? $book->edition,
+        ]);
 
         return redirect()->route('admin.books.show', $book->id)->with(['message' => 'Update Book Successfully']);
     }
@@ -160,36 +159,52 @@ class BooksController extends Controller
 
     public function borrow(Request $request, $id)
     {
-
+        $admin = User::where('role', 'admin')->first();
         $user = Auth::user();
-
         $book = Book::find($id);
 
-        if($book->bookIssuing()->where('user_id', $user->id)
-        ->where('status', 'pending')->orWhere('returned_date', '0000-00-00')->latest()->first() !== null){
-            return back()->with(['warning' => "You have Pending Borrowed Book Request! or Doesn't Return yet this Book "]);
-        }
+        // Check if the user already has a book
+        $existingBook = $book->bookIssuing()
+            ->where('user_id', $user->id)
+            ->where(function ($query) {
+                $query->where('status', 'pending')->orWhere('returned_date', '0000-00-00');
+            })
+            ->latest()
+            ->first();
 
+        if ($existingBook !== null) {
+            return back()->with(['warning' => "You already have a book that is pending or hasn't been returned yet."]);
+        }
 
         if ($book->copy < 1) {
             return back()->with(['message' => "Book is currently Unavailable"]);
         }
 
+        // Create a book issuing record
         BookIssuing::create([
-            'borrowed_date' => Carbon::now()->format('m-d-Y'),
+            'borrowed_date' => Carbon::now()->format('Y-m-d'),
             'user_id' => $user->id,
             'book_id' => $book->id,
             'status' => 'pending',
             'total_days' => 3,
         ]);
 
-        return back()->with(['message' => "Your Book Request Has Send in Admin wait for the Approval"]);
+        // Notify the admin about the book request
+        $message = [
+            'content' => "Student: {$user->name}, requesting to borrow a book {$book->title} Accession no. {$book->accession_number}"
+        ];
+
+        $admin->notify(new BookNotification($message));
+
+        return back()->with(['success' => 'Book borrowing request submitted successfully.']);
     }
 
     // approve request borrowed books
     public function approvedBorrowBooks($id)
     {
         $bookIssuing = BookIssuing::find($id);
+
+        $user = User::find($bookIssuing->user->id);
 
         if ($bookIssuing->book->copy < 1) {
             return back()->with(['message' => "Book is currently Unavailable"]);
@@ -210,13 +225,23 @@ class BooksController extends Controller
         } else if ($book->copy == 1) {
             $bookIssuing->book->update(['status' => 'unavailable', 'copy' => $book->copy - 1]);
         }
+        $message = [
+            'content' => "Your Books Request Title: {$book->title} has been approved." .
+             " Approved Date: " . now()->format('F d, Y')
+        ];
 
-        return back();
+        $user->notify(new BookNotification($message));
+
+
+
+        return back()->with(['message' => "Request for borrowing book has been approved!"]);
     }
     // Admin Request reject
     public function rejectBorrowBooks($id)
     {
         $bookIssuing = BookIssuing::find($id);
+
+        $user = User::find($bookIssuing->user->id);
 
         $bookIssuing->book->update([
             'status' => 'available'
@@ -228,8 +253,16 @@ class BooksController extends Controller
             ]
         );
 
+        $bookIssuing->delete();
 
-        return back();
+        $message = [
+            'content' => "Your Books Request title {$bookIssuing->book->title} has been rejected." .
+             " Rejected Date: " . now()->format('F d, Y')
+        ];
+
+        $user->notify(new BookNotification($message));
+
+        return back()->with(['message' => "Request for borrowing book has been Rejected!"]);
     }
 
 
@@ -241,24 +274,61 @@ class BooksController extends Controller
     }
 
     //admin side return book
-    public function returnedBook($id)
+    // public function returnedBook($id)
+    // {
+    //     $bookIssuing = BookIssuing::find($id);
+
+    //     $bookIssuing->book->update(['status' => 'available', 'copy' => $bookIssuing->book->copy + 1]);
+
+
+    //     $bookIssuing->update([
+    //         'returned_date' => Carbon::now()->format('Y-m-d')
+    //     ]);
+
+    //     return back()->with(['message' => "Book Return Success"]);
+    // }
+
+    public function returnedBook(Request $request, $id)
     {
         $bookIssuing = BookIssuing::find($id);
 
-        $bookIssuing->book->update(['status' => 'available', 'copy' => $bookIssuing->book->copy + 1]);
+        // Increment the copy attribute of the associated book
+        $book = $bookIssuing->book;
 
+        $user = User::find($bookIssuing->user->id);
+
+        $book->update([
+            'status' =>  'available',
+            'copy' => $book->copy + 1
+        ]);
+        // $book->status ;
+        // $book->copy += 1;
+        // $book->save();
 
         $bookIssuing->update([
-            'returned_date' => Carbon::now()->format('Y-m-d')
+            'book_condition' => $request->book_condition, // Assuming you have an input named 'bookCondition' in your form
         ]);
 
-        return back()->with(['message' => "Book Return Success"]);
-    }
+        // Update the returned_date and book_condition of the book issuing record
+        $bookIssuing->update([
+            'returned_date' => now()->format('Y-m-d'),
+        ]);
 
+
+        $message = [
+            'content' => "Book Title: {$bookIssuing->book->title} has been returned with a {$bookIssuing->book_condition} condition." .
+            " Return Date: " . now()->format('F d, Y')
+        ];
+
+        $user->notify(new BookNotification($message));
+
+
+        return back()->with(['message' => 'Book Return Success']);
+    }
 
     public function browse()
     {
-        $books = Book::latest()->filter(request(['category', 'search', 'type',]))->paginate(100);
+        $books = Book::latest()->filter(request(['category', 'search', 'type',]))->paginate(250);
 
         return view('books.browse', [
             'books' => $books
@@ -328,7 +398,7 @@ class BooksController extends Controller
 
 
        // comment this if you want to test the penalty then uncomment the testing logic in the upper parts of this
-        foreach ($bookIssuings as $bookIssuing) {
+       foreach ($bookIssuings as $bookIssuing) {
 
             if ($bookIssuing->created_at->diffInDays() > 3 && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')) {
                 if (!$bookIssuing->penalty) {
@@ -345,9 +415,30 @@ class BooksController extends Controller
                     ]);
                 }
             }
+            // $user = User::find($bookIssuing->user->id);
+
+            // $message = [
+            //     'content' => "Reminder: The book you borrowed is on due date, please return it to our campus librarian otherwise, you will have a penalty." .
+            //      " Reminder Date: " . now()->format('F d, Y')
+            // ];
+
+            // $user->notify(new BookNotification($message));
+
         }
+
         return view('books.borrowedbooks', compact(['bookIssuings']));
     }
+
+
+    public function allReturnedBooks()
+    {
+        // Fetch all returned books
+        $returnedBooks = BookIssuing::with('book')->whereNotNull('returned_date')->get();
+
+        return view('books.returnedbooks', compact('returnedBooks'));
+
+    }
+
 
     public function archivedbooks()
     {
@@ -373,9 +464,12 @@ class BooksController extends Controller
     public function bookBarcode()
     {
 
-        $books = Book::get();
-
+        $books = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
+        ;
 
         return view('scan.book.barcodes', compact(['books']));
     }
+
+
+
 }

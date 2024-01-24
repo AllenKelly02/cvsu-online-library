@@ -11,12 +11,13 @@
                             <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
                             <p>Enter your information to register</p>
                         </div>
+                        {{-- <form method="POST" action="{{ route('register') }}" name="registrationForm"
+                            id="registrationForm" enctype="multipart/form-data"> --}}
                         <form method="POST" action="{{ route('register') }}" name="registrationForm"
-                            id="registrationForm">
+                            id="registrationForm" enctype="multipart/form-data">
                             @csrf
                             <h1 class=" text-xl pl-2">Personal Information:</h1>
                             <div class="flex -mx-2">
-
                                 <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="firstName" class="text-xs font-semibold px-1">First name</label>
@@ -121,12 +122,15 @@
                                             class="w-full py-2 pl-4 rounded-lg border-2 border-gray-200 outline-none focus:border-green3 capitalize"
                                             id="course" name="course" required>
                                             <option selected value="">Select Course</option>
-                                            <option class="bg-white" value="BSE">📚 Bachelor of Secondary Education</option>
+                                            <option class="bg-white" value="BSE">📚 Bachelor of Secondary Education
+                                            </option>
                                             <option class="bg-white" value="BSBM">📚 BS Business Management</option>
                                             <option class="bg-white" value="BSCS">📚 BS Computer Science</option>
                                             <option class="bg-white" value="BSC">📚 BS Criminology</option>
-                                            <option class="bg-white" value="BSHM">📚 BS Hospitality Management</option>
-                                            <option class="bg-white" value="BSIT">📚 BS Information Technology</option>
+                                            <option class="bg-white" value="BSHM">📚 BS Hospitality Management
+                                            </option>
+                                            <option class="bg-white" value="BSIT">📚 BS Information Technology
+                                            </option>
                                             <option class="bg-white" value="BSP">📚 BS Psychology</option>
                                         </select>
 
@@ -151,9 +155,12 @@
                                             class="w-full py-2 pl-4  rounded-lg border-2 border-gray-200 outline-none focus:border-green3 capitalize"
                                             id="sex" name="sex" required>
                                             <option selected value="" class="bg-white">Select Sex</option>
-                                            <option class="bg-white" value="Male"><span class="text-blue-500">♂</span> Male</option>
-                                            <option class="bg-white" value="Female"><span class="text-pink-500">♀</span> Female</option>
-                                            <option class="bg-white" value="Prefer not to say">Prefer not to say</option>
+                                            <option class="bg-white" value="Male"><span
+                                                    class="text-blue-500">♂</span> Male</option>
+                                            <option class="bg-white" value="Female"><span
+                                                    class="text-pink-500">♀</span> Female</option>
+                                            <option class="bg-white" value="Prefer not to say">Prefer not to say
+                                            </option>
                                         </select>
                                         <span class="absolute top-1/2 left-3 transform -translate-y-1/2">
                                             <!-- Male Symbol in Blue -->
@@ -223,7 +230,8 @@
                             <div class="flex -mx-2">
                                 <div class="formGroup w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
-                                        <label for="firstName" class="text-xs font-semibold px-1">Email Address</label>
+                                        <label for="firstName" class="text-xs font-semibold px-1">Email
+                                            Address</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
@@ -306,6 +314,26 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="flex -mx-2">
+                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                    <div class="flex space-x-2">
+                                        <label for="student_cor" class="text-xs font-semibold px-1 pb-2">Upload
+                                            Student ID or COR PDF:</label>
+                                        <p class="text-red-500 text-center text-xs">*</p>
+                                        <span class="error  text-red-700 text-xs"></span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="file" name="student_cor" accept="image/*, .pdf"
+                                            class="border rounded-lg">
+                                        <span class="error-icon hidden mt-2 -ml-6 text-red-700">
+                                            <i class="ri-error-warning-fill"></i>
+                                        </span>
+                                        <span class="success-icon hidden mt-2 -ml-6 text-green-700">
+                                            <i class="ri-checkbox-fill"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="flex flex-col md:flex-row items-center justify-center">
                                 <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
@@ -314,11 +342,12 @@
                                         to login</a>
                                 </div>
                                 <div class="w-full md:w-1/2 px-3 mb-1 md:ml-4">
-                                    <button class="buttonh block w-full max-w-xs mx-auto font-semibold bg-yellowmain hover:bg-yellow-500 text-center rounded-lg px-3 py-3 md:mx-0">Register Now
+                                    <button
+                                        class="buttonh block w-full max-w-xs mx-auto font-semibold bg-yellowmain hover:bg-yellow-500 text-center rounded-lg px-3 py-3 md:mx-0">Register
+                                        Now
                                     </button>
                                 </div>
                             </div>
-
 
                         </form>
                     </div>

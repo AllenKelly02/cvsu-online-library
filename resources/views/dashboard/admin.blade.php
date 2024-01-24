@@ -1,6 +1,6 @@
 <x-app-layout>
     <section class="text-gray-600 body-font w-full bg-no-repeat bg-fixed"
-    style="background-image: url('../img/blob-scene-haikei (9).svg');">
+        style="background-image: url('../img/blob-scene-haikei (9).svg');">
         <div class="px-1 py-5 mx-auto ml-10">
             <div class="lg:w-1/2 w-fulll lg:mb-5">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Dashboard</h1>
@@ -74,77 +74,70 @@
                 <div class="flex flex-col text-center mb-2 mt-2">
                     <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
                         <h2 class="text-xl font-bold">Monthly Borrowed Books</h2>
-                        <span class="text-sm font-semibold text-gray-500">2023</span>
+                        <span class="text-sm font-semibold text-gray-500">{{ date('Y') }}</span>
                         <div id="chartContainer" class="flex items-end flex-grow w-full mt-2 space-x-2 sm:space-x-3">
                         </div>
                     </div>
-
+                    <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8" x-data="monthlyUser">
+                        <h2 class="text-xl font-bold">Monthly Student User</h2>
+                        <span class="text-sm font-semibold text-gray-500">{{ date('Y') }}</span>
+                        <div x-ref="monthlyUserGraph" class="flex items-end flex-grow w-full mt-2 space-x-2 sm:space-x-3" x-init="initBarGraph, initUser({{$monthlyUsers}})">
+                        </divre=>
+                    </div>
                     <div class="grid grid-cols-2 h-84 w-full py-5 gap-5">
                         <div class="w-full bg-white rounded-lg shadow-xl sm:p-8 h-full flex flex-col gap-2">
-                            <h2 class="text-xl font-bold w-full">  Book Category</h2>
+                            <h2 class="text-xl font-bold w-full"> Book Category</h2>
                             <div id="pieChart" class="w-full h-full"></div>
                             {{-- <canvas id="myChart"></canvas> --}}
                         </div>
                         <div class="w-full bg-white rounded-lg shadow-xl sm:p-8 h-full">
                             <h2 class="text-xl font-bold"></h2>
                             <span class="text-sm font-semibold text-gray-500"></span>
-                            <div  class="w-full h-full flex flex-col gap-2">
+                            <div class="w-full h-full flex flex-col gap-2">
                                 <h1 class="text-lg font-bold p-2">
                                     Ranking
                                 </h1>
                                 <div class="overflow-x-auto h-full">
                                     <table class=" w-full">
-                                      <!-- head -->
-                                      <thead>
-                                        <tr>
-                                          <th class="w-16">Rank</th>
-                                          <th>Title</th>
-                                          <th>Borrowed</th>
+                                        <!-- head -->
+                                        <thead>
+                                            <tr>
+                                                <th class="w-16">Rank</th>
+                                                <th>Title</th>
+                                                <th>Borrowed</th>
 
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <!-- row 1 -->
-                                        <?php
-                                        $count = 1;
-                                        ?>
-                                        @foreach ($booksRanking as $book)
-                                        <tr>
-                                            <th>{{ $count++ }}</th>
-                                            <td>{{ $book->title }}</td>
-                                            <td>{{ $book->bookIssuing()->count() }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- row 1 -->
+                                            <?php
+                                            $count = 1;
+                                            ?>
+                                            @foreach ($booksRanking as $book)
+                                                <tr>
+                                                    <th>{{ $count++ }}</th>
+                                                    <td>{{ $book->title }}</td>
+                                                    <td>{{ $book->bookIssuing()->count() }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
                                     </table>
-                                  </div>
+                                </div>
 
 
                             </div>
                         </div>
-
-
-
-                        {{-- <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
-                            <h2 class="text-xl font-bold"></h2>
-                            <span class="text-sm font-semibold text-gray-500"></span>
-
-                        </div>
-                        <div class="w-50 mt-5 max-w-screen h-auto p-6 pb-6 bg-white rounded-lg shadow-xl sm:p-8">
-                            <h2 class="text-xl font-bold"></h2>
-                            <span class="text-sm font-semibold text-gray-500"></span>
-
-                        </div> --}}
                     </div>
 
                 </div>
             </div>
             @if (Session::has('message'))
                 <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-                    <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">{{ Session::get('message') }}</p>
+                    <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">
+                        {{ Session::get('message') }}</p>
                 </div>
             @endif
-
+            <canvas id="userLineChart" width="400" height="200"></canvas>
             @push('js')
                 <script>
                     var options = {
@@ -230,12 +223,106 @@
                     var chartPie = new ApexCharts(document.querySelector("#pieChart"), optionsOne);
                     chartPie.render();
                 </script>
+                {{-- <script>
+                    const monthyUser = () => ({
+                        monthlyUser: [],
+                        initUser(data) {
+                            this.monthlyUser = [...data]
+                        },
+                        initBarGraph() {
+
+                            const element = document.getElementById('monthlyUserGraph')
+                            dd(element);
+
+                            var optionsTwo = {
+                                series: [{
+                                    data: [21, 22, 10, 28, 16, 21, 13, 30]
+                                }],
+                                chart: {
+                                    height: 350,
+                                    type: 'bar',
+                                    events: {
+                                        click: function(chart, w, e) {
+                                            // console.log(chart, w, e)
+                                        }
+                                    }
+                                },
+                                colors: colors,
+                                plotOptions: {
+                                    bar: {
+                                        columnWidth: '45%',
+                                        distributed: true,
+                                    }
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                legend: {
+                                    show: false
+                                },
+                                xaxis: {
+                                    categories: [
+                                        ['John', 'Doe'],
+                                        ['Joe', 'Smith'],
+                                        ['Jake', 'Williams'],
+                                        'Amber',
+                                        ['Peter', 'Brown'],
+                                        ['Mary', 'Evans'],
+                                        ['David', 'Wilson'],
+                                        ['Lily', 'Roberts'],
+                                    ],
+                                    labels: {
+                                        style: {
+                                            colors: colors,
+                                            fontSize: '12px'
+                                        }
+                                    }
+                                }
+                            };
+                            const barChart = ApexCharts(element, optionsTwo);
+                            barChart.render();
+                        }
+                    });
+                </script> --}}
                 <script>
                     // Remove the alert message after 5 seconds (adjust the timeout value as needed)
                     setTimeout(function() {
                         document.querySelector('.alert').remove();
                     }, 1000);
                 </script>
+
+                {{-- <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var ctx = document.getElementById('userLineChart').getContext('2d');
+                        var usersPerMonth = @json($usersPerMonth);
+
+                        var chart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: usersPerMonth.map(entry => entry.month),
+                                datasets: [{
+                                    label: 'Users per Month',
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    data: usersPerMonth.map(entry => entry.count),
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    x: {
+                                        type: 'category',
+                                        labels: usersPerMonth.map(entry => entry.month),
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                        precision: 0,
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script> --}}
             @endpush
+        </div>
     </section>
 </x-app-layout>

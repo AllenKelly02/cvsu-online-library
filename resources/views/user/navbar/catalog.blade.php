@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="px-20 pt-8 mx-auto py-24 bg-bgmain">
-    
+
     @if (session('message'))
     <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-md">
         <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ session('message') }}</p>
@@ -22,7 +22,7 @@
                 </div>
             </form>
         </div>
-        
+
 <!-- Filter Category -->
 <div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
     <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="dropdown">Filter by Category <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
@@ -61,7 +61,6 @@
                 {{ $book->type }}
             </a>
         </li>
-        
         @endforeach
     </ul>
 </div>
@@ -87,7 +86,6 @@
         </ul>
     </div> --}}
     </div>
-    
             <div class="flex flex-wrap -m-4 py-5">
             @forelse ($books as $book)
                 <div class="w-full md:w-1/2 lg:w-1/4 p-4">
@@ -133,7 +131,7 @@
                             {{ $book->publisher }}</h3>
                         <a href="{{ route('user.books.show', ['book' => $book]) }}"
                             class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">
-                            <b>View Book</b>
+                            <b>Details</b>
                         </a>
                     </div>
                 </div>
@@ -184,9 +182,9 @@
         });
     </script>
     <script>
-        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+        // Remove the alert message after seconds (adjust the timeout value as needed)
         setTimeout(function() {
-            document.querySelector('.alert').remove();
+            document.querySelector('.alert-success').remove();
         }, 1200);
     </script>
 

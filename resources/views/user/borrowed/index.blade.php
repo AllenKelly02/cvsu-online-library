@@ -2,7 +2,7 @@
     <div class="px-20 pt-8 mx-auto py-24">
         <div class="flex flex-wrap w-full mb:pt-5">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">New Collection</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Borrowed History</h1>
                 <div class="h-1 w-20 bg-bluemain rounded"></div>
             </div>
         </div>
@@ -46,29 +46,24 @@
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
-                        @if ($borrow->book->status === 'available')
-                            <span
-                                class="capitalize inline-flex items-center mb-2 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full">
-                                </span>
-
-                                {{ $borrow->book->status }}
-                            </span>
-                        @else
-                            <span
-                                class="capitalize inline-flex items-center mb-2 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">
-                                <span class="w-2 h-2 mr-1 bg-red-500 rounded-full">
-                                </span>
-                                {{ $borrow->book->status }}
-
-                            </span>
-                        @endif
-
                         <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1"> {{ $borrow->book->title }}</h2>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $borrow->book->author }}</h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Accession Number:</b> {{ $borrow->book->accession_number }}</h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>ISBN:</b> {{ $borrow->book->ISBN }}</h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Borrowed Date:</b> {{ $borrow->borrowed_date }}</h3>
-                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Return Date:</b> {{ $borrow->returned_date }}</h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1">
+                            <b>Duration:</b> {{ $borrow->created_at->diffForHumans() }}
+                        </h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1">
+                            <b>Returned Book Condition:</b> {{ $borrow->book_condition }}
+                        </h3>
+                        @if ($borrow->penalty)
+                        <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Penalty</b>
+                            <span
+                                class="bg-red-100 text-red-800 text-xs font-medium mr-2
+                            px-2.5 py-0.5 rounded">₱{{$borrow->penalty_payment}}</span>
+                        </h3>
+                        @endif
 
                         @if ($borrow->status === 'pending')
                             <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Status:</b></h3>
@@ -85,14 +80,6 @@
                             </h3>
                         @endif
 
-
-                        @if ($borrow->penalty)
-                            <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Penalty</b>
-                                <span
-                                    class="bg-red-100 text-red-800 text-xs font-medium mr-2
-                                px-2.5 py-0.5 rounded">₱{{$borrow->penalty_payment}}</span>
-                            </h3>
-                        @endif
 
                         {{-- Return Button will be on admin --}}
 

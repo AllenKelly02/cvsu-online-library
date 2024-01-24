@@ -55,15 +55,12 @@
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="avatar ml-10 hover:border-black">
                                 <div class="w-12 rounded-full">
-                                    <img src=" {{ Auth::user()->profile->avatar ?? 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}}" />
+                                    <img src=" {{ route('avatar-profile', ['name' => Auth::user()->profile->avatar ]) }}" />
                                 </div>
                             </label>
-
                             <ul tabindex="1"
                                  class="text-black font-semibold text-center menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-100 rounded-box w-24 hover:bg-white">
                                     <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">Profile</a>
-
-                                    <a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}"></a>
 
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf

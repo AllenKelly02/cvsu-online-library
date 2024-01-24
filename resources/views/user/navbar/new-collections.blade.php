@@ -2,7 +2,7 @@
     <div class="px-20 pt-8 mx-auto py-24 bg-bgmain">
         <div class="flex flex-wrap w-full mb:pt-5">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">New Collection</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">New Acquisition</h1>
                 <div class="h-1 w-20 bg-bluemain rounded"></div>
             </div>
         </div>

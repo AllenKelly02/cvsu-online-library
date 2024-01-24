@@ -34,9 +34,118 @@ Alpine.data('printBarcode', () => ({
     printElement(){
         const elementDiv = document.getElementById('barcode-print-data');
 
-        window.html2pdf().from(elementDiv).save();
+        var options = {
+            filename: 'Accession Number Barcodes.pdf',
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf(elementDiv, options);
     }
 }));
+
+
+
+    Alpine.data('printReturnedBooks', () => ({
+        exportToExcel() {
+            const table = document.getElementById('returnedbooks-print-data');
+            const ws = XLSX.utils.table_to_sheet(table);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+            /* generate XLSX file and send to client */
+            XLSX.writeFile(wb, 'Returned_Books.xlsx');
+        },
+        printTableData() {
+            const table = document.getElementById('returnedbooks-print-data');
+            var options = {
+                filename: 'Borrowed Books.pdf',
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            };
+
+            html2pdf(table, options);
+        }
+    }));
+
+
+    Alpine.data('monthlyUser', () =>  ({
+        monthLabels: [],
+        totalUser: [],
+        initUser(data) {
+            data.forEach(item => {
+
+                this.monthLabels.push(item.name)
+                this.totalUser.push(item.users)
+
+            });
+
+            console.log(this.totalUser);
+        },
+        initBarGraph() {
+           const  colors = [
+                '#eb422f',
+                '#742ad4',
+                '#0c5c87'
+            ];
+            const element = this.$refs.monthlyUserGraph;
+
+            console.log(element);
+
+            var options = {
+                series: [{
+                    data: [...this.totalUser]
+                }],
+                chart: {
+                    height: 350,
+                    type: 'bar',
+                    events: {
+                        click: function(chart, w, e) {
+                            // console.log(chart, w, e)
+                        }
+                    }
+                },
+                colors: colors,
+                plotOptions: {
+                    bar: {
+                        columnWidth: '45%',
+                        distributed: true,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                legend: {
+                    show: false
+                },
+                xaxis: {
+                    categories: [
+                       ...this.monthLabels
+                    ],
+                    labels: {
+                        style: {
+                            colors: colors,
+                            fontSize: '12px'
+                        }
+                    }
+                }
+            };
+
+
+
+
+
+
+            const barChart = new ApexCharts(element, options);
+            barChart.render()
+        }
+    }))
+
+
+
+
 
 
 Alpine.data('bookScanner', bookScanner);

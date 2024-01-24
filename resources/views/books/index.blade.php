@@ -1,4 +1,9 @@
 <x-app-layout>
+    @if (session('message'))
+        <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-md z-50">
+            <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ session('message') }}</p>
+        </div>
+    @endif
     <div class="px-20 pt-8 mx-auto py-24 bg-bgmain">
         <div class="flex w-full mb:pt-5 justify-between">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
@@ -13,7 +18,7 @@
         <div class="w-full flex items-center justify-end px-4 py-3 border-b border-black mb-5">
             <form action="" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
-                    <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
+                    <input type="text" name="search" class="border-gray-300 rounded w-1/2 text-black" placeholder="Type here..">
                     <button type="buttonh"
                         class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
                 </div>
@@ -61,16 +66,11 @@
                         </div>
 
                         @if ($book->image !== null)
-
-                        <img class="w-full object-cover object-center py-6 rounded"
-                        style="max-height: 450px;"
-                        src="{{ route('image-view', ['name' => $book->image]) }}" alt="content">
+                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 450px;"
+                                src="{{ route('image-view', ['name' => $book->image]) }}" alt="content">
                         @else
-
-                        <img class="w-full object-cover object-center py-6 rounded"
-                        style="max-height: 450px;"
-                        src="{{ asset('img/b1.jpg') }}" alt="content">
-
+                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 450px;"
+                                src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
 
@@ -104,7 +104,7 @@
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Publisher:</b>
                             {{ $book->publisher }}</h3>
                         <a href="{{ route('admin.books.show', ['book' => $book]) }}" class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">
-                            View Book
+                            Details
                         </a>
 
                     </div>
@@ -123,7 +123,12 @@
                 @endif
             @endforelse
         </div>
-
     </div>
     </div>
+    <script>
+        // Remove the alert message after seconds (adjust the timeout value as needed)
+        setTimeout(function() {
+            document.querySelector('.alert-success').remove();
+        }, 2200);
+    </script>
 </x-app-layout>

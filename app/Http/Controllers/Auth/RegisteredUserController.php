@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Models\UnverifiedAccount;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewUserNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -40,6 +41,20 @@ class RegisteredUserController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
+
+
+
+        $user = User::where('role', 'admin')->first();
+
+
+
+
+        $student_cor = 'stdntcr-' . $request->last_name . '-' . uniqid() . '.' . $request->student_cor->extension();
+        $validID_dir = $request->student_cor->storeAs('/unverified/student/COR', $student_cor, 'public');
+
+
+
+
         $unverified = UnverifiedAccount::create([
             'first_name' => $request->firstName,
             'middle_name' => $request->middle_name,
@@ -51,12 +66,17 @@ class RegisteredUserController extends Controller
             'student_id' => $request->studentId,
             'email' => $request->email,
             'password' => $request->password,
-
-
+            'student_cor' => $student_cor
         ]);
 
+
+        $message = [
+            'content' => "New Registered Student: {$request->lastName}, {$request->firstName} {$request->middle_name} Student ID {$request->studentId}"
+        ];
+
+
+        $user->notify(new NewUserNotification($message));
+
         return Redirect::to('login')->with('message', 'Thanks for registering! Wait for the approval of the librarian.');
-
     }
-
 }

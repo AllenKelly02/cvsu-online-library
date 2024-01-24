@@ -8,12 +8,12 @@
             </x-slot>
 
             <!--Personal Info -->
-            <div class="min-h-screen w-full flex justify-center items-center">
+            <div class="min-h-screen w-full flex justify-center py-20">
                 <div class="w-5/6 h-full flex gap-5 bg-gray-50 rounded-lg">
-                    <div class="flex flex-col gap-2 p-5">
+                    <div class="flex flex-col gap-2 p-5 border-r-2 border-gray-200">
 
                             @if ($profile->profile->avatar !== null)
-                            <img src="{{$profile->profile->avatar }}" class="flex justify-center items-center object object-center w-full h-auto">
+                            <img src="{{route('avatar-profile', ['name' => $profile->profile->avatar])}}" class="flex justify-center items-center object object-center w-full h-auto">
 
                             @else
                             <img src="{{ asset('img/userp.png') }}" class="flex justify-center items-center object object-center w-full h-auto">
@@ -36,34 +36,34 @@
                         </div>
 
                         <div class="flex flex-col space-y-5 w-full">
-                        <div class="w-full">
-                            <div class="p-8">
+                            <div class="w-full p-4 md:p-8">
                                 <h4 class="text-xl text-gray-900 font-bold">Personal Info</h4>
                                 <!-- Personal Info content -->
                                 <ul class="mt-2 text-gray-700">
-                                    <li class="flex border-y py-2">
-                                        <span class="font-bold w-24">Full name:</span>
-                                        </span>{{ $profile->profile->first_name }} {{ $profile->profile->middle_name }}
-                                        {{ $profile->profile->last_name }}</h1>
+                                    <li class="flex border-t border-b py-2">
+                                        <span class="font-bold w-24 md:w-32">Full name:</span>
+                                        <span>{{ $profile->profile->first_name }} {{ $profile->profile->middle_name }}
+                                            {{ $profile->profile->last_name }}</span>
                                     </li>
                                     <li class="flex border-b py-2">
-                                        <span class="font-bold w-24">Joined:</span>
-                                        <span class="text-gray-700">{{ $profile->created_at->diffInDays() }}Days Ago</span>
-                                    </li>
-                                    <li class="flex border-b py-2">
-                                        <span class="font-bold w-24">Mobile:</span>
-                                        {{-- put contact number here --}}
-                                        <span class="text-gray-700">09569659562</span>
-                                    </li>
-                                    <li class="flex border-b py-2">
-                                        <span class="font-bold w-24">Email:</span>
-                                        {{-- put email here --}}
+                                        <span class="font-bold w-24 md:w-32">Email:</span>
                                         <span class="text-gray-700">{{ $profile->email }}</span>
+                                    </li>
+                                    <li class="flex border-b py-2">
+                                        <span class="font-bold w-24 md:w-32">Mobile:</span>
+                                        <span class="text-gray-700">{{ $profile->profile->contact_number }}</span>
+                                    </li>
+                                    <li class="flex border-b py-2">
+                                        <span class="font-bold w-24 md:w-32">Gender:</span>
+                                        <span class="text-gray-700 capitalize">{{ $profile->profile->sex }}</span>
+                                    </li>
+                                    <li class="flex border-b py-2">
+                                        <span class="font-bold w-24 md:w-32">Joined:</span>
+                                        <span class="text-gray-700">{{ $profile->created_at->diffInDays() }} Days Ago</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
 
                     </div>
                 </div>
@@ -82,9 +82,8 @@
                     <div class="w-1/3 flex border-r-2 border-gray-200">
 
                         <div class="flex flex-col gap-2 p-5">
-
                             @if ($profile->profile->avatar !== null)
-                            <img src="{{$profile->profile->avatar }}" class="flex justify-center items-center object object-center w-full h-auto">
+                            <img src="{{route('avatar-profile', ['name' => $profile->profile->avatar]) }}" class="flex justify-center items-center object object-center w-full h-auto">
 
                             @else
                             <img src="{{ asset('img/userp.png') }}" class="flex justify-center items-center object object-center w-full h-auto">
@@ -125,13 +124,8 @@
                                         </span>{{ $profile->profile->student_id }}</h1>
                                     </li>
                                     <li class="flex border-b py-2">
-                                        <span class="font-bold w-24">Joined:</span>
-                                        <span class="text-gray-700">{{ $profile->created_at->diffInDays() }}Days Ago</span>
-                                    </li>
-                                    <li class="flex border-b py-2">
-                                        <span class="font-bold w-24">Mobile:</span>
-                                        {{-- put contact number here --}}
-                                        <span class="text-gray-700">09569659562</span>
+                                        <span class="font-bold w-24">Program: </span>
+                                        </span>{{ $profile->profile->course }}</h1>
                                     </li>
                                     <li class="flex border-b py-2">
                                         <span class="font-bold w-24">Email:</span>
@@ -139,14 +133,23 @@
                                         <span class="text-gray-700">{{ $profile->email }}</span>
                                     </li>
                                     <li class="flex border-b py-2">
+                                        <span class="font-bold w-24">Mobile:</span>
+                                        {{-- put contact number here --}}
+                                        <span class="text-gray-700">{{ $profile->profile->contact_number }}</span>
+                                    </li>
+                                    <li class="flex border-b py-2">
                                         <span class="font-bold w-24">Address:</span>
                                         </span>
                                         {{ $profile->profile->address }}
                                         </h1>
                                     </li>
-                                    <li class="flex border-b py-2">
+                                    <li class="flex border-b py-2 capitalize">
                                         <span class="font-bold w-24">Gender:</span>
                                         </span>{{ $profile->profile->sex }}</h1>
+                                    </li>
+                                    <li class="flex border-b py-2">
+                                        <span class="font-bold w-24">Joined:</span>
+                                        <span class="text-gray-700">{{ $profile->created_at->diffInDays() }} Days Ago</span>
                                     </li>
                                 </ul>
                             </div>
