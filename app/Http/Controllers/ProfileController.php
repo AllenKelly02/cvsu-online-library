@@ -24,8 +24,9 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = User::where('id', $request->id)->with('profile')->first();
         return view('user.profile.edit', [
-            'user' => $request->user(),
+            'user' => $user
         ]);
     }
 
@@ -48,9 +49,11 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
-        $user = User::find($id);
+        // dd($request->all());
+
+        $user = User::find($request->id);
 
 
         $user->update([
@@ -91,7 +94,9 @@ class ProfileController extends Controller
             return redirect()->back()->with('message','Unable to update profile.');
         }
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated')->with(['message' => 'Profile Update Successfully']);
+        return back()->with(['user' => $user->id, 'message' => 'Profile updated successfully.']);
+
+        // return Redirect::route('profile.edit', $user->id)->with('status', 'profile-updated')->with(['message' => 'Profile Update Successfully']);
     }
 
     /**
@@ -140,5 +145,36 @@ class ProfileController extends Controller
 
 
         return to_route('profile.show', ['id' => $profile->id]);
+    }
+
+
+    public function updatePassword(Request $request, $userId) {
+        $data = $request->validate([
+            'currentPassword' => 'required',
+            'newPassword' => 'required',
+            'confirmNewPassword' => 'required'
+        ]);
+
+        if ($data['newPassword'] !== $data['confirmNewPassword']) {
+            return redirect()->back()->withErrors(['confirmNewPassword' => 'Passwords do not match.']);
+        }
+
+        $user = User::find($userId);
+
+        if (!$user) {
+            return back()->withErrors('User not found!');
+        }
+
+        $updated = $user->update([
+            'passord' => $request->newPassword
+        ]);
+        
+        if ($updated) {
+            return back()->with('message', 'Password updated sucessfully');
+        } else {
+            return back()->with('message', 'Password could not be updated');
+        }
+
+
     }
 }

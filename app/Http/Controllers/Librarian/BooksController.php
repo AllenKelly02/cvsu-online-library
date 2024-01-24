@@ -182,7 +182,7 @@ class BooksController extends Controller
 
         // Create a book issuing record
         BookIssuing::create([
-            'borrowed_date' => Carbon::now()->format('Y-m-d'),
+            'borrowed_date' => now()->format('Y-m-d'),
             'user_id' => $user->id,
             'book_id' => $book->id,
             'status' => 'pending',
@@ -309,6 +309,10 @@ class BooksController extends Controller
             'book_condition' => $request->book_condition, // Assuming you have an input named 'bookCondition' in your form
         ]);
 
+        if ($request->book_condition == "late") {
+
+        }
+
         // Update the returned_date and book_condition of the book issuing record
         $bookIssuing->update([
             'returned_date' => now()->format('Y-m-d'),
@@ -399,18 +403,20 @@ class BooksController extends Controller
 
        // comment this if you want to test the penalty then uncomment the testing logic in the upper parts of this
        foreach ($bookIssuings as $bookIssuing) {
-
-            if ($bookIssuing->created_at->diffInDays() > 3 && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')) {
+        // && $bookIssuing->penalty_date !== Carbon::now()->format('M-d-Y')
+        $borrowedDate = Carbon::parse($bookIssuing->borrowed_date);
+            if ($borrowedDate->diffInDays(now()) > 3) {
                 if (!$bookIssuing->penalty) {
 
                     $bookIssuing->update([
                         'penalty' => true,
-                        'penalty_payment' => ($bookIssuing->created_at->diffInDays() - $bookIssuing->total_days) * 5,
+                        'penalty_payment' => ($borrowedDate->diffInDays(now()) - $bookIssuing->total_days) * 5,
                         'penalty_date' => Carbon::now()->format('M-d-Y')
                     ]);
+
                 } else {
                     $bookIssuing->update([
-                        'penalty_payment' => $bookIssuing->penalty_payment + 5,
+                        'penalty_payment' => ($borrowedDate->diffInDays(now()) - $bookIssuing->total_days) * 5,
                         'penalty_date' => Carbon::now()->format('M-d-Y')
                     ]);
                 }

@@ -228,7 +228,7 @@
                             </div>
 
                             <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-5">
+                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="firstName" class="text-xs font-semibold px-1">Email
                                             Address</label>

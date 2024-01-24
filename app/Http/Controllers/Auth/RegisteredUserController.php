@@ -37,23 +37,15 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+       
         $request->validate([
             'password' => 'required|min:8|confirmed',
         ]);
 
-
-
-
         $user = User::where('role', 'admin')->first();
-
-
-
 
         $student_cor = 'stdntcr-' . $request->last_name . '-' . uniqid() . '.' . $request->student_cor->extension();
         $validID_dir = $request->student_cor->storeAs('/unverified/student/COR', $student_cor, 'public');
-
-
-
 
         $unverified = UnverifiedAccount::create([
             'first_name' => $request->firstName,
