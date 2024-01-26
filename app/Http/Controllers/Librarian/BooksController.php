@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Enums\EbookSourceType;
 use App\Models\UserFavouriteBook;
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Http\RedirectResponse;
 use App\Notifications\BookNotification;
 use Illuminate\Support\Facades\Auth;
@@ -436,12 +437,27 @@ class BooksController extends Controller
     }
 
 
-    public function allReturnedBooks()
+    public function allReturnedBooks(Request $request)
     {
         // Fetch all returned books
-        $returnedBooks = BookIssuing::with('book')->whereNotNull('returned_date')->get();
+        $returnedBooks = BookIssuing::with('book')->where('returned_date', '!=','0000-00-00')->get();
 
-        return view('books.returnedbooks', compact('returnedBooks'));
+        $filter = $request->filter;
+
+
+        if($filter !== null){
+
+            $returnedBooks = BookIssuing::with('book', 'user')->whereHas('user', function($q) use($filter){
+                $q->whereHas('profile', function($q) use($filter) {
+                    $q->where('course', $filter);
+                });
+            })->where('returned_date', '!=', '0000-00-00')->get();
+        }
+
+
+        $courses = Course::get();
+
+        return view('books.returnedbooks', compact('returnedBooks', 'courses'));
 
     }
 

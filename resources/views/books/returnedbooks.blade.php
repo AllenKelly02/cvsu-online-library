@@ -31,7 +31,30 @@
                 </div>
                 <!-- Filter Program/Course -->
                 <div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
-                    <button
+
+                    <form action="{{route('admin.getAllReturnedBooks')}}" method="get" class="w-full h-auto flex items-center p-2">
+                        <select class="select select-primary w-full max-w-xs bg-white" name="filter">
+                            <option disabled selected>Select Course</option>
+                            <option selected value="">Select Course</option>
+                            <option class="bg-white" value="BSE">📚 Bachelor of Secondary Education
+                            </option>
+                            <option class="bg-white" value="BSBM">📚 BS Business Management</option>
+                            <option class="bg-white" value="BSCS">📚 BS Computer Science</option>
+                            <option class="bg-white" value="BSC">📚 BS Criminology</option>
+                            <option class="bg-white" value="BSHM">📚 BS Hospitality Management
+                            </option>
+                            <option class="bg-white" value="BSIT">📚 BS Information Technology
+                            </option>
+                            <option class="bg-white" value="BSP">📚 BS Psychology</option>
+
+                            {{-- <option>Lost</option>
+                            <option>Breaking Bad</option>
+                            <option>Walking Dead</option> --}}
+                          </select>
+
+                          <button class="btn btn-primary">Filter</button>
+                    </form>
+                    {{-- <button
                         class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
                         onclick="toggleDropdown()">Filter by Program <svg class="w-4 h-4 ml-2" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -57,10 +80,24 @@
                                 @endforeach
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="flex flex-col space-y-2 p-4">
-                    <div class="relative overflow-x-auto w-full h-[35rem] bg-white drop-shadow-lg sm:rounded-lg">
+                <div class="flex flex-col p-4" id="returnedbooks-print-data">
+                    <div class="h-auto w-full flex justify-center bg-white rounded-t-lg">
+                        <div class="w-auto h-auto flex items-center p-2">
+                            <img src="{{ asset('img/logo.png') }}" alt="" srcset="" class="h-24 w-auto">
+                            <div class="flex flex-col gap-2 p-2">
+                                <p class="text-black text-xs">Republic of the Philippines</p>
+                                <h1 class="text-black text-3xl font-bold">CAVITE STATE UNIVERSITY</h1>
+                                <p class="text-black text-xs">Bacoor City Campus SHIV, Molino VI, City of Bacoor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-lg font-bold text-black p-2 flex justify-between bg-white">
+                        <h1>Monthly Borrowed Books</h1>
+                        <p>Date Issued : {{now()->format('F d, Y')}}</p>
+                    </div>
+                    <div class="relative overflow-x-auto w-full max-h-[35rem] bg-white">
                         <table class="w-full table-auto text-sm text-left text-gray-500" id="returnedbooks-print-data">
                             <thead class="text-xs text-gray-700 uppercase bg-blue-100 text-center">
                                 <tr>
@@ -155,12 +192,20 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="flex justify-end bg-white rounded-b-lg">
+                        <div class="flex flex-col gap-2 pt-24 px-2 pb-2">
+                            <p class="border-b-2 border-black"></p>
+                            <h1 class="font-bold text-black">
+                               <span>Prepared By: </span> {{Auth::user()->name}}
+                            </h1>
+                        </div>
+
+                    </div>
                 </div>
             </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
     <script>
-
         // const printReturnedBooks = () => ({
         //     exportToExcel() {
         //         const table = document.getElementById('returnedbooks-print-data');

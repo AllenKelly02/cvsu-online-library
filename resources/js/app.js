@@ -59,10 +59,11 @@ Alpine.data('printBarcode', () => ({
             const table = document.getElementById('returnedbooks-print-data');
             var options = {
                 filename: 'Borrowed Books.pdf',
+                pagebreak: { avoid: ['tr', 'td'] },
                 jsPDF: {
-                    unit: 'mm',
+                    unit: 'in',
                     format: 'a4',
-                    orientation: 'portrait'
+                    orientation: 'landscape'
                 }
             };
 
