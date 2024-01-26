@@ -46,16 +46,17 @@ Route::get('/browse', [BooksController::class, 'browse'])->name('books.browse');
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+    Route::post('/password/{id}/update', [ProfileController::class, 'updatePassword'])->name('update.password');
 
     Route::post('/profile/update/avatar', [ProfileController::class, 'avatar'])->name('update.avatar');
 
     Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
-    Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
-
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 
 });
 
@@ -186,6 +187,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     //remove favorite book
     Route::post('/books/show/{id}/removeFavorite', [BooksController::class, 'removeFavourite'])->name('removeBookFavourite');
 
+    
 });
 
 Route::get('/show', [BooksController::class, 'showPage'])->name('show');

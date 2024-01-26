@@ -50,15 +50,15 @@
                                             </td>
 
                                             <td class="flex justify-center px-6 py-4 space-x-3">
-                                                <form  action="{{ route('admin.edit-account', ['id' => $account->id]) }}"
-                                                    method="POST">
+                                                <form  action="{{route('profile.show', ['id' => $account->id])}}"
+                                                    method="Get">
                                                     @csrf
                                                     <button
                                                         class="font-medium text-white py-2 px-4 rounded-full bg-blue-400 hover:bg-blue-500">Edit</button>
                                                 </form>
                                                 <form
                                                     action="{{ route('admin.delete-account', ['id' => $account->id]) }}"
-                                                    method="POST">
+                                                    method="Get">
                                                     @csrf
                                                     <button type="submit"
                                                         class="font-medium text-white py-2 px-4 rounded-full bg-red-500 hover:bg-red-600">Delete</button>

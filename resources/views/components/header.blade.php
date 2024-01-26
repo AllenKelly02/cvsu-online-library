@@ -54,8 +54,14 @@
                         </div>
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="avatar ml-10 hover:border-black">
+
                                 <div class="w-12 rounded-full">
+
+                                    @if(Auth::user()->profile->avatar !== null)
                                     <img src=" {{ route('avatar-profile', ['name' => Auth::user()->profile->avatar ]) }}" />
+                                    @else
+                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="" srcset="">
+                                    @endif
                                 </div>
                             </label>
                             <ul tabindex="1"

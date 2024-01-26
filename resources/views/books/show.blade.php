@@ -83,8 +83,17 @@
                 <form action="{{ route('admin.book-delete', ['id' => $book->id]) }}" method="post"
                     class="flex flex-col gap-2 w-full">
                     @csrf
-                    <select class="select select-bordered w-full bg-white" name="reason">
+                    <select class="select select-bordered w-full bg-white capitalize" name="reason">
                         <option disabled selected>Select Reason</option>
+<<<<<<< HEAD
+                        <option>the materials have not been used for more than ten years</option>
+                        <option>the condition of the item is bad, e.g. missing pages, worn-out, and text is unreadable</option>
+                        <option>the Science and Technology materials that are copyrighted/published more than three to five years</option>
+                        <option> the materials are no longer in demand or do not support the curriculum or current academie programs</option>
+                        <option> older edition of the book is no longer used</option>
+                        <option>books become obsolete</option>
+                      </select>
+=======
                         <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">The materials have not been used for more than ten years</option>
                         <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">The condition of the item is bad, e.g. missing pages, worn-out, and text is unreadable
                         </option>
@@ -94,6 +103,7 @@
                         <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">Older edition of the book is no longer used</option>
                         <option class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">Books become obsolete</option>
                     </select>
+>>>>>>> 2bf8ea607fa7bb6727442e4a7e12d5b75b1307c2
 
 
                     <div class="flex items-center space-x-5 pl-5 justify-end">

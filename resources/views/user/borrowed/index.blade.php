@@ -10,7 +10,7 @@
             <form action="" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
                     <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
-                    <button type="buttonh"
+                    <button type="button"
                         class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
                 </div>
             </form>

@@ -21,7 +21,7 @@
                             @endif
                             <div class='flex items-center justify-center'>
                                 <div class="m-10 z-1">
-                                    <a href="{{ route('profile.edit') }}">
+                                    <a href="{{ route('profile.edit', ['id' => $profile->id]) }}') }}">
                                         <button
                                             class="flex p-2.5 bg-green-500 rounded-xl hover:rounded-3xl hover:bg-green-600 transition-all duration-300 text-white">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -91,7 +91,7 @@
                             @endif
                             <div class='flex items-center justify-center'>
                                 <div class="m-10 z-1">
-                                    <a href="{{ route('profile.edit') }}">
+                                    <a href="{{ route('profile.edit', ['id' => $profile->id]) }}') }}">
                                         <button
                                             class="flex p-2.5 bg-green-500 rounded-xl hover:rounded-3xl hover:bg-green-600 transition-all duration-300 text-white">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -104,9 +104,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
 
                     <div class="flex flex-col space-y-5 w-full">
                         <div class="w-full">

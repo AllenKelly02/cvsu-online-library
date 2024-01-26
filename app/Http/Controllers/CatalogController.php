@@ -32,25 +32,25 @@ class CatalogController extends Controller
 
 
         //check if borrowed books have panalty
-        foreach($borrowed as $_borrowed) {
-            if($_borrowed->returned_date === '0000-00-00'){
-                if(!$_borrowed->penalty && $_borrowed->is_approved) {
-                    if($_borrowed->created_at->diffInDays() > $_borrowed->total_days) {
-                        $_borrowed->update([
-                            'penalty' => true,
-                            'penalty_payment' => 10
-                        ]);
-                    }
-                } else{
-                    if($_borrowed->penalty) {
-                        $total = $_borrowed->penalty_payment + 10;
-                        $_borrowed->update([
-                            'penalty_payment' => $total,
-                        ]);
-                    }
-                }
-            }
-        }
+        // foreach($borrowed as $_borrowed) {
+        //     if($_borrowed->returned_date === '0000-00-00'){
+        //         if(!$_borrowed->penalty && $_borrowed->is_approved) {
+        //             if($_borrowed->created_at->diffInDays() > $_borrowed->total_days) {
+        //                 $_borrowed->update([
+        //                     'penalty' => true,
+        //                     'penalty_payment' => 5
+        //                 ]);
+        //             }
+        //         } else{
+        //             if($_borrowed->penalty) {
+        //                 $total = $_borrowed->penalty_payment + 10;
+        //                 $_borrowed->update([
+        //                     'penalty_payment' => $total,
+        //                 ]);
+        //             }
+        //         }
+        //     }
+        // }
 
         return view('user.borrowed.index', compact('borrowed'));
     }
