@@ -12,50 +12,32 @@
     <body>
         <div class="flex items-center justify-center min-h-screen bg-white">
             <div class="w-3/5 bg-white shadow-2xl">
-                <div class="flex justify-between p-4">
-                    <div>
-                        <img class="w-18 h-16" src="{{ asset('img/logo.png') }}" alt="">
-                        <h1 class="text-3xl italic font-extrabold tracking-widest text-black">Library Fine Receipt</h1>
-                        <p class="text-black">Republic of the Philippines</p>
-                        <p class="text-black">CAVITE STATE UNIVERSITY</p>
-                        <p class="text-black">Bacoor City Campus SHIV, Molino VI, City of Bacoor</p>
+                <div class="flex justify-center p-4">
+                    <div class="text-center flex items-center">
+                        <!-- Logo on the left -->
+                        <div class="flex justify-between">
+                            <img class="w-36 h-auto" src="{{ asset('img/logo.png') }}" alt="">
+                        </div>
 
-                    </div>
-                    <div class="p-2">
-                        <ul class="flex">
-                            <li class="flex flex-col items-center p-2 border-l-2 border-indigo-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                                </svg>
-                                <span class="text-sm">
-                                    www.larainfo.com
-                                </span>
-                                <span class="text-sm">
-                                    www.lorememhh.com
-                                </span>
-                            </li>
-                            <li class="flex flex-col p-2 border-l-2 border-indigo-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <span class="text-sm">
-                                    2821 Kensington Road,Avondale Estates, GA 30002 USA
-                                </span>
-                            </li>
-                        </ul>
+                        <!-- Text on the right -->
+                        <div class="ml-4">
+                            <p class="text-black">Republic of the Philippines</p>
+                            <b><p class="text-black">CAVITE STATE UNIVERSITY</p></b>
+                            <p class="text-black"><b>Bacoor City Campus</b></p>
+                            <p class="text-black">SHIV, Molino VI, City of Bacoor</p>
+                            <p class="text-black">🕾 (046) 476-5029</p>
+                            <p class="text-black"><i class="mdi mdi-email-outline text-black text-lg px-1"></i>cvsubacoor@cvsu.edu.ph</p>
+
+                        </div>
                     </div>
                 </div>
-                <div class="w-full h-0.5 bg-indigo-500"></div>
+                <div class="flex flex-col items-center justify-center w-full my-6">
+                    <h1 class="text-3xl italic font-extrabold tracking-widest text-black mx-auto">Library Penalty Receipt</h1>
+                </div>
+                <div class="w-full h-0.5 bg-bluemain"></div>
                 <div class="flex justify-between p-4">
                     <div>
-                        <h6 class="font-bold">Order Date : <span class="text-sm font-medium"> 12/12/2022</span></h6>
-                        <h6 class="font-bold">Order ID : <span class="text-sm font-medium"> 12/12/2022</span></h6>
+                        <h6 class="font-bold text-black">Date : <u><span id="currentDate" class="text-sm text-black font-medium"></u></h6>
                     </div>
                     <div class="w-40">
                         <address class="text-sm">
@@ -209,21 +191,16 @@
 
             </div>
         </div>
-        <div class="flex items-center justify-center min-h-screen bg-gray-100">
-            <div class="w-6/12 mt-4 text-left bg-white shadow-lg">
-                <div class="flex justify-between px-8 py-6">
-                    <div class="flex items-center">
-                        sale invoice
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <button class="px-2 py-1 bg-gray-200 hover:bg-gray-400">Save</button>
-                        <button class="px-2 py-1 bg-gray-200 hover:bg-gray-400">Print</button>
-                    </div>
-                </div>
-                <div class="w-full h-0.5 bg-gray-800"></div>
-
-            </div>
-        </div>
     </body>
 </html>
+<script>
+    // Get the current date
+    var currentDate = new Date();
+
+    // Format the date (e.g., "12/12/2022")
+    var formattedDate = (currentDate.getMonth() + 1) + '/' + currentDate.getDate() + '/' + currentDate.getFullYear();
+
+    // Update the content of the span element with the formatted date
+    document.getElementById('currentDate').textContent = formattedDate;
+</script>
 </x-app-layout>
