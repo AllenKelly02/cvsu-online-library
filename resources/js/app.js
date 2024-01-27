@@ -58,13 +58,36 @@ Alpine.data('printBarcode', () => ({
         printTableData() {
             const table = document.getElementById('returnedbooks-print-data');
             var options = {
-                filename: 'Borrowed Books.pdf',
+                filename: 'Monthly Borrowed Books.pdf',
                 pagebreak: { avoid: ['tr', 'td'] },
                 jsPDF: {
                     unit: 'in',
                     format: 'a4',
-                    orientation: 'landscape'
-                }
+                    orientation: 'landscape',
+                    startY: 0.5, // Adjust as needed
+                    margin: { left: 0.25, right: 0.25 }, // Adjust as needed
+                    tableWidth: 'auto', // Use the calculated width
+                    columnStyles: { 0: { cellWidth: 'auto' }, 1: { cellWidth: 'auto' }, /* Add more if needed */ }
+                },
+
+            };
+
+            html2pdf(table, options);
+        }
+    }));
+
+    Alpine.data('printReceipt', () => ({
+        printTableData() {
+            const table = document.getElementById('receipt-print-data');
+            var options = {
+                filename: 'Student Penalty Receipt.pdf',
+                pagebreak: { avoid: ['tr', 'td'] },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'letter',
+                    orientation: 'landscape',
+                },
+
             };
 
             html2pdf(table, options);
