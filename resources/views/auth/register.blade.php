@@ -318,7 +318,7 @@
                                 <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="student_cor" class="text-xs font-semibold px-1 pb-2">Upload
-                                            Student ID or COR PDF:</label>
+                                            Student ID or COR:</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>

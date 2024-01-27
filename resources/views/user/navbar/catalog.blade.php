@@ -88,8 +88,8 @@
     </div>
             <div class="flex flex-wrap -m-4 py-5">
             @forelse ($books as $book)
-                <div class="w-full md:w-1/2 lg:w-1/4 p-4">
-                    <div class="bg-white shadow-2xl p-6 rounded-lg h-full">
+            <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+                    <div class="bg-white shadow-2xl p-4 rounded-lg h-full">
                         <div class="flex gap-2">
                             <div class="grow">
                                 <h1
@@ -99,10 +99,12 @@
                             </div>
                         </div>
                         @if ($book->image !== null)
-                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 450px;"
+                            <img class="w-full object-cover object-center py-6 rounded"
+                            style="height: 480px; width: 100%;"
                                 src="{{ route('image-view', ['name' => $book->image]) }}" alt="content">
                         @else
-                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 450px;"
+                            <img class="w-full object-cover object-center py-6 rounded"
+                            style="height: 480px; width: 100%;"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
                         @if ($book->status === 'available')
