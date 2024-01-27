@@ -1,229 +1,287 @@
 <x-app-layout>
-<!DOCTYPE html>
-<html lang="en">
+    </html>
+    <!DOCTYPE html>
+    <html lang="en-PH">
 
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <meta charset="utf-8" />
+        <title>
+        </title>
+        <style>
+            body {
+                line-height: 108%;
+                font-family: Arial;
+                font-size: 11pt
+            }
+
+            p {
+                margin: 0pt 0pt 8pt
+            }
+
+            table {
+                margin-top: 0pt;
+                margin-bottom: 8pt
+            }
+
+            .ListParagraph {
+                margin-left: 36pt;
+                margin-bottom: 8pt;
+                line-height: 108%;
+                font-size: 11pt
+            }
+        </style>
     </head>
 
     <body>
-        <div class="flex items-center justify-center min-h-screen bg-white">
-            <div class="w-3/5 bg-white shadow-2xl">
-                <div class="flex justify-between p-4">
-                    <div>
-                        <img class="w-18 h-16" src="{{ asset('img/logo.png') }}" alt="">
-                        <h1 class="text-3xl italic font-extrabold tracking-widest text-black">Library Fine Receipt</h1>
-                        <p class="text-black">Republic of the Philippines</p>
-                        <p class="text-black">CAVITE STATE UNIVERSITY</p>
-                        <p class="text-black">Bacoor City Campus SHIV, Molino VI, City of Bacoor</p>
+        <div class="pt-5 pl-20">
+            @auth
+                @if (Auth::user()->role === 'admin')
 
-                    </div>
-                    <div class="p-2">
-                        <ul class="flex">
-                            <li class="flex flex-col items-center p-2 border-l-2 border-indigo-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                                </svg>
-                                <span class="text-sm">
-                                    www.larainfo.com
-                                </span>
-                                <span class="text-sm">
-                                    www.lorememhh.com
-                                </span>
-                            </li>
-                            <li class="flex flex-col p-2 border-l-2 border-indigo-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <span class="text-sm">
-                                    2821 Kensington Road,Avondale Estates, GA 30002 USA
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="w-full h-0.5 bg-indigo-500"></div>
-                <div class="flex justify-between p-4">
-                    <div>
-                        <h6 class="font-bold">Order Date : <span class="text-sm font-medium"> 12/12/2022</span></h6>
-                        <h6 class="font-bold">Order ID : <span class="text-sm font-medium"> 12/12/2022</span></h6>
-                    </div>
-                    <div class="w-40">
-                        <address class="text-sm">
-                            <span class="font-bold"> Billed To : </span>
-                            Joe Smith
-                            795 Folsom Ave
-                            San Francisco, CA 94107
-                            P: (123) 456-7890
-                        </address>
-                    </div>
-                    <div class="w-40">
-                        <address class="text-sm">
-                            <span class="font-bold">Ship To :</span>
-                            Joe doe
-                            800 Folsom Ave
-                            San Francisco, CA 94107
-                            P: + 111-456-7890
-                        </address>
-                    </div>
-                    <div></div>
-                </div>
-                <div class="flex justify-center p-4">
-                    <div class="border-b border-gray-200 shadow">
-                        <table class="">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        #
-                                    </th>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Product Name
-                                    </th>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Quantity
-                                    </th>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Rate
-                                    </th>
-                                    <th class="px-4 py-2 text-xs text-gray-500 ">
-                                        Subtotal
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white">
-                                <tr class="whitespace-nowrap">
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        1
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">
-                                            Amazon Brand - Symactive Men's Regular Fit T-Shirt
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-500">4</div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        $20
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $30
-                                    </td>
-                                </tr>
-                                <tr class="whitespace-nowrap">
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        2
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">
-                                            Amazon Brand - Symactive Men's Regular Fit T-Shirt
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-500">2</div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        $60
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $12
-                                    </td>
-                                </tr>
-                                <tr class="border-b-2 whitespace-nowrap">
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        3
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">
-                                            Amazon Brand - Symactive Men's Regular Fit T-Shirt
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-500">1</div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        $10
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $13
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td colspan="3"></td>
-                                    <td class="text-sm font-bold">Sub Total</td>
-                                    <td class="text-sm font-bold tracking-wider"><b>$950</b></td>
-                                </tr>
-                                <!--end tr-->
-                                <tr>
-                                    <th colspan="3"></th>
-                                    <td class="text-sm font-bold"><b>Tax Rate</b></td>
-                                    <td class="text-sm font-bold"><b>$1.50%</b></td>
-                                </tr>
-                                <!--end tr-->
-                                <tr class="text-white bg-gray-800">
-                                    <th colspan="3"></th>
-                                    <td class="text-sm font-bold"><b>Total</b></td>
-                                    <td class="text-sm font-bold"><b>$999.0</b></td>
-                                </tr>
-                                <!--end tr-->
+                @else
+                    <a class="cta" href="{{ route('user.borrow-history') }}">
+                        <span class="black">Back</span>
+                    </a>
+                @endif
+            @endauth
+        </div>
+    <div x-data="printReceipt">
+        <div class="flex flex-col items-center justify-center pt-10">
+            <button class="buttonh w-full md:w-auto px-6 gap-2 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out"
+                    @click="printTableData">
+              <span><i class="fi fi-rr-download"></i></span> Download
+            </button>
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="flex justify-between p-4">
-                    <div>
-                        <h3 class="text-xl">Terms And Condition :</h3>
-                        <ul class="text-xs list-disc list-inside">
-                            <li>All accounts are to be paid within 7 days from receipt of invoice.</li>
-                            <li>To be paid by cheque or credit card or direct payment online.</li>
-                            <li>If account is not paid within 7 days the credits details supplied.</li>
-                        </ul>
-                    </div>
-                    <div class="p-4">
-                        <h3>Signature</h3>
-                        <div class="text-4xl italic text-indigo-500">AAA</div>
-                    </div>
-                </div>
-                <div class="w-full h-0.5 bg-indigo-500"></div>
-
+            <div class="mt-6 min-h-screen" id="receipt-print-data">
+            <div class="w-full bg-white rounded-2xl">
                 <div class="p-4">
                     <div class="flex items-center justify-center">
-                        Thank you very much for doing business with us.
+                        <div class="flex items-center">
+                            <!-- Logo on the left -->
+                            <img class="w-36 h-auto" src="{{ asset('img/logo.png') }}" alt="">
+
+                            <!-- Text on the right -->
+                            <div class="ml-4 text-center">
+                                <p class="text-black">Republic of the Philippines</p>
+                                <b>
+                                    <p class="text-black">CAVITE STATE UNIVERSITY</p>
+                                </b>
+                                <p class="text-black"><b>Bacoor City Campus</b></p>
+                                <p class="text-black">SHIV, Molino VI, City of Bacoor</p>
+                                <p class="text-black">🕾 (046) 476-5029</p>
+                                <p class="text-black"><i class="mdi mdi-email-outline text-black text-lg px-1"></i>cvsubacoor@cvsu.edu.ph</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-end justify-end space-x-3">
-                        <button class="px-4 py-2 text-sm text-green-600 bg-green-100">Print</button>
-                        <button class="px-4 py-2 text-sm text-blue-600 bg-blue-100">Save</button>
-                        <button class="px-4 py-2 text-sm text-red-600 bg-red-100">Cancel</button>
+
+                    <div class="flex flex-col items-center justify-center my-6">
+                        <h1 class="text-3xl italic font-extrabold tracking-widest text-black">Library Penalty Receipt</h1>
+                    </div>
+
+                    <div class="flex justify p-4">
+                        <div>
+                            <h6 class="font-bold text-black">Date : <u><span id="currentDate"
+                                        class="text-sm text-black font-medium"></span></u></h6>
+                        </div>
+                        <div>
+                            <table
+                                style="margin-right:9pt; margin-left:9pt; margin-bottom:0pt; border-collapse:collapse; float:center" class="mt-5">
+                                <tr style="height:17.5pt">
+                                    <td colspan="0"
+                                        style="width:208.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
+                                            <strong>&#xa0;</strong>
+                                        </p>
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Student: </strong>__________________________________________
+                                        </p>
+                                    </td>
+                                    <td
+                                        style="width:103.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Student ID: </strong>______________
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr style="height:13.45pt">
+                                    <td colspan="3"
+                                        style="width:178.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black my-2">
+                                            <strong>Book Title: </strong>_________________________________________
+                                        </p>
+                                    </td>
+                                    <td colspan="4"
+                                        style="width:133.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Accession Number: </strong>______________
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr style="height:14.15pt">
+                                    <td
+                                        style="width:106.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Borrowed Date: </strong>________________
+                                        </p>
+                                    </td>
+                                    <td colspan="4"
+                                        style="width:106.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Date Due: </strong>______________
+                                        </p>
+                                    </td>
+                                    <td colspan="2"
+                                        style="width:110.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Date Returned: </strong>______________
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr style="height:17.5pt">
+                                    <td colspan="2"
+                                        style="width:160.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <div style="width:100%; height:17.5pt; display:inline-block; overflow:visible">
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
+                                                <strong>&#xa0;</strong>
+                                            </p>
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
+                                                <strong>&#xa0;</strong>
+                                            </p>
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                                <span
+                                                    style="height:0pt; display:block; position:absolute; z-index:3"><img
+                                                        src="1706292433_library-receipt/1706292433_library-receipt-4.png"
+                                                        width="10" height="10" alt=""
+                                                        style="margin-top:1.1pt; margin-left:33.45pt; position:absolute" /></span><strong>Book
+                                                    Was:</strong><strong>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
+                                                </strong>Damaged: _________________________
+                                            </p>
+                                        </div>
+                                    </td>
+
+                                    <td colspan="5"
+                                        style="width:110.7pt; padding-right:5.4pt; padding-left:13pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Penalty: </strong><u>Fix the damaged part.</u>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr style="height:13.45pt">
+                                    <td colspan="5"
+                                        style="width:200.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <div
+                                            style="width:100%; height:13.45pt; display:inline-block; overflow:visible">
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
+                                                <strong>&#xa0;</strong>
+                                            </p>
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                                <span
+                                                    style="height:0pt; display:block; position:absolute; z-index:4"><img
+                                                        src="1706292433_library-receipt/1706292433_library-receipt-4.png"
+                                                        width="10" height="10" alt=""
+                                                        style="margin-top:1.75pt; margin-left:33.45pt; position:absolute" /></span><strong>Book
+                                                    Was:</strong><strong>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; </strong>Late
+                                                By: ___________ days. Penalty per day: <strong><span
+                                                        style="font-family:'Palatino Linotype'; ">₧</span></strong><strong>
+                                                </strong><u>5.00</u>
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td colspan="2"
+                                    style="width:120pt; padding-right:1pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Penalty: </strong><strong><span
+                                                    style="font-family:'Palatino Linotype'; ">₧</span></strong><strong>
+                                            </strong>___________
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr style="height:14.15pt">
+                                    <td colspan="4"
+                                        style="width:187.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <div
+                                            style="width:100%; height:14.15pt; display:inline-block; overflow:visible">
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
+                                                <strong>&#xa0;</strong>
+                                            </p>
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                                <span
+                                                    style="height:0pt; display:block; position:absolute; z-index:5"><img
+                                                        src="1706292433_library-receipt/1706292433_library-receipt-4.png"
+                                                        width="10" height="10" alt=""
+                                                        style="margin-top:1pt; margin-left:32.95pt; position:absolute" /></span><span
+                                                    style="height:0pt; display:block; position:absolute; z-index:6"><img
+                                                        src="1706292433_library-receipt/1706292433_library-receipt-4.png"
+                                                        width="10" height="10" alt=""
+                                                        style="margin-top:1.55pt; margin-left:119.55pt; position:absolute" /></span><strong>Book
+                                                    Was:</strong><strong>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; </strong>Page(s)
+                                                was/were missing&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
+                                                Lost/Stolen&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
+                                                &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td
+                                        style="width:2.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>&#xa0;</strong>
+                                        </p>
+                                    </td>
+                                    <td colspan="2"
+                                        style="width:150pt; padding-right:1pt; vertical-align:bottom">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Penalty:</strong><strong>&#xa0; </strong><u>Exchange for a similar
+                                                book.</u>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr style="height:14.15pt">
+                                    <td colspan="4"
+                                        style="width:187.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
+                                            <strong>&#xa0;</strong>
+                                        </p>
+                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                            <strong>Total Amount to pay:</strong><strong>&#xa0; </strong><strong><span
+                                                    style="font-family:'Palatino Linotype'; ">₧</span></strong>
+                                            ________________
+                                        </p>
+                                    </td>
+                                    <tr style="height:17.5pt">
+                                        <td colspan="0"
+                                            style="width:208.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom"  class="mt-11">
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
+                                                <strong>&#xa0;</strong>
+                                            </p>
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                                <strong>Paid by (student signature): </strong><br><br>___________________________________
+                                            </p>
+                                        </td>
+                                        <td
+                                            style="width:103.3pt; padding-right:5.4pt; vertical-align:bottom">
+                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
+                                                <strong>Signature Date: </strong><br><br>______________________
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tr>
+                            </table>
+
+                        </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-        <div class="flex items-center justify-center min-h-screen bg-gray-100">
-            <div class="w-6/12 mt-4 text-left bg-white shadow-lg">
-                <div class="flex justify-between px-8 py-6">
-                    <div class="flex items-center">
-                        sale invoice
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <button class="px-2 py-1 bg-gray-200 hover:bg-gray-400">Save</button>
-                        <button class="px-2 py-1 bg-gray-200 hover:bg-gray-400">Print</button>
-                    </div>
-                </div>
-                <div class="w-full h-0.5 bg-gray-800"></div>
-
-            </div>
-        </div>
     </body>
-</html>
+    <script>
+        // Get the current date
+        var currentDate = new Date();
+
+        // Format the date (e.g., "12/12/2022")
+        var formattedDate = (currentDate.getMonth() + 1) + '/' + currentDate.getDate() + '/' + currentDate.getFullYear();
+
+        // Update the content of the span element with the formatted date
+        document.getElementById('currentDate').textContent = formattedDate;
+    </script>
+    </html>
+
 </x-app-layout>

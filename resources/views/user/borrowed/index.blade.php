@@ -10,7 +10,7 @@
             <form action="" class="w-full">
                 <div class="w-full flex justify-end space-x-3 ">
                     <input type="text" name="search" class="border-gray-300 rounded w-1/2" placeholder="Type here..">
-                    <button type="button"
+                    <button type="buttonh"
                         class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
                 </div>
             </form>
@@ -58,11 +58,12 @@
                             <b>Returned Book Condition:</b> {{ $borrow->book_condition }}
                         </h3>
                         @if ($borrow->penalty)
-                        <h3 class="truncate tracking-widest text-black text-xs m-1"><b>Penalty</b>
-                            <span
-                                class="bg-red-100 text-red-800 text-xs font-medium mr-2
+                        <h3 class="truncate tracking-widest text-black text-sm m-1 w-full"><b>Penalty:</b>
+                            <span class="bg-red-100 text-red-800 text-xs font-medium mr-2
                             px-2.5 py-0.5 rounded">₱{{$borrow->penalty_payment}}</span>
                         </h3>
+                        <h3 class="truncate tracking-widest text-black text-sm m-1 w-full"><b>Receipt:</b><a href="{{ route('user.penalty') }}"><img class="w-10 h-auto" src="{{ asset('img/receipt/receipt.png') }}" alt="content"></a>
+                        </span>
                         @endif
 
                         @if ($borrow->status === 'pending')
