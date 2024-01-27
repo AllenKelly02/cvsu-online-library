@@ -179,7 +179,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     Route::post('/book/borrow/{id}', [BooksController::class, 'borrow'])->name('borrow-book');
 
     Route::get('/books/borrowed/list', [CatalogController::class, 'borrowedHistory'])->name('borrow-history');
-    Route::get('/books/borrowed/penalty', [CatalogController::class, 'penalty'])->name('penalty');
+    Route::get('/books/borrowed/penalty/{book}', [CatalogController::class, 'penalty'])->name('penalty');
 
     //add favorite book
     Route::post('/books/show/{id}/addFavorite', [BooksController::class, 'addFavourite'])->name('addBookFavourite');

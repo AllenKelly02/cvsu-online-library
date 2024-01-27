@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Librarian\BooksController;
+use App\Models\BookIssuing;
 use App\Models\Categories;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,8 +90,12 @@ class CatalogController extends Controller
         return view('user.navbar.ask-librarian');
     }
 
-    public function penalty()
+    public function penalty(string $id)
     {
-        return view('user.borrowed.penalty');
+
+        $book = BookIssuing::find($id);
+        
+
+        return view('user.borrowed.penalty', compact(['book']));
     }
 }

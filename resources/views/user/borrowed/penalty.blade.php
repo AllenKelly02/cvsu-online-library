@@ -21,7 +21,7 @@
 
             table {
                 margin-top: 0pt;
-                margin-bottom: 8pt
+                margin-bottom: 8ptp
             }
 
             .ListParagraph {
@@ -53,7 +53,7 @@
             </button>
 
             <div class="mt-6 min-h-screen" id="receipt-print-data">
-            <div class="w-full bg-white rounded-2xl">
+            <div class="w-full bg-white rounded-2xl max-h-[80rem]">
                 <div class="p-4">
                     <div class="flex items-center justify-center">
                         <div class="flex items-center">
@@ -84,6 +84,8 @@
                                         class="text-sm text-black font-medium"></span></u></h6>
                         </div>
                         <div>
+                            @foreach ($book->book->bookIssuing as $bookIssuing)
+                            
                             <table
                                 style="margin-right:9pt; margin-left:9pt; margin-bottom:0pt; border-collapse:collapse; float:center" class="mt-5">
                                 <tr style="height:17.5pt">
@@ -92,14 +94,15 @@
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
                                             <strong>&#xa0;</strong>
                                         </p>
+
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Student: </strong>__________________________________________
+                                            <strong>Student Name: </strong><u>{{ $book->user->name }}</u>
                                         </p>
                                     </td>
                                     <td
                                         style="width:103.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Student ID: </strong>______________
+                                            <strong>Student ID: </strong> <u>{{ $book->user->profile->student_id }}</u>
                                         </p>
                                     </td>
                                 </tr>
@@ -107,62 +110,34 @@
                                     <td colspan="3"
                                         style="width:178.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black my-2">
-                                            <strong>Book Title: </strong>_________________________________________
+                                            <strong>Book Title: </strong> <u>{{ $book->book->title }}</u>
                                         </p>
                                     </td>
                                     <td colspan="4"
                                         style="width:133.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Accession Number: </strong>______________
+                                            <strong>Accession Number: </strong><u>{{$book->book->accession_number}}</u>
                                         </p>
                                     </td>
                                 </tr>
                                 <tr style="height:14.15pt">
+                                
                                     <td
                                         style="width:106.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Borrowed Date: </strong>________________
+                                            <strong>Borrowed Date: </strong><u>{{ $bookIssuing->borrowed_date }}</u>
                                         </p>
                                     </td>
                                     <td colspan="4"
                                         style="width:106.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Date Due: </strong>______________
+                                            <strong>Date Due: </strong><u>{{$bookIssuing->penalty_date}}</u>
                                         </p>
                                     </td>
                                     <td colspan="2"
                                         style="width:110.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Date Returned: </strong>______________
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr style="height:17.5pt">
-                                    <td colspan="2"
-                                        style="width:160.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                                        <div style="width:100%; height:17.5pt; display:inline-block; overflow:visible">
-                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
-                                                <strong>&#xa0;</strong>
-                                            </p>
-                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
-                                                <strong>&#xa0;</strong>
-                                            </p>
-                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                                <span
-                                                    style="height:0pt; display:block; position:absolute; z-index:3"><img
-                                                        src="1706292433_library-receipt/1706292433_library-receipt-4.png"
-                                                        width="10" height="10" alt=""
-                                                        style="margin-top:1.1pt; margin-left:33.45pt; position:absolute" /></span><strong>Book
-                                                    Was:</strong><strong>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
-                                                </strong>Damaged: _________________________
-                                            </p>
-                                        </div>
-                                    </td>
-
-                                    <td colspan="5"
-                                        style="width:110.7pt; padding-right:5.4pt; padding-left:13pt; vertical-align:bottom">
-                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Penalty: </strong><u>Fix the damaged part.</u>
+                                            <strong>Date Returned: </strong><u>{{$bookIssuing->returned_date}}</u>
                                         </p>
                                     </td>
                                 </tr>
@@ -179,9 +154,9 @@
                                                     style="height:0pt; display:block; position:absolute; z-index:4"><img
                                                         src="1706292433_library-receipt/1706292433_library-receipt-4.png"
                                                         width="10" height="10" alt=""
-                                                        style="margin-top:1.75pt; margin-left:33.45pt; position:absolute" /></span><strong>Book
+                                                        style="margin-top:1.75pt; margin-left:33.45pt; margin-right:10.50pt; position:absolute" /></span><strong>Book
                                                     Was:</strong><strong>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; </strong>Late
-                                                By: ___________ days. Penalty per day: <strong><span
+                                                By: <u>{{ $bookIssuing->penalty_date }}</u> Penalty per day: <strong><span
                                                         style="font-family:'Palatino Linotype'; ">₧</span></strong><strong>
                                                 </strong><u>5.00</u>
                                             </p>
@@ -192,49 +167,11 @@
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
                                             <strong>Penalty: </strong><strong><span
                                                     style="font-family:'Palatino Linotype'; ">₧</span></strong><strong>
-                                            </strong>___________
+                                            </strong><u>{{$bookIssuing->penalty_payment}}</u>
                                         </p>
                                     </td>
                                 </tr>
-                                <tr style="height:14.15pt">
-                                    <td colspan="4"
-                                        style="width:187.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                                        <div
-                                            style="width:100%; height:14.15pt; display:inline-block; overflow:visible">
-                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
-                                                <strong>&#xa0;</strong>
-                                            </p>
-                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                                <span
-                                                    style="height:0pt; display:block; position:absolute; z-index:5"><img
-                                                        src="1706292433_library-receipt/1706292433_library-receipt-4.png"
-                                                        width="10" height="10" alt=""
-                                                        style="margin-top:1pt; margin-left:32.95pt; position:absolute" /></span><span
-                                                    style="height:0pt; display:block; position:absolute; z-index:6"><img
-                                                        src="1706292433_library-receipt/1706292433_library-receipt-4.png"
-                                                        width="10" height="10" alt=""
-                                                        style="margin-top:1.55pt; margin-left:119.55pt; position:absolute" /></span><strong>Book
-                                                    Was:</strong><strong>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; </strong>Page(s)
-                                                was/were missing&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
-                                                Lost/Stolen&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
-                                                &#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;
-                                            </p>
-                                        </div>
-                                    </td>
-                                    <td
-                                        style="width:2.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>&#xa0;</strong>
-                                        </p>
-                                    </td>
-                                    <td colspan="2"
-                                        style="width:150pt; padding-right:1pt; vertical-align:bottom">
-                                        <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Penalty:</strong><strong>&#xa0; </strong><u>Exchange for a similar
-                                                book.</u>
-                                        </p>
-                                    </td>
-                                </tr>
+                                
                                 <tr style="height:14.15pt">
                                     <td colspan="4"
                                         style="width:187.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -244,7 +181,7 @@
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
                                             <strong>Total Amount to pay:</strong><strong>&#xa0; </strong><strong><span
                                                     style="font-family:'Palatino Linotype'; ">₧</span></strong>
-                                            ________________
+                                                    <u>{{$bookIssuing->penalty_payment}}</u>
                                         </p>
                                     </td>
                                     <tr style="height:17.5pt">
@@ -266,7 +203,8 @@
                                     </tr>
                                 </tr>
                             </table>
-
+                                                
+                        @endforeach
                         </div>
                     </div>
                 </div>

@@ -26,8 +26,8 @@
             </div>
         @endif
         <div class="flex space-x-5 p-5 justify-center">
-            <a href="{{ route('admin.category.index') }}" class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">View Categories</a>
-            <a href="{{ route('admin.category.create') }}" class="buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">Create Category</a>
+            <a href="{{ route('admin.category.index') }}" class="buttonh w-full md:w-auto px-6 py-2.5 bg-bluemain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-bluemain hover:shadow-lg focus:bg-bluemain focus:shadow-lg focus:outline-none focus:ring-0 active:bg-bluemain active:shadow-lg transition duration-150 ease-in-out">View Categories</a>
+            <a href="{{ route('admin.category.create') }}" class="buttonh w-full md:w-auto px-6 py-2.5 bg-green-400 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-500 hover:shadow-lg focus:bg-green-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-500 active:shadow-lg transition duration-150 ease-in-out">Create Category</a>
         </div>
         <div class="w-full h-screen flex flex-col gap-2 items-center py-10 ">
             <form class="w-96 rounded-lg shadow-2xl flex flex-col gap-2 p-5" method="POST"
@@ -41,7 +41,7 @@
                         <p class="text-error text-xs">{{ $errors->first('name') }}</p>
                     @endif
                 </div>
-                <button class="buttonh w-full md:w-auto px-6 py-2.5 mt-5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out">Submit</button>
+                <button class="buttonh w-full md:w-auto px-6 py-2.5 mt-5 bg-green-400 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-500 hover:shadow-lg focus:bg-green-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-500 active:shadow-lg transition duration-150 ease-in-out">Submit</button>
             </form>
         </div>
     </div>

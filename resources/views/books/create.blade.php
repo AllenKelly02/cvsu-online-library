@@ -94,9 +94,9 @@
                             <div id="authorFieldsContainer" class="max-w-xl">
                                 <!-- JavaScript will add new author input fields here -->
                             </div>
-                            <a id="addAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
+                            <a id="addAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-green-400 rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-green-700 hover:text-white"
                                 href="#">Add Author</a>
-                            <a id="removeAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
+                            <a id="removeAuthorButton"class="inline-block py-2 mr-3 text-xs leading-normal bg-red-500 rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-red-700 hover:text-white"
                                 href="#">Remove Author</a>
                         </div>
                     </div>
@@ -226,7 +226,7 @@
 
                                     </select>
                                     <div>
-                                        <a class="inline-block py-2 mr-3 text-xs leading-normal bg-yellowmain rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-yellow-500"
+                                        <a class="inline-block py-2 mr-3 text-xs leading-normal bg-green-400 rounded-3xl p-3 text-center text-black font-bold transition duration-200 hover:bg-green-700 hover:text-white"
                                             href="{{ route('admin.category.create') }}">Add Category</a>
                                     </div>
 
