@@ -50,6 +50,22 @@ class BooksController extends Controller
     {
         $book = Book::find($id);
 
+        if($request->has('image')){
+
+            $request->validate([
+                'image' => 'mimes:png,jpg'
+            ]);
+
+            $image = $request->image;
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/book/image', $fileName);
+
+            $book->update([
+                'image' => $fileName
+            ]);
+        }
+
+
         $book->update([
             'title' => $request->title ?? $book->title,
             'author' => $request->author ?? $book->author,
