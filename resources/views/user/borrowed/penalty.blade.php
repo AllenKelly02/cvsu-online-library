@@ -78,31 +78,12 @@
                             <h1 class="text-3xl italic font-extrabold tracking-widest text-black">Library Penalty Receipt</h1>
                         </div>
 
-                        <div class="flex justify p-4">
-                            <div>
-                                <h6 class="font-bold text-black">Date : <u><span id="currentDate"
-                                            class="text-sm text-black font-medium"></span></u></h6>
-                            </div>
-                            <div>
-                                @foreach ($book->book->bookIssuing as $bookIssuing)
-
-                                <table
-                                    style="margin-right:9pt; margin-left:9pt; margin-bottom:0pt; border-collapse:collapse; float:center" class="mt-5">
-                                    <tr style="height:17.5pt">
-                                        <td colspan="0"
-                                            style="width:208.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                             <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
                                                 <strong>&#xa0;</strong>
                                             </p>
 
                                             <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                                <strong>Student Name: </strong><u>{{ $book->user->name }}</u>
-                                            </p>
-                                        </td>
-                                        <td
-                                            style="width:103.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                                <strong>Student ID: </strong> <u>{{ $book->user->profile->student_id }}</u>
+
                                             </p>
                                         </td>
                                     </tr>
@@ -172,40 +153,6 @@
                                         </td>
                                     </tr>
 
-                                    <tr style="height:14.15pt">
-                                        <td colspan="4"
-                                            style="width:187.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
-                                                <strong>&#xa0;</strong>
-                                            </p>
-                                            <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                                <strong>Total Amount to pay:</strong><strong>&#xa0; </strong><strong><span
-                                                        style="font-family:'Palatino Linotype'; ">₧</span></strong>
-                                                        <u>{{$bookIssuing->penalty_payment}}</u>
-                                            </p>
-                                        </td>
-                                        <tr style="height:17.5pt">
-                                            <td colspan="0"
-                                                style="width:208.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom"  class="mt-11">
-                                                <p style="margin-bottom:0pt; line-height:normal; font-size:8pt">
-                                                    <strong>&#xa0;</strong>
-                                                </p>
-                                                <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                                    <strong>Paid by (student signature): </strong><br><br>___________________________________
-                                                </p>
-                                            </td>
-                                            <td
-                                                style="width:103.3pt; padding-right:5.4pt; vertical-align:bottom">
-                                                <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                                    <strong>Signature Date: </strong><br><br>______________________
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </tr>
-                                </table>
-
-                            @endforeach
-                            </div>
                         </div>
                     </div>
                 </div>
