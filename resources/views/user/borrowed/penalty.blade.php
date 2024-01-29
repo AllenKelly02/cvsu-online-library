@@ -84,8 +84,7 @@
                                         class="text-sm text-black font-medium"></span></u></h6>
                         </div>
                         <div>
-                            @foreach ($book->book->bookIssuing as $bookIssuing)
-                            
+
                             <table
                                 style="margin-right:9pt; margin-left:9pt; margin-bottom:0pt; border-collapse:collapse; float:center" class="mt-5">
                                 <tr style="height:17.5pt">
@@ -96,13 +95,13 @@
                                         </p>
 
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Student Name: </strong><u>{{ $book->user->name }}</u>
+                                            <strong>Student Name: </strong><u>{{ $book?->user?->name }}</u>
                                         </p>
                                     </td>
                                     <td
                                         style="width:103.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Student ID: </strong> <u>{{ $book->user->profile->student_id }}</u>
+                                            <strong>Student ID: </strong> <u>{{ $book?->user?->profile?->student_id }}</u>
                                         </p>
                                     </td>
                                 </tr>
@@ -110,34 +109,34 @@
                                     <td colspan="3"
                                         style="width:178.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black my-2">
-                                            <strong>Book Title: </strong> <u>{{ $book->book->title }}</u>
+                                            <strong>Book Title: </strong> <u>{{ $book?->book?->title }}</u>
                                         </p>
                                     </td>
                                     <td colspan="4"
                                         style="width:133.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Accession Number: </strong><u>{{$book->book->accession_number}}</u>
+                                            <strong>Accession Number: </strong><u>{{$book?->book?->accession_number}}</u>
                                         </p>
                                     </td>
                                 </tr>
                                 <tr style="height:14.15pt">
-                                
+
                                     <td
                                         style="width:106.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Borrowed Date: </strong><u>{{ $bookIssuing->borrowed_date }}</u>
+                                            <strong>Borrowed Date: </strong><u>{{ $book->borrowed_date }}</u>
                                         </p>
                                     </td>
                                     <td colspan="4"
                                         style="width:106.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Date Due: </strong><u>{{$bookIssuing->penalty_date}}</u>
+                                            <strong>Date Due: </strong><u>{{$book->penalty_date}}</u>
                                         </p>
                                     </td>
                                     <td colspan="2"
                                         style="width:110.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
-                                            <strong>Date Returned: </strong><u>{{$bookIssuing->returned_date}}</u>
+                                            <strong>Date Returned: </strong><u>{{$book->returned_date}}</u>
                                         </p>
                                     </td>
                                 </tr>
@@ -156,7 +155,7 @@
                                                         width="10" height="10" alt=""
                                                         style="margin-top:1.75pt; margin-left:33.45pt; margin-right:10.50pt; position:absolute" /></span><strong>Book
                                                     Was:</strong><strong>&#xa0;&#xa0;&#xa0;&#xa0;&#xa0; </strong>Late
-                                                By: <u>{{ $bookIssuing->penalty_date }}</u> Penalty per day: <strong><span
+                                                By: <u>{{ $book->penalty_date }}</u> Penalty per day: <strong><span
                                                         style="font-family:'Palatino Linotype'; ">₧</span></strong><strong>
                                                 </strong><u>5.00</u>
                                             </p>
@@ -167,11 +166,11 @@
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
                                             <strong>Penalty: </strong><strong><span
                                                     style="font-family:'Palatino Linotype'; ">₧</span></strong><strong>
-                                            </strong><u>{{$bookIssuing->penalty_payment}}</u>
+                                            </strong><u>{{$book->penalty_payment}}</u>
                                         </p>
                                     </td>
                                 </tr>
-                                
+
                                 <tr style="height:14.15pt">
                                     <td colspan="4"
                                         style="width:187.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -181,7 +180,7 @@
                                         <p style="margin-bottom:0pt; line-height:normal; font-size:8pt" class="text-black">
                                             <strong>Total Amount to pay:</strong><strong>&#xa0; </strong><strong><span
                                                     style="font-family:'Palatino Linotype'; ">₧</span></strong>
-                                                    <u>{{$bookIssuing->penalty_payment}}</u>
+                                                    <u>{{$book->penalty_payment}}</u>
                                         </p>
                                     </td>
                                     <tr style="height:17.5pt">
@@ -203,8 +202,7 @@
                                     </tr>
                                 </tr>
                             </table>
-                                                
-                        @endforeach
+
                         </div>
                     </div>
                 </div>
