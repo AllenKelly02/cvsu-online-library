@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('unverified_accounts', function (Blueprint $table) {
-            $table->string('student_cor')->nullable();
+        Schema::create('column_avatar_to_unverified_accounts', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    // public function down(): void
-    // {
-    //     Schema::table('unverified_accounts', function (Blueprint $table) {
-    //         //
-    //     });
-    // }
+    public function down(): void
+    {
+        Schema::dropIfExists('column_avatar_to_unverified_accounts');
+    }
 };

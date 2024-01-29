@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,8 +18,12 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        Validator::extend('student_id', function ($attribute, $value, $parameters, $validator) {
+            // Your custom validation logic for student_id
+            // Return true if the validation passes, false otherwise
+            return true;
+        });
     }
 }

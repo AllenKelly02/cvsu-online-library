@@ -1,11 +1,10 @@
 <x-guest-layout>
     <section class="full-screen body-font bg-bottom bg-no-repeat solid-bg-bgmain"
         style="background-image: url('../img/wave (7).svg');">
-        <div class="flex items-center justify-center py-40 pt-36 mt-16 w-full">
-            <div class="text-gray-800 rounded-3xl shadow-xl w-full overflow-hidden bg-no-repeat"
+        <div class="flex items-center justify-center py-40 pt-36 w-full">
+            <div class="text-gray-800 rounded-3xl shadow-xl w-full mx-3 overflow-hidden bg-no-repeat"
                 style="background-image: url('../img/blob-scene-haikei (6).svg'); max-width:1000px">
                 <div class="md:flex md:px-10 sm:px-10 h-full">
-
                     <div class="w-full md:w-1/3.5 py-10 px-5 md:px-10" x-data="storeAccount">
                         <div class="text-center mb-10">
                             <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
@@ -122,15 +121,12 @@
                                             class="w-full py-2 pl-4 rounded-lg border-2 border-gray-200 outline-none focus:border-green3 capitalize"
                                             id="course" name="course" required>
                                             <option selected value="">Select Course</option>
-                                            <option class="bg-white" value="BSE">📚 Bachelor of Secondary Education
-                                            </option>
+                                            <option class="bg-white" value="BSE">📚 Bachelor of Secondary Education</option>
                                             <option class="bg-white" value="BSBM">📚 BS Business Management</option>
                                             <option class="bg-white" value="BSCS">📚 BS Computer Science</option>
                                             <option class="bg-white" value="BSC">📚 BS Criminology</option>
-                                            <option class="bg-white" value="BSHM">📚 BS Hospitality Management
-                                            </option>
-                                            <option class="bg-white" value="BSIT">📚 BS Information Technology
-                                            </option>
+                                            <option class="bg-white" value="BSHM">📚 BS Hospitality Management</option>
+                                            <option class="bg-white" value="BSIT">📚 BS Information Technology</option>
                                             <option class="bg-white" value="BSP">📚 BS Psychology</option>
                                         </select>
 
@@ -146,7 +142,7 @@
                             <div class="flex -mx-2">
                                 <div class="formGroup w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
-                                        <label for="course" class="text-xs font-semibold px-1">Sex</label>
+                                        <label for="sex" class="text-xs font-semibold px-1">Sex</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error text-red-700 text-xs"></span>
                                     </div>
@@ -188,7 +184,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
                                         </div>
-                                        <input type="text" name="studentId" custommaxlength="15" minlength="5"
+                                        <input type="text" name="studentId" maxlength="15" minlength="7"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                             placeholder="Student ID" pattern="[0-9]+"
                                             title="Please enter numbers only" required>
@@ -215,7 +211,7 @@
                                         <input type="text" name="contact_number"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                             placeholder="09xxxxxxxxx" pattern="[0-9]+"
-                                            title="Please enter numbers only" minlength="11" custommaxlength="11"
+                                            title="Please enter numbers only" minlength="11" maxlength="11"
                                             required>
                                         <span class="error-icon hidden mt-2 -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>
@@ -230,7 +226,7 @@
                             <div class="flex -mx-2">
                                 <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
-                                        <label for="firstName" class="text-xs font-semibold px-1">Email
+                                        <label for="email" class="text-xs font-semibold px-1">Email
                                             Address</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
@@ -240,7 +236,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="mdi mdi-email-outline text-gray-500 text-lg"></i>
                                         </div>
-                                        <input type="email" name="email" custommaxlength="50" minlength="5"
+                                        <input type="email" name="email" maxlength="50" minlength="8"
                                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                             placeholder="cvsubacoor@gmail.com" required>
@@ -255,15 +251,15 @@
 
                                 <div class="formGroup w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
-                                        <label for="middle_name" class="text-xs font-semibold px-1">Password</label>
+                                        <label for="password" class="text-xs font-semibold px-1">Password</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
                                     <div class="flex items-center">
                                         <div class="relative">
                                             <input type="password" id="password" name="password"
-                                                class="w-72 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
-                                                placeholder="************" minlength="8" custommaxlength="20"
+                                                class="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
+                                                placeholder="************" minlength="8" maxlength="20"
                                                 required>
                                             <i onclick="togglePasswordVisibility('password')"
                                                 class="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer">
@@ -294,7 +290,7 @@
                                         <div class="relative">
                                             <input type="password" id="confirm-password" name="password_confirmation"
                                                 match="password"
-                                                class="w-72 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
+                                                class="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
                                                 placeholder="************" required>
                                             <i onclick="togglePasswordVisibility('confirm-password')"
                                                 class="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer">
@@ -338,17 +334,16 @@
                             <div class="flex flex-col md:flex-row items-center justify-center">
                                 <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
                                     <a href="{{ route('login') }}"
-                                        class="buttonh block w-full max-w-xs mx-auto font-semibold bg-yellowmain hover:bg-yellow-500 text-center rounded-lg px-3 py-3 md:mx-0">Back
+                                        class="button3 w-full border-yellowmain hover:border-yellowmain hover:bg-yellowmain hover:text-black hover:border-[2px] border-[1px] rounded-3xl p-3 text-center text-lg text-black font-bold transition duration-200 uppercase">Back
                                         to login</a>
                                 </div>
                                 <div class="w-full md:w-1/2 px-3 mb-1 md:ml-4">
                                     <button
-                                        class="buttonh block w-full max-w-xs mx-auto font-semibold bg-yellowmain hover:bg-yellow-500 text-center rounded-lg px-3 py-3 md:mx-0">Register
+                                        class="buttonl w-full bg-yellowmain rounded-3xl p-3 text-center text-black text-lg font-bold transition duration-200 hover:bg-yellowmain uppercase">Register
                                         Now
                                     </button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
