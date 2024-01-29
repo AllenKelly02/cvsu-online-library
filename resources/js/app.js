@@ -81,11 +81,10 @@ Alpine.data('printBarcode', () => ({
             const table = document.getElementById('receipt-print-data');
             var options = {
                 filename: 'Student Penalty Receipt.pdf',
-                pagebreak: { avoid: ['tr', 'td'] },
                 jsPDF: {
                     unit: 'in',
-                    format: 'letter',
-                    orientation: 'landscape',
+                    format: 'a4',
+                    orientation: 'portrait',
                 },
 
             };

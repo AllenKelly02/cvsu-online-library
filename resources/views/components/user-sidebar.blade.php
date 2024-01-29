@@ -6,10 +6,10 @@
             <div class="flex flex-col items-center w-60 h-full overflow-hidden sticky shadow-2xl text-gray-700 bg-blue-50 rounded">
                 <div class="flex flex-row justify-between md:py-6 p-2 space-x-4 mt-20 md:mt-0">
                     {{-- For Localhost Profile --}}
-                    <img src="{{ Auth::user()->profile->avatar ?? 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' }}" class="w-12 h-12 rounded-full shadow-lg">
+                    {{-- <img src="{{ Auth::user()->profile->avatar ?? 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' }}" class="w-12 h-12 rounded-full shadow-lg"> --}}
 
                     {{-- For Deployment Profile --}}
-                    {{-- <img src="{{ Auth::user()->profile->avatar ? route('avatar-profile', ['name' => Auth::user()->profile->avatar]) : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' }}" class="w-12 h-12 rounded-full shadow-lg"> --}}
+                    <img src="{{ Auth::user()->profile->avatar ? route('avatar-profile', ['name' => Auth::user()->profile->avatar]) : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' }}" class="w-12 h-12 rounded-full shadow-lg">
                     <div>
                         <h2 class="text-lg font-semibold">Hello! {{ Auth::user()->profile->last_name }}</h2>
                         <span class="flex items-center space-x-1">
