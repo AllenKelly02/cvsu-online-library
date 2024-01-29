@@ -34,7 +34,7 @@
 
         <x-header />
         <div class="w-full min-h-screen">
-            <main class="w-full min-h-full bg-bgmain">
+            <main class="w-full min-h-full bg-gray-100">
                 {{ $slot }}
             </main>
         </div>
@@ -112,21 +112,14 @@
 
                 <form method="post" action="{{ route('message') }}"
                     class="bg-bgmain rounded-lg h-96 w-64 top-0 shadow-lg flex flex-col space-y-5 p-2" x-show="toggle"
-                    x-transition.duration.700ms x-cloak @click.outside="toggle = false">
+                    x-transition.duration.1000ms x-cloak @click.outside="toggle = false">
                     <h1 class="font-bold text-lg text-center text-black">Message</h1>
                     @csrf
                     @if (Session::has('message'))
-                        <div class="alert alert-success animate-bounce shadow-lg">
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
-                                    fill="none" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>{{ Session::get('message') }}</span>
+                            <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-99999">
+                                <p class="justify-center alert alert-success shadow-lg w-auto text-center animate-bounce">{{ Session::get('message') }}</p>
                             </div>
-                        </div>
-                    @endif
+                        @endif
                     <div class="flex flex-col gap-3">
                         <label for="email" class="text-xs text-black">Email</label>
                         <input type="email" id="email" name="email"

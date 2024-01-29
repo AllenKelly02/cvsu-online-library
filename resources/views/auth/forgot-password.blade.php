@@ -27,14 +27,16 @@
                 </a>
             </div>
         </form>
-    </div> --}} 
-    <section class="bg-gradient-to-b from-green-200 to-emerald-400">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    </div> --}}
+    <section class="">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ">
       {{-- <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
           <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
-          Flowbite    
+          Flowbite
       </a> --}}
-      <div class="w-full p-6 bg-white border-[1px] border-green-800 rounded-3xl shadow md:mt-0 sm:max-w-md sm:p-8">
+      <div class="w-full p-6 bg-white border-[1px] border-green-800 rounded-3xl shadow md:mt-0 sm:max-w-md sm:p-8 text-gray-800 overflow-hidden bg-no-repeat"
+      style="background-image: url('../img/blob-scene-haikei (6).svg'); max-width:500px">
+
           <h2 class="text-center mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
               Change Password
           </h2>
@@ -56,10 +58,10 @@
                     <input id="newsletter" aria-describedby="newsletter" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-green-300 dark:bg-green-700 dark:border-green-600 dark:focus:ring-green-600 dark:ring-offset-green-800" required="">
                   </div>
                   <div class="ml-3 text-sm">
-                    <label for="newsletter" class="font-light text-gray-500 dark:text-gray-300">I accept the <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
+                    <label for="newsletter" class="font-light text-gray-500 dark:text-black">I accept the <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
                   </div>
               </div>
-              <button type="submit" class="w-full bg-green4 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green3">Reset passwod</button>
+              <button class="w-full bg-green-600 rounded-3xl p-3 text-center text-white font-bold transition duration-200 hover:bg-green3 capitalize">Reset passwod</button>
           </form>
       </div>
   </div>

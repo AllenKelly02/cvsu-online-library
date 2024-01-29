@@ -37,10 +37,46 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-       
+
         $request->validate([
-            'password' => 'required|min:8|confirmed',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
+            'course' => 'required',
+            'sex' => 'required',
+            'email' => 'required|email|unique:unverified_accounts,email',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|min:8|confirmed',
+            'student_id' => 'required|student_id|unique:unverified_accounts,student_id',
+            'contact_number' => 'required|min:11|max:11|unique:unverified_accounts,contact_number',
+        ], [
+            'first_name.required' => 'Please input your first name.',
+            'last_name.required' => 'Please input your last name.',
+            'address.required' => 'Please input your address.',
+            'course.required' => 'Please select your course.',
+            'sex.required' => 'Please select your sex.',
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique' => 'The email has already been taken.',
+
+            'password.required' => 'The password field is required.',
+            'password.min' => 'The password must be at least :min characters.',
+
+
+            'confirm_password.required' => 'The confirm password field is required.',
+            'confirm_password.min' => 'The confirm password must be at least :min characters.',
+            'confirm_password.confirmed' => 'The confirm password does not match.',
+
+            'student_id.required' => 'The student ID field is required.',
+            'student_id.unique' => 'The student ID has already been taken.',
+
+            'contact_number.required' => 'The contact number field is required.',
+            'contact_number.min' => 'The contact number must be exactly :min digits.',
+            'contact_number.max' => 'The contact number must be exactly :max digits.',
+            'contact_number.unique' => 'The contact number has already been taken.',
         ]);
+
+
 
         $user = User::where('role', 'admin')->first();
 
