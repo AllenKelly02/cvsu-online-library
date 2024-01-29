@@ -17,7 +17,7 @@
                         </span>
                     </div>
 
-                    <div class="close-btn ml-12 mt-4 text-gray-700">X</div>
+                    <div class="close-btn ml-5 mt-2 text-2xl mdi mdi-backburger"></div>
 
                 </div>
 
