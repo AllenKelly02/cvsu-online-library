@@ -58,12 +58,24 @@
                             <b>Returned Book Condition:</b> {{ $borrow->book_condition }}
                         </h3>
                         @if ($borrow->penalty)
-                        <h3 class="truncate tracking-widest text-black text-sm m-1 w-full"><b>Penalty:</b>
-                            <span class="bg-red-100 text-red-800 text-xs font-medium mr-2
-                            px-2.5 py-0.5 rounded">₱{{$borrow->penalty_payment}}</span>
-                        </h3> 
-                        <h3 class="truncate tracking-widest text-black text-sm m-1 w-full"><b>Receipt:</b><a href="{{ route('user.penalty', ['book' => $borrow->id]) }}"><img class="w-10 h-auto" src="{{ asset('img/receipt/receipt.png') }}" alt="content"></a>
-                        </span>
+                            @if ($borrow->penalty_status == 'Paid')
+
+                            <h3 class="truncate tracking-widest text-black text-sm m-1 w-full"><b>Penalty Status:</b>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2
+                                px-2.5 py-0.5 rounded">{{$borrow->penalty_status}}</span>
+                            </h3>
+                            @else
+                            <h3 class="truncate tracking-widest text-black text-sm m-1 w-full"><b>Penalty:</b>
+                                <span class="bg-red-100 text-red-800 text-xs font-medium mr-2
+                                px-2.5 py-0.5 rounded">₱{{$borrow->penalty_payment}}</span>
+                            </h3>
+                            <h3 class="truncate tracking-widest text-black text-sm m-1 w-full"><b>Receipt:</b><a href="{{ route('user.penalty', ['book' => $borrow->id]) }}"><img class="w-10 h-auto" src="{{ asset('img/receipt/receipt.png') }}" alt="content"></a>
+                            </span>
+                            <h3 class="truncate tracking-widest text-black text-sm m-1 w-full"><b>Penalty Status:</b>
+                                <span class="bg-red-100 text-red-800 text-xs font-medium mr-2
+                                px-2.5 py-0.5 rounded">{{$borrow->penalty_status}}</span>
+                            </h3>
+                            @endif
                         @endif
 
                         @if ($borrow->status === 'pending')

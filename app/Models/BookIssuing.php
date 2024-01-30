@@ -20,7 +20,8 @@ class BookIssuing extends Model
         'penalty',
         'penalty_payment',
         'book_condition',
-        'penalty_date'
+        'penalty_date',
+        'penalty_status'
     ];
 
 

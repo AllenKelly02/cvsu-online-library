@@ -101,8 +101,6 @@
                                             Return
                                         </button>
 
-
-                                        {{-- Remove book --}}
                                         <div x-show="toggle"
                                             class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-auto
                                             bg-gray-100 rounded-lg shadow-2xl flex flex-col space-y-5 p-5"
@@ -120,15 +118,17 @@
                                                         </option>
                                                         <option value="Poor">Book in Poor Condition (major damage)
                                                         </option>
+                                                        <option value="Paid with good condtion">Book in Good Condition with paid penalty</option>
+                                                        <option value="Paid with fair condition">Book in Fair Condition (minimal damage) with paid penalty
+                                                        </option>
                                                     </select>
-                                                    <div class="flex items-center gap-2">
-                                                        <button class="btn btn-accent">
+                                                    <div class="flex justify-end items-center gap-1">
+                                                        <button class="justify-between buttonh text-white bg-green-600">
                                                             SUBMIT
                                                         </button>
                                                         <div class="flex items-center space-x-5 pl-5">
-                                                            <a class="button-name" @click="toggle = false">Cancel</a>
+                                                            <a class="buttonh text-white bg-red-500" @click="toggle = false">Cancel</a>
                                                         </div>
-
                                                     </div>
                                                 </form>
 

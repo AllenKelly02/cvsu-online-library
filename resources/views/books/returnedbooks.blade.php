@@ -20,7 +20,9 @@
                             <span><i class="fi fi-rr-download"></i></span> Export to Excel
                         </button> --}}
                         <button
-                            class="flex gap-2 buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out"
+                            class="flex gap-2 buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md
+                            hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg
+                            transition duration-150 ease-in-out"
                             @click="printTableData">
                             <span><i class="fi fi-rr-download"></i></span> Download
                         </button>
@@ -71,31 +73,28 @@
                         </ul>
                     </div> --}}
                 </div>
-                <div class="flex flex-col p-4" id="returnedbooks-print-data">
-                    <div class="h-auto w-full flex justify-center bg-white rounded-t-lg">
-                        <div class="flex items-center justify-center mt-4">
-                            <div class="flex items-center">
-                                <!-- Logo on the left -->
-                                <img class="w-36 h-auto" src="{{ asset('img/logo.png') }}" alt="">
+                <div class="flex flex-col p-4 " id="returnedbooks-print-data" x-data="printReturnedBooks">
+                    <div class="h-auto w-full flex justify-center">
+                            <div id="print-logo" class="print-logo hidden items-center justify-center mt-4">
+                                <div class="flex items-center">
+                                    <!-- Logo on the left -->
+                                    <img class="w-36 h-auto" src="{{ asset('img/logo.png') }}" alt="">
 
-                                <!-- Text on the right -->
-                                <div class="ml-4 text-center">
-                                    <p class="text-black">Republic of the Philippines</p>
-                                    <b>
-                                        <p class="text-black">CAVITE STATE UNIVERSITY</p>
-                                    </b>
-                                    <p class="text-black"><b>Bacoor City Campus</b></p>
-                                    <p class="text-black">SHIV, Molino VI, City of Bacoor</p>
-                                    <p class="text-black">🕾 (046) 476-5029</p>
-                                    <p class="text-black"><i class="mdi mdi-email-outline text-black text-lg px-1"></i>cvsubacoor@cvsu.edu.ph</p>
+                                    <!-- Text on the right -->
+                                    <div class="ml-4 text-center">
+                                        <p class="text-black">Republic of the Philippines</p>
+                                        <b>
+                                            <p class="text-black">CAVITE STATE UNIVERSITY</p>
+                                        </b>
+                                        <p class="text-black"><b>Bacoor City Campus</b></p>
+                                        <p class="text-black">SHIV, Molino VI, City of Bacoor</p>
+                                        <p class="text-black">🕾 (046) 476-5029</p>
+                                        <p class="text-black"><i class="mdi mdi-email-outline text-black text-lg px-1"></i>cvsubacoor@cvsu.edu.ph</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
-                    <div class="text-lg font-bold text-black p-2 flex justify-between bg-white">
-                        <h1 id="header">Monthly Borrowed Books</h1>
-                        <p>Date Issued : {{now()->format('F d, Y')}}</p>
-                    </div>
+
                     <script>
                         async function filterAndChangeHeader() {
                           var selectedCourse = document.getElementById('courseSelect').value;
@@ -113,7 +112,11 @@
                           }
                         }
                       </script>
-                    <div class="relative overflow-x-auto w-full max-h-[35rem] bg-white">
+                    <div class="relative overflow-x-auto w-full h-auto bg-white rounded-2xl">
+                        <div class="text-lg font-bold text-black p-2 flex justify-between bg-white">
+                            <h1 id="header sticky top-0 z-50">Monthly Borrowed Books</h1>
+                            <p class="sticky top-0 z-50">Date Issued : {{now()->format('F d, Y')}}</p>
+                        </div>
                         <table class="w-full table-auto text-sm text-left text-gray-500" id="returnedbooks-print-data">
                             <thead class="text-xs text-gray-700 uppercase bg-blue-100 text-center">
                                 <tr>
@@ -139,10 +142,10 @@
                                         Returned Date
                                     </th>
                                     <th scope="col" class="w-[10%] px-6 py-3 text-black">
-                                        Duration
+                                        Penalty Payment
                                     </th>
                                     <th scope="col" class="w-[10%] px-6 py-3 text-black">
-                                        Penalty Payment
+                                        Penalty Status
                                     </th>
                                     <th scope="col" class="w-[10%] px-6 py-3 text-black">
                                         FeedBack
@@ -151,7 +154,7 @@
                             </thead>
 
                             <tbody>
-
+                                @if ($returnedBooks->count())
                                 @forelse ($returnedBooks as $index => $returnedBook)
                                     <tr class="bg-white border-b text-center">
                                         <td scope="row" class="w-[10%] px-6 py-3 text-black">
@@ -176,10 +179,10 @@
                                             {{ $returnedBook->returned_date }}
                                         </td>
                                         <td class="w-[10%] px-6 py-3 text-black">
-                                            {{ $returnedBook->created_at->diffForHumans() }}
+                                            {{ $returnedBook->penalty_payment }}
                                         </td>
                                         <td class="w-[10%] px-6 py-3 text-black">
-                                            {{ $returnedBook->penalty_payment }}
+                                            {{ $returnedBook->penalty_status }}
                                         </td>
                                         <td class="w-[10%] px-6 py-3 text-black">
                                             {{ $returnedBook->book_condition }}
@@ -187,8 +190,8 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4">
-                                            <div class="mt-36 ml-96 flex justify-center">
+                                        <td colspan="10">
+                                            <div class="my-10 mx-auto flex justify-center">
                                                 <div class="alert alert-warning px-10 py-10 h-10 w-96">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="stroke-current shrink-0 h-6 w-6" fill="none"
@@ -205,20 +208,13 @@
                                         </td>
                                     </tr>
                                 @endforelse
+                                @endif
                             </tbody>
                         </table>
                     </div>
-                    <div class="flex justify-end bg-white rounded-b-lg">
-                        <div class="flex flex-col gap-2 pt-24 px-2 pb-2">
-                            <p class="border-b-2 border-black"></p>
-                            <h1 class="font-bold text-black">
-                               <span>Prepared By: </span> {{Auth::user()->name}}
-                            </h1>
-                        </div>
-
-                    </div>
                 </div>
             </div>
+
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
     <script>

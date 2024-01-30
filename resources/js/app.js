@@ -46,34 +46,38 @@ Alpine.data('printBarcode', () => ({
 
 
     Alpine.data('printReturnedBooks', () => ({
-        exportToExcel() {
-            const table = document.getElementById('returnedbooks-print-data');
-            const ws = XLSX.utils.table_to_sheet(table);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+        isVisible: false, // Initial visibility state
+        // exportToExcel() {
+        //     const table = document.getElementById('returnedbooks-print-data');
+        //     const ws = XLSX.utils.table_to_sheet(table);
+        //     const wb = XLSX.utils.book_new();
+        //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-            /* generate XLSX file and send to client */
-            XLSX.writeFile(wb, 'Returned_Books.xlsx');
-        },
+        //     /* generate XLSX file and send to client */
+        //     XLSX.writeFile(wb, 'Returned_Books.xlsx');
+        // },
         printTableData() {
             const table = document.getElementById('returnedbooks-print-data');
-            var options = {
+            const printLogo = document.getElementById('print-logo');
+            const opt = {
+                margin: 0.5,
                 filename: 'Monthly Borrowed Books.pdf',
                 pagebreak: { avoid: ['tr', 'td'] },
-                jsPDF: {
-                    unit: 'in',
-                    format: 'a4',
-                    orientation: 'landscape',
-                    startY: 0.5, // Adjust as needed
-                    margin: { left: 0.25, right: 0.25 }, // Adjust as needed
-                    tableWidth: 'auto', // Use the calculated width
-                    columnStyles: { 0: { cellWidth: 'auto' }, 1: { cellWidth: 'auto' }, /* Add more if needed */ }
-                },
-
+                jsPDF: { unit: 'in', format: 'legal', orientation: 'landscape' },
             };
 
-            html2pdf(table, options);
-        }
+            this.isVisible = true; // Show the logo before generating the PDF
+            printLogo.classList.remove("hidden");
+            printLogo.classList.add("block");
+
+
+            html2pdf().set(opt).from(printLogo).from(table).save();
+            setTimeout(()=>{printLogo.classList.replace("block", 'hidden');}, 10);
+            // printLogo.classList.remove("block");
+            // printLogo.classList.add("hidden");
+
+            this.isVisible = false; // Hide the logo after generating the PDF
+            },
     }));
 
     Alpine.data('printReceipt', () => ({
@@ -81,9 +85,10 @@ Alpine.data('printBarcode', () => ({
             const table = document.getElementById('receipt-print-data');
             var options = {
                 filename: 'Student Penalty Receipt.pdf',
+                pagebreak: { avoid: ['tr', 'td'] },
                 jsPDF: {
                     unit: 'in',
-                    format: 'a4',
+                    format: 'a4 ',
                     orientation: 'portrait',
                 },
 

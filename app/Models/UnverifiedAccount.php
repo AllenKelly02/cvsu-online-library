@@ -21,6 +21,5 @@ class UnverifiedAccount extends Model
         'contact_number',
         'email',
         'password',
-        'student_cor'
     ];
 }

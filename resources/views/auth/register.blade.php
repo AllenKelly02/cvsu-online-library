@@ -182,7 +182,7 @@
                                     <div class="flex">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                            <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
+                                            <i class="text-gray-500 text-lg">#</i>
                                         </div>
                                         <input type="text" name="studentId" maxlength="15" minlength="7"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -206,7 +206,7 @@
                                     <div class="flex">
                                         <div
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                            <i class="mdi mdi-account-outline text-gray-500 text-lg"></i>
+                                            <i class="mdi mdi-cellphone-android text-gray-500 text-lg"></i>
                                         </div>
                                         <input type="text" name="contact_number"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"

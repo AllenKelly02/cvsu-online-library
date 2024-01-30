@@ -326,8 +326,10 @@ class BooksController extends Controller
             'book_condition' => $request->book_condition, // Assuming you have an input named 'bookCondition' in your form
         ]);
 
-        if ($request->book_condition == "late") {
-
+        if ($request->book_condition == "Paid with good condition" || "Paid with fair condtion") {
+            $bookIssuing->update([
+                'penalty_status' => 'Paid',
+            ]);
         }
 
         // Update the returned_date and book_condition of the book issuing record
@@ -428,13 +430,14 @@ class BooksController extends Controller
                     $bookIssuing->update([
                         'penalty' => true,
                         'penalty_payment' => ($borrowedDate->diffInDays(now()) - $bookIssuing->total_days) * 5,
-                        'penalty_date' => Carbon::now()->format('M-d-Y')
+                        'penalty_date' => Carbon::now()->format('M-d-Y'),
+                        'penalty_status' => 'Unpaid',
                     ]);
 
                 } else {
                     $bookIssuing->update([
                         'penalty_payment' => ($borrowedDate->diffInDays(now()) - $bookIssuing->total_days) * 5,
-                        'penalty_date' => Carbon::now()->format('M-d-Y')
+                        'penalty_date' => Carbon::now()->format('M-d-Y'),
                     ]);
                 }
             }
