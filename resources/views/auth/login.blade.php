@@ -16,12 +16,11 @@
                    <form method="POST" action="{{ route('login') }}" class="max-w-md w-full">
                     @csrf
                         @if ($errors->any())
-                            <div class="alert alert-error w-96">
-                                <ul>
+                            <div class="fixed top-44 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                                <p class="alert alert-error shadow-lg rounded-box w-auto text-center animate-bounce">
                                     @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                                        {{ $error }}
+                                    @endforeach</p>
                             </div>
                         @endif
                         <div class="mb-4">
@@ -40,8 +39,9 @@
                             </div>
                         </div>
                         @if (Session::has('message'))
-                            <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-99999">
-                                <p class="justify-center alert alert-success shadow-lg w-auto text-center animate-bounce">{{ Session::get('message') }}</p>
+                            <div class="fixed top-44 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                                <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">
+                                    {{ Session::get('message') }}</p>
                             </div>
                         @endif
                         <div class="mb-6">
@@ -104,7 +104,7 @@
                 // Remove the alert message after 5 seconds (adjust the timeout value as needed)
                 setTimeout(function() {
                     document.querySelector('.alert').remove();
-                }, 1000);
+                }, 3000);
             </script>
     </section>
     <x-footer />

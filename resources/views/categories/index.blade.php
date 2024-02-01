@@ -4,21 +4,12 @@
             <a href="{{ route('admin.category.index') }}" class="buttonh w-full md:w-auto px-6 py-2.5 bg-bluemain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-bluemain hover:shadow-lg focus:bg-bluemain focus:shadow-lg focus:outline-none focus:ring-0 active:bg-bluemain active:shadow-lg transition duration-150 ease-in-out">View Categories</a>
             <a href="{{ route('admin.category.create') }}" class="buttonh w-full md:w-auto px-6 py-2.5 bg-green-400 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-500 hover:shadow-lg focus:bg-green-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-500 active:shadow-lg transition duration-150 ease-in-out">Create Category</a>
         </div>
-        @if (session()->has('delete'))
-            <div class="fixed my-5 left-1/2 transform -translate-x-1/2">
-                <div class="flex items-center justify-center alert alert-success shadow-lg w-80 animate-bounce">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>{{ session()->get('delete') }}</span>
-                    </div>
-                </div>
+        @if (Session::has('delete'))
+            <div class="fixed top-36 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">
+                    {{ Session::get('delete') }}</p>
             </div>
         @endif
-
         <div class="w-full h-full lg:h-screen flex flex-col gap-2 overflow-x-auto lg:p-8 overflow-y-auto mx-auto" style="height: 790px">
             <div class="overflow-x-hidden">
                 <div class="flex justify-center ">
@@ -77,10 +68,10 @@
         </div>
     </div>
     <script>
-        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+        // Remove the alert message after 3 seconds (adjust the timeout value as needed)
         setTimeout(function() {
             document.querySelector('.alert').remove();
-        }, 1200);
+        }, 3000);
     </script>
 </x-app-layout>
 

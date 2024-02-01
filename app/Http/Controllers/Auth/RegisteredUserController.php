@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
+
 
 class RegisteredUserController extends Controller
 {
@@ -37,6 +39,23 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $data = $request->all();
+
+        $existingUser = User::where('email', $data['email'])->first();
+        if ($existingUser) {
+            return back()->with(['error' => 'Email already exists!']);
+        }
+
+        // $existingStudentID = Profile::where('student_id', $data['student_id'])->first();
+        // if ($existingStudentID) {
+        //     return back()->with(['error' => 'Student ID already exists!']);
+        // }
+
+        // $existingContactNumber = Profile::where('contact_number', $data['contact_number'])->first();
+        // if ($existingContactNumber) {
+        //     return back()->with(['error' => 'Contact Number already exists!']);
+        // }
+
 
         $request->validate([
             'password' => 'required|min:8|confirmed',
@@ -82,6 +101,7 @@ class RegisteredUserController extends Controller
         $user = User::where('role', 'admin')->first();
 
         $student_cor = 'stdntcr-' . $request->last_name . '-' . uniqid() . '.' . $request->student_cor->extension();
+
         $validID_dir = $request->student_cor->storeAs('/unverified/student/COR', $student_cor, 'public');
 
         $unverified = UnverifiedAccount::create([

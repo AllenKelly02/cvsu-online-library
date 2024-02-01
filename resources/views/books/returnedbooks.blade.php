@@ -74,7 +74,7 @@
                     </div> --}}
                 </div>
                 <div class="flex flex-col p-4 " id="returnedbooks-print-data" x-data="printReturnedBooks">
-                    <div class="h-auto w-full flex justify-center">
+                        <div class="h-auto w-full flex justify-center">
                             <div id="print-logo" class="print-logo hidden items-center justify-center mt-4">
                                 <div class="flex items-center">
                                     <!-- Logo on the left -->
@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                        </div>
 
                     <script>
                         async function filterAndChangeHeader() {
@@ -114,8 +114,8 @@
                       </script>
                     <div class="relative overflow-x-auto w-full h-auto bg-white rounded-2xl">
                         <div class="text-lg font-bold text-black p-2 flex justify-between bg-white">
-                            <h1 id="header sticky top-0 z-50">Monthly Borrowed Books</h1>
-                            <p class="sticky top-0 z-50">Date Issued : {{now()->format('F d, Y')}}</p>
+                            <h1 id="header ">Monthly Borrowed Books</h1>
+                            <p class="">Date Issued : {{now()->format('F d, Y')}}</p>
                         </div>
                         <table class="w-full table-auto text-sm text-left text-gray-500" id="returnedbooks-print-data">
                             <thead class="text-xs text-gray-700 uppercase bg-blue-100 text-center">

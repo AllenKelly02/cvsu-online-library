@@ -1,7 +1,8 @@
 <x-app-layout>
-    @if (session('message'))
-        <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-md z-50">
-            <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ session('message') }}</p>
+    @if (Session::has('message'))
+        <div class="fixed top-36 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+            <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">
+                {{ Session::get('message') }}</p>
         </div>
     @endif
     <div class="px-20 pt-8 mx-auto py-24 bg-bgmain">
@@ -126,9 +127,9 @@
     </div>
     </div>
     <script>
-        // Remove the alert message after seconds (adjust the timeout value as needed)
+        // Remove the alert message after 3 seconds (adjust the timeout value as needed)
         setTimeout(function() {
             document.querySelector('.alert-success').remove();
-        }, 2200);
+        }, 3000);
     </script>
 </x-app-layout>

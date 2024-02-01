@@ -116,14 +116,15 @@
                     <h1 class="font-bold text-lg text-center text-black">Message</h1>
                     @csrf
                     @if (Session::has('message'))
-                            <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-99999">
-                                <p class="justify-center alert alert-success shadow-lg w-auto text-center animate-bounce">{{ Session::get('message') }}</p>
-                            </div>
-                        @endif
+                        <div class="fixed top-36 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                            <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">
+                                {{ Session::get('message') }}</p>
+                        </div>
+                    @endif
                     <div class="flex flex-col gap-3">
                         <label for="email" class="text-xs text-black">Email</label>
                         <input type="email" id="email" name="email"
-                            class="input input-accent  text-gray input-sm w-full max-w-xs bg-white"
+                            class="input input-accent  text-black input-sm w-full max-w-xs bg-white"
                             placeholder="Enter your email" value="{{ old('email') }}" />
                         @if ($errors->has('email'))
                             <p class="text-xs text-error">{{ $errors->first('email') }}</p>
@@ -131,7 +132,7 @@
                     </div>
                     <div class="flex flex-col gap-1">
                         <label for="content" class="text-xs text-black">Message</label>
-                        <textarea id="content" class="textarea textarea-accent bg-white h-32" name="content" placeholder="Enter your message">{{ old('content') }}</textarea>
+                        <textarea id="content" class="textarea textarea-accent bg-white h-32 text-black" name="content" placeholder="Enter your message">{{ old('content') }}</textarea>
                         @if ($errors->has('content'))
                             <p class="text-xs text-error">{{ $errors->first('content') }}</p>
                         @endif
@@ -171,6 +172,12 @@
             $(".loader").fadeOut(200);
         }, 600); // 3000 milliseconds (3 seconds) delay before fading out
     });
+</script>
+<script>
+    // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+    setTimeout(function() {
+        document.querySelector('.alert').remove();
+    }, 3000);
 </script>
 <style>
     @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css')

@@ -13,16 +13,10 @@
         @endauth
     </div>
     <div class="px-20 flex flex-col gap-2">
-        @if (session()->has('message'))
-            <div class="flex justify-center alert alert-success shadow-lg w-80 ml-60 animate-bounce">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{{ session()->get('message') }}</span>
-                </div>
+        @if (Session::has('message'))
+            <div class="fixed top-36 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">
+                    {{ Session::get('message') }}</p>
             </div>
         @endif
         <div class="flex space-x-5 p-5 justify-center">
@@ -47,9 +41,9 @@
     </div>
 
     <script>
-        // Remove the alert message after 5 seconds (adjust the timeout value as needed)
+        // Remove the alert message after 3 seconds (adjust the timeout value as needed)
         setTimeout(function() {
             document.querySelector('.alert').remove();
-        }, 2000);
+        }, 3000);
     </script>
 </x-app-layout>

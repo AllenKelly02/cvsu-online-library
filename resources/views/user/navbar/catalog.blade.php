@@ -1,11 +1,12 @@
 <x-app-layout>
     <div class="px-20 pt-8 mx-auto py-24 bg-bgmain">
 
-    @if (session('message'))
-    <div class="fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-md">
-        <p class="alert alert-success shadow-lg w-96 text-center animate-bounce">{{ session('message') }}</p>
-    </div>
-    @endif
+        @if (Session::has('message'))
+            <div class="fixed top-36 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                <p class="alert alert-success shadow-lg rounded-box w-auto text-center animate-bounce">
+                    {{ Session::get('message') }}</p>
+            </div>
+        @endif
                 <div class="flex flex-wrap w-full mb:pt-5">
             <div class="lg:w-1/2 w-fulll lg:mb-0">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Catalog</h1>
@@ -187,7 +188,7 @@
         // Remove the alert message after seconds (adjust the timeout value as needed)
         setTimeout(function() {
             document.querySelector('.alert-success').remove();
-        }, 1200);
+        }, 3000);
     </script>
 
     <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>

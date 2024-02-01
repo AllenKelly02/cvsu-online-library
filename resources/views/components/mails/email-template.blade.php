@@ -12,8 +12,8 @@
         }
 
         body {
-            padding: 0px;
-            margin: 0px;
+            padding: 1in;
+            margin: 1in;
         }
 
         .content {
@@ -58,15 +58,23 @@
 
 <body>
     <div class="content">
-        <div class="header">
-            <div class="header-content">
-                <img src="data:image/jpeg;base64,{{base64_encode(file_get_contents(public_path('img/logo.png')))}}" alt="" srcset="" class="logo">
-                <div>
-                    <h1>Cavite State University Online Library</h1>
-                    <p>Phase 2, Soldiers Hills 4, Molino 6,
-                        City of Bacoor, Cavite
-                         (046) 476 - 5029
-                    </p>
+        <div class="header h-auto w-full flex justify-center">
+            <div class="header-content items-center justify-center mt-4">
+                <div class="flex items-center">
+                    <!-- Logo on the left -->
+                    <img class="w-36 h-auto logo" src="data:image/jpeg;base64,{{base64_encode(file_get_contents(public_path('img/logo.png')))}}" alt="">
+
+                    <!-- Text on the right -->
+                    <div class="ml-4 text-center">
+                        <p class="text-black">Republic of the Philippines</p>
+                        <b>
+                            <p class="text-black">CAVITE STATE UNIVERSITY</p>
+                        </b>
+                        <p class="text-black"><b>Bacoor City Campus</b></p>
+                        <p class="text-black">SHIV, Molino VI, City of Bacoor</p>
+                        <p class="text-black">🕾 (046) 476-5029</p>
+                        <p class="text-black"><i class="mdi mdi-email-outline text-black text-lg px-1"></i>cvsubacoor@cvsu.edu.ph</p>
+                    </div>
                 </div>
             </div>
         </div>

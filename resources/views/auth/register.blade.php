@@ -1,4 +1,18 @@
 <x-guest-layout>
+    @if ($errors->any())
+        <div class="fixed top-44 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+            <p class="alert alert-error shadow-lg rounded-box w-auto text-center animate-bounce">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach</p>
+        </div>
+    @endif
+    @if (Session::has('error'))
+        <div class="fixed top-44 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+            <p class="alert alert-error shadow-lg rounded-box w-auto text-center animate-bounce">
+                {{ Session::get('error') }}</p>
+        </div>
+    @endif
     <section class="full-screen body-font bg-bottom bg-no-repeat solid-bg-bgmain"
         style="background-image: url('../img/wave (7).svg');">
         <div class="flex items-center justify-center py-40 pt-36 w-full">
@@ -320,7 +334,7 @@
                                     </div>
                                     <div class="flex items-center">
                                         <input type="file" name="student_cor" accept="image/*, .pdf"
-                                            class="border rounded-lg">
+                                            class="border rounded-lg" required>
                                         <span class="error-icon hidden mt-2 -ml-6 text-red-700">
                                             <i class="ri-error-warning-fill"></i>
                                         </span>
