@@ -55,13 +55,13 @@
                     @if ($favorite->book->image !== null)
 
                     <img class="w-full object-cover object-center py-6 rounded"
-                    style="max-height: 450px;"
+                    style="max-height: 400px;"
                     src="{{route('image-view', ['name' => $favorite->book->image])}}" alt="content">
 
                     @else
 
                     <img class="w-full object-cover object-center py-6 rounded"
-                    style="max-height: 450px;"
+                    style="max-height: 400px;"
                     src="{{ asset('img/b1.jpg') }}" alt="content">
 
                     @endif

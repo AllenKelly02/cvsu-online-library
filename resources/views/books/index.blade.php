@@ -67,13 +67,13 @@
                         </div>
 
                         @if ($book->image !== null)
-                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 430px;"
+                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 340px;"
                                 src="{{ route('image-view', ['name' => $book->image]) }}" alt="content">
                         @else
-                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 430px;"
+                            <img class="w-full object-cover object-center py-6 rounded" style="max-height: 340px;"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
-
+                        
 
                         @if ($book->status === 'available')
                             <span

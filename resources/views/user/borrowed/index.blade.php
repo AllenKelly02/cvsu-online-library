@@ -38,11 +38,11 @@
 
                         @if ($borrow->book->image !== null)
                            <img class="w-full object-cover object-center py-6 rounded"
-                                style="height: 480px; width: 100%;"
+                                style="height: 400px; width: 100%;"
                                 src="{{ route('image-view', ['name' => $borrow->book->image]) }}" alt="content">
                         @else
                         <img class="w-full object-cover object-center py-6 rounded"
-                        style="height: 480px; width: 100%;"
+                        style="height: 400px; width: 100%;"
                                 src="{{ asset('img/b1.jpg') }}" alt="content">
                         @endif
 
@@ -79,7 +79,7 @@
                         @endif
 
                         @if ($borrow->status === 'pending')
-                            <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Status:</b></h3>
+                            <h3 class="justify-between truncate tracking-widest text-black text-sm m-1"><b>Status:</b></h3>
                                 <span
                                     class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5
                                  py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300 capitalize">
