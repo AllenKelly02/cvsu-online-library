@@ -147,9 +147,9 @@
                                     <th scope="col" class="w-[10%] px-6 py-3 text-black">
                                         Penalty Payment
                                     </th>
-                                    <th scope="col" class="w-[10%] px-6 py-3 text-black">
+                                    {{-- <th scope="col" class="w-[10%] px-6 py-3 text-black">
                                         Penalty Status
-                                    </th>
+                                    </th> --}}
                                     <th scope="col" class="w-[10%] px-6 py-3 text-black">
                                         FeedBack
                                     </th>
@@ -187,9 +187,9 @@
                                         <td class="w-[10%] px-6 py-3 text-black">
                                             {{ $returnedBook->penalty_payment }}
                                         </td>
-                                        <td class="w-[10%] px-6 py-3 text-black">
+                                        {{-- <td class="w-[10%] px-6 py-3 text-black">
                                             {{ $returnedBook->penalty_status }}
-                                        </td>
+                                        </td> --}}
                                         <td class="w-[10%] px-6 py-3 text-black">
                                             {{ $returnedBook->book_condition }}
                                         </td>
