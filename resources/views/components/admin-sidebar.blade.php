@@ -18,7 +18,7 @@
 					<span class="ml-2 text-sm font-medium">Dashboard</span>
 				</a>
 				<a id="openBooks" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white cursor-pointer {{ request()->routeIs('admin.books.index') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.books.create') ? 'bg-blue2 text-white' : '' }}
-                    {{ request()->routeIs('admin.getAllBorrowedBooks') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.listRequestBorrowedBooks') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.books.barcodes') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.getAllReturnedBooks') ? 'bg-blue2 text-white' : '' }}">
+                    {{ request()->routeIs('admin.getAllBorrowedBooks') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.getReturnedBooks') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.listRequestBorrowedBooks') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.books.barcodes') ? 'bg-blue2 text-white' : '' }} {{ request()->routeIs('admin.getAllReturnedBooks') ? 'bg-blue2 text-white' : '' }}">
 					<img class="object-center w-6 ml-30 py-3" src="{{ asset('img/top.png') }}" alt="content">
 					<span class="ml-2 text-sm font-medium">Books</span>
 				</a>
@@ -27,6 +27,7 @@
 					<a href="{{ route('admin.books.create') }}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white">Add New</a>
 					<a href="{{route('admin.getAllBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white">Borrowed Books</a>
                     <a href="{{route('admin.listRequestBorrowedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white"> Request Borrowed Books</a>
+                    <a href="{{route('admin.getReturnedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white">Returned Books</a>
                     <a href="{{route('admin.books.barcodes')}}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white"> Barcodes </a>
                     <a href="{{route('admin.getAllReturnedBooks')}}" class="text-base px-4 py-2 rounded-lg hover:bg-blue2 hover:text-white">Monthly Borrowed Books</a>
 				</div>

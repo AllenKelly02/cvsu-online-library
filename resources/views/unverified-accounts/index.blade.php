@@ -71,7 +71,7 @@
                                         </form>
                                         <form method="POST" action="{{ route('admin.reject-account', ['id' => $account->id]) }}">
                                             @csrf
-                                            <button class="font-medium text-white py-2 px-4 rounded-full bg-red-500 hover:bg-red-600">Remove</button>
+                                            <button class="font-medium text-white py-2 px-4 rounded-full bg-red-500 hover:bg-red-600">&nbsp;&nbsp;Reject&nbsp;&nbsp;</button>
                                         </form>
                                     </td>
                                 </tr>

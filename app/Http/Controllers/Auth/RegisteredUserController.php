@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             return back()->with(['error' => 'Email already exists!']);
         }
 
-        // $existingStudentID = Profile::where('student_id', $data['student_id'])->first();
+        // $existingStudentID = User::where('student_id', $data['student_id'])->first();
         // if ($existingStudentID) {
         //     return back()->with(['error' => 'Student ID already exists!']);
         // }

@@ -16,7 +16,14 @@
                     style="height: 780px">
                             <table class="w-full text-sm text-left text-black h-2">
                                 <thead class="text-xs text-black uppercase bg-blue-200 ">
-                                    <tr>
+                                        <tr>
+                                            <?php
+                                        $count = 1;
+                                        ?>
+
+                                        <th scope="col" class="px-6 py-3 text-center">
+                                            No.
+                                        </th>
                                         <th scope="col" class="px-6 py-3 text-center">
                                             Name
                                         </th>
@@ -37,6 +44,9 @@
                                 <tbody>
                                     @forelse ($accounts as $account)
                                         <tr class="bg-white border-b">
+                                            <td class="px-6 py-4 capitalize text-center">
+                                                {{ $count++ }}
+                                            </td>
                                             <td class="px-6 py-4 capitalize text-center">
                                                 {{ $account->name }}
                                             </td>

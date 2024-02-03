@@ -141,7 +141,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
 
     //lisft of Returned Books
-    Route::get('/books/get/Returned', [BooksController::class, 'allReturnedBooks'])->name('getAllReturnedBooks');
+    Route::get('/books/get/MonthlyBorrowedBooks', [BooksController::class, 'allReturnedBooks'])->name('getAllReturnedBooks');
+    Route::get('/books/get/Returned', [BooksController::class, 'allReturnedBook'])->name('getReturnedBooks');
 
     //accounts
     Route::get('/verified-accounts', [AccountsController::class, 'verifiedAccounts'])->name('verified-accounts');
@@ -187,7 +188,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->as('user.')->group(fun
     //remove favorite book
     Route::post('/books/show/{id}/removeFavorite', [BooksController::class, 'removeFavourite'])->name('removeBookFavourite');
 
-    
+
 });
 
 Route::get('/show', [BooksController::class, 'showPage'])->name('show');

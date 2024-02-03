@@ -78,7 +78,6 @@ class UnverifiedAccountController extends Controller
         $account->delete();
 
 
-
         return redirect()->back()->with(['message' => "Registration request is rejected!"]);
 
     }

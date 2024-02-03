@@ -476,7 +476,31 @@ class BooksController extends Controller
 
         $courses = Course::get();
 
-        return view('books.returnedbooks', compact('returnedBooks', 'courses'));
+        return view('books.monthlyborrowedbooks', compact('returnedBooks', 'courses'));
+
+    }
+
+    public function allReturnedBook(Request $request)
+    {
+        // Fetch all returned books
+        $returnedBooks = BookIssuing::with('book')->where('returned_date', '!=','0000-00-00')->get();
+
+        $filter = $request->filter;
+
+
+        if($filter !== null){
+
+            $returnedBooks = BookIssuing::with('book', 'user')->whereHas('user', function($q) use($filter){
+                $q->whereHas('profile', function($q) use($filter) {
+                    $q->where('course', $filter);
+                });
+            })->where('returned_date', '!=', '0000-00-00')->get();
+        }
+
+
+        $courses = Course::get();
+
+        return view('books.returnedbook', compact('returnedBooks', 'courses'));
 
     }
 
