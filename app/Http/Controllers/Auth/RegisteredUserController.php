@@ -112,7 +112,7 @@ class RegisteredUserController extends Controller
             'course' => $request->course,
             'sex' => $request->sex,
             'contact_number' => $request->contact_number,
-            'student_id' => $request->studentId,
+            'student_id' => $request->student_id,
             'email' => $request->email,
             'password' => $request->password,
             'student_cor' => $student_cor
@@ -122,7 +122,6 @@ class RegisteredUserController extends Controller
         $message = [
             'content' => "New Registered Student: {$request->lastName}, {$request->firstName} {$request->middle_name} Student ID {$request->studentId}"
         ];
-
 
         $user->notify(new NewUserNotification($message));
 

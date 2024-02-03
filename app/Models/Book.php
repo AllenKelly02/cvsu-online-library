@@ -122,7 +122,9 @@ class Book extends Model
             ->orWhere('ISBN', 'like', '%' . request('search') . '%' )
             ->orWhere('bibliography', 'like', '%' . request('search') . '%' )
             ->orWhere('bibliography', 'like', '%' . request('search') . '%' )
-            ->orWhere('accession_number', 'like', '%' . request('search') . '%' );
+            ->orWhere('accession_number', 'like', '%' . request('search') . '%' )
+            ->orWhere('course', 'like', '%' . request('search') . '%' );
+
 
         }
     }

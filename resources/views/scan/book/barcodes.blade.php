@@ -16,7 +16,6 @@
                         class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
                 </div>
             </form>
-
         </div>
         <div class="w-full flex flex-wrap gap-2 bg-white rounded-lg justify-center p-4" id="barcode-print-data">
             @forelse ($books as $book)

@@ -14,25 +14,13 @@
                     <div class="h-1 w-20 bg-bluemain rounded"></div>
                 </div>
             </div>
-
-            <div x-data="printReturnedBooks">
-                <div class="flex justify-end pr-4 py-2">
-                    <div class="flex items-center gap-5">
-
-                        {{-- <button
+             {{-- <button
                             class="flex gap-2 buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg transition duration-150 ease-in-out"
                             @click="exportToExcel">
                             <span><i class="fi fi-rr-download"></i></span> Export to Excel
                         </button> --}}
-                        <button
-                            class="flex gap-2 buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md
-                            hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg
-                            transition duration-150 ease-in-out"
-                            @click="printTableData">
-                            <span><i class="fi fi-rr-download"></i></span> Download
-                        </button>
-                    </div>
-                </div>
+            <div x-data="printReturnedBooks">
+
                 <!-- Filter Program/Course -->
                 <div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
 
@@ -54,10 +42,20 @@
                           <button class="button-name text-black uppercase bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
                           onclick="filterAndChangeHeader()">Filter by Program</button>
                     </form>
-
+                </div>
+                <div class="flex justify-end pr-4">
+                    <div class="flex items-center">
+                        <button
+                            class="flex gap-2 buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md
+                            hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg
+                            transition duration-150 ease-in-out"
+                            @click="printTableData">
+                            <span><i class="fi fi-rr-download"></i></span> Download
+                        </button>
+                    </div>
                 </div>
                 <div class="flex flex-col p-4 " id="returnedbooks-print-data" x-data="printReturnedBooks">
-                        <div class="h-auto w-full flex justify-center">
+                        <div class="h-auto w-full flex justify-center pb-10">
                             <div id="print-logo" class="print-logo hidden items-center justify-center mt-4">
                                 <div class="flex items-center">
                                     <!-- Logo on the left -->
@@ -215,6 +213,14 @@
                                 @endif
                             </tbody>
                         </table>
+                        <div id="prepared-by" class="prepared-by hidden">
+                            <div class="text-lg text-black px-5 pt-5 flex justify-end bg-white">
+                                <p class=""><b>Prepared By:</b> Ms. Lorema N. Acapulco, RL</p>
+                            </div>
+                            <div class="text-sm text-black px-20 pb-5 flex justify-end bg-white">
+                                <p class="justify-end text-black">Campus Librarian</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

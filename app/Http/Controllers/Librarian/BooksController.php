@@ -180,6 +180,9 @@ class BooksController extends Controller
         $user = Auth::user();
         $book = Book::find($id);
 
+        $book = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
+
+
         // Check if the user already has a book
         $existingBook = $book->bookIssuing()
             ->where('user_id', $user->id)
@@ -287,6 +290,9 @@ class BooksController extends Controller
     public function listRequestBorrowedBooks()
     {
         $bookRequest = BookIssuing::where('is_approved', false)->where('status', '!=', 'reject')->with('user', 'book')->get();
+
+        $books = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
+
         return view('books.listrequestborrowedbooks', compact(['bookRequest']));
     }
 
@@ -312,6 +318,8 @@ class BooksController extends Controller
         // Increment the copy attribute of the associated book
         $book = $bookIssuing->book;
 
+        $book = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
+
         $user = User::find($bookIssuing->user->id);
 
         $book->update([
@@ -323,7 +331,7 @@ class BooksController extends Controller
         // $book->save();
 
         $bookIssuing->update([
-            'book_condition' => $request->book_condition, // Assuming you have an input named 'bookCondition' in your form
+            'book_condition' => $request->book_condition,
         ]);
 
         if ($request->book_condition == "Paid with good condition" || "Paid with fair condtion") {
@@ -391,7 +399,7 @@ class BooksController extends Controller
     public function allBorrowedBooks()
     {
         $bookIssuings = BookIssuing::with('book', 'user')->where('returned_date', '0000-00-00')->where('is_approved', true)->get();
-
+        $book = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
         // uncomment this
         /*
         $testing_future_date_for_penalty = Carbon::now()->addDays(10)->format('M-d-Y');
@@ -484,7 +492,7 @@ class BooksController extends Controller
     {
         // Fetch all returned books
         $returnedBooks = BookIssuing::with('book')->where('returned_date', '!=','0000-00-00')->get();
-
+        $book = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
         $filter = $request->filter;
 
 
@@ -511,6 +519,7 @@ class BooksController extends Controller
 
 
         return view('books.archivedbooks', compact(['books']));
+
     }
     public function destroy(Request $request, $id)
     {
@@ -530,7 +539,6 @@ class BooksController extends Controller
     {
 
         $books = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
-        ;
 
         return view('scan.book.barcodes', compact(['books']));
     }

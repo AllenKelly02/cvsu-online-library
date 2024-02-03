@@ -14,7 +14,15 @@
                     <div class="h-1 w-20 bg-bluemain rounded"></div>
                 </div>
             </div>
-
+            <div class="w-full flex items-center justify-end px-4 py-3 mb-5">
+                <form action="{{ route('admin.getReturnedBooks') }}" method="get" class="w-full">
+                    <div class="w-full flex justify-end space-x-3">
+                        <a class="text-xm text-black underline object-center flex flex-col items-center justify-center hover:text-bluemain hover:text-bold" href="{{ route('admin.getReturnedBooks') }}">Refresh page</a>
+                        <input type="text" name="search" class="border-gray-300 rounded w-1/2 text-black" placeholder="Type here..">
+                        <button class="px-4 py-2 rounded bg-yellowmain hover:bg-yellow-500 text-black">Search</button>
+                    </div>
+                </form>
+            </div>
             <div x-data="printReturnedBooks">
                 {{-- <div class="flex justify-end pr-4 py-2">
                     <div class="flex items-center gap-5">
@@ -186,26 +194,25 @@
                                             {{ $returnedBook->book_condition }}
                                         </td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="10">
-                                            <div class="my-10 mx-auto flex justify-center">
-                                                <div class="alert alert-warning px-10 py-10 h-10 w-96">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="stroke-current shrink-0 h-6 w-6" fill="none"
-                                                        viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                                    </svg>
-                                                    <span>No Record Found</span>
-                                                    <a class=" text-xm text-black underline object-center"
-                                                        href="{{ route('admin.books.index') }}">See More Books</a>
+                                    @empty
+                                        <tr>
+                                            <td colspan="10">
+                                                <div class="my-10 mx-auto flex justify-center">
+                                                    <div class="alert alert-warning px-10 py-10 h-10 w-96">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                        </svg>
+                                                        <span>No Record Found</span>
+                                                        <a class="text-xm text-black underline object-center"
+                                                            href="{{ route('admin.books.index') }}">See More Books</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                 @endforelse
+
                                 @endif
                             </tbody>
                         </table>

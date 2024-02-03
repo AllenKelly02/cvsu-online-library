@@ -69,9 +69,9 @@ class AccountsController extends Controller
 
         $account->delete();
 
-        return redirect(route('admin.unverified-accounts'))->with(['message' => 'Delete Succesfully']);
+        return redirect(route('admin.unverified-accounts'))->with(['message' => 'Reject Succesfully']);
     }
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
 
         $user = User::find($id);
@@ -80,6 +80,9 @@ class AccountsController extends Controller
 
         $user->delete();
 
+        $user->update([
+            'reason' => $request->reason,
+        ]);
 
         return back()->with(['message' => 'Account Sucessfully Deleted']);
     }
@@ -89,6 +92,8 @@ class AccountsController extends Controller
         $user = User::find($id);
 
         return view('verified-accounts.edit', compact(['user']));
+
+
     }
     public function update(Request $request, string $id)
     {

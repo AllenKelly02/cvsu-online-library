@@ -56,4 +56,17 @@ class User extends Authenticatable
     public function favourite_books(){
         return $this->hasMany(UserFavouriteBook::class);
     }
+
+    public function scopeFilter($query, array $filters) {
+        if ($filters['name'] ?? false) {
+            $query->where('name', request('name'));
+        }
+
+        if ($filters['search'] ?? false) {
+            $query->where('name', 'like', '%' . request('search') . '%' )
+            ->orWhere('student_id', 'like', '%' . request('search') . '%' )
+            ->orWhere('email', 'like', '%' . request('search') . '%' );
+
+        }
+    }
 }

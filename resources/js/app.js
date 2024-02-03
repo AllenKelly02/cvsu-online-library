@@ -59,6 +59,7 @@ Alpine.data('printBarcode', () => ({
         printTableData() {
             const table = document.getElementById('returnedbooks-print-data');
             const printLogo = document.getElementById('print-logo');
+            const prepared = document.getElementById('prepared-by');
             const opt = {
                 margin: 0.5,
                 filename: 'Monthly Borrowed Books.pdf',
@@ -70,9 +71,12 @@ Alpine.data('printBarcode', () => ({
             printLogo.classList.remove("hidden");
             printLogo.classList.add("block");
 
+            prepared.classList.remove("hidden");
+            prepared.classList.add("block");
 
-            html2pdf().set(opt).from(printLogo).from(table).save();
+            html2pdf().set(opt).from(printLogo).from(prepared).from(table).save();
             setTimeout(()=>{printLogo.classList.replace("block", 'hidden');}, 10);
+            setTimeout(()=>{prepared.classList.replace("block", 'hidden');}, 10);
             // printLogo.classList.remove("block");
             // printLogo.classList.add("hidden");
 

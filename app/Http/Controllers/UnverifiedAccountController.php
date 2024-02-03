@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Profile;
 use App\Notifications\NewUserNotification;
+use App\Notifications\DeleteNotification;
 use Illuminate\Http\Request;
 use App\Http\Middleware\Role;
 use App\Models\UnverifiedAccount;
@@ -48,16 +49,16 @@ class UnverifiedAccountController extends Controller
             'municipality' => $account->municipality,
             'province' => $account->province,
             'zip_code' => $account->zip_code,
-            'user_id' => $savedAccount->id
+            'user_id' => $savedAccount->id,
         ];
 
         $savedProfile = Profile::create($userProfile);
 
         $message = [
-            'content' => "Hello! Your registration request has been approved | Approved Date: " . now()->format('F d, Y')
+            'content' => "Hello! Your registration request has been approved.  \nApproved Date: " . now()->format('F d, Y')
         ];
 
-        $account->notify(new NewUserNotification($message));
+        $savedAccount->notify(new NewUserNotification($message));
 
         $account->delete();
 
@@ -65,20 +66,20 @@ class UnverifiedAccountController extends Controller
 
     }
 
-    public function rejectAccount($id) {
+    public function rejectAccount(Request $request, $id) {
 
         $account = UnverifiedAccount::where('id', $id)->first();
 
         $message = [
-            'content' => "Hello! Your registration request has been rejecrted | Rejected Date: " . now()->format('F d, Y')
+            'content' => "Hello! Your registration request has been rejected.\nReason: " . $request->input('reason') . "\nRejected Date: " . now()->format('F d, Y')
         ];
 
-        $account->notify(new NewUserNotification($message));
+        $account->email->notify(new DeleteNotification($message));
 
         $account->delete();
 
 
-        return redirect()->back()->with(['message' => "Registration request is rejected!"]);
+        return redirect()->back()->with(['message' => "Registration request is rejected successfully"]);
 
     }
 }

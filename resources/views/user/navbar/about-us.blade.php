@@ -23,8 +23,8 @@
                     <img src="{{ asset('img/russel.jpg') }}" alt="" class="w-full h-full object-cover"/>
                 </div>
                 <div class="flex-grow sm:pl-8">
-                    <h2 class="title-font font-medium text-lg sm:text-xl md:text-2xl text-gray-900">Lorema N. Acapulco, RL</h2>
-                    <h3 class="text-gray-800 mb-2 sm:mb-3">Campus Librarian</h3>
+                    <h2 class="title-font font-medium text-lg sm:text-xl md:text-2xl text-gray-900">Russel C. Cacho</h2>
+                    <h3 class="text-gray-800 mb-2 sm:mb-3">Library Staff</h3>
                 </div>
             </div>
         </div>
