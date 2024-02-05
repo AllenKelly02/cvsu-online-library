@@ -77,9 +77,8 @@ Alpine.data('printBarcode', () => ({
             html2pdf().set(opt).from(prepared, () => {
                 html2pdf().from(printLogo).from(table).save();
               });
-
-            setTimeout(()=>{printLogo.classList.replace("block", 'hidden');}, 3000);
             setTimeout(()=>{prepared.classList.replace("block", 'hidden');}, 3000);
+            setTimeout(()=>{printLogo.classList.replace("block", 'hidden');}, 3000);
             this.isVisible = false; // Hide the logo after generating the PDF
             },
     }));

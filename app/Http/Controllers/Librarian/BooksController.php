@@ -184,13 +184,13 @@ class BooksController extends Controller
 
 
         // Check if the user already has a book
-        $existingBook = $book->bookIssuing()
-            ->where('user_id', $user->id)
-            ->where(function ($query) {
-                $query->where('status', 'pending')->orWhere('returned_date', '0000-00-00');
-            })
-            ->latest()
-            ->first();
+        $existingBook = $book->bookIssuings()
+        ->where('user_id', $user->id)
+        ->where(function ($query) {
+            $query->where('status', 'pending')->orWhere('returned_date', '0000-00-00');
+        })
+        ->latest()
+        ->first();
 
         if ($existingBook !== null) {
             return back()->with(['warning' => "You already have a book that is pending or hasn't been returned yet."]);

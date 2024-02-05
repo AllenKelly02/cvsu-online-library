@@ -33,4 +33,10 @@ class BookIssuing extends Model
     public function book() {
         return $this->belongsTo(Book::class);
     }
+
+    public function scopeBookIssuing($query)
+    {
+
+        return $query;
+    }
 }
