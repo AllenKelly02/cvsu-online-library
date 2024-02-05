@@ -217,7 +217,7 @@
                             <div class="text-lg text-black px-5 pt-5 flex justify-end bg-white">
                                 <p class=""><b>Prepared By:</b> Ms. Lorema N. Acapulco, RL</p>
                             </div>
-                            <div class="text-sm text-black px-20 pb-5 flex justify-end bg-white">
+                            <div class="text-sm text-black px-20 pb-6 flex justify-end bg-white">
                                 <p class="justify-end text-black">Campus Librarian</p>
                             </div>
                         </div>
