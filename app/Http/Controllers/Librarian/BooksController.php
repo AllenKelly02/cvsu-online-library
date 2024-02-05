@@ -247,7 +247,7 @@ class BooksController extends Controller
         }
         $message = [
             'content' => "Your Books Request Title: {$book->title} has been approved." .
-             " Approved Date: " . now()->format('F d, Y')
+             "\nApproved Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));
@@ -277,7 +277,7 @@ class BooksController extends Controller
 
         $message = [
             'content' => "Your Books Request title {$bookIssuing->book->title} has been rejected." .
-             " Rejected Date: " . now()->format('F d, Y')
+             "\nRejected Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));
@@ -347,8 +347,8 @@ class BooksController extends Controller
 
 
         $message = [
-            'content' => "Book Title: {$bookIssuing->book->title} has been returned with a {$bookIssuing->book_condition} condition." .
-            " Return Date: " . now()->format('F d, Y')
+            'content' => "Book Title: {$bookIssuing->book->title} has been returned with a {$bookIssuing->book_condition}." .
+            "\nReturn Date: " . now()->format('F d, Y')
         ];
 
         $user->notify(new BookNotification($message));

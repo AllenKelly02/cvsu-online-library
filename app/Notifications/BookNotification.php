@@ -40,7 +40,8 @@ class BookNotification extends Notification
         return (new MailMessage)
                     ->line($this->message['content'])
                     // ->action('Notification Action', url('/'))
-                    ->line('Thank you for using the CVSU Bacoor Campus Library!');
+                    ->line('Thank you for using the  CvSU Bacoor Campus Library!')
+                    ->salutation('Regards, \nCvSU Bacoor Campus Library');
     }
 
     /**

@@ -151,10 +151,10 @@
                                                     @csrf
                                                     <select id="bookCondition" name="book_condition"
                                                         class="mt-1 block w-full py-2 px-3 pr-7 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                        <option value="Good">Book in Good Condition</option>
-                                                        <option value="Fair">Book in Fair Condition (minimal damage)
+                                                        <option value="Good Condition">Book in Good Condition</option>
+                                                        <option value="Fair Condition">Book in Fair Condition (minimal damage)
                                                         </option>
-                                                        <option value="Poor">Book in Poor Condition (major damage)
+                                                        <option value="Poor Condition">Book in Poor Condition (major damage)
                                                         </option>
                                                         <option value="Paid with good condtion">Book in Good Condition
                                                             with paid penalty</option>
