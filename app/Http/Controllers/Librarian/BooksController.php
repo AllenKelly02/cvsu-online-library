@@ -184,7 +184,7 @@ class BooksController extends Controller
 
 
         // Check if the user already has a book
-        $existingBook = $book->bookIssuings()
+        $existingBook = $book->bookIssuing()
         ->where('user_id', $user->id)
         ->where(function ($query) {
             $query->where('status', 'pending')->orWhere('returned_date', '0000-00-00');
