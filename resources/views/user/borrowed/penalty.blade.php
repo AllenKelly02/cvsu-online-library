@@ -123,16 +123,21 @@
 
                 <div class="flex w-auto h-auto mx-auto justify-center items-center bg-white border border-gray-300 rounded-lg shadow-2xl max-h-[80rem] max-w-lg">
                     <div class="w-full rounded px-6 pt-3">
-                        <div class="flex flex-col justify-center items-center gap-0">
-                            <img src="{{ asset('img/logo.png') }}" alt="logo" class="mx-auto w-16 py-4" />
-                            <p class="text-black mb-1">Republic of the Philippines</p>
-                            <b>
-                                <p class="text-black mb-1">CAVITE STATE UNIVERSITY</p>
-                            </b>
-                            <p class="text-black mb-1"><b>Bacoor City Campus</b></p>
-                            <p class="text-black mb-1">SHIV, Molino VI, City of Bacoor</p>
-                            <p class="text-black mb-1">🕾 (046) 476-5029</p>
-                            <p class="text-black mb-1"><i class="mdi mdi-email-outline text-black text-xs px-1"></i>cvsubacoor@cvsu.edu.ph</p>
+                        <div class="flex items-center">
+                            <!-- Logo on the left -->
+                            <img class="w-36 h-auto" src="{{ asset('img/logo.png') }}" alt="">
+
+                            <!-- Text on the right -->
+                            <div class="ml-4 text-center">
+                                <p class="text-black">Republic of the Philippines</p>
+                                <b>
+                                    <p class="text-black">CAVITE STATE UNIVERSITY</p>
+                                </b>
+                                <p class="text-black"><b>Bacoor City Campus</b></p>
+                                <p class="text-black">SHIV, Molino VI, City of Bacoor</p>
+                                <p class="text-black">🕾 (046) 476-5029</p>
+                                <p class="text-black"><i class="mdi mdi-email-outline text-black text-lg px-1"></i>cvsubacoor@cvsu.edu.ph</p>
+                            </div>
                         </div>
                     <div class="flex flex-col items-center justify-center my-4">
                         <h1 class="text-lg italic font-extrabold tracking-widest text-black">Library Penalty Receipt</h1>
