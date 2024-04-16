@@ -164,10 +164,12 @@
                                 <table class="min-w-full text-center divide-y divide-gray-200">
                                     <thead class="bg-blue-200">
                                         <tr>
+                                            @if($book->type !== 'thesis')
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-1 py-4 md:py-2 md:px-2 lg:px-1 border border-x-gray-500 border-y-gray-500">
                                                 ISBN
                                             </th>
+                                            @endif
                                             <th scope="col"
                                                 class="text-sm font-medium text-gray-900 px-1 py-4 md:py-2 md:px-2 lg:px-1 border border-x-gray-500 border-y-gray-500">
                                                 Call No.
@@ -188,10 +190,12 @@
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
                                         <tr>
+                                            @if($book->type !== 'thesis')
                                             <td
                                                 class="text-sm text-gray-900 font-medium px-1 py-4 md:py-2 md:px-2 lg:px-1 whitespace-nowrap border border-x-gray-500 border-y-gray-500">
                                                 {{ $book->ISBN }}
                                             </td>
+                                            @endif
                                             <td
                                                 class="text-sm text-gray-900 font-medium px-1 py-4 md:py-2 md:px-2 lg:px-1 whitespace-nowrap border border-x-gray-500 border-y-gray-500">
                                                 {{ $book->call_number }}

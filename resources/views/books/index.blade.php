@@ -98,9 +98,9 @@
                         </h3>
 
                         @if($book->type !== 'thesis')
-                       <h3 class="truncate tracking-widest text-black text-sm m-1"><b>ISBN:</b> {{ $book->ISBN }}
-                       </h3>
-                       @endif
+                            <h3 class="truncate tracking-widest text-black text-sm m-1"><b>ISBN:</b> {{ $book->ISBN }}
+                            </h3>
+                        @endif
 
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b>
                             {{ $book->published_year }}</h3>

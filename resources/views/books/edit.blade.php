@@ -94,10 +94,12 @@
                                         value="{{ $book->published_year }}"></span>
                             </span>
                         </div>
+                        @if($book->type !== 'thesis')
                         <p class="text-black mb-3">
                             <b>ISBN:</b> <input type="text" autocomplete="off" name="ISBN"
                                 class="editbook3 text-center bg-white" value="{{ $book->ISBN }}">
                         </p>
+                        @endif
                         <p class="text-black mb-3">
                             <b>Publisher:</b> <input type="text" autocomplete="off" name="publisher"
                                 class="editbook3 text-center bg-white" value="{{ $book->publisher }}">
