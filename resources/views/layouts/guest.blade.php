@@ -107,7 +107,7 @@
         @php
             $currentRoute = \Route::currentRouteName();
         @endphp
-        @if (Auth::user() == null && $currentRoute !== 'login')
+        @if (Auth::user() == null && $currentRoute !== 'login' && $currentRoute !== 'password.request')
             <div class="fixed bottom-12 right-12 z-10 flex flex-col gap-p-2" x-data="{ toggle: true }">
 
                 <form method="post" action="{{ route('message') }}"

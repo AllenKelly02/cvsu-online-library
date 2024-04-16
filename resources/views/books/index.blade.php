@@ -96,8 +96,12 @@
                         <h2 class="truncate text-lg text-gray-900 font-medium title-font m-1">{{ $book->title }}</h2>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Author:</b> {{ $book->author }}
                         </h3>
-                        <h3 class="truncate tracking-widest text-black text-sm m-1"><b>ISBN:</b> {{ $book->ISBN }}
-                        </h3>
+
+                        @if($book->type !== 'thesis')
+                       <h3 class="truncate tracking-widest text-black text-sm m-1"><b>ISBN:</b> {{ $book->ISBN }}
+                       </h3>
+                       @endif
+
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Published Year:</b>
                             {{ $book->published_year }}</h3>
                         <h3 class="truncate tracking-widest text-black text-sm m-1"><b>Call Number:</b>

@@ -15,7 +15,7 @@ use App\Http\Controllers\Librarian\ImportBookController;
 use App\Exports\ReturnedBooksExport;
 use App\Http\Middleware\Role;
 use Symfony\Component\Mime\MessageConverter;
-
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

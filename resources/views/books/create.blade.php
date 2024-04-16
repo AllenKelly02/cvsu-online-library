@@ -105,11 +105,11 @@
                                     <select class="w-full py-2 rounded-lg border-2 border-black outline-none capitalize"
                                         @change="getBookType($event)" id="type" name="type">
                                         <option selected value="">Select Type</option>
-                                        <option class="bg-white" value="book">Book</option>
-                                        <option class="bg-white" value="e-Book">E-Book</option>
-                                        <option class="bg-white" value="journal">Journal</option>
-                                        <option class="bg-white" value="publications">Publications</option>
-                                        <option class="bg-white" value="thesis">Thesis</option>
+                                        <option class="bg-white" value="{{ "book" }}">Book</option>
+                                        <option class="bg-white" value="{{ "e-Book" }}">E-Book</option>
+                                        <option class="bg-white" value="{{ "journal" }}">Journal</option>
+                                        <option class="bg-white" value="{{ "publications" }}">Publications</option>
+                                        <option class="bg-white" value="{{ "thesis" }}">Thesis</option>
                                     </select>
                                 </div>
                                 @error('type')
