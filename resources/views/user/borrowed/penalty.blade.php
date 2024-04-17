@@ -25,18 +25,21 @@
                     <div
                         class="flex w-auto justify-center items-center mb-20 bg-white border border-gray-300 rounded-lg shadow-2xl max-h-[80rem] max-w-lg">
                         <div class="w-full rounded px-6">
-                            <div class="flex flex-col justify-center items-center gap-0">
-                                <img src="{{ asset('img/logo.png') }}" alt="logo" class="mx-auto w-16 py-4" />
-                                <p class="text-black mb-1">Republic of the Philippines</p>
-                                <b>
-                                    <p class="text-black mb-1">CAVITE STATE UNIVERSITY</p>
-                                </b>
-                                <p class="text-black mb-1"><b>Bacoor City Campus</b></p>
-                                <p class="text-black mb-1">SHIV, Molino VI, City of Bacoor</p>
-                                <p class="text-black mb-1">🕾 (046) 476-5029</p>
-                                <p class="text-black mb-1"><i
-                                        class="mdi mdi-email-outline text-black text-xs px-1"></i>cvsubacoor@cvsu.edu.ph
-                                </p>
+                            <div class="flex justify-center items-center py-6">
+                                <!-- Logo on the left -->
+                                <img class="w-24 h-auto" src="{{ asset('img/logo.png') }}" alt="">
+
+                                <!-- Text on the right -->
+                                <div class="ml-4 text-center">
+                                    <p class="text-black font-sans" style="font-size: 13px">Republic of the Philippines</p>
+                                    <b>
+                                        <p class="text-black cvsu-font">CAVITE STATE UNIVERSITY</p>
+                                    </b>
+                                    <p class="text-black font-sans" style="font-size: 13px"><b>Bacoor City Campus</b></p>
+                                    <p class="text-black font-sans" style="font-size: 11px">SHIV, Molino VI, City of Bacoor</p>
+                                    <p class="text-black font-sans" style="font-size: 11px">🕾 (046) 476-5029</p>
+                                    <p class="text-black font-sans" style="font-size: 11px"><i class="mdi mdi-email-outline text-black text-xs pr-1"></i>cvsubacoor@cvsu.edu.ph</p>
+                                </div>
                             </div>
                             <div class="flex flex-col items-center justify-center my-4">
                                 <h1 class="text-lg italic font-extrabold tracking-widest text-black">Library Penalty

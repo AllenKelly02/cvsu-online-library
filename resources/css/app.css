@@ -886,4 +886,8 @@ body {
     background-color: rgba(41, 91, 167, 0.1); /* Blue color with 80% opacity */
 }
 
+.cvsu-font{
+  font-family: "Bookman Old Style";
+}
+
 

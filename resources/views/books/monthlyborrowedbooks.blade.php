@@ -63,14 +63,14 @@
 
                                     <!-- Text on the right -->
                                     <div class="ml-4 text-center">
-                                        <p class="text-black">Republic of the Philippines</p>
+                                        <p class="text-black font-sans" style="font-size: 13px">Republic of the Philippines</p>
                                         <b>
-                                            <p class="text-black">CAVITE STATE UNIVERSITY</p>
+                                            <p class="text-black cvsu-font">CAVITE STATE UNIVERSITY</p>
                                         </b>
-                                        <p class="text-black"><b>Bacoor City Campus</b></p>
-                                        <p class="text-black">SHIV, Molino VI, City of Bacoor</p>
-                                        <p class="text-black">🕾 (046) 476-5029</p>
-                                        <p class="text-black"><i class="mdi mdi-email-outline text-black text-lg px-1"></i>cvsubacoor@cvsu.edu.ph</p>
+                                        <p class="text-black font-sans" style="font-size: 13px"><b>Bacoor City Campus</b></p>
+                                        <p class="text-black font-sans" style="font-size: 11px">SHIV, Molino VI, City of Bacoor</p>
+                                        <p class="text-black font-sans" style="font-size: 11px">🕾 (046) 476-5029</p>
+                                        <p class="text-black font-sans" style="font-size: 11px"><i class="mdi mdi-email-outline text-black text-xs pr-1"></i>cvsubacoor@cvsu.edu.ph</p>
                                     </div>
                                 </div>
                             </div>

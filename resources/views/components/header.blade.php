@@ -10,6 +10,7 @@
                                 <div class="flex flex-col">
                                     <p class="castoro text-sm font-bold text-white">CAVITE STATE UNIVERSITY</p>
                                     <p class="castoro text-xs font-medium text-white">BACOOR CITY CAMPUS</p>
+                                    
                                 </div>
                             </a>
                         @else
