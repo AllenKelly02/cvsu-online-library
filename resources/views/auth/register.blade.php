@@ -17,7 +17,7 @@
         style="background-image: url('../img/wave (7).svg');">
         <div class="flex items-center justify-center py-40 pt-36 w-full">
             <div class="text-gray-800 rounded-3xl shadow-xl w-full mx-3 overflow-hidden bg-no-repeat"
-                style="background-image: url('../img/blob-scene-haikei (6).svg'); max-width:1000px">
+                style="background-image: url('../img/blob-scene-haikei (6).svg'); max-width:1000px; background-size:cover;">
                 <div class="md:flex md:px-10 sm:px-10 h-full">
                     <div class="w-full md:w-1/3.5 py-10 px-5 md:px-10" x-data="storeAccount">
                         <div class="text-center mb-10">
@@ -30,8 +30,8 @@
                             id="registrationForm" enctype="multipart/form-data">
                             @csrf
                             <h1 class=" text-xl pl-2">Personal Information:</h1>
-                            <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                            <div class="flex flex-col md:flex-row -mx-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="firstName" class="text-xs font-semibold px-1">First name</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
@@ -54,7 +54,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="middle_name" class="text-xs font-semibold px-1">Middle Name</label>
                                         <span class="error  text-red-700 text-xs"></span>
@@ -75,7 +75,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="lastName" class="text-xs font-semibold px-1">Last Name</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
@@ -100,8 +100,8 @@
                                 </div>
                             </div>
 
-                            <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-5">
+                            <div class="flex flex-col md:flex-row -mx-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
                                         <label for="address" class="text-xs font-semibold px-1">Address</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
@@ -124,7 +124,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="formGroup w-1/2 px-3 mb-5">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
                                         <label for="course" class="text-xs font-semibold px-1">Course</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
@@ -153,8 +153,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-5">
+                            <div class="flex flex-col md:flex-row -mx-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
                                         <label for="sex" class="text-xs font-semibold px-1">Sex</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
@@ -187,7 +187,7 @@
                                     </div>
                                 </div>
 
-                                <div class="formGroup w-1/2 px-3 mb-5">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
                                         <label for="student_id" class="text-xs font-semibold px-1">Student ID</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
@@ -210,7 +210,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="formGroup w-1/2 px-3 mb-5">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5">
                                     <div class="flex space-x-2">
                                         <label for="contact_number" class="text-xs font-semibold px-1">Contact
                                             Number</label>
@@ -237,8 +237,8 @@
                                 </div>
                             </div>
 
-                            <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                            <div class="flex flex-col md:flex-row -mx-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="email" class="text-xs font-semibold px-1">Email
                                             Address</label>
@@ -263,13 +263,13 @@
                                     </div>
                                 </div>
 
-                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="password" class="text-xs font-semibold px-1">Password</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
-                                    <div class="flex items-center">
+                                    <div class="flex flex-col md:flex-row">
                                         <div class="relative">
                                             <input type="password" id="password" name="password"
                                                 class="w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-green3"
@@ -293,14 +293,14 @@
                                     </div>
                                 </div>
 
-                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="confirm_password" class="text-xs font-semibold px-1">Confirm
                                             Password</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
-                                    <div class="flex items-center">
+                                    <div class="flex flex-col md:flex-row">
                                         <div class="relative">
                                             <input type="password" id="confirm-password" name="password_confirmation"
                                                 match="password"
@@ -324,15 +324,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex -mx-2">
-                                <div class="formGroup w-1/2 px-3 mb-5 mt-2">
+                            <div class="flex flex-col md:flex-row -mx-2">
+                                <div class="formGroup w-full md:w-1/2 px-3 mb-5 mt-2">
                                     <div class="flex space-x-2">
                                         <label for="student_cor" class="text-xs font-semibold px-1 pb-2">Upload
                                             Student ID or COR:</label>
                                         <p class="text-red-500 text-center text-xs">*</p>
                                         <span class="error  text-red-700 text-xs"></span>
                                     </div>
-                                    <div class="flex items-center">
+                                    <div class="flex flex-col md:flex-row">
                                         <input type="file" name="student_cor" accept="image/*, .pdf"
                                             class="border rounded-lg" required>
                                         <span class="error-icon hidden mt-2 -ml-6 text-red-700">

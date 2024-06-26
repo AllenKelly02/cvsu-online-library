@@ -47,8 +47,8 @@
                                 </div>
                                 <div class="relative space-y-3">
                                     <img src="" alt="" id="previewImage" class="h-full w-auto mb-5 py-3">
-                                    <a hef="#" id="removeImageButton" class="absolute top-1 left-1 bg-yellowmain rounded-full text-black px-1 w-8 text-center cursor-pointer z-50"
-                                        @click="removeImage()">X</a>
+                                    <template x-if="image"><a hef="#" id="removeImageButton" class="absolute top-1 left-1 bg-yellowmain rounded-full text-black px-1 w-8 text-center cursor-pointer z-50"
+                                        @click="removeImage()">X</a></template>
                                 </div>
                             </div>
                         </div>
@@ -427,7 +427,7 @@
                             <div class="max-w-xl">
                                 <div
                                     class="relative block px-3 w-full text-sm text-black placeholder-gray-700 rounded-lg">
-                                    <select class="w-full py-2 rounded-lg border-2 border-black outline-none"
+                                    <select class="w-full py-2 px-2 rounded-lg border-1 border-black outline-none"
                                         id="formInput1-6" name="course">
                                         <option selected value="">Select Course</option>
                                         <option class="bg-white" value="Bachelor of Secondary Education">Bachelor of
@@ -470,6 +470,7 @@
                 const bookDynamicForm = () => ({
                     bookType: null,
                     sourceType: null,
+                    image: null,
                     getBookType(e) {
                         const type = e.target.value;
                         if (type !== 'e-Book' || this.bookType !== null) {
@@ -491,17 +492,18 @@
 
                         const reader = new FileReader();
                         let image = null;
-                        reader.onload = function() {
+                        reader.onload = () => {
+                            this.image = reader.result;
                             let image = document.getElementById('previewImage').src = reader.result;
-                            console.log(image)
+                            console.log(image,this.image);
                         }
 
                         reader.readAsDataURL(files[0])
                     },
                     removeImage() {
                         const imagePriview = document.getElementById('previewImage');
-                        const imageInput = document.getElementById('image').value = null
-
+                        const imageInput = document.getElementById('image').value = null;
+                        this.image = null;
                         imagePriview.src = ''
                     }
                 });

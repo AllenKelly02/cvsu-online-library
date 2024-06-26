@@ -112,7 +112,7 @@
                 </div>
             @empty
                 <div class="m-auto mt-36">
-                    <div class="alert alert-warning px-10 py-10 h-10 w-96">
+                    <div class="alert alert-warning px-10 py-10 h-10 w-full md:w-96">
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

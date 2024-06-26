@@ -55,7 +55,7 @@
             <x-header/>
 
             <!-- Page Content -->
-            <div class="min-h-screen sm:flex md:pt-20 relative" >
+            <div class="min-h-screen sm:flex relative" >
                 @if (Auth::check() && Auth::user()->role === 'admin')
                     <x-admin-sidebar/>
                 @else

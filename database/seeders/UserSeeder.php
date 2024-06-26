@@ -23,8 +23,8 @@ class UserSeeder extends Seeder
         $userOne = User::create(
             [
                 'name' => 'Librarian Staff',
-                'email' => 'librarian@email.com',
-                'password' => Hash::make('librarian123'),
+                'email' => 'cvsubacoorcity.librarian@gmail.com',
+                'password' => Hash::make('Librarian123'),
                 'role' => 'admin',
                 'student_id' => 123123213123
                 // 'profile_id' => 1,
@@ -48,11 +48,11 @@ class UserSeeder extends Seeder
                 'middle_name' => '',
                 'student_id' => '09991234',
                 'course' => 'admin',
-                'sex' => 'Male',
+                'sex' => 'Female',
                 'contact_number' => '09092342345',
                 'address' => 'Sample Address',
-                'email' => 'librarian@email.com',
-                'password' => 'librarian123',
+                'email' => 'cvsubacoorcity.librarian@gmail.com',
+                'password' => 'Librarian123',
                 'user_id' => $userOne->id
             ]
         );

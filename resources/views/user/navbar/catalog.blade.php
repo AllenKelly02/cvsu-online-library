@@ -25,11 +25,11 @@
         </div>
 
 <!-- Filter Category -->
-<div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
+<div class="relative flex flex-wrap ml-1 -m-4 py-5 gap-2">
     <button class="button-name text-black bg-yellowmain hover:bg-yellowmain focus:ring-4 focus:ring-yellowmain font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" data-dropdown-toggle="dropdown">Filter by Category <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
     <!-- Dropdown menu -->
-    <div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 overflow-y-auto max-h-48 w-32" id="dropdown">
+    <div class="hidden bg-white text-base list-none divide-y divide-gray-100 rounded shadow my-4 overflow-y-auto max-h-48 w-32 z-20" id="dropdown">
         <ul class="py-1" aria-labelledby="dropdown">
         <li>
             <a href="{{ route('user.catalog') }}" class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 z-100">
@@ -94,7 +94,7 @@
                         <div class="flex gap-2">
                             <div class="grow">
                                 <h1
-                                    class="bg-white border-2 border-bluemain rounded-xl drop-shadow-lg w-32 flex justify-center text-sm py-1 px-3 text-black capitalize">
+                                    class="bg-white border-2 border-bluemain rounded-xl drop-shadow-lg w-32 z-10 flex justify-center text-sm py-1 px-3 text-black capitalize">
                                     {{ $book->type }}
                                 </h1>
                             </div>

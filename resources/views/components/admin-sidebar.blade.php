@@ -1,8 +1,8 @@
 
 	<!-- Component Start -->
-    <div class="wrapper pr-7">
-    <div class="sidebar">
-	<div class="flex flex-col items-center w-60 h-full overflow-hidden sticky shadow-2xl text-gray-700 bg-blue-50 rounded" >
+    <div class="wrapper pr-7 z-50">
+    <div class="sidebar z-50">
+	<div class="flex flex-col items-center w-60 z-50 h-full overflow-hidden sticky shadow-2xl text-gray-700 bg-blue-50 rounded" >
 		<div class="flex flex-row justify-between">
 		<img class="object-center w-10 ml-30 py-3" src="{{ asset('img/logo.png') }}" alt="logo">
 		<br>

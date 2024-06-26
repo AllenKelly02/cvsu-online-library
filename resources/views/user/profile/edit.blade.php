@@ -6,14 +6,14 @@
                     <a class="cta" href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">
                         <span class="black">Back</span>
                     </a>
-                @else 
+                @else
                     <a class="cta" href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">
                         <span class="black">Back</span>
                     </a>
                 @endif
             @endauth
         </div>
-        <div class="mx-auto ml-20 mt-2">
+        <div class="mx-auto mt-2">
             @if (session('message'))
                 <div class="flex justify-center fixed top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4 rounded-md z-50">
                     <p class="flex justify-center alert alert-success shadow-lg w-96 text-center animate-bounce">{{ session('message') }}</p>
@@ -28,7 +28,7 @@
                 </div>
             @endif
             <div class="flex flex-col space-y-2 p-4 justify-center items-center">
-                <div class="shadow-2xl sm:rounded-lg w-3/4">
+                <div class="shadow-2xl sm:rounded-lg md:w-3/4">
                     <form class="flex w-full flex-col gap-2 p-2"
                         action="/profile/{{ $user->id }}/update" method="POST"
                         enctype="multipart/form-data">
@@ -138,7 +138,7 @@
                         <div class="max-w-xl">
                             @include('profile.partials.update-password-form')
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>

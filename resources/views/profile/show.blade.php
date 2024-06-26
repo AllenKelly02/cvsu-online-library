@@ -9,7 +9,7 @@
 
             <!--Personal Info -->
             <div class="min-h-screen w-full flex justify-center py-20">
-                <div class="w-5/6 h-full flex gap-5 bg-gray-50 rounded-lg">
+                <div class="w-5/6 h-full flex flex-col md:flex-row gap-5 bg-gray-50 rounded-lg">
                     <div class="flex flex-col gap-2 p-5 border-r-2 border-gray-200">
 
                             @if ($profile->profile->avatar !== null)
@@ -78,8 +78,8 @@
 
 
             <div class="min-h-screen w-full flex justify-center items-center">
-                <div class="w-5/6 h-full flex gap-5 bg-gray-50 rounded-lg mt-5">
-                    <div class="w-1/3 flex border-r-2 border-gray-200">
+                <div class="w-5/6 h-full flex flex-col md:flex-row gap-5 bg-gray-50 rounded-lg mt-5">
+                    <div class="md:w-1/3 flex border-r-2 border-gray-200">
 
                         <div class="flex flex-col gap-2 p-5">
                             @if ($profile->profile->avatar !== null)

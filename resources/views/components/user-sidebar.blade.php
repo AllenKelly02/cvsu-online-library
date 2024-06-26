@@ -1,10 +1,10 @@
 <body class="flex items-center justify-center w-screen h-screen p-10 space-x-6 bg-green-50">
 
     <!-- Component Start -->
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="flex flex-col items-center w-60 h-full overflow-hidden sticky shadow-2xl text-gray-700 bg-blue-50 rounded">
-                <div class="flex flex-row justify-between md:py-6 p-2 space-x-4 mt-20 md:mt-0">
+    <div class="wrapper z-50">
+        <div class="sidebar z-50">
+            <div class="flex flex-col items-center md:w-60 w-60 z-50 md:h-full h-full overflow-hidden sticky shadow-2xl text-gray-700 bg-blue-50 rounded">
+                <div class="flex flex-row justify-between md:py-6 p-2 space-x-4 mt-8 md:mt-0">
                     {{-- For Localhost Profile --}}
                     {{-- <img src="{{ Auth::user()->profile->avatar ?? 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' }}" class="w-12 h-12 rounded-full shadow-lg"> --}}
 
@@ -21,8 +21,8 @@
 
                 </div>
 
-                <div class="divide-y">
-                <ul class="pt-2 pb-4 space-y-1 text-sm">
+                <div class="divide-y z-50">
+                <ul class="pt-2 pb-4 space-y-1 text-sm z-50">
                     <li>
                         <a rel="noopener noreferrer" href="{{ route('user.catalog') }}" class="flex items-center w-full h-12 px-3 mt-2 rounded-lg hover:bg-blue2 hover:text-white cursor-pointer {{ request()->routeIs('user.catalog') ? 'bg-blue2 text-white' : '' }}">
                             <img class="object-center w-6 ml-30 py-3" src="{{ asset('img/catalog.png') }}" alt="content">
@@ -74,9 +74,9 @@
 
             <!--sidebar button-->
         </div>
-        <div class="content">
-            <button class="toggle-btn mt-20">
-                <img class="object-center w-6 ml-45 mt-1" src="{{ asset('img/menu.png') }}" alt="content">
+        <div class="content z-50">
+            <button class="toggle-btn z-40">
+                <img class="object-center w-8 ml-45 mt-1" src="{{ asset('img/menu.png') }}" alt="content">
             </button>
         </div>
     </div>

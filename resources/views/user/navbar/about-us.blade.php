@@ -1,11 +1,11 @@
 <x-app-layout>
-  <section class="text-gray-600 body-font container bg-white rounded-3xl duration-700 p-5 md:pl-9 mt-7 mb-7 mx-auto">
+  <section class="text-gray-600 body-font container bg-white rounded-3xl duration-700 p-5 md:pl-9 mt-4 mb-7 mx-auto">
     <div class="rounded-3xl duration-700 px-4 sm:px-5 md:px-16 lg:px-24 py-8 sm:py-16 mx-auto">
       <div class="flex flex-col text-center w-full mb-10 sm:mb-16">
           <h1 class="mb-4 text-3xl sm:text-4xl md:text-5xl tracking-tight font-extrabold text-center text-gray-900 dark:text-gray-900">About Us</h1>
           <p class="lg:w-2/3 mx-auto leading-relaxed text-base sm:text-lg md:text-xl">The campus library aims to share information and resources that might help learners and researchers with their academic needs.</p>
       </div>
-      <div class="flex flex-wrap sm:pl-8 -m-4 ml-0 sm:ml-5">
+      <div class="flex flex-wrap justify-center sm:pl-8 -m-4 ml-0 sm:ml-5">
           <div class="p-4 lg:w-1/2">
               <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
                   <div class="h-32 w-32 sm:h-40 sm:w-40 border-2 border-yellow-400 rounded-full overflow-hidden bg-gray-200">

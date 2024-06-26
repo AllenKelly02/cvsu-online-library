@@ -45,43 +45,43 @@ Alpine.data('printBarcode', () => ({
 
 
 
-    Alpine.data('printReturnedBooks', () => ({
-        isVisible: false, // Initial visibility state
-        // exportToExcel() {
-        //     const table = document.getElementById('returnedbooks-print-data');
-        //     const ws = XLSX.utils.table_to_sheet(table);
-        //     const wb = XLSX.utils.book_new();
-        //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+Alpine.data('printReturnedBooks', () => ({
+    isVisible: false, // Initial visibility state
+    // exportToExcel() {
+    //     const table = document.getElementById('returnedbooks-print-data');
+    //     const ws = XLSX.utils.table_to_sheet(table);
+    //     const wb = XLSX.utils.book_new();
+    //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-        //     /* generate XLSX file and send to client */
-        //     XLSX.writeFile(wb, 'Returned_Books.xlsx');
-        // },
-        printTableData() {
-            const table = document.getElementById('returnedbooks-print-data');
-            const printLogo = document.getElementById('print-logo');
-            const prepared = document.getElementById('prepared-by');
-            const opt = {
-                margin: 0.5,
-                filename: 'Monthly Borrowed Books.pdf',
-                pagebreak: { avoid: ['tr', 'td'] },
-                jsPDF: { unit: 'in', format: 'legal', orientation: 'landscape' },
-            };
+    //     /* generate XLSX file and send to client */
+    //     XLSX.writeFile(wb, 'Returned_Books.xlsx');
+    // },
+    printTableData() {
+        const table = document.getElementById('returnedbooks-print-data');
+        const printLogo = document.getElementById('print-logo');
+        const prepared = document.getElementById('prepared-by');
+        const opt = {
+            margin: 0.5,
+            filename: 'Monthly Borrowed Books.pdf',
+            pagebreak: { avoid: ['tr', 'td'] },
+            jsPDF: { unit: 'in', format: 'legal', orientation: 'landscape' },
+        };
 
-            this.isVisible = true; // Show the logo before generating the PDF
-            printLogo.classList.remove("hidden");
-            printLogo.classList.add("block");
+        this.isVisible = true; // Show the logo before generating the PDF
+        printLogo.classList.remove("hidden");
+        printLogo.classList.add("block");
 
-            prepared.classList.remove("hidden");
-            prepared.classList.add("block");
+        prepared.classList.remove("hidden");
+        prepared.classList.add("block");
 
-            html2pdf().set(opt).from(prepared, () => {
-                html2pdf().from(printLogo).from(table).save();
-              });
-            setTimeout(()=>{prepared.classList.replace("block", 'hidden');}, 3000);
-            setTimeout(()=>{printLogo.classList.replace("block", 'hidden');}, 3000);
-            this.isVisible = false; // Hide the logo after generating the PDF
-            },
-    }));
+        html2pdf().set(opt).from(prepared, () => {
+            html2pdf().from(printLogo).from(table).save();
+          });
+        setTimeout(()=>{prepared.classList.replace("block", 'hidden');}, 3000);
+        setTimeout(()=>{printLogo.classList.replace("block", 'hidden');}, 3000);
+        this.isVisible = false; // Hide the logo after generating the PDF
+        },
+}));
 
     Alpine.data('printReceipt', () => ({
         printTableData() {

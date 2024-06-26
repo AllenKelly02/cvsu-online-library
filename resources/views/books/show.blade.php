@@ -12,7 +12,7 @@
 
 
 <x-app-layout>
-    <div class="pt-5 pl-20">
+    <div class=" pt-5 pl-20">
         @auth
             @if (Auth::user()->role === 'admin')
                 <a class="cta" href="{{ route('admin.books.index') }}">
@@ -105,7 +105,8 @@
         </div>
 
 
-        <section class="text-black body-font overflow-hidden">
+
+        <section class="text-black body-font overflow-hidden z-0">
             <div class="container px-5 py-24 mx-auto bg-white rounded-3xl duration-700">
                 <div class="lg:w-4/5 mx-auto flex flex-wrap">
                     @if ($book->image !== null)
