@@ -180,7 +180,7 @@ class BooksController extends Controller
         $user = Auth::user();
         $book = Book::find($id);
 
-        $book = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
+        // $books = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
 
 
         // Check if the user already has a book
@@ -318,7 +318,7 @@ class BooksController extends Controller
         // Increment the copy attribute of the associated book
         $book = $bookIssuing->book;
 
-        $book = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
+        // $book = Book::latest()->filter(request(['type', 'category', 'search']))->paginate(250);
 
         $user = User::find($bookIssuing->user->id);
 

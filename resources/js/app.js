@@ -86,19 +86,16 @@ Alpine.data('printReturnedBooks', () => ({
     Alpine.data('printReceipt', () => ({
         printTableData() {
             const table = document.getElementById('receipt-print-data');
-            var options = {
+            const opt = {
+                margin: 0.5,
                 filename: 'Student Penalty Receipt.pdf',
                 pagebreak: { avoid: ['tr', 'td'] },
-                jsPDF: {
-                    unit: 'in',
-                    format: 'a4 ',
-                    orientation: 'portrait',
-                },
-
+                jsPDF: { unit: 'in', format: 'a4' },
             };
 
-            html2pdf(table, options);
-        }
+            html2pdf().set(opt).from(table).save();
+
+            },
     }));
 
 

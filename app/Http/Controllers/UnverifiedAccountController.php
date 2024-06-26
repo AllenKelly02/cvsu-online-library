@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Profile;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\NewUserNotification;
 use App\Notifications\DeleteNotification;
 use Illuminate\Http\Request;
@@ -25,19 +26,17 @@ class UnverifiedAccountController extends Controller
     public function acceptAccount($id) {
 
         $account = UnverifiedAccount::where('id', $id)->first();
-
+        
         $userAccount = [
             'name' => $account->first_name . ' ' . $account->middle_name . ' ' . $account->last_name,
             'email' => $account->email,
             'password' => Hash::make($account->password),
         ];
-
+    
         $savedAccount = User::create($userAccount);
-
         $userRole = Role::where('name', 'user')->first();
-
         $savedAccount->assignRole($userRole);
-
+    
         $userProfile = [
             'last_name' => $account->last_name,
             'first_name' => $account->first_name,
@@ -53,33 +52,36 @@ class UnverifiedAccountController extends Controller
         ];
 
         $savedProfile = Profile::create($userProfile);
-
+    
         $message = [
             'content' => "Hello! Your registration request has been approved.  \nApproved Date: " . now()->format('F d, Y')
         ];
-
+    
+        // Send notification
         $savedAccount->notify(new NewUserNotification($message));
-
+    
         $account->delete();
-
-        return redirect()->back()->with(['message' => "Registration request accept successfully"]);
-
+    
+        return redirect()->back()->with(['message' => "Registration request accepted successfully"]);
     }
 
+
     public function rejectAccount(Request $request, $id) {
-
         $account = UnverifiedAccount::where('id', $id)->first();
-
+    
         $message = [
             'content' => "Hello! Your registration request has been rejected.\nReason: " . $request->input('reason') . "\nRejected Date: " . now()->format('F d, Y')
         ];
-
-        $account->email->notify(new DeleteNotification($message));
-
+    
+        
+        Notification::route('mail', $account->email) // Specify the email address directly
+                   ->notify(new DeleteNotification($message));
+    
         $account->delete();
-
-
+    
         return redirect()->back()->with(['message' => "Registration request is rejected successfully"]);
-
     }
+    
 }
+
+
