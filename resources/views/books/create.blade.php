@@ -119,10 +119,29 @@
                         </div>
                     </div>
 
-
+                        <div x-show="bookType == 'thesis'" x-transition.duration.700ms
+                            class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b border-black border-opacity-20">
+                            <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
+                                <span class="text-sm font-medium text-black">Thesis File</span>
+                            </div>
+                            <div class="w-full sm:w-2/3 px-4">
+                                <div class="max-w-xl">
+                                    <div class="flex flex-wrap items-center -mx-3">
+                                        <div class="w-full sm:w-1/2 px-3 mb-3 sm:mb-0">
+                                            <input name="thesis_file"
+                                                class="block py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border border-black hover:border-black rounded-lg"
+                                                type="file" placeholder="thesis file">
+                                        </div>
+                                    </div>
+                                    @error('thesis_file')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
 
                     <div class="flex flex-wrap items-center -mx-4 pb-8 mb-8 border-b  border-opacity-20"
-                        x-show="bookType !== null" x-transition.duration.700ms>
+                        x-show="bookType == 'e-Book'" x-transition.duration.700ms>
                         <div class="w-full sm:w-1/3 px-4 mb-4 sm:mb-0">
                             <span class="text-sm font-medium text-black">E-book Source</span>
                         </div>
@@ -473,12 +492,12 @@
                     image: null,
                     getBookType(e) {
                         const type = e.target.value;
-                        if (type !== 'e-Book' || this.bookType !== null) {
-                            this.bookType = null
-                            this.sourceType = null
-                            return
-                        }
-                        console.log('book Type function')
+                        // if (type !== 'e-Book' || this.bookType !== null) {
+                        //     this.bookType = null
+                        //     this.sourceType = null
+                        //     return
+                        // }
+                        console.log(type)
                         this.bookType = type;
                     },
                     selectSourceType(e) {

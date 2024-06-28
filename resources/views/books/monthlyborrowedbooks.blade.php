@@ -19,8 +19,41 @@
                             @click="exportToExcel">
                             <span><i class="fi fi-rr-download"></i></span> Export to Excel
                         </button> --}}
-            <div x-data="printReturnedBooks">
 
+            <div x-data="{
+    isVisible: false, // Initial visibility state
+
+    printTableData() {
+        const table = document.getElementById('returnedbooks-print-data');
+        const printLogo = document.getElementById('print-logo');
+        const prepared = document.getElementById('prepared-by');
+        const opt = {
+            margin: 0.5,
+            filename: 'Monthly Borrowed Books.pdf',
+            pagebreak: { avoid: ['tr', 'td'] },
+            jsPDF: { unit: 'in', format: 'legal', orientation: 'landscape' },
+        };
+
+        this.isVisible = true; // Show the logo before generating the PDF
+        printLogo.classList.remove('hidden');
+        printLogo.classList.add('block');
+
+        prepared.classList.remove('hidden');
+        prepared.classList.add('block');
+
+        // html2pdf().set(opt).from(prepared, () => {
+        //     html2pdf().from(printLogo).from(table).save();
+        // });
+
+        html2pdf(table, opt);
+
+        setTimeout(() => { prepared.classList.replace('block', 'hidden'); }, 100);
+        setTimeout(() => { printLogo.classList.replace('block', 'hidden'); }, 100);
+
+        this.isVisible = false; // Hide the logo after generating the PDF
+    },
+}">
+                <button type="button" @click="printTableData" class="pointer">test</button>
                 <!-- Filter Program/Course -->
                 <div class="relative flex flex-wrap ml-1 -m-4 py-5 z-50 gap-2">
 
@@ -49,12 +82,12 @@
                             class="flex gap-2 buttonh w-full md:w-auto px-6 py-2.5 bg-yellowmain text-black font-medium text-xs leading-tight uppercase rounded shadow-md
                             hover:bg-yellow-500 hover:shadow-lg focus:bg-yellow-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellowmain active:shadow-lg
                             transition duration-150 ease-in-out"
-                            @click="printTableData">
+                            @click="printTableData()">
                             <span><i class="fi fi-rr-download"></i></span> Download
                         </button>
                     </div>
                 </div>
-                <div class="flex flex-col p-4 " id="returnedbooks-print-data" x-data="printReturnedBooks">
+                <div class="flex flex-col p-4 " id="returnedbooks-print-data">
                         <div class="h-auto w-full flex justify-center pb-10">
                             <div id="print-logo" class="print-logo hidden items-center justify-center mt-4">
                                 <div class="flex items-center">
@@ -75,7 +108,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                     <div class="relative overflow-x-auto w-full h-auto bg-white rounded-2xl">
                         <div class="text-lg font-bold text-black p-2 flex justify-between bg-white">
@@ -228,6 +260,56 @@
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
     <script>
+        const something = () => ({
+            displayEl() {
+                const table = document.getElementById('returnedbooks-print-data');
+                const printLogo = document.getElementById('print-logo');
+                const prepared = document.getElementById('prepared-by');
+
+                console.log(table, printLogo, prepared);
+            },
+        });
+        const printReturnedBooks = () => ({
+            // isVisible: false, // Initial visibility state
+
+            displayEl() {
+                const table = document.getElementById('returnedbooks-print-data');
+                const printLogo = document.getElementById('print-logo');
+                const prepared = document.getElementById('prepared-by');
+
+                console.log(table, printLogo, prepared);
+            },
+
+            printTableData() {
+                const table = document.getElementById('returnedbooks-print-data');
+                const printLogo = document.getElementById('print-logo');
+                const prepared = document.getElementById('prepared-by');
+                const opt = {
+                    margin: 0.5,
+                    filename: 'Monthly Borrowed Books.pdf',
+                    pagebreak: { avoid: ['tr', 'td'] },
+                    jsPDF: { unit: 'in', format: 'legal', orientation: 'landscape' },
+                };
+
+                this.isVisible = true; // Show the logo before generating the PDF
+                printLogo.classList.remove("hidden");
+                printLogo.classList.add("block");
+
+                prepared.classList.remove("hidden");
+                prepared.classList.add("block");
+
+                html2pdf().set(opt).from(prepared, () => {
+                    html2pdf().from(printLogo).from(table).save();
+                });
+
+                // html2pdf(prepared, opt);
+
+                setTimeout(() => { prepared.classList.replace("block", 'hidden'); }, 3000);
+                setTimeout(() => { printLogo.classList.replace("block", 'hidden'); }, 3000);
+                this.isVisible = false; // Hide the logo after generating the PDF
+            },
+        });
+
         // const printReturnedBooks = () => ({
         //     exportToExcel() {
         //         const table = document.getElementById('returnedbooks-print-data');

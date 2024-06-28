@@ -65,7 +65,6 @@ class BooksController extends Controller
             ]);
         }
 
-
         $book->update([
             'title' => $request->title ?? $book->title,
             'author' => $request->author ?? $book->author,
@@ -80,6 +79,20 @@ class BooksController extends Controller
             'call_number' => $request->call_number ?? $book->call_number,
             'edition' => $request->edition ?? $book->edition,
         ]);
+
+        if ($book->type == 'thesis') {
+            if ($request->hasFile('thesis_file')) {
+                $request->validate(['thesis_file'=>'mimes:pdf']);
+                unlink(storage_path('app/public/thesis_file/' . $book->ebook_source));
+                $fileName = 'THESIS_' . uniqid() . '.' . $request->file('thesis_file')->extension();
+                $path = $request->thesis_file->storeAs('thesis_file/', $fileName, 'public');
+                $book->update([
+                    'ebook_source' => $fileName
+                ]);
+            }
+
+        }
+
 
         return redirect()->route('admin.books.show', $book->id)->with(['message' => 'Update Book Successfully']);
     }
@@ -132,6 +145,16 @@ class BooksController extends Controller
         $ebook_source = $request->ebook_source;
         $ebook_source_type = $request->ebook_source_type;
 
+        if ($request->type == 'thesis'){
+            if ($request->hasFile('thesis_file')){
+                $request->validate(['thesis_file'=>'mimes:pdf']);
+                $fileName = 'THESIS_' . uniqid() . '.' . $request->file('thesis_file')->extension();
+                $path = $request->thesis_file->storeAs('thesis_file/', $fileName, 'public');
+                $books->update([
+                    'ebook_source' => $fileName
+                ]);
+            }
+        }
 
         if ($ebook_source_type === EbookSourceType::LOCAL->value) {
 
@@ -141,6 +164,11 @@ class BooksController extends Controller
             $dir = $ebook_source->storeAs('/ebook', $ebook_name, 'public');
 
             $ebook_source = asset('/storage/' . $dir);
+
+            $books->update([
+                'ebook_link' => $ebook_source,
+                'ebook_source' => $ebook_source_type
+            ]);
         }
 
 
@@ -153,8 +181,6 @@ class BooksController extends Controller
 
             $books->update([
                 'image' => $fileName,
-                'ebook_link' => $ebook_source,
-                'ebook_source' => $ebook_source_type
             ]);
         }
 

@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\Accounts\AccountsController;
+use App\Http\Middleware\Role;
+use App\Exports\ReturnedBooksExport;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Librarian\BooksController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\BookScannerController;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\Guest\MessageController;
-use App\Http\Controllers\ImageController;
-use App\Http\Controllers\Librarian\ImportBookController;
-use App\Exports\ReturnedBooksExport;
-use App\Http\Middleware\Role;
 use Symfony\Component\Mime\MessageConverter;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\BookScannerController;
+use App\Http\Controllers\ThesisViewerController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Guest\MessageController;
+use App\Http\Controllers\Librarian\BooksController;
+use App\Http\Controllers\Accounts\AccountsController;
+use App\Http\Controllers\Librarian\ImportBookController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 /*
 |--------------------------------------------------------------------------
@@ -114,7 +115,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(
 
     Route::get('/books/show/{book}', [BooksController::class, 'show'])->name('books.show');
 
-
+    //Thesis Viewer
+    Route::get('/thesis/{filename}', [ThesisViewerController::class, 'show'])->name('thesis_viewer');
 
 
     //list of Borrowed

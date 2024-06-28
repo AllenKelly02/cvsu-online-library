@@ -150,6 +150,14 @@
                                 <span class="text-black">{{ $book->publisher }}</span>
                             </div>
                         </div>
+                        @if ($bookType == 'thesis')
+                        <div class="flex mt-6 items-center mb-3 pb-3">
+                            <div class="flex">
+                                <span class="mr-1 mdi mdi-file-document text-red-400"><b></b></span>
+                                <a class="leading-relaxed text-justify text-blue-500 font-bold underline" href="{{ route('admin.thesis_viewer', $book->ebook_source) }}"> {{ $book->ebook_source }} </a>
+                            </div>
+                        </div>
+                        @endif
                         @if (Auth::user()->role === 'admin')
                             <span class="title-font font-medium text-1xl text-gray-900"><b>Accession Number</b> -
                                 {{ $book->accession_number }}

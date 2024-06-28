@@ -116,6 +116,12 @@
                                 autocomplete="off" name="bibliography" class="editbook5 text-justify  bg-white"
                                 value="{{ $book->bibliography }}">
                         </p>
+                        @if ($book->type == 'thesis')
+                        <p class="leading-relaxed text-black mb-3"><b>Thesis File:</b><br>
+                            <input name="thesis_file" class="block py-4 px-3 w-full text-sm text-black placeholder-gray-700 font-medium outline-none bg-transparent border
+                            border-gray hover:border-gray rounded-lg" type="file" placeholder="thesis file" value="{{ $book->ebook_source }}">
+                        </p>
+                        @endif
                         <div class="flex">
                             <span class="title-font font-medium text-2xl text-gray-900">Number of Copies:
                                 <input type="text" autocomplete="off" name="copy"
