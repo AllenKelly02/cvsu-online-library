@@ -245,7 +245,7 @@
                                 @endif
                             </tbody>
                         </table>
-                        <div id="prepared-by" class="prepared-by hidden">
+                        <div id="prepared-by" class="prepared-by hidden ">
                             <div class="text-lg text-black px-5 pt-5 flex justify-end bg-white">
                                 <p class=""><b>Prepared By:</b> Ms. Lorema N. Acapulco, RL</p>
                             </div>
