@@ -23,15 +23,15 @@ Alpine.data("editor", () => ({
 }));
 
 Alpine.data('removeModal', () => ({
-    toggle : false,
-    openToggle(){
+    toggle: false,
+    openToggle() {
         this.toggle = !this.toggle
     }
 }));
 
 
 Alpine.data('printBarcode', () => ({
-    printElement(){
+    printElement() {
         const elementDiv = document.getElementById('barcode-print-data');
 
         var options = {
@@ -43,11 +43,91 @@ Alpine.data('printBarcode', () => ({
     }
 }));
 
+Alpine.data('printReceipt', () => ({
+    printTableData() {
+        const table = document.getElementById('receipt-print-data');
+        const opt = {
+            margin: 0.5,
+            filename: 'Student Penalty Receipt.pdf',
+            pagebreak: { avoid: ['tr', 'td'] },
+            jsPDF: { unit: 'in', format: 'a4' },
+        };
+
+        html2pdf().set(opt).from(table).save();
+
+    },
+}));
 
 
-Alpine.data('printReturnedBooks', () => ({
-    isVisible: false, // Initial visibility state
-    // exportToExcel() {
+Alpine.data('monthlyUser', () => ({
+    monthLabels: [],
+    totalUser: [],
+    initUser(data) {
+        data.forEach(item => {
+
+            this.monthLabels.push(item.name)
+            this.totalUser.push(item.users)
+
+        });
+
+        console.log(this.totalUser);
+    },
+    initBarGraph() {
+        const colors = [
+            '#eb422f',
+            '#742ad4',
+            '#0c5c87'
+        ];
+        const element = this.$refs.monthlyUserGraph;
+
+        console.log(element);
+
+        var options = {
+            series: [{
+                data: [...this.totalUser]
+            }],
+            chart: {
+                height: 350,
+                type: 'bar',
+                events: {
+                    click: function (chart, w, e) {
+                        // console.log(chart, w, e)
+                    }
+                }
+            },
+            colors: colors,
+            plotOptions: {
+                bar: {
+                    columnWidth: '45%',
+                    distributed: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                show: false
+            },
+            xaxis: {
+                categories: [
+                    ...this.monthLabels
+                ],
+                labels: {
+                    style: {
+                        colors: colors,
+                        fontSize: '12px'
+                    }
+                }
+            }
+        };
+
+        const barChart = new ApexCharts(element, options);
+        barChart.render();
+    }
+}));
+
+
+// exportToExcel() {
     //     const table = document.getElementById('returnedbooks-print-data');
     //     const ws = XLSX.utils.table_to_sheet(table);
     //     const wb = XLSX.utils.book_new();
@@ -56,124 +136,46 @@ Alpine.data('printReturnedBooks', () => ({
     //     /* generate XLSX file and send to client */
     //     XLSX.writeFile(wb, 'Returned_Books.xlsx');
     // },
-    printTableData() {
-        const table = document.getElementById('returnedbooks-print-data');
-        const printLogo = document.getElementById('print-logo');
-        const prepared = document.getElementById('prepared-by');
-        const opt = {
-            margin: 0.5,
-            filename: 'Monthly Borrowed Books.pdf',
-            pagebreak: { avoid: ['tr', 'td'] },
-            jsPDF: { unit: 'in', format: 'legal', orientation: 'landscape' },
-        };
 
-        this.isVisible = true; // Show the logo before generating the PDF
-        printLogo.classList.remove("hidden");
-        printLogo.classList.add("block");
+// Alpine.data('printReturnedBooks', () => ({
+//     isVisible: false, // Initial visibility state
 
-        prepared.classList.remove("hidden");
-        prepared.classList.add("block");
+//     printTableData() {
+//         const table = document.getElementById('returnedbooks-print-data');
+//         const printLogo = document.getElementById('print-logo');
+//         const prepared = document.getElementById('prepared-by');
+//         const opt = {
+//             margin: 0.5,
+//             filename: 'Monthly Borrowed Books.pdf',
+//             pagebreak: { avoid: ['tr', 'td'] },
+//             jsPDF: { unit: 'in', format: 'legal', orientation: 'landscape' },
+//         };
 
-        html2pdf().set(opt).from(prepared, () => {
-            html2pdf().from(printLogo).from(table).save();
-          });
-        setTimeout(()=>{prepared.classList.replace("block", 'hidden');}, 3000);
-        setTimeout(()=>{printLogo.classList.replace("block", 'hidden');}, 3000);
-        this.isVisible = false; // Hide the logo after generating the PDF
-        },
-}));
+//         this.isVisible = true; // Show the logo before generating the PDF
+//         printLogo.classList.remove("hidden");
+//         printLogo.classList.add("block");
 
-    Alpine.data('printReceipt', () => ({
-        printTableData() {
-            const table = document.getElementById('receipt-print-data');
-            const opt = {
-                margin: 0.5,
-                filename: 'Student Penalty Receipt.pdf',
-                pagebreak: { avoid: ['tr', 'td'] },
-                jsPDF: { unit: 'in', format: 'a4' },
-            };
+//         prepared.classList.remove("hidden");
+//         prepared.classList.add("block");
 
-            html2pdf().set(opt).from(table).save();
+//         // html2pdf().set(opt).from(prepared, () => {
+//         //     html2pdf().from(printLogo).from(table).save();
+//         // });
 
-            },
-    }));
+//         html2pdf(prepared, opt);
 
+//         setTimeout(() => { prepared.classList.replace("block", 'hidden'); }, 3000);
+//         setTimeout(() => { printLogo.classList.replace("block", 'hidden'); }, 3000);
 
-    Alpine.data('monthlyUser', () =>  ({
-        monthLabels: [],
-        totalUser: [],
-        initUser(data) {
-            data.forEach(item => {
+//         this.isVisible = false; // Hide the logo after generating the PDF
+//     },
+// }));
 
-                this.monthLabels.push(item.name)
-                this.totalUser.push(item.users)
-
-            });
-
-            console.log(this.totalUser);
-        },
-        initBarGraph() {
-           const  colors = [
-                '#eb422f',
-                '#742ad4',
-                '#0c5c87'
-            ];
-            const element = this.$refs.monthlyUserGraph;
-
-            console.log(element);
-
-            var options = {
-                series: [{
-                    data: [...this.totalUser]
-                }],
-                chart: {
-                    height: 350,
-                    type: 'bar',
-                    events: {
-                        click: function(chart, w, e) {
-                            // console.log(chart, w, e)
-                        }
-                    }
-                },
-                colors: colors,
-                plotOptions: {
-                    bar: {
-                        columnWidth: '45%',
-                        distributed: true,
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                legend: {
-                    show: false
-                },
-                xaxis: {
-                    categories: [
-                       ...this.monthLabels
-                    ],
-                    labels: {
-                        style: {
-                            colors: colors,
-                            fontSize: '12px'
-                        }
-                    }
-                }
-            };
-
-
-
-
-
-
-            const barChart = new ApexCharts(element, options);
-            barChart.render()
-        }
-    }))
-
-
-
-
+// Alpine.data('test', () => ({
+//     displaytext(){
+//         console.log(document.getElementById('text'));
+//     },
+// }));
 
 
 Alpine.data('bookScanner', bookScanner);
